@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="mw-fur" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4169E1"/>
+      <stop offset="100%" stop-color="#6495ED"/>
+    </linearGradient>
+  </defs>
+  <style>
+    .body{fill:#4169E1;stroke:#1E90FF;stroke-width:2}
+    .eye{fill:#1a1a40} .shine{fill:#FFF}
+    .blush{fill:#87CEFA;opacity:0.25}
+  </style>
+  <!-- Moon aura behind head -->
+  <circle cx="90" cy="55" r="28" fill="#FFF8DC" opacity="0.2"/>
+  <circle cx="90" cy="55" r="22" fill="#FFF8DC" opacity="0.15"/>
+  <circle cx="97" cy="50" r="18" fill="#4169E1" opacity="0.2"/>
+  <!-- Tail -->
+  <path d="M140 140 Q165 120 170 95 Q172 80 160 85 Q155 100 145 115" fill="#4169E1" stroke="#1E90FF" stroke-width="1.5"/>
+  <!-- Fur texture on tail -->
+  <path d="M155 105 Q160 100 158 95" stroke="#6495ED" stroke-width="1" fill="none" opacity="0.5"/>
+  <path d="M150 115 Q157 108 155 102" stroke="#6495ED" stroke-width="1" fill="none" opacity="0.4"/>
+  <!-- Body -->
+  <ellipse cx="105" cy="130" rx="40" ry="32" fill="url(#mw-fur)" stroke="#1E90FF" stroke-width="2"/>
+  <!-- Lighter underbelly -->
+  <ellipse cx="105" cy="138" rx="25" ry="18" fill="#6495ED" opacity="0.5"/>
+  <!-- Chest ruff -->
+  <path d="M72 110 Q78 120 72 128 Q80 122 85 130 Q88 120 95 128 Q92 118 100 125 Q98 115 105 120" fill="#4169E1" stroke="#6495ED" stroke-width="1"/>
+  <!-- Head (tilted slightly upward) -->
+  <circle cx="90" cy="85" r="32" class="body"/>
+  <!-- Snout pointing up-left -->
+  <ellipse cx="72" cy="78" rx="15" ry="12" class="body"/>
+  <!-- Pointed ears -->
+  <polygon points="68,58 55,28 82,50" class="body"/>
+  <polygon points="112,55 125,25 102,47" class="body"/>
+  <polygon points="70,58 60,35 80,52" fill="#1E90FF" opacity="0.3"/>
+  <polygon points="110,55 122,32 104,49" fill="#1E90FF" opacity="0.3"/>
+  <!-- Fur texture on body -->
+  <path d="M80 125 Q85 118 82 112" stroke="#6495ED" stroke-width="1" fill="none" opacity="0.4"/>
+  <path d="M110 120 Q115 115 112 108" stroke="#6495ED" stroke-width="1" fill="none" opacity="0.4"/>
+  <path d="M125 130 Q130 125 128 118" stroke="#6495ED" stroke-width="1" fill="none" opacity="0.35"/>
+  <!-- Piercing ice-blue eyes -->
+  <circle cx="80" cy="80" r="8" class="eye"/>
+  <circle cx="102" cy="82" r="8" class="eye"/>
+  <circle cx="80" cy="80" r="5.5" fill="#87CEFA"/>
+  <circle cx="102" cy="82" r="5.5" fill="#87CEFA"/>
+  <circle cx="80" cy="80" r="3" fill="#1a1a40"/>
+  <circle cx="102" cy="82" r="3" fill="#1a1a40"/>
+  <circle cx="78" cy="78" r="2.5" class="shine"/>
+  <circle cx="100" cy="80" r="2.5" class="shine"/>
+  <!-- Blush -->
+  <ellipse cx="68" cy="90" rx="7" ry="4" class="blush"/>
+  <ellipse cx="114" cy="92" rx="7" ry="4" class="blush"/>
+  <!-- Nose -->
+  <ellipse cx="63" cy="76" rx="4" ry="3" fill="#1a1a40"/>
+  <circle cx="62" cy="75" r="1.5" class="shine"/>
+  <!-- Mouth -->
+  <path d="M66 82 Q72 87 80 84" stroke="#1E90FF" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Front paws -->
+  <ellipse cx="82" cy="160" rx="12" ry="8" class="body"/>
+  <ellipse cx="118" cy="160" rx="12" ry="8" class="body"/>
+</svg>

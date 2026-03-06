@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="rm-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffd6e0"/>
+      <stop offset="30%" stop-color="#ffe8a8"/>
+      <stop offset="60%" stop-color="#d4f0c0"/>
+      <stop offset="100%" stop-color="#c8e8ff"/>
+    </linearGradient>
+    <linearGradient id="rm-hill1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a8e6a0"/>
+      <stop offset="100%" stop-color="#7ecb78"/>
+    </linearGradient>
+    <linearGradient id="rm-hill2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b8f0b0"/>
+      <stop offset="100%" stop-color="#8ed888"/>
+    </linearGradient>
+    <filter id="rm-glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="800" height="600" fill="url(#rm-sky)"/>
+
+  <!-- Rainbow arc -->
+  <g opacity="0.45" fill="none" stroke-width="4">
+    <path d="M100 320 Q400 20 700 320" stroke="#FF9999"/>
+    <path d="M108 324 Q400 28 692 324" stroke="#FFCC99"/>
+    <path d="M116 328 Q400 36 684 328" stroke="#FFEE99"/>
+    <path d="M124 332 Q400 44 676 332" stroke="#99EE99"/>
+    <path d="M132 336 Q400 52 668 336" stroke="#99DDFF"/>
+    <path d="M140 340 Q400 60 660 340" stroke="#9999FF"/>
+    <path d="M148 344 Q400 68 652 344" stroke="#CC99FF"/>
+  </g>
+
+  <!-- Distant hills -->
+  <ellipse cx="200" cy="400" rx="280" ry="100" fill="#b0e8a8" opacity="0.6"/>
+  <ellipse cx="620" cy="410" rx="300" ry="110" fill="#b0e8a8" opacity="0.5"/>
+
+  <!-- Distant hill flowers -->
+  <g opacity="0.5">
+    <circle cx="120" cy="370" r="3" fill="#FF69B4"/>
+    <circle cx="180" cy="365" r="2.5" fill="#FFD700"/>
+    <circle cx="250" cy="375" r="3" fill="#9999FF"/>
+    <circle cx="550" cy="378" r="2.5" fill="#FF6347"/>
+    <circle cx="650" cy="372" r="3" fill="#FFB6C1"/>
+    <circle cx="720" cy="380" r="2.5" fill="#87CEEB"/>
+  </g>
+
+  <!-- Main hills -->
+  <ellipse cx="400" cy="490" rx="480" ry="160" fill="url(#rm-hill1)"/>
+  <ellipse cx="120" cy="510" rx="240" ry="140" fill="url(#rm-hill2)"/>
+  <ellipse cx="700" cy="500" rx="260" ry="150" fill="url(#rm-hill2)"/>
+
+  <!-- Ground -->
+  <rect x="0" y="510" width="800" height="90" fill="#7ecb78"/>
+
+  <!-- Winding path -->
+  <path d="M370 600 Q340 540 390 480 Q440 420 370 360" fill="none" stroke="#d4b87a" stroke-width="26" stroke-linecap="round" opacity="0.55"/>
+  <path d="M370 600 Q340 540 390 480 Q440 420 370 360" fill="none" stroke="#e0c888" stroke-width="16" stroke-linecap="round" opacity="0.35"/>
+
+  <!-- Mid-ground flowers -->
+  <g>
+    <!-- Stems -->
+    <line x1="100" y1="480" x2="100" y2="465" stroke="#5a9e54" stroke-width="2"/>
+    <line x1="180" y1="475" x2="180" y2="458" stroke="#5a9e54" stroke-width="2"/>
+    <line x1="260" y1="485" x2="260" y2="470" stroke="#5a9e54" stroke-width="2"/>
+    <line x1="330" y1="470" x2="330" y2="455" stroke="#5a9e54" stroke-width="2"/>
+    <line x1="450" y1="465" x2="450" y2="448" stroke="#5a9e54" stroke-width="2"/>
+    <line x1="520" y1="478" x2="520" y2="462" stroke="#5a9e54" stroke-width="2"/>
+    <line x1="600" y1="472" x2="600" y2="456" stroke="#5a9e54" stroke-width="2"/>
+    <line x1="680" y1="480" x2="680" y2="465" stroke="#5a9e54" stroke-width="2"/>
+    <line x1="150" y1="490" x2="150" y2="476" stroke="#5a9e54" stroke-width="2"/>
+    <line x1="480" y1="488" x2="480" y2="474" stroke="#5a9e54" stroke-width="2"/>
+    <line x1="560" y1="485" x2="560" y2="470" stroke="#5a9e54" stroke-width="2"/>
+    <line x1="720" y1="488" x2="720" y2="474" stroke="#5a9e54" stroke-width="2"/>
+    <!-- Blooms -->
+    <circle cx="100" cy="462" r="6" fill="#FF69B4"/><circle cx="100" cy="462" r="2.5" fill="#FFD700"/>
+    <circle cx="180" cy="455" r="5" fill="#FF6347"/><circle cx="180" cy="455" r="2" fill="#FFF"/>
+    <circle cx="260" cy="467" r="6" fill="#9999FF"/><circle cx="260" cy="467" r="2.5" fill="#FFE4B5"/>
+    <circle cx="330" cy="452" r="5" fill="#FFD700"/><circle cx="330" cy="452" r="2" fill="#FFF"/>
+    <circle cx="450" cy="445" r="6" fill="#FF69B4"/><circle cx="450" cy="445" r="2.5" fill="#FFE4B5"/>
+    <circle cx="520" cy="459" r="5" fill="#87CEEB"/><circle cx="520" cy="459" r="2" fill="#FFF"/>
+    <circle cx="600" cy="453" r="6" fill="#DDA0DD"/><circle cx="600" cy="453" r="2.5" fill="#FFD700"/>
+    <circle cx="680" cy="462" r="5" fill="#FF6347"/><circle cx="680" cy="462" r="2" fill="#FFE4B5"/>
+    <circle cx="150" cy="473" r="5" fill="#98FB98"/><circle cx="150" cy="473" r="2" fill="#FFD700"/>
+    <circle cx="480" cy="471" r="5" fill="#FFB6C1"/><circle cx="480" cy="471" r="2" fill="#FFF"/>
+    <circle cx="560" cy="467" r="6" fill="#FFA500"/><circle cx="560" cy="467" r="2.5" fill="#FFD700"/>
+    <circle cx="720" cy="471" r="5" fill="#FF69B4"/><circle cx="720" cy="471" r="2" fill="#FFF"/>
+  </g>
+
+  <!-- Foreground larger flowers -->
+  <g>
+    <line x1="80" y1="540" x2="80" y2="515" stroke="#4a8e44" stroke-width="3"/>
+    <circle cx="80" cy="512" r="9" fill="#FF69B4"/><circle cx="80" cy="512" r="4" fill="#FFD700"/>
+    <line x1="250" y1="545" x2="250" y2="518" stroke="#4a8e44" stroke-width="3"/>
+    <circle cx="250" cy="515" r="8" fill="#FFD700"/><circle cx="250" cy="515" r="3.5" fill="#FFF"/>
+    <line x1="550" y1="538" x2="550" y2="512" stroke="#4a8e44" stroke-width="3"/>
+    <circle cx="550" cy="509" r="9" fill="#9999FF"/><circle cx="550" cy="509" r="4" fill="#FFE4B5"/>
+    <line x1="700" y1="542" x2="700" y2="518" stroke="#4a8e44" stroke-width="3"/>
+    <circle cx="700" cy="515" r="8" fill="#FF6347"/><circle cx="700" cy="515" r="3.5" fill="#FFD700"/>
+    <line x1="420" y1="550" x2="420" y2="525" stroke="#4a8e44" stroke-width="3"/>
+    <circle cx="420" cy="522" r="8" fill="#DDA0DD"/><circle cx="420" cy="522" r="3.5" fill="#FFF"/>
+  </g>
+
+  <!-- Grass tufts -->
+  <g fill="#5a9e54">
+    <path d="M30 550 L35 535 L40 550"/>
+    <path d="M35 550 L40 532 L45 550"/>
+    <path d="M160 555 L165 540 L170 555"/>
+    <path d="M165 555 L170 538 L175 555"/>
+    <path d="M470 548 L475 533 L480 548"/>
+    <path d="M475 548 L480 530 L485 548"/>
+    <path d="M640 552 L645 537 L650 552"/>
+    <path d="M645 552 L650 535 L655 552"/>
+  </g>
+
+  <!-- Butterflies -->
+  <g>
+    <!-- Butterfly 1 -->
+    <line x1="300" y1="350" x2="300" y2="360" stroke="#333" stroke-width="1.5"/>
+    <ellipse cx="294" cy="352" rx="8" ry="5" fill="#FF69B4" opacity="0.7" transform="rotate(-20 294 352)"/>
+    <ellipse cx="306" cy="352" rx="8" ry="5" fill="#FF69B4" opacity="0.7" transform="rotate(20 306 352)"/>
+    <!-- Butterfly 2 -->
+    <line x1="580" y1="380" x2="580" y2="390" stroke="#333" stroke-width="1.5"/>
+    <ellipse cx="574" cy="382" rx="7" ry="4.5" fill="#FFD700" opacity="0.7" transform="rotate(-15 574 382)"/>
+    <ellipse cx="586" cy="382" rx="7" ry="4.5" fill="#FFD700" opacity="0.7" transform="rotate(15 586 382)"/>
+  </g>
+
+  <!-- Animated sparkle particles -->
+  <g filter="url(#rm-glow)">
+    <circle cx="130" cy="440" r="2.5" fill="#FF69B4" opacity="0.8">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="280" cy="420" r="2" fill="#FFD700" opacity="0.6">
+      <animate attributeName="opacity" values="1;0.3;1" dur="1.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="440" cy="400" r="2.5" fill="#9999FF" opacity="0.7">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="600" cy="430" r="2" fill="#FF6347" opacity="0.8">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="1.6s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="350" cy="460" r="2" fill="#98FB98" opacity="0.6">
+      <animate attributeName="opacity" values="1;0.4;1" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="190" cy="450" r="2.5" fill="#DDA0DD" opacity="0.7">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="1.9s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="510" cy="415" r="2" fill="#FFB6C1" opacity="0.8">
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="2.1s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="680" cy="445" r="2.5" fill="#87CEEB" opacity="0.6">
+      <animate attributeName="opacity" values="0.3;0.9;0.3" dur="2.3s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>

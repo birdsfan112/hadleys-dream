@@ -1,0 +1,229 @@
+/* ============================================================
+   Creature World Styles
+   ============================================================ */
+
+#creatures-screen { background: var(--bg); }
+#creatures-top { background: rgba(167,243,208,0.3); }
+
+/* --- Location Grid --- */
+.location-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.location-card {
+  border-radius: var(--radius);
+  padding: 20px 14px;
+  text-align: center;
+  cursor: pointer;
+  color: #FFF;
+  font-weight: 700;
+  box-shadow: 0 4px 16px var(--shadow);
+  transition: transform 0.15s;
+  position: relative;
+  overflow: hidden;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.location-card:active { transform: scale(0.96); }
+.location-card .loc-icon { font-size: 2em; }
+.location-card .loc-name { font-size: 1em; text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+.location-card .loc-count {
+  font-size: 0.75em;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+/* Moon cave: light text */
+.location-card[data-loc="moon-cave"] { color: #E8E8FF; }
+
+/* --- Location Explore Container --- */
+#location-explore {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* --- Location Scene --- */
+.location-scene {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+}
+.location-name {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.1em;
+  padding: 8px;
+  color: #FFF;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+.back-location-btn {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  z-index: 5;
+}
+
+/* --- Explore Spots --- */
+.explore-spots {
+  flex: 1;
+  position: relative;
+}
+.explore-spot {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8em;
+  animation: float 2s ease-in-out infinite;
+  transition: transform 0.1s;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.2));
+}
+.explore-spot:active { transform: scale(0.85); }
+.explore-spot.on-cooldown {
+  opacity: 0.3;
+  pointer-events: none;
+  animation: none;
+}
+.explore-spot .spot-glow {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, transparent 70%);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Stagger float animation */
+.explore-spot:nth-child(2) { animation-delay: 0.3s; }
+.explore-spot:nth-child(3) { animation-delay: 0.6s; }
+.explore-spot:nth-child(4) { animation-delay: 0.9s; }
+.explore-spot:nth-child(5) { animation-delay: 1.2s; }
+.explore-spot:nth-child(6) { animation-delay: 1.5s; }
+
+/* --- Catch Overlay --- */
+#catch-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  gap: 16px;
+}
+#catch-overlay.hidden { display: none; }
+
+/* Creature SVG shown behind the catch ring */
+#catch-creature-svg {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -65%);
+  z-index: 21;
+  pointer-events: none;
+}
+#catch-creature-svg.hidden { display: none; }
+#catch-creature-svg svg {
+  width: 100%;
+  height: 100%;
+}
+
+#catch-canvas {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  position: relative;
+  z-index: 22;
+}
+
+#catch-info {
+  text-align: center;
+  color: #FFF;
+}
+#catch-creature-name {
+  font-size: 1.4em;
+  font-weight: 800;
+}
+#catch-rarity {
+  font-size: 0.9em;
+  font-weight: 600;
+  margin: 4px 0;
+  padding: 2px 12px;
+  border-radius: 20px;
+  display: inline-block;
+}
+#catch-instruction {
+  font-size: 0.9em;
+  margin-top: 8px;
+  opacity: 0.8;
+}
+
+#catch-result {
+  text-align: center;
+  color: #FFF;
+}
+#catch-result.hidden { display: none; }
+#catch-result-text {
+  font-size: 1.5em;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+/* --- Collection Cards --- */
+.creature-card {
+  background: var(--card);
+  border-radius: var(--radius-sm);
+  padding: 10px 6px;
+  text-align: center;
+  box-shadow: 0 2px 8px var(--shadow);
+  position: relative;
+}
+.creature-card .creature-thumb {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.creature-card .creature-name {
+  font-size: 0.7em;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.creature-card .creature-rarity-dot {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.creature-card.uncaught {
+  opacity: 0.5;
+}
+.creature-card.uncaught .creature-thumb {
+  filter: brightness(0) opacity(0.3);
+}

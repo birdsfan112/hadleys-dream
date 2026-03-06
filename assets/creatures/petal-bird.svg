@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <style>
+    .body{fill:#FFB7C5;stroke:#FF91A4;stroke-width:2}
+    .eye{fill:#333} .shine{fill:#FFF}
+    .blush{fill:#FF69B4;opacity:0.25}
+  </style>
+  <!-- Tail feathers -->
+  <ellipse cx="60" cy="115" rx="14" ry="7" fill="#FF91A4" transform="rotate(-20 60 115)"/>
+  <ellipse cx="55" cy="125" rx="12" ry="6" fill="#FF91A4" transform="rotate(-10 55 125)"/>
+  <!-- Body -->
+  <circle cx="100" cy="110" r="38" class="body"/>
+  <!-- Wing (petal shaped) -->
+  <ellipse cx="68" cy="110" rx="12" ry="22" fill="#FF91A4" opacity="0.7" transform="rotate(-10 68 110)"/>
+  <ellipse cx="132" cy="110" rx="12" ry="22" fill="#FF91A4" opacity="0.7" transform="rotate(10 132 110)"/>
+  <!-- Head -->
+  <circle cx="100" cy="70" r="28" class="body"/>
+  <!-- Flower hat -->
+  <g transform="translate(100,45)">
+    <ellipse cx="-7" cy="0" rx="5" ry="5" fill="#FFD700"/>
+    <ellipse cx="7" cy="0" rx="5" ry="5" fill="#FFD700"/>
+    <ellipse cx="0" cy="-7" rx="5" ry="5" fill="#FFD700"/>
+    <ellipse cx="0" cy="7" rx="5" ry="5" fill="#FFD700"/>
+    <ellipse cx="-5" cy="-5" rx="5" ry="5" fill="#FFD700"/>
+    <circle cx="0" cy="0" r="4" fill="#FF91A4"/>
+  </g>
+  <!-- Beak -->
+  <polygon points="128,68 142,72 128,76" fill="#FFA500"/>
+  <!-- Eyes -->
+  <circle cx="90" cy="66" r="4" class="eye"/>
+  <circle cx="110" cy="66" r="4" class="eye"/>
+  <circle cx="92" cy="64" r="2" class="shine"/>
+  <circle cx="112" cy="64" r="2" class="shine"/>
+  <!-- Blush -->
+  <ellipse cx="82" cy="76" rx="7" ry="4" class="blush"/>
+  <ellipse cx="118" cy="76" rx="7" ry="4" class="blush"/>
+  <!-- Feet -->
+  <line x1="88" y1="146" x2="88" y2="162" stroke="#FFA500" stroke-width="2" stroke-linecap="round"/>
+  <line x1="112" y1="146" x2="112" y2="162" stroke="#FFA500" stroke-width="2" stroke-linecap="round"/>
+</svg>

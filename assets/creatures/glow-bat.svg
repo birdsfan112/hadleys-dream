@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <style>
+    .body{fill:#483D8B;stroke:#7B68EE;stroke-width:2}
+    .eye{fill:#9370DB} .shine{fill:#FFF}
+    .blush{fill:#9370DB;opacity:0.3}
+    .wing{fill:#483D8B;stroke:#7B68EE;stroke-width:1.5}
+  </style>
+  <!-- Left wing -->
+  <path d="M55 95 Q20 60 15 40 Q25 55 35 50 Q30 35 25 20 Q40 40 50 38 Q48 25 50 15 Q58 40 65 55 L70 90 Z" class="wing"/>
+  <!-- Right wing -->
+  <path d="M145 95 Q180 60 185 40 Q175 55 165 50 Q170 35 175 20 Q160 40 150 38 Q152 25 150 15 Q142 40 135 55 L130 90 Z" class="wing"/>
+  <!-- Body -->
+  <circle cx="100" cy="105" r="38" class="body"/>
+  <!-- Ears -->
+  <polygon points="75,72 65,45 85,68" class="body"/>
+  <polygon points="125,72 135,45 115,68" class="body"/>
+  <!-- Ear inner -->
+  <polygon points="77,72 69,52 83,70" fill="#6A5ACD" opacity="0.4"/>
+  <polygon points="123,72 131,52 117,70" fill="#6A5ACD" opacity="0.4"/>
+  <!-- Glowing eyes -->
+  <circle cx="85" cy="100" r="9" class="eye"/>
+  <circle cx="115" cy="100" r="9" class="eye"/>
+  <circle cx="85" cy="100" r="5" fill="#B8A9FF"/>
+  <circle cx="115" cy="100" r="5" fill="#B8A9FF"/>
+  <circle cx="83" cy="97" r="3" class="shine"/>
+  <circle cx="113" cy="97" r="3" class="shine"/>
+  <!-- Blush -->
+  <ellipse cx="72" cy="110" rx="8" ry="5" class="blush"/>
+  <ellipse cx="128" cy="110" rx="8" ry="5" class="blush"/>
+  <!-- Cute fangs -->
+  <polygon points="91,118 93,124 95,118" fill="#FFF"/>
+  <polygon points="105,118 107,124 109,118" fill="#FFF"/>
+  <!-- Mouth -->
+  <path d="M90 118 Q100 125 110 118" stroke="#7B68EE" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Moon charm -->
+  <line x1="100" y1="143" x2="100" y2="155" stroke="#7B68EE" stroke-width="1"/>
+  <circle cx="100" cy="162" r="7" fill="#FFF8DC" opacity="0.6"/>
+  <circle cx="104" cy="160" r="5.5" fill="#483D8B"/>
+  <!-- Feet -->
+  <ellipse cx="85" cy="142" rx="10" ry="6" class="body"/>
+  <ellipse cx="115" cy="142" rx="10" ry="6" class="body"/>
+</svg>

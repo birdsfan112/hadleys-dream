@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <style>
+    .fur{fill:#D2691E;stroke:#A0522D;stroke-width:2}
+    .light{fill:#F4A460}
+    .eye{fill:#333} .shine{fill:#FFF}
+    .blush{fill:#FF8C00;opacity:0.25}
+  </style>
+  <!-- Bushy tail -->
+  <path d="M145 130 Q180 100 175 70 Q172 50 160 65 Q155 90 140 110 Z" class="fur"/>
+  <path d="M160 70 Q158 55 152 68 Q150 85 145 100" fill="#F4A460" opacity="0.6"/>
+  <!-- Body -->
+  <ellipse cx="100" cy="135" rx="40" ry="35" class="fur"/>
+  <!-- Belly -->
+  <ellipse cx="100" cy="140" rx="25" ry="22" class="light"/>
+  <!-- Head -->
+  <circle cx="100" cy="90" r="35" class="fur"/>
+  <!-- Fox ears -->
+  <polygon points="72,62 60,30 85,55" class="fur"/>
+  <polygon points="128,62 140,30 115,55" class="fur"/>
+  <polygon points="72,60 64,38 82,55" fill="#FF8C00" opacity="0.4"/>
+  <polygon points="128,60 136,38 118,55" fill="#FF8C00" opacity="0.4"/>
+  <!-- Face marking -->
+  <path d="M80 90 Q100 110 120 90 Q110 100 100 102 Q90 100 80 90" class="light"/>
+  <!-- Acorn hat -->
+  <path d="M75 70 Q100 55 125 70 Q120 60 100 56 Q80 60 75 70" fill="#8B6914" stroke="#6B4914" stroke-width="1.5"/>
+  <rect x="82" y="56" width="36" height="8" rx="4" fill="#6B4914"/>
+  <circle cx="100" cy="52" r="4" fill="#6B4914"/>
+  <!-- Stem on acorn hat -->
+  <line x1="100" y1="48" x2="100" y2="42" stroke="#4B3610" stroke-width="2" stroke-linecap="round"/>
+  <!-- Eyes (sly/happy) -->
+  <path d="M84 86 Q88 82 92 86" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M108 86 Q112 82 116 86" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Blush -->
+  <ellipse cx="76" cy="95" rx="8" ry="5" class="blush"/>
+  <ellipse cx="124" cy="95" rx="8" ry="5" class="blush"/>
+  <!-- Nose -->
+  <circle cx="100" cy="96" r="4" fill="#333"/>
+  <circle cx="101" cy="95" r="1.5" class="shine"/>
+  <!-- Mouth -->
+  <path d="M96 100 L100 103 L104 100" stroke="#333" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Front paws -->
+  <ellipse cx="78" cy="165" rx="12" ry="8" class="fur"/>
+  <ellipse cx="122" cy="165" rx="12" ry="8" class="fur"/>
+</svg>

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <style>
+    .body{fill:#2F2F4F;stroke:#4F4F6F;stroke-width:2}
+    .eye{fill:#1a1a30} .shine{fill:#FFF}
+    .blush{fill:#7B68EE;opacity:0.25}
+  </style>
+  <!-- Purple aura glow -->
+  <circle cx="100" cy="110" r="52" fill="#6A5ACD" opacity="0.12"/>
+  <ellipse cx="100" cy="130" rx="42" ry="37" fill="#6A5ACD" opacity="0.1"/>
+  <!-- Tail curving around to front -->
+  <path d="M55 145 Q30 130 28 100 Q28 75 50 70 Q65 68 70 80" stroke="#2F2F4F" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <path d="M55 145 Q30 130 28 100 Q28 75 50 70 Q65 68 70 80" stroke="#4F4F6F" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.3"/>
+  <!-- Body -->
+  <ellipse cx="100" cy="130" rx="38" ry="33" class="body"/>
+  <!-- Head -->
+  <circle cx="100" cy="88" r="35" class="body"/>
+  <!-- Pointed ears -->
+  <polygon points="72,62 58,30 88,55" class="body"/>
+  <polygon points="128,62 142,30 112,55" class="body"/>
+  <polygon points="74,62 63,38 85,57" fill="#4F4F6F" opacity="0.3"/>
+  <polygon points="126,62 137,38 115,57" fill="#4F4F6F" opacity="0.3"/>
+  <!-- Subtle dark stripes on back -->
+  <path d="M80 110 Q90 105 95 115" stroke="#1a1a35" stroke-width="2" fill="none" opacity="0.3"/>
+  <path d="M90 105 Q100 100 105 110" stroke="#1a1a35" stroke-width="2" fill="none" opacity="0.3"/>
+  <path d="M100 100 Q110 96 118 108" stroke="#1a1a35" stroke-width="2" fill="none" opacity="0.25"/>
+  <!-- Mysterious eyes - large, pale aqua with slit pupils -->
+  <circle cx="84" cy="85" r="10" class="eye"/>
+  <circle cx="116" cy="85" r="10" class="eye"/>
+  <circle cx="84" cy="85" r="8" fill="#7FFFD4"/>
+  <circle cx="116" cy="85" r="8" fill="#7FFFD4"/>
+  <ellipse cx="84" cy="85" rx="2.5" ry="7" fill="#1a1a30"/>
+  <ellipse cx="116" cy="85" rx="2.5" ry="7" fill="#1a1a30"/>
+  <circle cx="81" cy="82" r="2.5" class="shine"/>
+  <circle cx="113" cy="82" r="2.5" class="shine"/>
+  <!-- Blush -->
+  <ellipse cx="70" cy="95" rx="8" ry="5" class="blush"/>
+  <ellipse cx="130" cy="95" rx="8" ry="5" class="blush"/>
+  <!-- Nose -->
+  <polygon points="100,94 97,98 103,98" fill="#4F4F6F"/>
+  <!-- Mouth -->
+  <path d="M94 101 Q100 106 106 101" stroke="#4F4F6F" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Star collar -->
+  <path d="M72 110 Q86 115 100 112 Q114 115 128 110" stroke="#7B68EE" stroke-width="1.5" fill="none" opacity="0.7"/>
+  <!-- Stars on collar -->
+  <polygon points="80,112 81.5,115 84,115 82,117 83,120 80,118 77,120 78,117 76,115 78.5,115" fill="#B0C4DE" opacity="0.8"/>
+  <polygon points="100,111 101.5,114 104,114 102,116 103,119 100,117 97,119 98,116 96,114 98.5,114" fill="#B0C4DE" opacity="0.8"/>
+  <polygon points="120,112 121.5,115 124,115 122,117 123,120 120,118 117,120 118,117 116,115 118.5,115" fill="#B0C4DE" opacity="0.8"/>
+  <!-- Front paws -->
+  <ellipse cx="82" cy="162" rx="12" ry="7" class="body"/>
+  <ellipse cx="118" cy="162" rx="12" ry="7" class="body"/>
+</svg>

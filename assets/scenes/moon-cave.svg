@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="mc-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1a3e"/>
+      <stop offset="50%" stop-color="#2d2d6b"/>
+      <stop offset="100%" stop-color="#4a4a8a"/>
+    </linearGradient>
+    <radialGradient id="mc-moon" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#FFF8DC"/>
+      <stop offset="100%" stop-color="#FFF8DC" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="mc-glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="mc-glow-sm">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="mc-pool" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#3a3a7a"/>
+      <stop offset="100%" stop-color="#1a1a4e"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Cave background -->
+  <rect width="800" height="600" fill="url(#mc-sky)"/>
+
+  <!-- Cave ceiling opening with moon -->
+  <path d="M280 0 Q300 60 340 80 Q380 95 400 90 Q420 95 460 80 Q500 60 520 0 Z" fill="#0d0d2a"/>
+  <circle cx="400" cy="45" r="30" fill="url(#mc-moon)" opacity="0.8"/>
+  <!-- Crescent moon -->
+  <circle cx="400" cy="45" r="18" fill="#FFF8DC" opacity="0.9"/>
+  <circle cx="410" cy="40" r="15" fill="#0d0d2a"/>
+
+  <!-- Stalactites -->
+  <path d="M0 0 L0 80 Q30 100 50 60 Q70 110 100 50 Q120 95 150 40 Q170 80 200 0 Z" fill="#151540"/>
+  <path d="M180 0 L180 50 Q210 90 240 30 Q260 75 290 0 Z" fill="#18184a"/>
+  <path d="M500 0 L500 55 Q530 95 560 40 Q580 80 610 25 Q640 70 670 0 Z" fill="#151540"/>
+  <path d="M650 0 L650 65 Q680 100 710 45 Q740 85 770 30 Q790 60 800 0 Z" fill="#18184a"/>
+
+  <!-- Cave walls -->
+  <path d="M0 80 Q0 200 20 350 Q30 450 0 600 L0 0 Z" fill="#12123a" opacity="0.8"/>
+  <path d="M800 80 Q800 200 780 350 Q770 450 800 600 L800 0 Z" fill="#12123a" opacity="0.8"/>
+
+  <!-- Glowing crystals on walls -->
+  <g filter="url(#mc-glow)">
+    <!-- Left wall crystals -->
+    <polygon points="60,180 45,140 70,120 85,155" fill="#B0C4DE" opacity="0.6">
+      <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2.5s" repeatCount="indefinite"/>
+    </polygon>
+    <polygon points="30,280 15,250 35,230 50,260" fill="#E0E8F0" opacity="0.7">
+      <animate attributeName="opacity" values="0.5;0.85;0.5" dur="1.8s" repeatCount="indefinite"/>
+    </polygon>
+    <polygon points="80,350 65,310 90,300 100,335" fill="#B0C4DE" opacity="0.5">
+      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2.2s" repeatCount="indefinite"/>
+    </polygon>
+    <!-- Right wall crystals -->
+    <polygon points="740,200 725,160 750,145 765,180" fill="#C8D8E8" opacity="0.65">
+      <animate attributeName="opacity" values="0.5;0.9;0.5" dur="2s" repeatCount="indefinite"/>
+    </polygon>
+    <polygon points="720,310 705,275 730,260 745,295" fill="#B0C4DE" opacity="0.55">
+      <animate attributeName="opacity" values="0.6;0.9;0.6" dur="1.6s" repeatCount="indefinite"/>
+    </polygon>
+    <polygon points="760,400 745,370 770,355 780,385" fill="#E0E8F0" opacity="0.6">
+      <animate attributeName="opacity" values="0.4;0.85;0.4" dur="2.8s" repeatCount="indefinite"/>
+    </polygon>
+  </g>
+
+  <!-- Mid-ground crystal cluster -->
+  <g filter="url(#mc-glow)">
+    <polygon points="320,380 305,340 330,310 345,360" fill="#B0C4DE" opacity="0.7">
+      <animate attributeName="opacity" values="0.5;0.9;0.5" dur="2.3s" repeatCount="indefinite"/>
+    </polygon>
+    <polygon points="340,385 335,350 355,335 360,370" fill="#C8D8E8" opacity="0.6">
+      <animate attributeName="opacity" values="0.6;0.85;0.6" dur="1.9s" repeatCount="indefinite"/>
+    </polygon>
+  </g>
+
+  <!-- Cave floor -->
+  <path d="M0 480 Q100 460 200 475 Q300 465 400 470 Q500 460 600 475 Q700 465 800 480 L800 600 L0 600 Z" fill="#1e1e48"/>
+
+  <!-- Underground pool -->
+  <ellipse cx="500" cy="500" rx="120" ry="35" fill="url(#mc-pool)" opacity="0.8"/>
+  <!-- Pool reflection highlights -->
+  <ellipse cx="480" cy="495" rx="30" ry="5" fill="#4a4a9a" opacity="0.3"/>
+  <ellipse cx="530" cy="505" rx="20" ry="4" fill="#5a5aaa" opacity="0.25"/>
+
+  <!-- Bioluminescent mushrooms -->
+  <g filter="url(#mc-glow-sm)">
+    <rect x="145" y="470" width="5" height="12" rx="2" fill="#1a6a5a"/>
+    <ellipse cx="147" cy="470" rx="10" ry="7" fill="#20B2AA" opacity="0.7"/>
+
+    <rect x="230" y="478" width="4" height="10" rx="2" fill="#1a6a5a"/>
+    <ellipse cx="232" cy="478" rx="8" ry="6" fill="#9370DB" opacity="0.7"/>
+
+    <rect x="370" y="464" width="5" height="12" rx="2" fill="#1a6a5a"/>
+    <ellipse cx="372" cy="464" rx="10" ry="7" fill="#20B2AA" opacity="0.7"/>
+
+    <rect x="650" y="475" width="4" height="10" rx="2" fill="#1a6a5a"/>
+    <ellipse cx="652" cy="475" rx="8" ry="6" fill="#9370DB" opacity="0.7"/>
+
+    <rect x="700" y="468" width="3" height="8" rx="1" fill="#1a6a5a"/>
+    <ellipse cx="701" cy="468" rx="6" ry="5" fill="#20B2AA" opacity="0.6"/>
+  </g>
+
+  <!-- Rocky details on floor -->
+  <ellipse cx="180" cy="510" rx="25" ry="8" fill="#252560" opacity="0.5"/>
+  <ellipse cx="420" cy="520" rx="18" ry="6" fill="#252560" opacity="0.4"/>
+  <ellipse cx="680" cy="515" rx="22" ry="7" fill="#252560" opacity="0.5"/>
+
+  <!-- Sparkle particles -->
+  <g fill="#B0C4DE" opacity="0.8">
+    <circle cx="200" cy="200" r="2">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="400" cy="150" r="2.5">
+      <animate attributeName="opacity" values="1;0.3;1" dur="1.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="600" cy="250" r="2">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="150" cy="400" r="2">
+      <animate attributeName="opacity" values="0.3;0.9;0.3" dur="1.6s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="550" cy="350" r="2.5">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="350" cy="300" r="2">
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="1.9s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Star-like sparkles -->
+  <g fill="#E0E8F0" opacity="0.5">
+    <polygon points="450,200 452,206 458,206 453,210 455,216 450,212 445,216 447,210 442,206 448,206">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite"/>
+    </polygon>
+    <polygon points="250,320 252,326 258,326 253,330 255,336 250,332 245,336 247,330 242,326 248,326">
+      <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2.5s" repeatCount="indefinite"/>
+    </polygon>
+  </g>
+</svg>

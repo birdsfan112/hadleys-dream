@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <style>
+    .body{fill:#DDA0DD;stroke:#DA70D6;stroke-width:2}
+    .eye{fill:#333} .shine{fill:#FFF}
+    .blush{fill:#FF69B4;opacity:0.25}
+  </style>
+  <!-- Slime trail -->
+  <circle cx="45" cy="155" r="4" fill="#DDA0DD" opacity="0.2"/>
+  <circle cx="55" cy="160" r="3" fill="#DDA0DD" opacity="0.15"/>
+  <circle cx="35" cy="160" r="3" fill="#DDA0DD" opacity="0.2"/>
+  <!-- Body blob -->
+  <ellipse cx="90" cy="140" rx="50" ry="22" class="body"/>
+  <!-- Rainbow shell -->
+  <g transform="translate(125,100)">
+    <path d="M0 35 Q-35 35 -35 10 Q-35 -15 0 -15 Q25 -15 25 5" fill="none" stroke="#FFB3B3" stroke-width="5" stroke-linecap="round"/>
+    <path d="M0 30 Q-28 30 -28 10 Q-28 -8 0 -8 Q18 -8 18 5" fill="none" stroke="#FFD9A3" stroke-width="4" stroke-linecap="round"/>
+    <path d="M0 25 Q-21 25 -21 10 Q-21 -2 0 -2 Q12 -2 12 5" fill="none" stroke="#FFFFB3" stroke-width="4" stroke-linecap="round"/>
+    <path d="M0 20 Q-14 20 -14 10 Q-14 3 0 3 Q7 3 7 7" fill="none" stroke="#B3FFB3" stroke-width="3" stroke-linecap="round"/>
+    <path d="M0 16 Q-8 16 -8 10 Q-8 6 0 6" fill="none" stroke="#B3D9FF" stroke-width="3" stroke-linecap="round"/>
+    <path d="M0 13 Q-4 13 -4 10 Q-4 8 0 8" fill="none" stroke="#E0B3FF" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <!-- Eye stalks -->
+  <line x1="65" y1="130" x2="55" y2="100" stroke="#DA70D6" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="85" y1="128" x2="80" y2="98" stroke="#DA70D6" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Eyes (curious, looking up) -->
+  <circle cx="55" cy="96" r="7" fill="#FFF" stroke="#DA70D6" stroke-width="1.5"/>
+  <circle cx="80" cy="94" r="7" fill="#FFF" stroke="#DA70D6" stroke-width="1.5"/>
+  <circle cx="54" cy="93" r="4" class="eye"/>
+  <circle cx="79" cy="91" r="4" class="eye"/>
+  <circle cx="56" cy="91" r="2" class="shine"/>
+  <circle cx="81" cy="89" r="2" class="shine"/>
+  <!-- Blush -->
+  <ellipse cx="50" cy="108" rx="6" ry="4" class="blush"/>
+  <ellipse cx="88" cy="106" rx="6" ry="4" class="blush"/>
+  <!-- Mouth -->
+  <path d="M60 116 Q67 122 74 116" stroke="#DA70D6" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+</svg>

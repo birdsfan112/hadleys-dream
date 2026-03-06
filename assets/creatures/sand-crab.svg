@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <style>
+    .body{fill:#FFA07A;stroke:#FF7F50;stroke-width:2}
+    .eye{fill:#333} .shine{fill:#FFF}
+    .blush{fill:#FF69B4;opacity:0.25}
+  </style>
+  <!-- Legs (4 small, behind body) -->
+  <line x1="60" y1="135" x2="40" y2="155" stroke="#FF7F50" stroke-width="3" stroke-linecap="round"/>
+  <line x1="75" y1="140" x2="55" y2="160" stroke="#FF7F50" stroke-width="3" stroke-linecap="round"/>
+  <line x1="125" y1="140" x2="145" y2="160" stroke="#FF7F50" stroke-width="3" stroke-linecap="round"/>
+  <line x1="140" y1="135" x2="160" y2="155" stroke="#FF7F50" stroke-width="3" stroke-linecap="round"/>
+  <!-- Body (wide oval) -->
+  <ellipse cx="100" cy="120" rx="52" ry="32" class="body"/>
+  <!-- Left claw arm -->
+  <line x1="50" y1="110" x2="30" y2="85" stroke="#FF7F50" stroke-width="3" stroke-linecap="round"/>
+  <!-- Left pincer -->
+  <path d="M30 85 Q18 72 25 65 Q30 60 35 68" fill="#FFA07A" stroke="#FF7F50" stroke-width="2"/>
+  <path d="M30 85 Q38 70 35 68" fill="#FFA07A" stroke="#FF7F50" stroke-width="2"/>
+  <!-- Right claw arm -->
+  <line x1="150" y1="110" x2="170" y2="85" stroke="#FF7F50" stroke-width="3" stroke-linecap="round"/>
+  <!-- Right pincer -->
+  <path d="M170 85 Q182 72 175 65 Q170 60 165 68" fill="#FFA07A" stroke="#FF7F50" stroke-width="2"/>
+  <path d="M170 85 Q162 70 165 68" fill="#FFA07A" stroke="#FF7F50" stroke-width="2"/>
+  <!-- Eye stalks -->
+  <line x1="82" y1="95" x2="82" y2="72" stroke="#FF7F50" stroke-width="3" stroke-linecap="round"/>
+  <line x1="118" y1="95" x2="118" y2="72" stroke="#FF7F50" stroke-width="3" stroke-linecap="round"/>
+  <!-- Eyes -->
+  <circle cx="82" cy="68" r="8" fill="#FFA07A" stroke="#FF7F50" stroke-width="2"/>
+  <circle cx="118" cy="68" r="8" fill="#FFA07A" stroke="#FF7F50" stroke-width="2"/>
+  <circle cx="82" cy="68" r="4" class="eye"/>
+  <circle cx="118" cy="68" r="4" class="eye"/>
+  <circle cx="84" cy="66" r="1.5" class="shine"/>
+  <circle cx="120" cy="66" r="1.5" class="shine"/>
+  <!-- Shell hat -->
+  <path d="M95 92 Q100 78 105 92 Q102 82 100 78 Q98 82 95 92" fill="#FFE4C4" stroke="#D2B48C" stroke-width="1"/>
+  <ellipse cx="100" cy="92" rx="8" ry="3" fill="#FFE4C4" stroke="#D2B48C" stroke-width="1"/>
+  <!-- Mouth -->
+  <path d="M92 130 Q100 136 108 130" stroke="#FF7F50" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Blush -->
+  <ellipse cx="74" cy="125" rx="8" ry="5" class="blush"/>
+  <ellipse cx="126" cy="125" rx="8" ry="5" class="blush"/>
+  <!-- Sandy dots at feet -->
+  <circle cx="42" cy="160" r="2" fill="#D2B48C" opacity="0.5"/>
+  <circle cx="50" cy="165" r="1.5" fill="#D2B48C" opacity="0.4"/>
+  <circle cx="148" cy="165" r="2" fill="#D2B48C" opacity="0.5"/>
+  <circle cx="158" cy="160" r="1.5" fill="#D2B48C" opacity="0.4"/>
+</svg>

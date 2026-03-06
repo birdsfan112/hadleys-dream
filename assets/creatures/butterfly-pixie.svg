@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bp-wing" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF69B4" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#FF1493" stop-opacity="0.5"/>
+    </linearGradient>
+  </defs>
+  <style>
+    .body{fill:#FF69B4;stroke:#FF1493;stroke-width:2}
+    .eye{fill:#333} .shine{fill:#FFF}
+    .blush{fill:#FF1493;opacity:0.2}
+  </style>
+  <!-- Upper wings -->
+  <path d="M55 85 Q20 45 35 20 Q55 0 65 30 Q75 55 70 85 Z" fill="url(#bp-wing)" stroke="#FF1493" stroke-width="1"/>
+  <path d="M145 85 Q180 45 165 20 Q145 0 135 30 Q125 55 130 85 Z" fill="url(#bp-wing)" stroke="#FF1493" stroke-width="1"/>
+  <!-- Lower wings -->
+  <path d="M62 105 Q30 115 38 140 Q48 155 68 130 Z" fill="url(#bp-wing)" stroke="#FF1493" stroke-width="1"/>
+  <path d="M138 105 Q170 115 162 140 Q152 155 132 130 Z" fill="url(#bp-wing)" stroke="#FF1493" stroke-width="1"/>
+  <!-- Wing dots -->
+  <circle cx="45" cy="45" r="4" fill="#FFF" opacity="0.5"/>
+  <circle cx="50" cy="65" r="3" fill="#FFF" opacity="0.4"/>
+  <circle cx="40" cy="55" r="2.5" fill="#FFD700" opacity="0.5"/>
+  <circle cx="155" cy="45" r="4" fill="#FFF" opacity="0.5"/>
+  <circle cx="150" cy="65" r="3" fill="#FFF" opacity="0.4"/>
+  <circle cx="160" cy="55" r="2.5" fill="#FFD700" opacity="0.5"/>
+  <circle cx="48" cy="125" r="3" fill="#FFF" opacity="0.4"/>
+  <circle cx="152" cy="125" r="3" fill="#FFF" opacity="0.4"/>
+  <!-- Body -->
+  <ellipse cx="100" cy="118" rx="22" ry="30" class="body"/>
+  <!-- Head -->
+  <circle cx="100" cy="80" r="24" class="body"/>
+  <!-- Antennae with hearts -->
+  <line x1="88" y1="60" x2="75" y2="35" stroke="#FF1493" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="73" cy="33" r="3" fill="#FF1493"/><circle cx="77" cy="33" r="3" fill="#FF1493"/>
+  <line x1="112" y1="60" x2="125" y2="35" stroke="#FF1493" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="123" cy="33" r="3" fill="#FF1493"/><circle cx="127" cy="33" r="3" fill="#FF1493"/>
+  <!-- Eyes with star shine -->
+  <circle cx="90" cy="78" r="7" class="eye"/>
+  <circle cx="110" cy="78" r="7" class="eye"/>
+  <polygon points="93,74 94,76 96,76 94.5,77.5 95,79.5 93,78 91,79.5 91.5,77.5 90,76 92,76" class="shine"/>
+  <polygon points="113,74 114,76 116,76 114.5,77.5 115,79.5 113,78 111,79.5 111.5,77.5 110,76 112,76" class="shine"/>
+  <!-- Blush -->
+  <ellipse cx="78" cy="86" rx="7" ry="4" class="blush"/>
+  <ellipse cx="122" cy="86" rx="7" ry="4" class="blush"/>
+  <!-- Mouth -->
+  <path d="M95 90 Q100 95 105 90" stroke="#FF1493" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Feet -->
+  <ellipse cx="90" cy="150" rx="7" ry="4" class="body"/>
+  <ellipse cx="110" cy="150" rx="7" ry="4" class="body"/>
+  <!-- Sparkle trail -->
+  <circle cx="80" cy="165" r="2.5" fill="#FFD700" opacity="0.6">
+    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="100" cy="172" r="2" fill="#FF69B4" opacity="0.5">
+    <animate attributeName="opacity" values="0.7;0.2;0.7" dur="1.8s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="120" cy="165" r="2.5" fill="#FFD700" opacity="0.6">
+    <animate attributeName="opacity" values="0.2;0.7;0.2" dur="2s" repeatCount="indefinite"/>
+  </circle>
+</svg>

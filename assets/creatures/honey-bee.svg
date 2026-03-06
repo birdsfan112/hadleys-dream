@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <style>
+    .body{fill:#FFD700;stroke:#DAA520;stroke-width:2}
+    .eye{fill:#333} .shine{fill:#FFF}
+    .blush{fill:#FF69B4;opacity:0.25}
+  </style>
+  <!-- Wings (behind body) -->
+  <ellipse cx="68" cy="80" rx="22" ry="14" fill="#E0F0FF" stroke="#B0D8F0" stroke-width="1" opacity="0.35" transform="rotate(-25 68 80)"/>
+  <ellipse cx="132" cy="80" rx="22" ry="14" fill="#E0F0FF" stroke="#B0D8F0" stroke-width="1" opacity="0.35" transform="rotate(25 132 80)"/>
+  <!-- Body (oval) -->
+  <ellipse cx="100" cy="110" rx="38" ry="48" class="body"/>
+  <!-- Stripes -->
+  <rect x="62" y="96" width="76" height="8" rx="4" fill="#333" opacity="0.7"/>
+  <rect x="62" y="112" width="76" height="8" rx="4" fill="#333" opacity="0.7"/>
+  <rect x="62" y="128" width="76" height="8" rx="4" fill="#333" opacity="0.7"/>
+  <!-- Head -->
+  <circle cx="100" cy="68" r="26" class="body"/>
+  <!-- Antennae -->
+  <line x1="88" y1="48" x2="78" y2="30" stroke="#DAA520" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="78" cy="28" r="4" fill="#DAA520"/>
+  <line x1="112" y1="48" x2="122" y2="30" stroke="#DAA520" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="122" cy="28" r="4" fill="#DAA520"/>
+  <!-- Eyes -->
+  <circle cx="90" cy="66" r="6" class="eye"/>
+  <circle cx="110" cy="66" r="6" class="eye"/>
+  <circle cx="92" cy="64" r="2.5" class="shine"/>
+  <circle cx="112" cy="64" r="2.5" class="shine"/>
+  <!-- Blush -->
+  <ellipse cx="78" cy="74" rx="8" ry="5" class="blush"/>
+  <ellipse cx="122" cy="74" rx="8" ry="5" class="blush"/>
+  <!-- Mouth -->
+  <path d="M94 78 Q100 84 106 78" stroke="#DAA520" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Legs -->
+  <line x1="72" y1="130" x2="65" y2="142" stroke="#DAA520" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="78" y1="138" x2="72" y2="150" stroke="#DAA520" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="85" y1="145" x2="80" y2="157" stroke="#DAA520" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="128" y1="130" x2="135" y2="142" stroke="#DAA520" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="122" y1="138" x2="128" y2="150" stroke="#DAA520" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="115" y1="145" x2="120" y2="157" stroke="#DAA520" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Stinger -->
+  <polygon points="100,158 96,165 104,165" fill="#DAA520"/>
+  <!-- Honey jar -->
+  <rect x="42" y="100" width="16" height="18" rx="3" fill="#DAA520" stroke="#B8860B" stroke-width="1"/>
+  <rect x="40" y="98" width="20" height="5" rx="2" fill="#B8860B"/>
+  <path d="M50 118 Q50 124 50 122" stroke="#DAA520" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+</svg>

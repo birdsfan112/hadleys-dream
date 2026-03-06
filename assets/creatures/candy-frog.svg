@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <style>
+    .body{fill:#98FB98;stroke:#00FA9A;stroke-width:2}
+    .eye{fill:#333} .shine{fill:#FFF}
+    .blush{fill:#FF69B4;opacity:0.25}
+  </style>
+  <!-- Body -->
+  <ellipse cx="100" cy="130" rx="50" ry="40" class="body"/>
+  <!-- Lighter belly -->
+  <ellipse cx="100" cy="138" rx="32" ry="24" fill="#c8ffc8" stroke="none"/>
+  <!-- Spots on back -->
+  <circle cx="72" cy="118" r="6" fill="#66cc66" opacity="0.3"/>
+  <circle cx="120" cy="110" r="7" fill="#66cc66" opacity="0.3"/>
+  <circle cx="95" cy="105" r="5" fill="#66cc66" opacity="0.3"/>
+  <circle cx="130" cy="125" r="5" fill="#66cc66" opacity="0.3"/>
+  <!-- Frog eyes on top -->
+  <circle cx="78" cy="92" r="16" class="body"/>
+  <circle cx="122" cy="92" r="16" class="body"/>
+  <circle cx="78" cy="90" r="9" fill="#FFF"/>
+  <circle cx="122" cy="90" r="9" fill="#FFF"/>
+  <circle cx="80" cy="89" r="5" class="eye"/>
+  <circle cx="124" cy="89" r="5" class="eye"/>
+  <circle cx="82" cy="87" r="2.5" class="shine"/>
+  <circle cx="126" cy="87" r="2.5" class="shine"/>
+  <!-- Blush -->
+  <ellipse cx="65" cy="120" rx="8" ry="5" class="blush"/>
+  <ellipse cx="135" cy="120" rx="8" ry="5" class="blush"/>
+  <!-- Big grin mouth -->
+  <path d="M75 135 Q100 155 125 135" stroke="#00AA66" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Webbed feet -->
+  <path d="M60 165 L50 175 L58 172 L55 180 L65 175 L68 182 L72 170 Z" fill="#98FB98" stroke="#00FA9A" stroke-width="1"/>
+  <path d="M140 165 L150 175 L142 172 L145 180 L135 175 L132 182 L128 170 Z" fill="#98FB98" stroke="#00FA9A" stroke-width="1"/>
+  <!-- Lollipop -->
+  <line x1="148" y1="100" x2="148" y2="140" stroke="#D2B48C" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="148" cy="92" r="12" fill="#FF69B4" stroke="#FF1493" stroke-width="1"/>
+  <path d="M142 86 Q148 92 142 98" stroke="#FFD700" stroke-width="1.5" fill="none"/>
+  <path d="M148 82 Q154 92 148 102" stroke="#87CEEB" stroke-width="1.5" fill="none"/>
+  <path d="M145 84 Q148 88 151 84" stroke="#FF6347" stroke-width="1.5" fill="none"/>
+</svg>

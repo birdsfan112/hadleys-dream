@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="sd2-antler" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#FF4500"/>
+      <stop offset="40%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#FFEB3B"/>
+    </linearGradient>
+  </defs>
+  <style>
+    .body{fill:#FF6347;stroke:#FF4500;stroke-width:2}
+    .eye{fill:#333} .shine{fill:#FFF}
+    .blush{fill:#FF69B4;opacity:0.25}
+  </style>
+  <!-- Legs -->
+  <rect x="68" y="145" width="8" height="30" rx="4" class="body"/>
+  <rect x="82" y="148" width="8" height="28" rx="4" class="body"/>
+  <rect x="112" y="148" width="8" height="28" rx="4" class="body"/>
+  <rect x="126" y="145" width="8" height="30" rx="4" class="body"/>
+  <!-- Hooves -->
+  <ellipse cx="72" cy="177" rx="6" ry="4" fill="#FF4500"/>
+  <ellipse cx="86" cy="178" rx="6" ry="4" fill="#FF4500"/>
+  <ellipse cx="116" cy="178" rx="6" ry="4" fill="#FF4500"/>
+  <ellipse cx="130" cy="177" rx="6" ry="4" fill="#FF4500"/>
+  <!-- Body -->
+  <ellipse cx="100" cy="135" rx="42" ry="28" class="body"/>
+  <!-- Lighter belly -->
+  <ellipse cx="100" cy="142" rx="28" ry="16" fill="#FF8C6B" stroke="none"/>
+  <!-- Tail spot -->
+  <circle cx="142" cy="125" r="6" fill="#FFF" opacity="0.6"/>
+  <!-- Head -->
+  <circle cx="100" cy="78" r="30" class="body"/>
+  <!-- Antlers (sunset rays) -->
+  <path d="M82 55 L78 25 M78 35 L68 28" stroke="url(#sd2-antler)" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  <path d="M118 55 L122 25 M122 35 L132 28" stroke="url(#sd2-antler)" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  <!-- Eyes (gentle, large) -->
+  <circle cx="88" cy="76" r="8" class="eye"/>
+  <circle cx="112" cy="76" r="8" class="eye"/>
+  <circle cx="91" cy="73" r="3" class="shine"/>
+  <circle cx="115" cy="73" r="3" class="shine"/>
+  <!-- Lashes -->
+  <path d="M82 68 Q86 65 90 68" stroke="#333" stroke-width="1.5" fill="none"/>
+  <path d="M80 70 Q84 66 87 70" stroke="#333" stroke-width="1" fill="none"/>
+  <path d="M110 68 Q114 65 118 68" stroke="#333" stroke-width="1.5" fill="none"/>
+  <path d="M113 70 Q116 66 120 70" stroke="#333" stroke-width="1" fill="none"/>
+  <!-- Blush -->
+  <ellipse cx="74" cy="84" rx="8" ry="5" class="blush"/>
+  <ellipse cx="126" cy="84" rx="8" ry="5" class="blush"/>
+  <!-- Nose -->
+  <ellipse cx="100" cy="86" rx="4" ry="3" fill="#FF4500"/>
+  <!-- Mouth -->
+  <path d="M94 92 Q100 97 106 92" stroke="#FF4500" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+</svg>

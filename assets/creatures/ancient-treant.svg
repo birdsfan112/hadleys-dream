@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <style>
+    .bark{fill:#8B6F47;stroke:#6B4F2F;stroke-width:2}
+    .leaf{fill:#228B22}
+    .leaf2{fill:#32CD32}
+    .eye{fill:#333} .shine{fill:#FFF}
+  </style>
+  <!-- Root feet -->
+  <path d="M60 170 Q50 175 45 185 Q48 190 60 185 L70 175 Z" class="bark"/>
+  <path d="M140 170 Q150 175 155 185 Q152 190 140 185 L130 175 Z" class="bark"/>
+  <!-- Trunk/body -->
+  <path d="M75 170 L70 100 Q68 80 100 75 Q132 80 130 100 L125 170 Z" class="bark"/>
+  <!-- Bark texture lines -->
+  <path d="M82 170 Q85 140 80 110" stroke="#6B4F2F" stroke-width="1" fill="none" opacity="0.4"/>
+  <path d="M118 170 Q115 140 120 110" stroke="#6B4F2F" stroke-width="1" fill="none" opacity="0.4"/>
+  <path d="M95 160 Q100 130 95 105" stroke="#6B4F2F" stroke-width="1" fill="none" opacity="0.3"/>
+  <!-- Branch arms -->
+  <path d="M70 110 Q45 95 35 80" stroke="#8B6F47" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <path d="M130 110 Q155 95 165 80" stroke="#8B6F47" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <!-- Small branch twigs -->
+  <path d="M35 80 Q25 70 30 60" stroke="#8B6F47" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M165 80 Q175 70 170 60" stroke="#8B6F47" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Leaf crown -->
+  <circle cx="100" cy="55" r="30" class="leaf"/>
+  <circle cx="75" cy="62" r="22" class="leaf"/>
+  <circle cx="125" cy="62" r="22" class="leaf"/>
+  <circle cx="100" cy="42" r="22" class="leaf2"/>
+  <circle cx="82" cy="48" r="16" class="leaf2"/>
+  <circle cx="118" cy="48" r="16" class="leaf2"/>
+  <!-- Small leaf accents on arms -->
+  <circle cx="32" cy="65" r="10" class="leaf2"/>
+  <circle cx="168" cy="65" r="10" class="leaf2"/>
+  <!-- Wise eyes -->
+  <circle cx="88" cy="100" r="8" fill="#2F4F2F"/>
+  <circle cx="112" cy="100" r="8" fill="#2F4F2F"/>
+  <circle cx="88" cy="100" r="5" fill="#556B2F"/>
+  <circle cx="112" cy="100" r="5" fill="#556B2F"/>
+  <circle cx="86" cy="98" r="2.5" class="shine"/>
+  <circle cx="110" cy="98" r="2.5" class="shine"/>
+  <!-- Eyebrows (wise look) -->
+  <path d="M78 90 Q88 86 96 90" stroke="#6B4F2F" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M104 90 Q112 86 122 90" stroke="#6B4F2F" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Nose -->
+  <path d="M97 108 Q100 112 103 108" stroke="#6B4F2F" stroke-width="1.5" fill="none"/>
+  <!-- Gentle smile -->
+  <path d="M88 118 Q100 128 112 118" stroke="#6B4F2F" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Moss/lichen accent -->
+  <ellipse cx="78" cy="140" rx="6" ry="4" fill="#90EE90" opacity="0.5"/>
+  <ellipse cx="120" cy="150" rx="5" ry="3" fill="#90EE90" opacity="0.4"/>
+</svg>

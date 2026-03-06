@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <style>
+    .body{fill:#7B68EE;stroke:#6959CD;stroke-width:2}
+    .eye{fill:#333} .shine{fill:#FFF}
+    .blush{fill:#DDA0DD;opacity:0.25}
+    .leg{stroke:#6959CD;stroke-width:2.5;fill:none;stroke-linecap:round}
+  </style>
+  <!-- Silk strands with jewel tips -->
+  <line x1="60" y1="40" x2="45" y2="25" stroke="#9B8FFF" stroke-width="1" opacity="0.5"/>
+  <circle cx="45" cy="25" r="3" fill="#E6E6FA" opacity="0.7"/>
+  <line x1="140" y1="40" x2="160" y2="22" stroke="#9B8FFF" stroke-width="1" opacity="0.5"/>
+  <circle cx="160" cy="22" r="3" fill="#E6E6FA" opacity="0.7"/>
+  <line x1="100" y1="55" x2="100" y2="30" stroke="#9B8FFF" stroke-width="1" opacity="0.5"/>
+  <circle cx="100" cy="30" r="3.5" fill="#E6E6FA" opacity="0.7"/>
+  <line x1="55" y1="100" x2="30" y2="90" stroke="#9B8FFF" stroke-width="1" opacity="0.4"/>
+  <circle cx="30" cy="90" r="2.5" fill="#E6E6FA" opacity="0.6"/>
+  <!-- Legs - left side -->
+  <path d="M72 90 Q50 70 35 55" class="leg"/>
+  <path d="M68 100 Q45 95 25 85" class="leg"/>
+  <path d="M68 115 Q45 120 25 130" class="leg"/>
+  <path d="M72 125 Q55 140 40 160" class="leg"/>
+  <!-- Legs - right side -->
+  <path d="M128 90 Q150 70 165 55" class="leg"/>
+  <path d="M132 100 Q155 95 175 85" class="leg"/>
+  <path d="M132 115 Q155 120 175 130" class="leg"/>
+  <path d="M128 125 Q145 140 160 160" class="leg"/>
+  <!-- Body -->
+  <circle cx="100" cy="108" r="30" class="body"/>
+  <!-- Gem facet texture lines -->
+  <path d="M78 100 L100 85 L122 100" stroke="#9B8FFF" stroke-width="1" fill="none" opacity="0.4"/>
+  <path d="M82 115 L100 105 L118 115" stroke="#9B8FFF" stroke-width="1" fill="none" opacity="0.3"/>
+  <!-- Top row of eyes (4 small) -->
+  <circle cx="86" cy="97" r="3" class="eye"/>
+  <circle cx="95" cy="95" r="3" class="eye"/>
+  <circle cx="105" cy="95" r="3" class="eye"/>
+  <circle cx="114" cy="97" r="3" class="eye"/>
+  <!-- Bottom row of eyes (2 larger) -->
+  <circle cx="90" cy="107" r="4" class="eye"/>
+  <circle cx="110" cy="107" r="4" class="eye"/>
+  <!-- Shine dots on all eyes -->
+  <circle cx="85" cy="96" r="1.5" class="shine"/>
+  <circle cx="94" cy="94" r="1.5" class="shine"/>
+  <circle cx="104" cy="94" r="1.5" class="shine"/>
+  <circle cx="113" cy="96" r="1.5" class="shine"/>
+  <circle cx="88" cy="105" r="2" class="shine"/>
+  <circle cx="108" cy="105" r="2" class="shine"/>
+  <!-- Blush -->
+  <ellipse cx="78" cy="115" rx="7" ry="4" class="blush"/>
+  <ellipse cx="122" cy="115" rx="7" ry="4" class="blush"/>
+  <!-- Mouth -->
+  <path d="M94 120 Q100 125 106 120" stroke="#6959CD" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+</svg>

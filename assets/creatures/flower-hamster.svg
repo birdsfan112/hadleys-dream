@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <style>
+    .body{fill:#FFDAB9;stroke:#FFE4B5;stroke-width:2}
+    .eye{fill:#333} .shine{fill:#FFF}
+    .blush{fill:#FF69B4;opacity:0.25}
+  </style>
+  <!-- Body (very round) -->
+  <circle cx="100" cy="120" r="55" class="body"/>
+  <!-- Ears -->
+  <circle cx="68" cy="72" r="16" class="body"/>
+  <circle cx="68" cy="72" r="9" fill="#FFB6C1" opacity="0.4"/>
+  <circle cx="132" cy="72" r="16" class="body"/>
+  <circle cx="132" cy="72" r="9" fill="#FFB6C1" opacity="0.4"/>
+  <!-- Paws -->
+  <ellipse cx="76" cy="168" rx="14" ry="8" class="body"/>
+  <ellipse cx="124" cy="168" rx="14" ry="8" class="body"/>
+  <!-- Tail -->
+  <circle cx="155" cy="140" r="8" class="body"/>
+  <!-- Eyes (beady) -->
+  <circle cx="84" cy="112" r="4" class="eye"/>
+  <circle cx="116" cy="112" r="4" class="eye"/>
+  <circle cx="86" cy="110" r="2" class="shine"/>
+  <circle cx="118" cy="110" r="2" class="shine"/>
+  <!-- Blush (extra prominent) -->
+  <ellipse cx="68" cy="122" rx="12" ry="7" class="blush"/>
+  <ellipse cx="132" cy="122" rx="12" ry="7" class="blush"/>
+  <!-- Nose -->
+  <ellipse cx="100" cy="120" rx="3.5" ry="2.5" fill="#FF69B4"/>
+  <!-- Whiskers -->
+  <line x1="70" y1="118" x2="55" y2="114" stroke="#D2B48C" stroke-width="1" opacity="0.5"/>
+  <line x1="70" y1="122" x2="55" y2="124" stroke="#D2B48C" stroke-width="1" opacity="0.5"/>
+  <line x1="130" y1="118" x2="145" y2="114" stroke="#D2B48C" stroke-width="1" opacity="0.5"/>
+  <line x1="130" y1="122" x2="145" y2="124" stroke="#D2B48C" stroke-width="1" opacity="0.5"/>
+  <!-- Mouth -->
+  <path d="M93 128 Q100 134 107 128" stroke="#D2691E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Flower crown -->
+  <circle cx="82" cy="72" r="5" fill="#FF69B4"/><circle cx="82" cy="72" r="2" fill="#FFD700"/>
+  <circle cx="100" cy="65" r="6" fill="#FFD700"/><circle cx="100" cy="65" r="2.5" fill="#FFF"/>
+  <circle cx="118" cy="72" r="5" fill="#87CEEB"/><circle cx="118" cy="72" r="2" fill="#FFD700"/>
+</svg>

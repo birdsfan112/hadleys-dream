@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <style>
+    .cap{fill:#FF6347;stroke:#E5533A;stroke-width:2}
+    .stem{fill:#FFF5E6;stroke:#E8D5B8;stroke-width:2}
+    .spot{fill:white;opacity:0.85}
+    .eye{fill:#333} .shine{fill:#FFF}
+    .blush{fill:#FF6347;opacity:0.2}
+  </style>
+  <!-- Cap -->
+  <ellipse cx="100" cy="80" rx="65" ry="50" class="cap"/>
+  <!-- Cap bottom edge -->
+  <path d="M35 80 Q100 95 165 80" fill="#FFF5E6" stroke="#E8D5B8" stroke-width="1"/>
+  <!-- Spots -->
+  <circle cx="75" cy="55" r="10" class="spot"/>
+  <circle cx="115" cy="45" r="12" class="spot"/>
+  <circle cx="55" cy="75" r="8" class="spot"/>
+  <circle cx="140" cy="65" r="9" class="spot"/>
+  <circle cx="100" cy="68" r="7" class="spot"/>
+  <!-- Stem/body -->
+  <rect x="75" y="80" width="50" height="55" rx="20" class="stem"/>
+  <!-- Feet -->
+  <ellipse cx="85" cy="140" rx="16" ry="10" class="stem"/>
+  <ellipse cx="115" cy="140" rx="16" ry="10" class="stem"/>
+  <!-- Eyes (dot style) -->
+  <circle cx="88" cy="105" r="4" class="eye"/>
+  <circle cx="112" cy="105" r="4" class="eye"/>
+  <circle cx="90" cy="103" r="1.5" class="shine"/>
+  <circle cx="114" cy="103" r="1.5" class="shine"/>
+  <!-- Blush -->
+  <ellipse cx="76" cy="115" rx="8" ry="5" class="blush"/>
+  <ellipse cx="124" cy="115" rx="8" ry="5" class="blush"/>
+  <!-- Mouth -->
+  <circle cx="100" cy="118" r="3" fill="#FF6347" opacity="0.6"/>
+</svg>

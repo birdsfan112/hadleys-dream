@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="sj-glow" cx="0.5" cy="0.4" r="0.5">
+      <stop offset="0%" stop-color="#FFF" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#E6E6FA" stop-opacity="0.7"/>
+    </radialGradient>
+  </defs>
+  <style>
+    .eye{fill:#333} .shine{fill:#FFF}
+    .blush{fill:#DDA0DD;opacity:0.25}
+  </style>
+  <!-- Sparkle trail dots below tentacles -->
+  <circle cx="80" cy="178" r="2" fill="#E6E6FA" opacity="0.5">
+    <animate attributeName="opacity" values="0.2;0.7;0.2" dur="1.8s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="105" cy="185" r="1.5" fill="#D8BFD8" opacity="0.4">
+    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="120" cy="175" r="2" fill="#E6E6FA" opacity="0.5">
+    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.6s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="95" cy="190" r="1.5" fill="#D8BFD8" opacity="0.3">
+    <animate attributeName="opacity" values="0.5;0.2;0.5" dur="2.2s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Tentacles -->
+  <path d="M70 105 Q65 130 72 155 Q75 165 68 170" stroke="#D8BFD8" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <path d="M85 110 Q80 140 88 160 Q92 168 85 172" stroke="#D8BFD8" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <path d="M100 112 Q100 145 100 162 Q100 170 100 175" stroke="#D8BFD8" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <path d="M115 110 Q120 140 112 160 Q108 168 115 172" stroke="#D8BFD8" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <path d="M130 105 Q135 130 128 155 Q125 165 132 170" stroke="#D8BFD8" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <!-- Dome/bell body -->
+  <ellipse cx="100" cy="75" rx="42" ry="38" fill="url(#sj-glow)" stroke="#D8BFD8" stroke-width="2" opacity="0.7"/>
+  <!-- Eyelid curves (dreamy half-lidded) -->
+  <circle cx="85" cy="72" r="8" class="eye"/>
+  <circle cx="115" cy="72" r="8" class="eye"/>
+  <circle cx="87" cy="70" r="3" class="shine"/>
+  <circle cx="117" cy="70" r="3" class="shine"/>
+  <!-- Upper eyelid arcs -->
+  <path d="M77 68 Q85 62 93 68" fill="#E6E6FA" stroke="none" opacity="0.8"/>
+  <path d="M107 68 Q115 62 123 68" fill="#E6E6FA" stroke="none" opacity="0.8"/>
+  <!-- Blush -->
+  <ellipse cx="74" cy="82" rx="7" ry="4" class="blush"/>
+  <ellipse cx="126" cy="82" rx="7" ry="4" class="blush"/>
+  <!-- Mouth -->
+  <path d="M94 88 Q100 93 106 88" stroke="#D8BFD8" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="vw-body" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#191970"/>
+      <stop offset="100%" stop-color="#000080"/>
+    </linearGradient>
+  </defs>
+  <style>
+    .body{fill:url(#vw-body);stroke:#4169E1;stroke-width:2}
+    .eye{fill:#0a0a30} .shine{fill:#FFF}
+    .blush{fill:#7B68EE;opacity:0.25}
+  </style>
+  <!-- Star dust particles (animated) -->
+  <circle cx="45" cy="50" r="2" fill="#FFD700" opacity="0.7">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="160" cy="40" r="1.5" fill="#FFF" opacity="0.6">
+    <animate attributeName="opacity" values="1;0.3;1" dur="1.8s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="30" cy="120" r="2" fill="#FFD700" opacity="0.5">
+    <animate attributeName="opacity" values="0.5;1;0.5" dur="2.2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="175" cy="130" r="1.5" fill="#FFF" opacity="0.7">
+    <animate attributeName="opacity" values="0.3;0.9;0.3" dur="1.6s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="60" cy="170" r="2" fill="#FFD700" opacity="0.6">
+    <animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="150" cy="175" r="1.5" fill="#FFF" opacity="0.5">
+    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="1.9s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="100" cy="185" r="2" fill="#FFD700" opacity="0.4">
+    <animate attributeName="opacity" values="0.4;1;0.4" dur="2.3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="80" cy="30" r="1.5" fill="#FFF" opacity="0.6">
+    <animate attributeName="opacity" values="0.7;0.2;0.7" dur="1.7s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Nebula patches -->
+  <circle cx="70" cy="100" r="12" fill="#9370DB" opacity="0.12"/>
+  <circle cx="130" cy="140" r="10" fill="#9370DB" opacity="0.1"/>
+  <circle cx="100" cy="60" r="8" fill="#7B68EE" opacity="0.1"/>
+  <!-- Serpentine body S-curve -->
+  <path d="M85 55 Q50 75 55 110 Q60 145 100 150 Q140 155 150 130 Q160 105 130 95" stroke="#4169E1" stroke-width="24" fill="none" stroke-linecap="round"/>
+  <path d="M85 55 Q50 75 55 110 Q60 145 100 150 Q140 155 150 130 Q160 105 130 95" stroke="#191970" stroke-width="20" fill="none" stroke-linecap="round"/>
+  <!-- Scale texture along body -->
+  <path d="M60 85 Q65 82 70 85" stroke="#4169E1" stroke-width="1" fill="none" opacity="0.4"/>
+  <path d="M55 100 Q60 97 65 100" stroke="#4169E1" stroke-width="1" fill="none" opacity="0.35"/>
+  <path d="M58 115 Q63 112 68 115" stroke="#4169E1" stroke-width="1" fill="none" opacity="0.4"/>
+  <path d="M72 135 Q77 132 82 135" stroke="#4169E1" stroke-width="1" fill="none" opacity="0.35"/>
+  <path d="M95 148 Q100 145 105 148" stroke="#4169E1" stroke-width="1" fill="none" opacity="0.3"/>
+  <path d="M120 150 Q125 147 130 150" stroke="#4169E1" stroke-width="1" fill="none" opacity="0.35"/>
+  <path d="M145 140 Q150 137 155 140" stroke="#4169E1" stroke-width="1" fill="none" opacity="0.3"/>
+  <!-- Head -->
+  <circle cx="85" cy="50" r="20" fill="#191970" stroke="#4169E1" stroke-width="2"/>
+  <!-- Horns -->
+  <polygon points="72,35 65,15 78,30" fill="#191970" stroke="#4169E1" stroke-width="1.5"/>
+  <polygon points="98,35 105,15 92,30" fill="#191970" stroke="#4169E1" stroke-width="1.5"/>
+  <!-- Whiskers -->
+  <path d="M68 52 Q45 42 30 45" stroke="#4169E1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <path d="M68 56 Q48 55 35 60" stroke="#4169E1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <!-- Cosmic eyes -->
+  <circle cx="78" cy="47" r="7" class="eye"/>
+  <circle cx="95" cy="47" r="7" class="eye"/>
+  <!-- Star-field dots inside eyes -->
+  <circle cx="76" cy="45" r="1.5" class="shine"/>
+  <circle cx="80" cy="49" r="1" class="shine"/>
+  <circle cx="77" cy="48" r="0.8" fill="#FFD700"/>
+  <circle cx="93" cy="45" r="1.5" class="shine"/>
+  <circle cx="97" cy="49" r="1" class="shine"/>
+  <circle cx="94" cy="48" r="0.8" fill="#FFD700"/>
+  <!-- Blush -->
+  <ellipse cx="68" cy="55" rx="6" ry="3.5" class="blush"/>
+  <ellipse cx="105" cy="55" rx="6" ry="3.5" class="blush"/>
+  <!-- Mouth -->
+  <path d="M80 58 Q86 62 92 58" stroke="#4169E1" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+</svg>

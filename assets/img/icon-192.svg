@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <rect width="192" height="192" rx="32" fill="#2DD4BF"/>
+  <circle cx="96" cy="85" r="45" fill="#FFB6C1" stroke="#FF69B4" stroke-width="3"/>
+  <circle cx="80" cy="78" r="7" fill="#333"/>
+  <circle cx="112" cy="78" r="7" fill="#333"/>
+  <circle cx="83" cy="75" r="3" fill="#FFF"/>
+  <circle cx="115" cy="75" r="3" fill="#FFF"/>
+  <path d="M84 98 Q96 112 108 98" stroke="#FF69B4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <ellipse cx="68" cy="92" rx="8" ry="5" fill="rgba(255,105,180,0.3)"/>
+  <ellipse cx="124" cy="92" rx="8" ry="5" fill="rgba(255,105,180,0.3)"/>
+  <ellipse cx="72" cy="48" r="12" ry="20" fill="#FFB6C1" transform="rotate(-15 72 48)"/>
+  <ellipse cx="120" cy="48" r="12" ry="20" fill="#FFB6C1" transform="rotate(15 120 48)"/>
+  <text x="96" y="165" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="800" fill="#FFF">DREAM WORLD</text>
+</svg>

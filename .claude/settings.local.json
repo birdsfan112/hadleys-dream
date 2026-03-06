@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node:*)",
+      "Bash(npx serve:*)",
+      "Bash(python:*)",
+      "Bash(mkdir -p \"C:/Users/Scott/claude-history-backup\")",
+      "Read(//c/Users/Scott/.claude/projects/**)"
+    ]
+  }
+}

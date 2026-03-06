@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <style>
+    .body{fill:#FFD700;stroke:#FFA500;stroke-width:2}
+    .eye{fill:#333} .shine{fill:#FFF}
+    .blush{fill:#FF69B4;opacity:0.25}
+  </style>
+  <!-- Five-pointed starfish with rounded puffy points, upper two raised like arms -->
+  <path d="
+    M100 30
+    Q108 55 120 62
+    Q148 52 165 38
+    Q158 68 150 82
+    Q170 105 180 125
+    Q150 118 135 115
+    Q130 140 125 170
+    Q108 150 100 140
+    Q92 150 75 170
+    Q70 140 65 115
+    Q50 118 20 125
+    Q30 105 50 82
+    Q42 68 35 38
+    Q52 52 80 62
+    Q92 55 100 30 Z
+  " class="body"/>
+  <!-- Texture dots -->
+  <circle cx="100" cy="90" r="3" fill="#FFA500" opacity="0.3"/>
+  <circle cx="85" cy="105" r="2.5" fill="#FFA500" opacity="0.3"/>
+  <circle cx="115" cy="105" r="2.5" fill="#FFA500" opacity="0.3"/>
+  <circle cx="90" cy="125" r="2" fill="#FFA500" opacity="0.3"/>
+  <circle cx="110" cy="125" r="2" fill="#FFA500" opacity="0.3"/>
+  <circle cx="130" cy="80" r="2" fill="#FFA500" opacity="0.3"/>
+  <circle cx="70" cy="80" r="2" fill="#FFA500" opacity="0.3"/>
+  <circle cx="100" cy="60" r="2" fill="#FFA500" opacity="0.3"/>
+  <circle cx="145" cy="55" r="2" fill="#FFA500" opacity="0.25"/>
+  <circle cx="55" cy="55" r="2" fill="#FFA500" opacity="0.25"/>
+  <!-- Eyes (happy crescent) -->
+  <path d="M88 92 Q92 86 96 92" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M104 92 Q108 86 112 92" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Blush -->
+  <ellipse cx="82" cy="100" rx="7" ry="4" class="blush"/>
+  <ellipse cx="118" cy="100" rx="7" ry="4" class="blush"/>
+  <!-- Mouth -->
+  <path d="M95 104 Q100 110 105 104" stroke="#FFA500" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Tiara on top point -->
+  <polygon points="92,32 95,22 100,28" fill="#FFA500" stroke="#E6950A" stroke-width="1"/>
+  <polygon points="97,30 100,18 103,30" fill="#FFA500" stroke="#E6950A" stroke-width="1"/>
+  <polygon points="100,28 105,22 108,32" fill="#FFA500" stroke="#E6950A" stroke-width="1"/>
+  <circle cx="95" cy="22" r="1.5" fill="#FFF" opacity="0.8"/>
+  <circle cx="100" cy="18" r="1.5" fill="#FFF" opacity="0.8"/>
+  <circle cx="105" cy="22" r="1.5" fill="#FFF" opacity="0.8"/>
+</svg>

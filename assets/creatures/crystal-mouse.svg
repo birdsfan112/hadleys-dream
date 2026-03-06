@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <style>
+    .body{fill:#C0C0C0;stroke:#A9A9A9;stroke-width:2}
+    .eye{fill:#333} .shine{fill:#FFF}
+    .blush{fill:#FFB6C1;opacity:0.25}
+    .ear{fill:#C0C0C0;stroke:#A9A9A9;stroke-width:2}
+    .ear-inner{fill:#FFB6C1;opacity:0.5}
+  </style>
+  <!-- Tail -->
+  <path d="M140 140 Q165 130 175 110 Q180 95 170 85" stroke="#A9A9A9" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Body -->
+  <circle cx="100" cy="120" r="40" class="body"/>
+  <!-- Ears -->
+  <circle cx="68" cy="72" r="20" class="ear"/>
+  <circle cx="132" cy="72" r="20" class="ear"/>
+  <circle cx="68" cy="72" r="12" class="ear-inner"/>
+  <circle cx="132" cy="72" r="12" class="ear-inner"/>
+  <!-- Head -->
+  <circle cx="100" cy="95" r="32" class="body"/>
+  <!-- Eyes -->
+  <circle cx="86" cy="92" r="6" class="eye"/>
+  <circle cx="114" cy="92" r="6" class="eye"/>
+  <!-- Cross-shaped shine (twinkle) -->
+  <line x1="84" y1="88" x2="84" y2="94" class="shine" stroke="#FFF" stroke-width="1.5"/>
+  <line x1="81" y1="91" x2="87" y2="91" class="shine" stroke="#FFF" stroke-width="1.5"/>
+  <line x1="112" y1="88" x2="112" y2="94" class="shine" stroke="#FFF" stroke-width="1.5"/>
+  <line x1="109" y1="91" x2="115" y2="91" class="shine" stroke="#FFF" stroke-width="1.5"/>
+  <!-- Blush -->
+  <ellipse cx="74" cy="102" rx="8" ry="5" class="blush"/>
+  <ellipse cx="126" cy="102" rx="8" ry="5" class="blush"/>
+  <!-- Nose -->
+  <polygon points="100,100 97,104 103,104" fill="#FFB6C1"/>
+  <!-- Whiskers -->
+  <line x1="75" y1="100" x2="60" y2="96" stroke="#A9A9A9" stroke-width="1" opacity="0.6"/>
+  <line x1="75" y1="103" x2="58" y2="103" stroke="#A9A9A9" stroke-width="1" opacity="0.6"/>
+  <line x1="75" y1="106" x2="60" y2="110" stroke="#A9A9A9" stroke-width="1" opacity="0.6"/>
+  <line x1="125" y1="100" x2="140" y2="96" stroke="#A9A9A9" stroke-width="1" opacity="0.6"/>
+  <line x1="125" y1="103" x2="142" y2="103" stroke="#A9A9A9" stroke-width="1" opacity="0.6"/>
+  <line x1="125" y1="106" x2="140" y2="110" stroke="#A9A9A9" stroke-width="1" opacity="0.6"/>
+  <!-- Mouth -->
+  <path d="M95 107 Q100 112 105 107" stroke="#A9A9A9" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Crystal held in paws -->
+  <rect x="88" y="140" width="24" height="24" rx="2" fill="#B0E0E6" opacity="0.7" transform="rotate(45 100 152)" stroke="#87CEEB" stroke-width="1"/>
+  <!-- Paws -->
+  <ellipse cx="85" cy="155" rx="10" ry="7" class="body"/>
+  <ellipse cx="115" cy="155" rx="10" ry="7" class="body"/>
+</svg>

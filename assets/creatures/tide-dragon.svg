@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="td-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#00CED1" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#00CED1" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <style>
+    .body{fill:#00CED1;stroke:#20B2AA;stroke-width:2}
+    .eye{fill:#333} .shine{fill:#FFF}
+    .blush{fill:#FF69B4;opacity:0.2}
+  </style>
+  <!-- Aura glow -->
+  <circle cx="100" cy="100" r="90" fill="url(#td-glow)"/>
+  <!-- Tail (curled) -->
+  <path d="M70 160 Q55 175 50 185 Q48 190 55 188 Q62 185 65 175 Q68 168 72 162" class="body"/>
+  <!-- Left wing (wave-crest style) -->
+  <path d="M60 90 Q40 70 25 60 Q30 55 38 58 Q42 50 50 52 Q55 45 62 50 Q65 60 60 75 Z" fill="#20B2AA" stroke="#178A80" stroke-width="1.5" opacity="0.8"/>
+  <!-- Right wing (wave-crest style) -->
+  <path d="M140 90 Q160 70 175 60 Q170 55 162 58 Q158 50 150 52 Q145 45 138 50 Q135 60 140 75 Z" fill="#20B2AA" stroke="#178A80" stroke-width="1.5" opacity="0.8"/>
+  <!-- Body (sitting upright) -->
+  <ellipse cx="100" cy="130" rx="35" ry="40" class="body"/>
+  <!-- Lighter belly -->
+  <ellipse cx="100" cy="135" rx="22" ry="28" fill="#7FEFEF" opacity="0.5"/>
+  <!-- Head -->
+  <circle cx="100" cy="75" r="32" class="body"/>
+  <!-- Horns -->
+  <polygon points="80,50 75,30 85,48" fill="#20B2AA" stroke="#178A80" stroke-width="1"/>
+  <polygon points="120,50 125,30 115,48" fill="#20B2AA" stroke="#178A80" stroke-width="1"/>
+  <!-- Eyes (fierce but cute) -->
+  <circle cx="88" cy="72" r="7" class="eye"/>
+  <circle cx="112" cy="72" r="7" class="eye"/>
+  <circle cx="90" cy="69" r="3" class="shine"/>
+  <circle cx="114" cy="69" r="3" class="shine"/>
+  <!-- Angled eyebrow lines -->
+  <path d="M78 62 Q85 58 95 63" stroke="#20B2AA" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M122 62 Q115 58 105 63" stroke="#20B2AA" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Blush -->
+  <ellipse cx="76" cy="82" rx="7" ry="4" class="blush"/>
+  <ellipse cx="124" cy="82" rx="7" ry="4" class="blush"/>
+  <!-- Nose -->
+  <circle cx="96" cy="82" r="2" fill="#20B2AA"/>
+  <circle cx="104" cy="82" r="2" fill="#20B2AA"/>
+  <!-- Mouth -->
+  <path d="M92 88 Q100 94 108 88" stroke="#20B2AA" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Arms/front paws -->
+  <ellipse cx="72" cy="145" rx="10" ry="7" class="body"/>
+  <ellipse cx="128" cy="145" rx="10" ry="7" class="body"/>
+  <!-- Feet -->
+  <ellipse cx="82" cy="170" rx="14" ry="8" class="body"/>
+  <ellipse cx="118" cy="170" rx="14" ry="8" class="body"/>
+  <!-- Water droplet particles (animated) -->
+  <path d="M42 110 Q44 105 46 110 Q44 114 42 110" fill="#87CEEB" opacity="0.6">
+    <animate attributeName="opacity" values="0.2;0.8;0.2" dur="2s" repeatCount="indefinite"/>
+  </path>
+  <path d="M158 95 Q160 90 162 95 Q160 99 158 95" fill="#87CEEB" opacity="0.5">
+    <animate attributeName="opacity" values="0.7;0.2;0.7" dur="1.8s" repeatCount="indefinite"/>
+  </path>
+  <path d="M50 140 Q52 136 54 140 Q52 143 50 140" fill="#87CEEB" opacity="0.4">
+    <animate attributeName="opacity" values="0.3;0.9;0.3" dur="2.3s" repeatCount="indefinite"/>
+  </path>
+  <path d="M152 130 Q154 126 156 130 Q154 133 152 130" fill="#87CEEB" opacity="0.5">
+    <animate attributeName="opacity" values="0.5;1;0.5" dur="1.6s" repeatCount="indefinite"/>
+  </path>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <style>
+    .body{fill:#FFB6C1;stroke:#FF69B4;stroke-width:2}
+    .ear-inner{fill:#FF69B4;opacity:0.5}
+    .eye{fill:#333} .shine{fill:#FFF}
+    .blush{fill:#FF69B4;opacity:0.25}
+    .bow{fill:#FF2244}
+  </style>
+  <!-- Ears -->
+  <ellipse cx="72" cy="50" rx="18" ry="42" class="body"/>
+  <ellipse cx="72" cy="50" rx="10" ry="30" class="ear-inner"/>
+  <ellipse cx="128" cy="50" rx="18" ry="42" class="body"/>
+  <ellipse cx="128" cy="50" rx="10" ry="30" class="ear-inner"/>
+  <!-- Body -->
+  <circle cx="100" cy="120" r="52" class="body"/>
+  <!-- Feet -->
+  <ellipse cx="78" cy="168" rx="18" ry="10" class="body"/>
+  <ellipse cx="122" cy="168" rx="18" ry="10" class="body"/>
+  <!-- Eyes -->
+  <circle cx="82" cy="112" r="7" class="eye"/>
+  <circle cx="118" cy="112" r="7" class="eye"/>
+  <circle cx="85" cy="109" r="3" class="shine"/>
+  <circle cx="121" cy="109" r="3" class="shine"/>
+  <!-- Blush -->
+  <ellipse cx="66" cy="125" rx="10" ry="6" class="blush"/>
+  <ellipse cx="134" cy="125" rx="10" ry="6" class="blush"/>
+  <!-- Nose -->
+  <ellipse cx="100" cy="122" rx="4" ry="3" fill="#FF69B4"/>
+  <!-- Mouth -->
+  <path d="M92 130 Q100 138 108 130" stroke="#FF69B4" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Bow on right ear -->
+  <path d="M140 60 Q155 45 150 65 Q155 85 140 70 Z" class="bow"/>
+  <path d="M140 60 Q125 45 130 65 Q125 85 140 70 Z" class="bow"/>
+  <circle cx="140" cy="65" r="4" fill="#FF4466"/>
+</svg>

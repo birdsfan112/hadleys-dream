@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <style>
+    .body{fill:#9370DB;stroke:#8A2BE2;stroke-width:2}
+    .eye-bg{fill:#333}
+    .iris{fill:#FFD700}
+    .shine{fill:#FFF}
+    .blush{fill:#DDA0DD;opacity:0.25}
+  </style>
+  <!-- Tail feathers -->
+  <ellipse cx="90" cy="168" rx="8" ry="18" fill="#8A2BE2" transform="rotate(-10 90 168)"/>
+  <ellipse cx="100" cy="170" rx="8" ry="20" fill="#9370DB"/>
+  <ellipse cx="110" cy="168" rx="8" ry="18" fill="#8A2BE2" transform="rotate(10 110 168)"/>
+  <!-- Left wing -->
+  <path d="M60 100 Q25 75 15 55 Q20 65 30 60 Q22 48 18 35 Q25 50 38 50 Q32 38 30 25 Q38 42 48 48 L60 80 Z" class="body"/>
+  <!-- Right wing -->
+  <path d="M140 100 Q175 75 185 55 Q180 65 170 60 Q178 48 182 35 Q175 50 162 50 Q168 38 170 25 Q162 42 152 48 L140 80 Z" class="body"/>
+  <!-- Feather texture on wings -->
+  <path d="M35 62 Q45 70 55 80" fill="none" stroke="#8A2BE2" stroke-width="1" opacity="0.5"/>
+  <path d="M30 50 Q42 60 52 72" fill="none" stroke="#8A2BE2" stroke-width="1" opacity="0.5"/>
+  <path d="M40 45 Q48 55 55 68" fill="none" stroke="#8A2BE2" stroke-width="1" opacity="0.5"/>
+  <path d="M165 62 Q155 70 145 80" fill="none" stroke="#8A2BE2" stroke-width="1" opacity="0.5"/>
+  <path d="M170 50 Q158 60 148 72" fill="none" stroke="#8A2BE2" stroke-width="1" opacity="0.5"/>
+  <!-- Body -->
+  <ellipse cx="100" cy="115" rx="32" ry="38" class="body"/>
+  <!-- Head -->
+  <circle cx="100" cy="68" r="28" class="body"/>
+  <!-- Lightning bolts near wing tips -->
+  <path d="M22 42 L26 50 L20 50 L25 58" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round">
+    <animate attributeName="opacity" values="0.5;1;0.5" dur="0.8s" repeatCount="indefinite"/>
+  </path>
+  <path d="M178 42 L174 50 L180 50 L175 58" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+  <!-- Eyebrow angles -->
+  <line x1="80" y1="54" x2="90" y2="57" stroke="#8A2BE2" stroke-width="2" stroke-linecap="round"/>
+  <line x1="120" y1="54" x2="110" y2="57" stroke="#8A2BE2" stroke-width="2" stroke-linecap="round"/>
+  <!-- Eyes (electric) -->
+  <circle cx="88" cy="65" r="7" class="eye-bg"/>
+  <circle cx="112" cy="65" r="7" class="eye-bg"/>
+  <circle cx="88" cy="65" r="4.5" class="iris"/>
+  <circle cx="112" cy="65" r="4.5" class="iris"/>
+  <circle cx="86" cy="63" r="2.5" class="shine"/>
+  <circle cx="110" cy="63" r="2.5" class="shine"/>
+  <!-- Blush -->
+  <ellipse cx="76" cy="74" rx="7" ry="4" class="blush"/>
+  <ellipse cx="124" cy="74" rx="7" ry="4" class="blush"/>
+  <!-- Beak/mouth -->
+  <path d="M94 78 Q100 83 106 78" stroke="#8A2BE2" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Feet -->
+  <ellipse cx="88" cy="152" rx="10" ry="6" class="body"/>
+  <ellipse cx="112" cy="152" rx="10" ry="6" class="body"/>
+</svg>

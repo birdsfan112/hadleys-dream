@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="cb-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#87CEEB"/>
+      <stop offset="50%" stop-color="#b8e4f0"/>
+      <stop offset="100%" stop-color="#f0e6c8"/>
+    </linearGradient>
+    <radialGradient id="cb-sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#FFF8DC"/>
+      <stop offset="60%" stop-color="#FFE4B5" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#FFE4B5" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="cb-glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="800" height="600" fill="url(#cb-sky)"/>
+
+  <!-- Sun low on horizon -->
+  <circle cx="400" cy="280" r="80" fill="url(#cb-sun)"/>
+  <circle cx="400" cy="280" r="30" fill="#FFF8DC" opacity="0.9"/>
+
+  <!-- Clouds -->
+  <g opacity="0.7" fill="white">
+    <ellipse cx="180" cy="70" rx="55" ry="22"/>
+    <ellipse cx="215" cy="62" rx="38" ry="18"/>
+    <ellipse cx="145" cy="66" rx="30" ry="15"/>
+    <ellipse cx="580" cy="90" rx="48" ry="20"/>
+    <ellipse cx="615" cy="82" rx="32" ry="16"/>
+  </g>
+
+  <!-- Distant ocean -->
+  <rect x="0" y="280" width="800" height="120" fill="#87CEEB" opacity="0.5"/>
+  <path d="M0 290 Q100 275 200 290 Q300 305 400 290 Q500 275 600 290 Q700 305 800 290 L800 310 Q700 325 600 310 Q500 295 400 310 Q300 325 200 310 Q100 295 0 310 Z" fill="#7EC8E3" opacity="0.4"/>
+  <path d="M0 310 Q80 300 160 310 Q240 320 320 310 Q400 300 480 310 Q560 320 640 310 Q720 300 800 310 L800 330 L0 330 Z" fill="#6BB8D3" opacity="0.3"/>
+
+  <!-- Crystal formations in water -->
+  <g opacity="0.5" stroke="white" stroke-width="1.5" fill="none">
+    <polygon points="250,260 265,210 280,260" fill="#E0F0FF" fill-opacity="0.3"/>
+    <polygon points="260,260 270,220 280,260" fill="#B0D4F1" fill-opacity="0.2"/>
+    <polygon points="520,250 540,190 560,250" fill="#E0F0FF" fill-opacity="0.3"/>
+    <polygon points="530,250 540,205 550,250" fill="#B0D4F1" fill-opacity="0.2"/>
+    <polygon points="340,270 350,235 360,270" fill="#E0F0FF" fill-opacity="0.25"/>
+  </g>
+
+  <!-- Wet sand / tide pools -->
+  <rect x="0" y="380" width="800" height="220" fill="#f0e6c8"/>
+  <path d="M0 380 Q200 370 400 380 Q600 390 800 380 L800 400 Q600 410 400 400 Q200 390 0 400 Z" fill="#d4cdb0" opacity="0.5"/>
+
+  <!-- Tide pools -->
+  <ellipse cx="200" cy="420" rx="45" ry="18" fill="#87CEEB" opacity="0.3"/>
+  <ellipse cx="550" cy="450" rx="55" ry="20" fill="#87CEEB" opacity="0.25"/>
+  <ellipse cx="380" cy="470" rx="35" ry="14" fill="#87CEEB" opacity="0.2"/>
+
+  <!-- Scattered shells -->
+  <path d="M150 500 Q155 492 160 500 Q155 495 150 500" fill="#FFF5E6" stroke="#D2B48C" stroke-width="1"/>
+  <path d="M480 510 Q485 502 490 510 Q485 505 480 510" fill="#FFF5E6" stroke="#D2B48C" stroke-width="1"/>
+  <path d="M620 490 Q625 482 630 490 Q625 485 620 490" fill="#FFE4C4" stroke="#D2B48C" stroke-width="1"/>
+
+  <!-- Starfish -->
+  <polygon points="320,520 323,512 330,515 325,508 332,505 324,504 322,496 320,504 312,505 319,508 314,515 321,512" fill="#FF6347" opacity="0.7"/>
+
+  <!-- Small crystal clusters on beach -->
+  <g opacity="0.45" stroke="white" stroke-width="1">
+    <polygon points="100,480 108,455 116,480" fill="#E0F0FF" fill-opacity="0.4"/>
+    <polygon points="108,480 113,462 118,480" fill="#B8D8F0" fill-opacity="0.3"/>
+    <polygon points="650,475 656,458 662,475" fill="#E0F0FF" fill-opacity="0.4"/>
+    <polygon points="655,475 658,463 661,475" fill="#B8D8F0" fill-opacity="0.3"/>
+  </g>
+
+  <!-- Sparkle particles on crystals and water -->
+  <g filter="url(#cb-glow)" fill="#FFF" opacity="0.8">
+    <circle cx="265" cy="215" r="2">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="540" cy="200" r="2.5">
+      <animate attributeName="opacity" values="1;0.3;1" dur="1.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="350" cy="240" r="2">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="110" cy="460" r="2">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="1.6s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="655" cy="462" r="2">
+      <animate attributeName="opacity" values="1;0.4;1" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="200" cy="415" r="2.5">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="1.9s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="550" cy="445" r="2">
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="2.1s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="400" cy="285" r="2.5">
+      <animate attributeName="opacity" values="0.3;0.9;0.3" dur="2.3s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>

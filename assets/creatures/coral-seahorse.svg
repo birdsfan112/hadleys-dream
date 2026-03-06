@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="cs-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFB6C1"/>
+      <stop offset="100%" stop-color="#FF1493"/>
+    </linearGradient>
+  </defs>
+  <style>
+    .body{fill:url(#cs-grad);stroke:#FF1493;stroke-width:2}
+    .eye{fill:#333} .shine{fill:#FFF}
+    .blush{fill:#FF69B4;opacity:0.25}
+  </style>
+  <!-- Curled tail -->
+  <path d="M105 155 Q115 170 120 180 Q125 190 115 192 Q105 190 110 180 Q112 174 108 168" fill="#FF69B4" stroke="#FF1493" stroke-width="2"/>
+  <!-- Body (S-curve seahorse) -->
+  <ellipse cx="100" cy="115" rx="28" ry="42" fill="url(#cs-grad)" stroke="#FF1493" stroke-width="2"/>
+  <!-- Lighter belly -->
+  <ellipse cx="92" cy="115" rx="15" ry="32" fill="#FFB6C1" opacity="0.5"/>
+  <!-- Ridge lines across torso -->
+  <path d="M78 95 Q92 92 108 95" stroke="#FF1493" stroke-width="1" fill="none" opacity="0.4"/>
+  <path d="M76 105 Q92 102 112 105" stroke="#FF1493" stroke-width="1" fill="none" opacity="0.4"/>
+  <path d="M76 115 Q92 112 112 115" stroke="#FF1493" stroke-width="1" fill="none" opacity="0.4"/>
+  <path d="M78 125 Q92 122 108 125" stroke="#FF1493" stroke-width="1" fill="none" opacity="0.4"/>
+  <path d="M80 135 Q95 132 106 135" stroke="#FF1493" stroke-width="1" fill="none" opacity="0.4"/>
+  <!-- Head -->
+  <circle cx="100" cy="60" r="28" fill="url(#cs-grad)" stroke="#FF1493" stroke-width="2"/>
+  <!-- Snout -->
+  <ellipse cx="118" cy="68" rx="16" ry="8" fill="url(#cs-grad)" stroke="#FF1493" stroke-width="2"/>
+  <!-- Eyes (elegant almond) -->
+  <ellipse cx="95" cy="55" rx="7" ry="8" class="eye"/>
+  <circle cx="93" cy="52" r="3" class="shine"/>
+  <circle cx="97" cy="56" r="1.5" class="shine"/>
+  <!-- Eyelashes -->
+  <path d="M88 48 Q92 44 95 47" stroke="#333" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M90 46 Q94 42 97 45" stroke="#333" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Blush -->
+  <ellipse cx="86" cy="65" rx="7" ry="4" class="blush"/>
+  <!-- Mouth -->
+  <path d="M126 70 Q130 74 128 70" stroke="#FF1493" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Coral-branch crown -->
+  <path d="M90 36 L88 22 L84 28 L82 18" stroke="#FF69B4" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M98 34 L97 20 L100 26 L102 16" stroke="#FF69B4" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M106 36 L108 24 L112 30 L114 20" stroke="#FF69B4" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Dorsal fin -->
+  <path d="M72 85 Q60 75 65 65 Q68 72 72 78" fill="#FF69B4" stroke="#FF1493" stroke-width="1" opacity="0.7"/>
+</svg>

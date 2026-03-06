@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <style>
+    .body{fill:#90EE90;stroke:#32CD32;stroke-width:2}
+    .wing{fill:#32CD32;opacity:0.6}
+    .eye{fill:#333} .shine{fill:#FFF}
+    .blush{fill:#FFB6C1;opacity:0.3}
+  </style>
+  <!-- Leaf wings -->
+  <path d="M50 100 Q30 60 60 50 Q80 45 75 80 Z" class="wing"/>
+  <path d="M150 100 Q170 60 140 50 Q120 45 125 80 Z" class="wing"/>
+  <!-- Wing veins -->
+  <path d="M58 55 Q65 75 68 90" stroke="#228B22" stroke-width="1" fill="none" opacity="0.5"/>
+  <path d="M142 55 Q135 75 132 90" stroke="#228B22" stroke-width="1" fill="none" opacity="0.5"/>
+  <!-- Acorn body -->
+  <path d="M70 90 Q70 70 100 68 Q130 70 130 90 L125 140 Q100 160 75 140 Z" fill="#8B6914" stroke="#6B4914" stroke-width="2"/>
+  <!-- Acorn cap pattern -->
+  <path d="M70 90 Q100 100 130 90" fill="none" stroke="#6B4914" stroke-width="1.5"/>
+  <!-- Head -->
+  <circle cx="100" cy="85" r="32" class="body"/>
+  <!-- Leaf hat -->
+  <path d="M100 52 Q85 40 95 30 Q100 25 105 30 Q115 40 100 52" fill="#32CD32" stroke="#228B22" stroke-width="1"/>
+  <line x1="100" y1="30" x2="100" y2="52" stroke="#228B22" stroke-width="1"/>
+  <!-- Eyes (sparkle style) -->
+  <circle cx="88" cy="82" r="6" class="eye"/>
+  <circle cx="112" cy="82" r="6" class="eye"/>
+  <circle cx="90" cy="79" r="2.5" class="shine"/>
+  <circle cx="114" cy="79" r="2.5" class="shine"/>
+  <circle cx="86" cy="84" r="1.5" class="shine"/>
+  <circle cx="110" cy="84" r="1.5" class="shine"/>
+  <!-- Blush -->
+  <ellipse cx="76" cy="92" rx="8" ry="5" class="blush"/>
+  <ellipse cx="124" cy="92" rx="8" ry="5" class="blush"/>
+  <!-- Mouth -->
+  <path d="M94 96 Q100 102 106 96" stroke="#228B22" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Tiny feet -->
+  <ellipse cx="88" cy="158" rx="10" ry="6" fill="#8B6914" stroke="#6B4914" stroke-width="1"/>
+  <ellipse cx="112" cy="158" rx="10" ry="6" fill="#8B6914" stroke="#6B4914" stroke-width="1"/>
+</svg>

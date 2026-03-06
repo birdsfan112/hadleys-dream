@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="wingL" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ADD8E6" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#87CEEB" stop-opacity="0.3"/>
+    </linearGradient>
+    <linearGradient id="wingR" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ADD8E6" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#87CEEB" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+  <style>
+    .body{fill:#ADD8E6;stroke:#87CEEB;stroke-width:2}
+    .eye{fill:#333} .shine{fill:#FFF}
+    .blush{fill:#DDA0DD;opacity:0.3}
+  </style>
+  <!-- Teardrop wings -->
+  <path d="M55 85 Q20 50 35 25 Q50 5 60 30 Q70 55 65 85 Z" fill="url(#wingL)" stroke="#87CEEB" stroke-width="1"/>
+  <path d="M145 85 Q180 50 165 25 Q150 5 140 30 Q130 55 135 85 Z" fill="url(#wingR)" stroke="#87CEEB" stroke-width="1"/>
+  <!-- Lower wings -->
+  <path d="M60 100 Q30 110 40 130 Q50 145 65 120 Z" fill="url(#wingL)" stroke="#87CEEB" stroke-width="1"/>
+  <path d="M140 100 Q170 110 160 130 Q150 145 135 120 Z" fill="url(#wingR)" stroke="#87CEEB" stroke-width="1"/>
+  <!-- Body -->
+  <ellipse cx="100" cy="120" rx="28" ry="35" class="body"/>
+  <!-- Head -->
+  <circle cx="100" cy="80" r="30" class="body"/>
+  <!-- Crown/tiara -->
+  <path d="M78 62 L82 50 L90 58 L100 45 L110 58 L118 50 L122 62" fill="none" stroke="#87CEEB" stroke-width="2"/>
+  <circle cx="82" cy="50" r="2.5" fill="#E0FFFF"/>
+  <circle cx="100" cy="45" r="3" fill="#B0E0E6"/>
+  <circle cx="118" cy="50" r="2.5" fill="#E0FFFF"/>
+  <!-- Eyes (big round) -->
+  <circle cx="88" cy="78" r="8" class="eye"/>
+  <circle cx="112" cy="78" r="8" class="eye"/>
+  <circle cx="91" cy="75" r="3.5" class="shine"/>
+  <circle cx="115" cy="75" r="3.5" class="shine"/>
+  <circle cx="86" cy="80" r="2" class="shine"/>
+  <circle cx="110" cy="80" r="2" class="shine"/>
+  <!-- Blush -->
+  <ellipse cx="74" cy="88" rx="8" ry="5" class="blush"/>
+  <ellipse cx="126" cy="88" rx="8" ry="5" class="blush"/>
+  <!-- Mouth -->
+  <path d="M95 92 Q100 97 105 92" stroke="#87CEEB" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Sparkle trail -->
+  <circle cx="70" cy="150" r="2" fill="#E0FFFF" opacity="0.8">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="55" cy="165" r="1.5" fill="#ADD8E6" opacity="0.6">
+    <animate attributeName="opacity" values="1;0.3;1" dur="1.8s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="130" cy="155" r="2" fill="#E0FFFF" opacity="0.7">
+    <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="145" cy="168" r="1.5" fill="#ADD8E6" opacity="0.5">
+    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="1.6s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Tiny feet -->
+  <ellipse cx="90" cy="155" rx="8" ry="5" class="body"/>
+  <ellipse cx="110" cy="155" rx="8" ry="5" class="body"/>
+</svg>
