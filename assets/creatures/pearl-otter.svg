@@ -1,48 +1,126 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
   <defs>
-    <radialGradient id="po-glow" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0%" stop-color="#FFF" stop-opacity="0.9"/>
-      <stop offset="50%" stop-color="#F0F0F0" stop-opacity="0.7"/>
-      <stop offset="100%" stop-color="#E0E8F0" stop-opacity="0.3"/>
+    <linearGradient id="po-body-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B6F47;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#A0826D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6B4423;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="po-belly-grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#D4C5B9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B8A89C;stop-opacity:0.9" />
     </radialGradient>
+    <radialGradient id="po-pearl-grad" cx="35%" cy="35%" r="70%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#F5F5F0;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#E6D7C3;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#B8A8A0;stop-opacity:0.8" />
+    </radialGradient>
+    <radialGradient id="po-eye-shine" cx="40%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#87CEEB;stop-opacity:0.2" />
+    </radialGradient>
+    <filter id="po-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="1" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.25"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="po-ripple">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+    </filter>
   </defs>
   <style>
-    .body{fill:#DEB887;stroke:#D2B48C;stroke-width:2}
-    .eye{fill:#333} .shine{fill:#FFF}
-    .blush{fill:#FF69B4;opacity:0.25}
+    @keyframes po-rocking {
+      0%, 100% { transform: rotateZ(-3deg); }
+      50% { transform: rotateZ(3deg); }
+    }
+    @keyframes po-float-bob {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+    .po-body { animation: po-rocking 4s ease-in-out infinite; }
+    .po-pearl { animation: po-float-bob 2.5s ease-in-out infinite; }
   </style>
-  <!-- Tail (visible at bottom) -->
-  <path d="M100 175 Q85 180 80 190 Q85 192 95 185" class="body"/>
-  <!-- Body (lying on back, oval wider at middle) -->
-  <ellipse cx="100" cy="120" rx="48" ry="55" class="body"/>
-  <!-- Lighter belly patch -->
-  <ellipse cx="100" cy="125" rx="32" ry="38" fill="#F5DEB3" opacity="0.7"/>
-  <!-- Head -->
-  <circle cx="100" cy="65" r="35" class="body"/>
-  <!-- Ears -->
-  <circle cx="68" cy="48" r="8" class="body"/>
-  <circle cx="132" cy="48" r="8" class="body"/>
-  <circle cx="68" cy="48" r="5" fill="#D2B48C" opacity="0.5"/>
-  <circle cx="132" cy="48" r="5" fill="#D2B48C" opacity="0.5"/>
-  <!-- Lighter face -->
-  <ellipse cx="100" cy="72" rx="22" ry="18" fill="#F5DEB3" opacity="0.5"/>
-  <!-- Eyes (playful squinting ~ shapes) -->
-  <path d="M82 62 Q86 58 90 62 Q86 66 82 62" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <path d="M110 62 Q114 58 118 62 Q114 66 110 62" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <!-- Blush -->
-  <ellipse cx="76" cy="72" rx="8" ry="5" class="blush"/>
-  <ellipse cx="124" cy="72" rx="8" ry="5" class="blush"/>
-  <!-- Nose -->
-  <ellipse cx="100" cy="72" rx="4" ry="3" fill="#D2B48C"/>
-  <!-- Mouth -->
-  <path d="M94 78 Q100 84 106 78" stroke="#D2B48C" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <!-- Paws held up -->
-  <ellipse cx="72" cy="95" rx="12" ry="8" class="body" transform="rotate(-15 72 95)"/>
-  <ellipse cx="128" cy="95" rx="12" ry="8" class="body" transform="rotate(15 128 95)"/>
-  <!-- Pearl (glowing) -->
-  <circle cx="100" cy="95" r="12" fill="url(#po-glow)" stroke="#E0E8F0" stroke-width="1"/>
-  <circle cx="96" cy="90" r="3" fill="white" opacity="0.7"/>
-  <!-- Back paws -->
-  <ellipse cx="75" cy="170" rx="14" ry="8" class="body"/>
-  <ellipse cx="125" cy="170" rx="14" ry="8" class="body"/>
+
+  <!-- Water ripple effect underneath -->
+  <ellipse cx="75" cy="170" rx="20" ry="6" fill="#87CEEB" opacity="0.15" filter="url(#po-ripple)"/>
+  <ellipse cx="125" cy="170" rx="20" ry="6" fill="#87CEEB" opacity="0.12" filter="url(#po-ripple)"/>
+  <ellipse cx="100" cy="175" rx="30" ry="5" fill="#87CEEB" opacity="0.1" filter="url(#po-ripple)"/>
+
+  <!-- Main body -->
+  <g class="po-body">
+    <!-- Body (lying on back) -->
+    <ellipse cx="100" cy="125" rx="50" ry="52" fill="url(#po-body-grad)" filter="url(#po-shadow)"/>
+
+    <!-- Fluffy belly patch -->
+    <ellipse cx="100" cy="130" rx="36" ry="38" fill="url(#po-belly-grad)"/>
+    <!-- Belly texture detail -->
+    <circle cx="85" cy="120" r="1.5" fill="#A0826D" opacity="0.3"/>
+    <circle cx="100" cy="115" r="1" fill="#A0826D" opacity="0.25"/>
+    <circle cx="115" cy="120" r="1.5" fill="#A0826D" opacity="0.3"/>
+    <circle cx="90" cy="140" r="1" fill="#A0826D" opacity="0.25"/>
+    <circle cx="110" cy="140" r="1" fill="#A0826D" opacity="0.25"/>
+
+    <!-- Head -->
+    <circle cx="100" cy="68" r="36" fill="url(#po-body-grad)" filter="url(#po-shadow)"/>
+
+    <!-- Ears -->
+    <circle cx="65" cy="45" r="10" fill="url(#po-body-grad)" filter="url(#po-shadow)"/>
+    <circle cx="135" cy="45" r="10" fill="url(#po-body-grad)" filter="url(#po-shadow)"/>
+    <circle cx="65" cy="45" r="6" fill="#D4C5B9" opacity="0.5"/>
+    <circle cx="135" cy="45" r="6" fill="#D4C5B9" opacity="0.5"/>
+
+    <!-- Face lighter patch -->
+    <ellipse cx="100" cy="75" rx="24" ry="20" fill="url(#po-belly-grad)"/>
+
+    <!-- Eyes with shine (playful half-closed) -->
+    <path d="M78 68 Q84 62 90 68 Q84 74 78 68" fill="#2C3E50"/>
+    <path d="M110 68 Q116 62 122 68 Q116 74 110 68" fill="#2C3E50"/>
+    <circle cx="80" cy="66" r="3" fill="url(#po-eye-shine)"/>
+    <circle cx="112" cy="66" r="3" fill="url(#po-eye-shine)"/>
+    <circle cx="82" cy="63" r="1" fill="#FFF"/>
+    <circle cx="114" cy="63" r="1" fill="#FFF"/>
+
+    <!-- Whiskers -->
+    <line x1="65" y1="78" x2="45" y2="75" stroke="#6B4423" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="68" y1="85" x2="48" y2="88" stroke="#6B4423" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="135" y1="78" x2="155" y2="75" stroke="#6B4423" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="132" y1="85" x2="152" y2="88" stroke="#6B4423" stroke-width="1.2" stroke-linecap="round"/>
+
+    <!-- Nose -->
+    <ellipse cx="100" cy="82" rx="5" ry="4" fill="#6B4423"/>
+    <circle cx="102" cy="81" r="1.5" fill="#D4C5B9" opacity="0.6"/>
+
+    <!-- Mouth (playful smile) -->
+    <path d="M92 88 Q100 95 108 88" stroke="#6B4423" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+    <!-- Blush -->
+    <ellipse cx="70" cy="78" rx="12" ry="7" fill="#FF69B4" opacity="0.22"/>
+    <ellipse cx="130" cy="78" rx="12" ry="7" fill="#FF69B4" opacity="0.22"/>
+
+    <!-- Left paw holding pearl -->
+    <ellipse cx="70" cy="100" rx="14" ry="10" fill="url(#po-body-grad)" filter="url(#po-shadow)" transform="rotate(-25 70 100)"/>
+    <!-- Right paw holding pearl -->
+    <ellipse cx="130" cy="100" rx="14" ry="10" fill="url(#po-body-grad)" filter="url(#po-shadow)" transform="rotate(25 130 100)"/>
+
+    <!-- Back paws -->
+    <ellipse cx="72" cy="170" rx="16" ry="10" fill="url(#po-body-grad)" filter="url(#po-shadow)"/>
+    <ellipse cx="128" cy="170" rx="16" ry="10" fill="url(#po-body-grad)" filter="url(#po-shadow)"/>
+
+    <!-- Tail -->
+    <path d="M100 178 Q90 185 85 192" stroke="url(#po-body-grad)" stroke-width="8" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Pearl (lustrous) -->
+  <g class="po-pearl">
+    <circle cx="100" cy="100" r="13" fill="url(#po-pearl-grad)" filter="url(#po-shadow)"/>
+    <!-- Pearl shine highlight -->
+    <circle cx="95" cy="94" r="4.5" fill="#FFFFFF" opacity="0.7"/>
+    <circle cx="103" cy="97" r="2" fill="#FFFFFF" opacity="0.5"/>
+  </g>
 </svg>

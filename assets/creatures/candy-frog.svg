@@ -1,39 +1,90 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="cf-body-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#7FFF7F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#66DD66;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="cf-eye-shine" cx="40%" cy="40%" r="70%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#87CEEB;stop-opacity:0.3" />
+    </radialGradient>
+    <filter id="cf-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.5"/>
+      <feOffset dx="1" dy="1.5" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.2"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
   <style>
-    .body{fill:#98FB98;stroke:#00FA9A;stroke-width:2}
-    .eye{fill:#333} .shine{fill:#FFF}
-    .blush{fill:#FF69B4;opacity:0.25}
+    @keyframes cf-hop {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes cf-lollipop-spin {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(360deg); }
+    }
+    .cf-body { animation: cf-hop 2s ease-in-out infinite; }
+    .cf-lollipop { animation: cf-lollipop-spin 4s linear infinite; }
   </style>
-  <!-- Body -->
-  <ellipse cx="100" cy="130" rx="50" ry="40" class="body"/>
-  <!-- Lighter belly -->
-  <ellipse cx="100" cy="138" rx="32" ry="24" fill="#c8ffc8" stroke="none"/>
-  <!-- Spots on back -->
-  <circle cx="72" cy="118" r="6" fill="#66cc66" opacity="0.3"/>
-  <circle cx="120" cy="110" r="7" fill="#66cc66" opacity="0.3"/>
-  <circle cx="95" cy="105" r="5" fill="#66cc66" opacity="0.3"/>
-  <circle cx="130" cy="125" r="5" fill="#66cc66" opacity="0.3"/>
-  <!-- Frog eyes on top -->
-  <circle cx="78" cy="92" r="16" class="body"/>
-  <circle cx="122" cy="92" r="16" class="body"/>
-  <circle cx="78" cy="90" r="9" fill="#FFF"/>
-  <circle cx="122" cy="90" r="9" fill="#FFF"/>
-  <circle cx="80" cy="89" r="5" class="eye"/>
-  <circle cx="124" cy="89" r="5" class="eye"/>
-  <circle cx="82" cy="87" r="2.5" class="shine"/>
-  <circle cx="126" cy="87" r="2.5" class="shine"/>
-  <!-- Blush -->
-  <ellipse cx="65" cy="120" rx="8" ry="5" class="blush"/>
-  <ellipse cx="135" cy="120" rx="8" ry="5" class="blush"/>
-  <!-- Big grin mouth -->
-  <path d="M75 135 Q100 155 125 135" stroke="#00AA66" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <!-- Webbed feet -->
-  <path d="M60 165 L50 175 L58 172 L55 180 L65 175 L68 182 L72 170 Z" fill="#98FB98" stroke="#00FA9A" stroke-width="1"/>
-  <path d="M140 165 L150 175 L142 172 L145 180 L135 175 L132 182 L128 170 Z" fill="#98FB98" stroke="#00FA9A" stroke-width="1"/>
-  <!-- Lollipop -->
-  <line x1="148" y1="100" x2="148" y2="140" stroke="#D2B48C" stroke-width="2.5" stroke-linecap="round"/>
-  <circle cx="148" cy="92" r="12" fill="#FF69B4" stroke="#FF1493" stroke-width="1"/>
-  <path d="M142 86 Q148 92 142 98" stroke="#FFD700" stroke-width="1.5" fill="none"/>
-  <path d="M148 82 Q154 92 148 102" stroke="#87CEEB" stroke-width="1.5" fill="none"/>
-  <path d="M145 84 Q148 88 151 84" stroke="#FF6347" stroke-width="1.5" fill="none"/>
+
+  <ellipse cx="100" cy="175" rx="48" ry="10" fill="#000" opacity="0.08"/>
+
+  <g class="cf-body">
+    <!-- Body -->
+    <ellipse cx="100" cy="135" rx="52" ry="42" fill="url(#cf-body-grad)" filter="url(#cf-shadow)"/>
+    <!-- Belly -->
+    <ellipse cx="100" cy="143" rx="32" ry="26" fill="#CCFFCC" opacity="0.5"/>
+    <!-- Spots (candy sprinkles style) -->
+    <circle cx="70" cy="120" r="6" fill="#FF69B4" opacity="0.3"/>
+    <circle cx="125" cy="115" r="7" fill="#FFD700" opacity="0.3"/>
+    <circle cx="100" cy="108" r="5" fill="#87CEEB" opacity="0.3"/>
+    <circle cx="135" cy="130" r="5" fill="#FF6347" opacity="0.3"/>
+
+    <!-- Eyes (bulging frog eyes on top) -->
+    <circle cx="75" cy="95" r="18" fill="url(#cf-body-grad)" filter="url(#cf-shadow)"/>
+    <circle cx="125" cy="95" r="18" fill="url(#cf-body-grad)" filter="url(#cf-shadow)"/>
+    <!-- Eye whites -->
+    <circle cx="75" cy="93" r="11" fill="#FFFFFF"/>
+    <circle cx="125" cy="93" r="11" fill="#FFFFFF"/>
+    <!-- Pupils -->
+    <circle cx="77" cy="91" r="6" fill="#2C3E50"/>
+    <circle cx="127" cy="91" r="6" fill="#2C3E50"/>
+    <!-- Eye shine -->
+    <circle cx="79" cy="88" r="3" fill="url(#cf-eye-shine)"/>
+    <circle cx="129" cy="88" r="3" fill="url(#cf-eye-shine)"/>
+    <!-- Spiral candy reflection in eyes -->
+    <path d="M75 85 Q80 88 75 91" stroke="#FFD700" stroke-width="1" fill="none" opacity="0.7"/>
+    <path d="M125 85 Q130 88 125 91" stroke="#FFD700" stroke-width="1" fill="none" opacity="0.7"/>
+
+    <!-- Blush -->
+    <ellipse cx="60" cy="125" rx="11" ry="6" fill="#FF69B4" opacity="0.25"/>
+    <ellipse cx="140" cy="125" rx="11" ry="6" fill="#FF69B4" opacity="0.25"/>
+
+    <!-- Tongue with candy -->
+    <ellipse cx="100" cy="150" rx="8" ry="6" fill="#FF9999" filter="url(#cf-shadow)"/>
+    <circle cx="100" cy="150" r="4" fill="#FFD700"/>
+
+    <!-- Big happy grin -->
+    <path d="M72 145 Q100 162 128 145" stroke="#00AA66" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+    <!-- Webbed feet -->
+    <path d="M58 170 L48 182 L56 177 L52 188 L68 180 L70 190 Z" fill="url(#cf-body-grad)" stroke="#00AA66" stroke-width="1" filter="url(#cf-shadow)"/>
+    <path d="M142 170 L152 182 L144 177 L148 188 L132 180 L130 190 Z" fill="url(#cf-body-grad)" stroke="#00AA66" stroke-width="1" filter="url(#cf-shadow)"/>
+  </g>
+
+  <!-- Lollipop held in hand -->
+  <g class="cf-lollipop">
+    <line x1="150" y1="105" x2="150" y2="145" stroke="#CD853F" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="150" cy="95" r="13" fill="#FF69B4" filter="url(#cf-shadow)"/>
+    <!-- Lollipop shine -->
+    <circle cx="147" cy="92" r="4" fill="#FFFFFF" opacity="0.6"/>
+    <!-- Spiral stripes -->
+    <path d="M145 90 Q150 95 145 100" stroke="#FFD700" stroke-width="1.5" fill="none" opacity="0.7"/>
+  </g>
 </svg>

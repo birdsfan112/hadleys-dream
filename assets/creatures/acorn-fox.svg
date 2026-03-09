@@ -1,44 +1,150 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <!-- Fur gradients - warm oranges -->
+    <radialGradient id="af-body-grad" cx="35%" cy="35%">
+      <stop offset="0%" stop-color="#FFB347"/>
+      <stop offset="50%" stop-color="#FF9800"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </radialGradient>
+    <linearGradient id="af-body-light" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFC56D"/>
+      <stop offset="50%" stop-color="#FFB84D"/>
+      <stop offset="100%" stop-color="#FF9800"/>
+    </linearGradient>
+    <!-- Tail gradient - darker tip -->
+    <linearGradient id="af-tail-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF9800"/>
+      <stop offset="70%" stop-color="#FF8C42"/>
+      <stop offset="100%" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <!-- Chest/belly -->
+    <radialGradient id="af-chest-grad" cx="50%" cy="50%">
+      <stop offset="0%" stop-color="#FFD9B3"/>
+      <stop offset="100%" stop-color="#FFC56D"/>
+    </radialGradient>
+    <!-- Acorn cap -->
+    <linearGradient id="af-acorn-cap" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4A574"/>
+      <stop offset="50%" stop-color="#C8956E"/>
+      <stop offset="100%" stop-color="#A1826D"/>
+    </linearGradient>
+    <!-- Shadow and filter -->
+    <filter id="af-shadow">
+      <feDropShadow dx="0" dy="3" stdDeviation="2.5" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
   <style>
-    .fur{fill:#D2691E;stroke:#A0522D;stroke-width:2}
-    .light{fill:#F4A460}
-    .eye{fill:#333} .shine{fill:#FFF}
-    .blush{fill:#FF8C00;opacity:0.25}
+    .af-body { fill: url(#af-body-grad); }
+    .af-chest { fill: url(#af-chest-grad); }
+    .af-ear { fill: url(#af-body-grad); stroke: #8B4513; stroke-width: 1; }
+    .af-ear-inner { fill: #FFD9B3; }
+    .af-eye { fill: #1A1410; }
+    .af-shine { fill: #FFFFFF; }
+    .af-nose { fill: #3D2817; }
   </style>
-  <!-- Bushy tail -->
-  <path d="M145 130 Q180 100 175 70 Q172 50 160 65 Q155 90 140 110 Z" class="fur"/>
-  <path d="M160 70 Q158 55 152 68 Q150 85 145 100" fill="#F4A460" opacity="0.6"/>
+
+  <!-- Ground shadow -->
+  <ellipse cx="100" cy="175" rx="42" ry="8" fill="#000000" opacity="0.1"/>
+
+  <!-- Bushy multi-layered tail with animation -->
+  <g filter="url(#af-shadow)">
+    <!-- Tail base curve -->
+    <path d="M145 130 Q170 110 172 75 Q170 55 162 70 Q158 90 148 110 Z" fill="url(#af-tail-grad)"/>
+    <!-- Tail mid section -->
+    <ellipse cx="160" cy="90" rx="16" ry="24" fill="url(#af-tail-grad)" opacity="0.85" transform="rotate(30 160 90)"/>
+    <!-- Tail tip - white -->
+    <circle cx="168" cy="62" r="12" fill="#FFFFFF" opacity="0.9"/>
+    <!-- Tail shine -->
+    <ellipse cx="155" cy="100" rx="12" ry="18" fill="#FFFFFF" opacity="0.12"/>
+  </g>
+
   <!-- Body -->
-  <ellipse cx="100" cy="135" rx="40" ry="35" class="fur"/>
-  <!-- Belly -->
-  <ellipse cx="100" cy="140" rx="25" ry="22" class="light"/>
+  <ellipse cx="100" cy="138" rx="44" ry="38" class="af-body" filter="url(#af-shadow)"/>
+
+  <!-- Chest/belly gradient -->
+  <ellipse cx="100" cy="145" rx="28" ry="26" class="af-chest"/>
+
+  <!-- Chest shine for depth -->
+  <ellipse cx="95" cy="130" rx="18" ry="20" fill="#FFFFFF" opacity="0.1"/>
+
   <!-- Head -->
-  <circle cx="100" cy="90" r="35" class="fur"/>
-  <!-- Fox ears -->
-  <polygon points="72,62 60,30 85,55" class="fur"/>
-  <polygon points="128,62 140,30 115,55" class="fur"/>
-  <polygon points="72,60 64,38 82,55" fill="#FF8C00" opacity="0.4"/>
-  <polygon points="128,60 136,38 118,55" fill="#FF8C00" opacity="0.4"/>
-  <!-- Face marking -->
-  <path d="M80 90 Q100 110 120 90 Q110 100 100 102 Q90 100 80 90" class="light"/>
-  <!-- Acorn hat -->
-  <path d="M75 70 Q100 55 125 70 Q120 60 100 56 Q80 60 75 70" fill="#8B6914" stroke="#6B4914" stroke-width="1.5"/>
-  <rect x="82" y="56" width="36" height="8" rx="4" fill="#6B4914"/>
-  <circle cx="100" cy="52" r="4" fill="#6B4914"/>
-  <!-- Stem on acorn hat -->
-  <line x1="100" y1="48" x2="100" y2="42" stroke="#4B3610" stroke-width="2" stroke-linecap="round"/>
-  <!-- Eyes (sly/happy) -->
-  <path d="M84 86 Q88 82 92 86" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-  <path d="M108 86 Q112 82 116 86" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-  <!-- Blush -->
-  <ellipse cx="76" cy="95" rx="8" ry="5" class="blush"/>
-  <ellipse cx="124" cy="95" rx="8" ry="5" class="blush"/>
+  <circle cx="100" cy="90" r="38" class="af-body" filter="url(#af-shadow)"/>
+
+  <!-- Muzzle area - lighter -->
+  <ellipse cx="100" cy="105" rx="22" ry="18" class="af-chest"/>
+
+  <!-- Left ear -->
+  <path d="M70 60 L55 20 L80 50 Z" class="af-ear"/>
+  <path d="M70 58 L62 35 L75 50 Z" class="af-ear-inner"/>
+  <!-- Ear tip darker -->
+  <path d="M55 20 L60 28 L52 26 Z" fill="#8B4513" opacity="0.8"/>
+
+  <!-- Right ear -->
+  <path d="M130 60 L145 20 L120 50 Z" class="af-ear"/>
+  <path d="M130 58 L138 35 L125 50 Z" class="af-ear-inner"/>
+  <!-- Ear tip darker -->
+  <path d="M145 20 L140 28 L148 26 Z" fill="#8B4513" opacity="0.8"/>
+
+  <!-- Sly/clever eyes - slightly narrowed -->
+  <!-- Left eye -->
+  <path d="M82 88 Q80 84 92 86" stroke="#1A1410" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <ellipse cx="87" cy="86" rx="3" ry="3.5" class="af-eye"/>
+  <circle cx="88" cy="84" r="2" class="af-shine" opacity="0.8"/>
+
+  <!-- Right eye -->
+  <path d="M118 88 Q120 84 108 86" stroke="#1A1410" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <ellipse cx="113" cy="86" rx="3" ry="3.5" class="af-eye"/>
+  <circle cx="112" cy="84" r="2" class="af-shine" opacity="0.8"/>
+
+  <!-- Whiskers -->
+  <line x1="60" y1="95" x2="35" y2="93" stroke="#C8956E" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+  <line x1="60" y1="105" x2="35" y2="108" stroke="#C8956E" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+  <line x1="140" y1="95" x2="165" y2="93" stroke="#C8956E" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+  <line x1="140" y1="105" x2="165" y2="108" stroke="#C8956E" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+
   <!-- Nose -->
-  <circle cx="100" cy="96" r="4" fill="#333"/>
-  <circle cx="101" cy="95" r="1.5" class="shine"/>
-  <!-- Mouth -->
-  <path d="M96 100 L100 103 L104 100" stroke="#333" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <ellipse cx="100" cy="102" rx="4" ry="3.5" class="af-nose"/>
+  <circle cx="101" cy="100" r="1.5" class="af-shine" opacity="0.7"/>
+
+  <!-- Mouth - sly smile -->
+  <path d="M95 107 L100 110 L105 107" stroke="#3D2817" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Acorn cap on head - jaunty angle -->
+  <g transform="translate(100, 55) rotate(-15)">
+    <!-- Cap body -->
+    <path d="M-28 0 Q-25 -18 0 -20 Q25 -18 28 0 Q25 8 0 10 Q-25 8 -28 0 Z" fill="url(#af-acorn-cap)" stroke="#8B6F47" stroke-width="1.2"/>
+    <!-- Cap ridge pattern -->
+    <path d="M-15 -5 Q0 -8 15 -5" fill="none" stroke="#8B6F47" stroke-width="0.8" opacity="0.5"/>
+    <!-- Acorn stem -->
+    <line x1="0" y1="-20" x2="0" y2="-28" stroke="#6B5344" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Stem cap -->
+    <circle cx="0" cy="-28" r="2" fill="#6B5344"/>
+  </g>
+
   <!-- Front paws -->
-  <ellipse cx="78" cy="165" rx="12" ry="8" class="fur"/>
-  <ellipse cx="122" cy="165" rx="12" ry="8" class="fur"/>
+  <ellipse cx="78" cy="170" rx="14" ry="10" class="af-body"/>
+  <ellipse cx="122" cy="170" rx="14" ry="10" class="af-body"/>
+
+  <!-- Paw darker "socks" -->
+  <ellipse cx="78" cy="175" rx="10" ry="6" fill="#8B4513"/>
+  <ellipse cx="122" cy="175" rx="10" ry="6" fill="#8B4513"/>
+
+  <!-- Paw pads -->
+  <circle cx="75" cy="176" r="1.5" fill="#3D2817"/>
+  <circle cx="81" cy="176" r="1.5" fill="#3D2817"/>
+  <circle cx="119" cy="176" r="1.5" fill="#3D2817"/>
+  <circle cx="125" cy="176" r="1.5" fill="#3D2817"/>
+
+  <!-- Tail swish animation -->
+  <g>
+    <animateTransform
+      attributeName="transform"
+      type="rotate"
+      values="-5,160,90; 8,160,90; -5,160,90"
+      dur="2.5s"
+      repeatCount="indefinite"
+      additive="sum"
+    />
+  </g>
 </svg>

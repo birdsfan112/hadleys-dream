@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <radialGradient id="hpt-shine" cx="40%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#FFE44D"/>
+      <stop offset="100%" stop-color="#FFD700"/>
+    </radialGradient>
+    <radialGradient id="hpt-bunR" cx="40%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#FFE44D"/>
+      <stop offset="100%" stop-color="#FFC125"/>
+    </radialGradient>
+    <radialGradient id="hpt-bunL" cx="60%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#FFE44D"/>
+      <stop offset="100%" stop-color="#FFC125"/>
+    </radialGradient>
+  </defs>
+  <style>
+    .hpt-hair{fill:#FFD700;stroke:#D4A800;stroke-width:1.2}
+    .hpt-shade{fill:#FFC125;stroke:#D4A800;stroke-width:1}
+    .hpt-bow{fill:#FF69B4;stroke:#E0559E;stroke-width:1.2}
+    .hpt-hi{fill:#FFE44D;opacity:0.5}
+  </style>
+
+  <!-- Back layer: pigtails hanging behind body -->
+  <g id="back-layer">
+    <!-- Left pigtail behind body -->
+    <path d="M48 72 Q38 80 34 100 Q30 125 33 155 Q36 175 44 180
+             Q48 178 50 170 Q52 150 50 125 Q49 100 52 80 Z"
+          class="hpt-hair"/>
+    <!-- Right pigtail behind body -->
+    <path d="M152 72 Q162 80 166 100 Q170 125 167 155 Q164 175 156 180
+             Q152 178 150 170 Q148 150 150 125 Q151 100 148 80 Z"
+          class="hpt-hair"/>
+    <!-- Behind-head hair fill -->
+    <path d="M62 38 Q100 28 138 38 Q144 50 144 70 Q140 50 100 45
+             Q60 50 56 70 Q56 50 62 38 Z"
+          fill="#FFC125" stroke="#D4A800" stroke-width="1"/>
+    <!-- Hair strand lines on back pigtails -->
+    <path d="M40 100 Q38 130 40 165" stroke="#FFC125" stroke-width="2" fill="none" opacity="0.5" stroke-linecap="round"/>
+    <path d="M160 100 Q162 130 160 165" stroke="#FFC125" stroke-width="2" fill="none" opacity="0.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Front layer: bangs, pigtail fronts, bows -->
+  <g id="clothing">
+    <!-- Hair top crown -->
+    <path d="M56 72 Q55 40 68 30 Q82 20 100 18 Q118 20 132 30
+             Q145 40 144 72 Q142 52 128 42 Q114 34 100 33
+             Q86 34 72 42 Q58 52 56 72 Z"
+          class="hpt-hair"/>
+
+    <!-- Bangs - cute chunky style -->
+    <path d="M64 50 Q72 40 84 44 Q78 50 74 58 Q70 62 66 64 Z"
+          class="hpt-hair"/>
+    <path d="M80 42 Q92 35 104 40 Q97 46 90 50 Q84 54 80 52 Z"
+          class="hpt-hair"/>
+    <path d="M100 39 Q112 35 124 42 Q118 48 110 50 Q104 52 100 50 Z"
+          class="hpt-hair"/>
+    <path d="M120 42 Q130 44 138 52 Q134 58 130 60 Q126 54 122 48 Z"
+          class="hpt-hair"/>
+
+    <!-- Left pigtail (front portion) -->
+    <path d="M52 68 Q42 75 38 90 Q35 108 38 130 Q40 145 45 152
+             Q50 148 52 138 Q54 120 53 100 Q53 85 55 74 Z"
+          fill="url(#hpt-bunL)" stroke="#D4A800" stroke-width="1.2"/>
+    <!-- Left pigtail tip -->
+    <ellipse cx="43" cy="155" rx="8" ry="10" class="hpt-shade"/>
+
+    <!-- Right pigtail (front portion) -->
+    <path d="M148 68 Q158 75 162 90 Q165 108 162 130 Q160 145 155 152
+             Q150 148 148 138 Q146 120 147 100 Q147 85 145 74 Z"
+          fill="url(#hpt-bunR)" stroke="#D4A800" stroke-width="1.2"/>
+    <!-- Right pigtail tip -->
+    <ellipse cx="157" cy="155" rx="8" ry="10" class="hpt-shade"/>
+
+    <!-- Left bow -->
+    <path d="M40 72 Q30 62 28 70 Q26 78 38 76 Z" class="hpt-bow"/>
+    <path d="M40 72 Q50 62 52 70 Q54 78 42 76 Z" class="hpt-bow"/>
+    <circle cx="41" cy="73" r="3" fill="#E0559E"/>
+
+    <!-- Right bow -->
+    <path d="M160 72 Q150 62 148 70 Q146 78 158 76 Z" class="hpt-bow"/>
+    <path d="M160 72 Q170 62 172 70 Q174 78 162 76 Z" class="hpt-bow"/>
+    <circle cx="161" cy="73" r="3" fill="#E0559E"/>
+
+    <!-- Shine highlights -->
+    <ellipse cx="88" cy="30" rx="12" ry="4" class="hpt-hi" transform="rotate(-8 88 30)"/>
+    <ellipse cx="45" cy="105" rx="4" ry="8" class="hpt-hi" transform="rotate(-5 45 105)"/>
+    <ellipse cx="155" cy="105" rx="4" ry="8" class="hpt-hi" transform="rotate(5 155 105)"/>
+  </g>
+</svg>

@@ -1,60 +1,96 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
   <defs>
-    <linearGradient id="bp-wing" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#FF69B4" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#FF1493" stop-opacity="0.5"/>
+    <linearGradient id="bp-wing-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF85C4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF1493;stop-opacity:0.8" />
     </linearGradient>
+    <radialGradient id="bp-eye-shine" cx="35%" cy="35%" r="70%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFB6D9;stop-opacity:0.3" />
+    </radialGradient>
+    <filter id="bp-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.5"/>
+      <feOffset dx="1" dy="1.5" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.2"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
   <style>
-    .body{fill:#FF69B4;stroke:#FF1493;stroke-width:2}
-    .eye{fill:#333} .shine{fill:#FFF}
-    .blush{fill:#FF1493;opacity:0.2}
+    @keyframes bp-wing-flutter {
+      0%, 100% { transform: rotateZ(-8deg); }
+      50% { transform: rotateZ(8deg); }
+    }
+    @keyframes bp-sparkle-trail {
+      0% { opacity: 0.8; transform: translateY(0px); }
+      100% { opacity: 0; transform: translateY(-30px); }
+    }
+    .bp-wings { animation: bp-wing-flutter 1.2s ease-in-out infinite; }
+    .bp-trail { animation: bp-sparkle-trail 2s ease-in infinite; }
   </style>
-  <!-- Upper wings -->
-  <path d="M55 85 Q20 45 35 20 Q55 0 65 30 Q75 55 70 85 Z" fill="url(#bp-wing)" stroke="#FF1493" stroke-width="1"/>
-  <path d="M145 85 Q180 45 165 20 Q145 0 135 30 Q125 55 130 85 Z" fill="url(#bp-wing)" stroke="#FF1493" stroke-width="1"/>
-  <!-- Lower wings -->
-  <path d="M62 105 Q30 115 38 140 Q48 155 68 130 Z" fill="url(#bp-wing)" stroke="#FF1493" stroke-width="1"/>
-  <path d="M138 105 Q170 115 162 140 Q152 155 132 130 Z" fill="url(#bp-wing)" stroke="#FF1493" stroke-width="1"/>
-  <!-- Wing dots -->
-  <circle cx="45" cy="45" r="4" fill="#FFF" opacity="0.5"/>
-  <circle cx="50" cy="65" r="3" fill="#FFF" opacity="0.4"/>
-  <circle cx="40" cy="55" r="2.5" fill="#FFD700" opacity="0.5"/>
-  <circle cx="155" cy="45" r="4" fill="#FFF" opacity="0.5"/>
-  <circle cx="150" cy="65" r="3" fill="#FFF" opacity="0.4"/>
-  <circle cx="160" cy="55" r="2.5" fill="#FFD700" opacity="0.5"/>
-  <circle cx="48" cy="125" r="3" fill="#FFF" opacity="0.4"/>
-  <circle cx="152" cy="125" r="3" fill="#FFF" opacity="0.4"/>
-  <!-- Body -->
-  <ellipse cx="100" cy="118" rx="22" ry="30" class="body"/>
+
+  <!-- Upper wings (elaborate with eye-spot patterns) -->
+  <g class="bp-wings">
+    <path d="M50 88 Q15 42 32 15 Q58 -8 70 28 Q80 62 72 88 Z" fill="url(#bp-wing-grad)" stroke="#FF1493" stroke-width="1.5" filter="url(#bp-shadow)"/>
+    <path d="M150 88 Q185 42 168 15 Q142 -8 130 28 Q120 62 128 88 Z" fill="url(#bp-wing-grad)" stroke="#FF1493" stroke-width="1.5" filter="url(#bp-shadow)"/>
+    <!-- Lower wings (smaller) -->
+    <path d="M60 108 Q28 125 38 152 Q50 168 72 135 Z" fill="url(#bp-wing-grad)" stroke="#FF1493" stroke-width="1.5" filter="url(#bp-shadow)"/>
+    <path d="M140 108 Q172 125 162 152 Q150 168 128 135 Z" fill="url(#bp-wing-grad)" stroke="#FF1493" stroke-width="1.5" filter="url(#bp-shadow)"/>
+  </g>
+
+  <!-- Wing eye-spot patterns and details -->
+  <circle cx="48" cy="48" r="5" fill="#FFF" opacity="0.5"/>
+  <circle cx="48" cy="48" r="2" fill="#FF1493" opacity="0.6"/>
+  <circle cx="55" cy="68" r="4" fill="#FFF" opacity="0.4"/>
+  <circle cx="42" cy="60" r="3" fill="#FFD700" opacity="0.5"/>
+  <circle cx="152" cy="48" r="5" fill="#FFF" opacity="0.5"/>
+  <circle cx="152" cy="48" r="2" fill="#FF1493" opacity="0.6"/>
+  <circle cx="145" cy="68" r="4" fill="#FFF" opacity="0.4"/>
+  <circle cx="158" cy="60" r="3" fill="#FFD700" opacity="0.5"/>
+
+  <!-- Pixie body -->
+  <ellipse cx="100" cy="120" rx="24" ry="32" fill="#FF69B4" filter="url(#bp-shadow)"/>
+  <!-- Pixie dress detail -->
+  <ellipse cx="100" cy="128" rx="18" ry="18" fill="#FFB6D9" opacity="0.4"/>
+
   <!-- Head -->
-  <circle cx="100" cy="80" r="24" class="body"/>
-  <!-- Antennae with hearts -->
-  <line x1="88" y1="60" x2="75" y2="35" stroke="#FF1493" stroke-width="1.5" stroke-linecap="round"/>
-  <circle cx="73" cy="33" r="3" fill="#FF1493"/><circle cx="77" cy="33" r="3" fill="#FF1493"/>
-  <line x1="112" y1="60" x2="125" y2="35" stroke="#FF1493" stroke-width="1.5" stroke-linecap="round"/>
-  <circle cx="123" cy="33" r="3" fill="#FF1493"/><circle cx="127" cy="33" r="3" fill="#FF1493"/>
-  <!-- Eyes with star shine -->
-  <circle cx="90" cy="78" r="7" class="eye"/>
-  <circle cx="110" cy="78" r="7" class="eye"/>
-  <polygon points="93,74 94,76 96,76 94.5,77.5 95,79.5 93,78 91,79.5 91.5,77.5 90,76 92,76" class="shine"/>
-  <polygon points="113,74 114,76 116,76 114.5,77.5 115,79.5 113,78 111,79.5 111.5,77.5 110,76 112,76" class="shine"/>
+  <circle cx="100" cy="80" r="26" fill="#FF69B4" filter="url(#bp-shadow)"/>
+
+  <!-- Pixie wings (on back, small, iridescent) -->
+  <ellipse cx="92" cy="105" rx="8" ry="14" fill="#E0F0FF" stroke="#87CEEB" stroke-width="0.8" opacity="0.7" filter="url(#bp-shadow)"/>
+  <ellipse cx="108" cy="105" rx="8" ry="14" fill="#E0F0FF" stroke="#87CEEB" stroke-width="0.8" opacity="0.7" filter="url(#bp-shadow)"/>
+
+  <!-- Antennae (with heart tips) -->
+  <line x1="88" y1="60" x2="72" y2="30" stroke="#FF1493" stroke-width="2" stroke-linecap="round"/>
+  <path d="M68 26 Q70 28 72 26 Q70 24 68 26" fill="#FF1493"/>
+
+  <line x1="112" y1="60" x2="128" y2="30" stroke="#FF1493" stroke-width="2" stroke-linecap="round"/>
+  <path d="M128 26 Q130 28 132 26 Q130 24 128 26" fill="#FF1493"/>
+
+  <!-- Eyes with star sparkle -->
+  <circle cx="88" cy="78" r="8" fill="#2C3E50"/>
+  <circle cx="112" cy="78" r="8" fill="#2C3E50"/>
+  <!-- Star shine in eyes -->
+  <polygon points="92,74 93.5,76 96,76 94,78 94.5,80.5 92,79 89.5,80.5 90,78 88,76 90.5,76" fill="url(#bp-eye-shine)"/>
+  <polygon points="116,74 117.5,76 120,76 118,78 118.5,80.5 116,79 113.5,80.5 114,78 112,76 114.5,76" fill="url(#bp-eye-shine)"/>
+
   <!-- Blush -->
-  <ellipse cx="78" cy="86" rx="7" ry="4" class="blush"/>
-  <ellipse cx="122" cy="86" rx="7" ry="4" class="blush"/>
-  <!-- Mouth -->
-  <path d="M95 90 Q100 95 105 90" stroke="#FF1493" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <!-- Feet -->
-  <ellipse cx="90" cy="150" rx="7" ry="4" class="body"/>
-  <ellipse cx="110" cy="150" rx="7" ry="4" class="body"/>
+  <ellipse cx="75" cy="88" rx="10" ry="5" fill="#FF1493" opacity="0.22"/>
+  <ellipse cx="125" cy="88" rx="10" ry="5" fill="#FF1493" opacity="0.22"/>
+
+  <!-- Mouth (happy) -->
+  <path d="M94 92 Q100 98 106 92" stroke="#FF1493" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Pixie feet -->
+  <ellipse cx="88" cy="152" rx="8" ry="5" fill="#FF69B4" filter="url(#bp-shadow)"/>
+  <ellipse cx="112" cy="152" rx="8" ry="5" fill="#FF69B4" filter="url(#bp-shadow)"/>
+
   <!-- Sparkle trail -->
-  <circle cx="80" cy="165" r="2.5" fill="#FFD700" opacity="0.6">
-    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.5s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="100" cy="172" r="2" fill="#FF69B4" opacity="0.5">
-    <animate attributeName="opacity" values="0.7;0.2;0.7" dur="1.8s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="120" cy="165" r="2.5" fill="#FFD700" opacity="0.6">
-    <animate attributeName="opacity" values="0.2;0.7;0.2" dur="2s" repeatCount="indefinite"/>
-  </circle>
+  <circle cx="75" cy="165" r="3" fill="#FFD700" class="bp-trail" style="animation-delay: 0s" opacity="0.8"/>
+  <circle cx="100" cy="175" r="2.5" fill="#FF69B4" class="bp-trail" style="animation-delay: 0.4s" opacity="0.7"/>
+  <circle cx="125" cy="165" r="3" fill="#FFD700" class="bp-trail" style="animation-delay: 0.8s" opacity="0.8"/>
 </svg>

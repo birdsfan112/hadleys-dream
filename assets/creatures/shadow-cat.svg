@@ -1,51 +1,112 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="sc-body-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3A3A5A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1F1F3A;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="sc-eye-glow" cx="45%" cy="35%" r="75%">
+      <stop offset="0%" style="stop-color:#7FFFD4;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#4FD0D0;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#0099BB;stop-opacity:0.3" />
+    </radialGradient>
+    <radialGradient id="sc-aura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#7B68EE;stop-opacity:0.15" />
+      <stop offset="100%" style="stop-color:#7B68EE;stop-opacity:0" />
+    </radialGradient>
+    <filter id="sc-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="1" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="sc-glow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5"/>
+    </filter>
+  </defs>
   <style>
-    .body{fill:#2F2F4F;stroke:#4F4F6F;stroke-width:2}
-    .eye{fill:#1a1a30} .shine{fill:#FFF}
-    .blush{fill:#7B68EE;opacity:0.25}
+    @keyframes sc-eye-glow-pulse {
+      0%, 100% { filter: drop-shadow(0px 0px 3px #7FFFD4); }
+      50% { filter: drop-shadow(0px 0px 8px #7FFFD4); }
+    }
+    @keyframes sc-aura-pulse {
+      0%, 100% { opacity: 0.08; }
+      50% { opacity: 0.15; }
+    }
+    .sc-eyes { animation: sc-eye-glow-pulse 2.5s ease-in-out infinite; }
+    .sc-aura { animation: sc-aura-pulse 3s ease-in-out infinite; }
   </style>
-  <!-- Purple aura glow -->
-  <circle cx="100" cy="110" r="52" fill="#6A5ACD" opacity="0.12"/>
-  <ellipse cx="100" cy="130" rx="42" ry="37" fill="#6A5ACD" opacity="0.1"/>
-  <!-- Tail curving around to front -->
-  <path d="M55 145 Q30 130 28 100 Q28 75 50 70 Q65 68 70 80" stroke="#2F2F4F" stroke-width="10" fill="none" stroke-linecap="round"/>
-  <path d="M55 145 Q30 130 28 100 Q28 75 50 70 Q65 68 70 80" stroke="#4F4F6F" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.3"/>
-  <!-- Body -->
-  <ellipse cx="100" cy="130" rx="38" ry="33" class="body"/>
+
+  <!-- Mystical aura glow -->
+  <circle cx="100" cy="110" r="54" fill="url(#sc-aura)" class="sc-aura"/>
+
+  <!-- Elegant curling tail -->
+  <path d="M52 145 Q28 132 25 100 Q24 70 48 65 Q68 62 75 78" stroke="url(#sc-body-grad)" stroke-width="11" fill="none" stroke-linecap="round" filter="url(#sc-shadow)"/>
+  <!-- Tail inner highlight -->
+  <path d="M52 145 Q28 132 25 100 Q24 70 48 65" stroke="#4F4F6F" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.4"/>
+
+  <!-- Body (sitting gracefully) -->
+  <ellipse cx="100" cy="132" rx="40" ry="35" fill="url(#sc-body-grad)" filter="url(#sc-shadow)"/>
+  <!-- Belly patch -->
+  <ellipse cx="100" cy="138" rx="24" ry="26" fill="#4A4A6A" opacity="0.3"/>
+
   <!-- Head -->
-  <circle cx="100" cy="88" r="35" class="body"/>
-  <!-- Pointed ears -->
-  <polygon points="72,62 58,30 88,55" class="body"/>
-  <polygon points="128,62 142,30 112,55" class="body"/>
-  <polygon points="74,62 63,38 85,57" fill="#4F4F6F" opacity="0.3"/>
-  <polygon points="126,62 137,38 115,57" fill="#4F4F6F" opacity="0.3"/>
-  <!-- Subtle dark stripes on back -->
-  <path d="M80 110 Q90 105 95 115" stroke="#1a1a35" stroke-width="2" fill="none" opacity="0.3"/>
-  <path d="M90 105 Q100 100 105 110" stroke="#1a1a35" stroke-width="2" fill="none" opacity="0.3"/>
-  <path d="M100 100 Q110 96 118 108" stroke="#1a1a35" stroke-width="2" fill="none" opacity="0.25"/>
-  <!-- Mysterious eyes - large, pale aqua with slit pupils -->
-  <circle cx="84" cy="85" r="10" class="eye"/>
-  <circle cx="116" cy="85" r="10" class="eye"/>
-  <circle cx="84" cy="85" r="8" fill="#7FFFD4"/>
-  <circle cx="116" cy="85" r="8" fill="#7FFFD4"/>
-  <ellipse cx="84" cy="85" rx="2.5" ry="7" fill="#1a1a30"/>
-  <ellipse cx="116" cy="85" rx="2.5" ry="7" fill="#1a1a30"/>
-  <circle cx="81" cy="82" r="2.5" class="shine"/>
-  <circle cx="113" cy="82" r="2.5" class="shine"/>
-  <!-- Blush -->
-  <ellipse cx="70" cy="95" rx="8" ry="5" class="blush"/>
-  <ellipse cx="130" cy="95" rx="8" ry="5" class="blush"/>
-  <!-- Nose -->
-  <polygon points="100,94 97,98 103,98" fill="#4F4F6F"/>
-  <!-- Mouth -->
-  <path d="M94 101 Q100 106 106 101" stroke="#4F4F6F" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <!-- Star collar -->
-  <path d="M72 110 Q86 115 100 112 Q114 115 128 110" stroke="#7B68EE" stroke-width="1.5" fill="none" opacity="0.7"/>
-  <!-- Stars on collar -->
-  <polygon points="80,112 81.5,115 84,115 82,117 83,120 80,118 77,120 78,117 76,115 78.5,115" fill="#B0C4DE" opacity="0.8"/>
-  <polygon points="100,111 101.5,114 104,114 102,116 103,119 100,117 97,119 98,116 96,114 98.5,114" fill="#B0C4DE" opacity="0.8"/>
-  <polygon points="120,112 121.5,115 124,115 122,117 123,120 120,118 117,120 118,117 116,115 118.5,115" fill="#B0C4DE" opacity="0.8"/>
+  <circle cx="100" cy="88" r="37" fill="url(#sc-body-grad)" filter="url(#sc-shadow)"/>
+
+  <!-- Pointed ears (sleek) -->
+  <polygon points="70,60 54,22 90,55" fill="url(#sc-body-grad)" filter="url(#sc-shadow)"/>
+  <polygon points="130,60 146,22 110,55" fill="url(#sc-body-grad)" filter="url(#sc-shadow)"/>
+  <!-- Ear inner detail -->
+  <polygon points="72,60 62,35 88,57" fill="#4F4F6F" opacity="0.35"/>
+  <polygon points="128,60 138,35 112,57" fill="#4F4F6F" opacity="0.35"/>
+
+  <!-- Constellation-like star markings on fur -->
+  <circle cx="80" cy="75" r="1.5" fill="#7B68EE" opacity="0.6"/>
+  <circle cx="90" cy="70" r="1" fill="#7B68EE" opacity="0.5"/>
+  <circle cx="100" cy="68" r="1.5" fill="#7B68EE" opacity="0.6"/>
+  <circle cx="110" cy="70" r="1" fill="#7B68EE" opacity="0.5"/>
+  <circle cx="120" cy="75" r="1.5" fill="#7B68EE" opacity="0.6"/>
+  <!-- Faint constellation lines -->
+  <line x1="80" y1="75" x2="90" y2="70" stroke="#7B68EE" stroke-width="0.5" opacity="0.3"/>
+  <line x1="90" y1="70" x2="100" y2="68" stroke="#7B68EE" stroke-width="0.5" opacity="0.3"/>
+  <line x1="100" y1="68" x2="110" y2="70" stroke="#7B68EE" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Mysterious piercing eyes with slit pupils -->
+  <g class="sc-eyes">
+    <circle cx="82" cy="85" r="11" fill="url(#sc-eye-glow)" filter="url(#sc-glow)"/>
+    <circle cx="118" cy="85" r="11" fill="url(#sc-eye-glow)" filter="url(#sc-glow)"/>
+    <!-- Slit pupils -->
+    <ellipse cx="82" cy="86" rx="2.5" ry="8" fill="#1A1A2E"/>
+    <ellipse cx="118" cy="86" rx="2.5" ry="8" fill="#1A1A2E"/>
+    <!-- Eye shine (upper) -->
+    <circle cx="80" cy="80" r="2.5" fill="#FFFFFF" opacity="0.9"/>
+    <circle cx="116" cy="80" r="2.5" fill="#FFFFFF" opacity="0.9"/>
+  </g>
+
+  <!-- Subtle blush -->
+  <ellipse cx="68" cy="98" rx="11" ry="6" fill="#7B68EE" opacity="0.2"/>
+  <ellipse cx="132" cy="98" rx="11" ry="6" fill="#7B68EE" opacity="0.2"/>
+
+  <!-- Delicate pink nose -->
+  <polygon points="100,95 97,100 103,100" fill="#4F4F6F"/>
+  <circle cx="100" cy="98" r="0.5" fill="#FFFFFF" opacity="0.6"/>
+
+  <!-- Mouth (subtle smile) -->
+  <path d="M92 104 Q100 109 108 104" stroke="#4F4F6F" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Star-shaped collar pendant -->
+  <polygon points="100,115 102.5,122 110,123 104,128 106,136 100,132 94,136 96,128 90,123 97.5,122" fill="#B0C4DE" filter="url(#sc-shadow)"/>
+  <!-- Star shine -->
+  <circle cx="100" cy="122" r="1.5" fill="#FFFFFF" opacity="0.8"/>
+
   <!-- Front paws -->
-  <ellipse cx="82" cy="162" rx="12" ry="7" class="body"/>
-  <ellipse cx="118" cy="162" rx="12" ry="7" class="body"/>
+  <ellipse cx="80" cy="165" rx="14" ry="8" fill="url(#sc-body-grad)" filter="url(#sc-shadow)"/>
+  <ellipse cx="120" cy="165" rx="14" ry="8" fill="url(#sc-body-grad)" filter="url(#sc-shadow)"/>
+  <!-- Paw pad details -->
+  <circle cx="78" cy="168" r="2" fill="#4F4F6F" opacity="0.5"/>
+  <circle cx="122" cy="168" r="2" fill="#4F4F6F" opacity="0.5"/>
 </svg>

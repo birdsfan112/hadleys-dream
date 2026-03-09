@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Hadley's Dream World — a PWA game for a child named Hadley with three game modes: Creature World (explore locations, catch creatures via timing mini-game), Fashion Studio (dress-up with challenge scoring), and Dream Room (grid-based furniture placement).
+Hadley's Dream — a PWA game for a child named Hadley with three game modes: Creature World (explore locations, catch creatures via timing mini-game), Fashion Studio (dress-up with challenge scoring), and Dream Room (grid-based furniture placement).
 
 ## Development
 
@@ -18,7 +18,7 @@ python -m http.server 8000
 
 There are no tests, linter, or CI. Changes are verified by opening in a browser.
 
-When updating cached assets, bump `CACHE_NAME` in `sw.js` (currently `'dream-world-v2'`) and update the version label in `index.html`.
+When updating cached assets, bump `CACHE_NAME` in `sw.js` (currently `'dream-world-v5'`) and update the version label in `index.html`.
 
 ## Architecture
 

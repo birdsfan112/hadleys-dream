@@ -57,131 +57,17 @@
   min-width: 0;
 }
 
-/* --- Avatar Display --- */
+/* --- Avatar Display (SVG) --- */
 .avatar {
-  width: 160px;
-  height: 280px;
-  position: relative;
-  /* Base body */
-}
-.avatar-layer {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 180px;
+  height: 310px;
   display: flex;
   align-items: center;
   justify-content: center;
-  pointer-events: none;
 }
-
-/* Avatar body parts (CSS art) */
-.avatar-body {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.avatar-head {
-  width: 60px;
-  height: 64px;
-  background: #FFDAB9;
-  border-radius: 50% 50% 45% 45%;
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 5;
-}
-.avatar-eyes {
-  position: absolute;
-  top: 42px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 16px;
-  z-index: 6;
-}
-.avatar-eye {
-  width: 8px;
-  height: 10px;
-  background: #333;
-  border-radius: 50%;
-}
-.avatar-mouth {
-  position: absolute;
-  top: 58px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 12px;
-  height: 6px;
-  border-bottom: 2px solid #FF69B4;
-  border-radius: 0 0 50% 50%;
-  z-index: 6;
-}
-.avatar-torso {
-  position: absolute;
-  top: 84px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50px;
-  height: 60px;
-  border-radius: 8px 8px 4px 4px;
-  z-index: 3;
-}
-.avatar-legs {
-  position: absolute;
-  top: 140px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 6px;
-  z-index: 2;
-}
-.avatar-leg {
-  width: 18px;
-  height: 65px;
-  border-radius: 4px 4px 6px 6px;
-}
-.avatar-feet {
-  position: absolute;
-  top: 202px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-  z-index: 1;
-}
-.avatar-foot {
-  width: 22px;
-  height: 12px;
-  border-radius: 4px 4px 8px 8px;
-}
-
-/* Hair overlay */
-.avatar-hair {
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 7;
-}
-
-/* Hat overlay */
-.avatar-hat {
-  position: absolute;
-  top: 2px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 8;
-}
-
-/* Accessory overlay */
-.avatar-accessory {
-  position: absolute;
-  top: 70px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9;
+.avatar svg {
+  width: 100%;
+  height: 100%;
 }
 
 /* Challenge timer */
@@ -265,10 +151,16 @@
 .wardrobe-item:active { transform: scale(0.93); }
 .wardrobe-item.equipped { border-color: var(--teal); background: #E8FFF5; }
 .wardrobe-item .item-preview {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
+  width: 50px;
+  height: 70px;
   margin: 0 auto 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wardrobe-item .item-preview svg {
+  width: 100%;
+  height: 100%;
 }
 
 /* --- Dressup Actions --- */
@@ -280,6 +172,26 @@
   background: var(--card);
   border-top: 1px solid #eee;
   flex-shrink: 0;
+}
+
+/* --- Challenge-mode button emphasis --- */
+.dressup-actions.challenge-mode #btn-submit-outfit {
+  font-size: 1.15em;
+  padding: 12px 28px;
+  min-width: 160px;
+  font-weight: 800;
+  animation: pulse-submit 2s ease-in-out infinite;
+}
+
+.dressup-actions.challenge-mode .btn.small:last-child {
+  font-size: 0.75em;
+  opacity: 0.5;
+  padding: 6px 10px;
+}
+
+@keyframes pulse-submit {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
 
 /* --- Shop --- */
@@ -327,15 +239,21 @@
 }
 .shop-item:active { transform: scale(0.95); }
 .shop-item .item-preview {
-  width: 50px;
-  height: 50px;
-  border-radius: 10px;
+  width: 60px;
+  height: 80px;
   margin: 0 auto 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.shop-item .item-preview svg {
+  width: 100%;
+  height: 100%;
 }
 .shop-item .item-name { font-weight: 700; font-size: 0.85em; }
 .shop-item .item-cost { font-size: 0.8em; color: #888; margin-top: 4px; }
 .shop-item.owned { opacity: 0.5; pointer-events: none; }
-.shop-item.owned::after { content: '✓ Owned'; display: block; font-size: 0.7em; color: var(--teal); margin-top: 4px; }
+.shop-item.owned::after { content: '\2713 Owned'; display: block; font-size: 0.7em; color: var(--teal); margin-top: 4px; }
 
 /* --- Challenge Result Stars --- */
 #challenge-result .stars { margin: 16px 0; }
@@ -343,7 +261,80 @@
 #challenge-score-text { font-size: 0.9em; color: #666; margin: 8px 0; }
 #challenge-coins-earned { font-size: 1.1em; font-weight: 700; color: var(--gold); margin: 8px 0 16px; }
 
+/* --- Photo Album --- */
+.album-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.album-header h2 { flex: 1; }
+
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 0 8px;
+}
+.album-cell {
+  position: relative;
+  background: var(--card);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 2px 8px var(--shadow);
+  padding: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+.album-cell:active { transform: scale(0.95); }
+.album-cell .album-preview {
+  width: 80px;
+  height: 130px;
+  margin: 0 auto 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.album-cell .album-preview svg {
+  width: 100%;
+  height: 100%;
+}
+.album-delete {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  font-size: 0.7em;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+}
+.album-delete:hover { background: #FF6347; }
+.album-empty {
+  text-align: center;
+  color: #888;
+  margin-top: 40px;
+  font-size: 0.9em;
+}
+
+.btn.teal {
+  background: var(--teal);
+  color: var(--dark);
+}
+
 @media (max-width: 420px) {
   .wardrobe-area { width: 140px; }
-  .avatar { width: 120px; height: 220px; }
+  .avatar { width: 130px; height: 230px; }
+  .wardrobe-item .item-preview { width: 40px; height: 56px; }
+  .shop-item .item-preview { width: 50px; height: 66px; }
+  .album-cell .album-preview { width: 60px; height: 100px; }
 }

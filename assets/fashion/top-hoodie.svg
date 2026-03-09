@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="hoodie-body" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0%" stop-color="#E5ADE5"/>
+      <stop offset="100%" stop-color="#DDA0DD"/>
+    </linearGradient>
+    <linearGradient id="hoodie-hood" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#DDA0DD"/>
+      <stop offset="100%" stop-color="#C88CC8"/>
+    </linearGradient>
+  </defs>
+  <style>
+    .ho-main{fill:#DDA0DD;stroke:#B077B0;stroke-width:1.8;stroke-linejoin:round}
+    .ho-shade{fill:#C88CC8;stroke:none}
+    .ho-line{stroke:#B077B0;stroke-width:1.2;fill:none;stroke-linecap:round}
+    .ho-pocket{fill:#D494D4;stroke:#B077B0;stroke-width:1.5;stroke-linejoin:round}
+  </style>
+  <g id="back-layer">
+    <!-- Hood behind head -->
+    <path d="
+      M58 85
+      Q50 90 46 105
+      Q42 120 48 135
+      Q52 140 60 138
+      L72 133
+      Q80 115 100 108
+      Q120 115 128 133
+      L140 138
+      Q148 140 152 135
+      Q158 120 154 105
+      Q150 90 142 85
+      Q130 70 100 68
+      Q70 70 58 85
+      Z
+    " fill="url(#hoodie-hood)" stroke="#B077B0" stroke-width="1.8"/>
+    <!-- Hood shading -->
+    <path d="
+      M58 85
+      Q55 95 54 108
+      Q53 115 55 125
+      L60 130
+      Q58 118 59 105
+      Q60 92 65 85
+      Z
+    " class="ho-shade" opacity="0.4"/>
+    <!-- Hood rim detail -->
+    <path d="
+      M65 132
+      Q80 118 100 114
+      Q120 118 135 132
+    " fill="none" stroke="#B077B0" stroke-width="2.2" stroke-linecap="round"/>
+  </g>
+  <g id="clothing">
+    <!-- Left long sleeve -->
+    <path d="
+      M62 142
+      Q42 140 34 155
+      Q28 170 32 192
+      Q34 204 42 210
+      L54 212
+      Q60 210 62 202
+      Q66 190 64 172
+      Z
+    " class="ho-main"/>
+    <!-- Left sleeve shading -->
+    <path d="
+      M38 160
+      Q34 175 36 192
+      Q37 200 42 206
+      L46 208
+      Q42 200 40 190
+      Q38 175 42 160
+      Z
+    " class="ho-shade" opacity="0.4"/>
+    <!-- Right long sleeve -->
+    <path d="
+      M138 142
+      Q158 140 166 155
+      Q172 170 168 192
+      Q166 204 158 210
+      L146 212
+      Q140 210 138 202
+      Q134 190 136 172
+      Z
+    " class="ho-main"/>
+    <!-- Right sleeve shading -->
+    <path d="
+      M162 160
+      Q166 175 164 192
+      Q163 200 158 206
+      L154 208
+      Q158 200 160 190
+      Q162 175 158 160
+      Z
+    " class="ho-shade" opacity="0.4"/>
+    <!-- Hoodie body -->
+    <path d="
+      M62 138
+      Q58 138 54 148
+      Q50 162 52 185
+      Q54 205 58 220
+      Q60 232 66 238
+      Q80 246 100 246
+      Q120 246 134 238
+      Q140 232 142 220
+      Q146 205 148 185
+      Q150 162 146 148
+      Q142 138 138 138
+      L128 133
+      Q118 128 100 128
+      Q82 128 72 133
+      Z
+    " fill="url(#hoodie-body)" stroke="#B077B0" stroke-width="1.8" stroke-linejoin="round"/>
+    <!-- Kangaroo pocket -->
+    <path d="
+      M78 198
+      Q76 198 75 201
+      L74 218
+      Q74 225 80 227
+      Q90 229 100 229
+      Q110 229 120 227
+      Q126 225 126 218
+      L125 201
+      Q124 198 122 198
+      Z
+    " class="ho-pocket"/>
+    <!-- Pocket center split -->
+    <line x1="100" y1="198" x2="100" y2="227" class="ho-line"/>
+    <!-- Neckline -->
+    <path d="
+      M78 135
+      Q88 126 100 124
+      Q112 126 122 135
+    " fill="#DDA0DD" stroke="#B077B0" stroke-width="2" stroke-linecap="round"/>
+    <!-- Drawstrings -->
+    <line x1="92" y1="128" x2="90" y2="158" stroke="#B077B0" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="108" y1="128" x2="110" y2="158" stroke="#B077B0" stroke-width="1.2" stroke-linecap="round"/>
+    <!-- Drawstring tips -->
+    <circle cx="90" cy="160" r="2" fill="#B077B0"/>
+    <circle cx="110" cy="160" r="2" fill="#B077B0"/>
+    <!-- Side shading -->
+    <path d="
+      M62 150
+      Q58 178 58 208
+      Q60 228 64 236
+      L70 240
+      L64 234
+      Q60 224 59 208
+      Q58 178 63 150
+      Z
+    " class="ho-shade" opacity="0.35"/>
+    <!-- Fabric folds -->
+    <path d="M85 170 Q88 178 86 188" class="ho-line"/>
+    <path d="M115 172 Q113 180 115 190" class="ho-line"/>
+    <!-- Bottom hem -->
+    <path d="
+      M66 238
+      Q80 246 100 246
+      Q120 246 134 238
+    " fill="none" stroke="#B077B0" stroke-width="2" stroke-linecap="round"/>
+    <!-- Cuff hems -->
+    <ellipse cx="48" cy="211" rx="8" ry="3" fill="none" stroke="#B077B0" stroke-width="1.5"/>
+    <ellipse cx="152" cy="211" rx="8" ry="3" fill="none" stroke="#B077B0" stroke-width="1.5"/>
+  </g>
+</svg>

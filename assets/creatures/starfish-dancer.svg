@@ -1,51 +1,121 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="sfd-body-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFA500;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8C00;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="sfd-eye-shine" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFD700;stop-opacity:0.3" />
+    </radialGradient>
+    <radialGradient id="sfd-tiara-grad" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.9" />
+      <stop offset="50%" style="stop-color:#E6E6FA;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#C0C0C0;stop-opacity:0.7" />
+    </radialGradient>
+    <filter id="sfd-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="1" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="sfd-sparkle">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
+    </filter>
+  </defs>
   <style>
-    .body{fill:#FFD700;stroke:#FFA500;stroke-width:2}
-    .eye{fill:#333} .shine{fill:#FFF}
-    .blush{fill:#FF69B4;opacity:0.25}
+    @keyframes sfd-spin {
+      0%, 100% { transform: rotate(-5deg); }
+      50% { transform: rotate(8deg); }
+    }
+    @keyframes sfd-arm-wave {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      25% { transform: translateY(-8px) rotate(15deg); }
+      75% { transform: translateY(0px) rotate(-8deg); }
+    }
+    @keyframes sfd-sparkle-twinkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+    .sfd-body { animation: sfd-spin 3s ease-in-out infinite; }
+    .sfd-arm-raised { animation: sfd-arm-wave 2s ease-in-out infinite; }
+    .sfd-sparkle { animation: sfd-sparkle-twinkle 1.5s ease-in-out infinite; }
   </style>
-  <!-- Five-pointed starfish with rounded puffy points, upper two raised like arms -->
-  <path d="
-    M100 30
-    Q108 55 120 62
-    Q148 52 165 38
-    Q158 68 150 82
-    Q170 105 180 125
-    Q150 118 135 115
-    Q130 140 125 170
-    Q108 150 100 140
-    Q92 150 75 170
-    Q70 140 65 115
-    Q50 118 20 125
-    Q30 105 50 82
-    Q42 68 35 38
-    Q52 52 80 62
-    Q92 55 100 30 Z
-  " class="body"/>
-  <!-- Texture dots -->
-  <circle cx="100" cy="90" r="3" fill="#FFA500" opacity="0.3"/>
-  <circle cx="85" cy="105" r="2.5" fill="#FFA500" opacity="0.3"/>
-  <circle cx="115" cy="105" r="2.5" fill="#FFA500" opacity="0.3"/>
-  <circle cx="90" cy="125" r="2" fill="#FFA500" opacity="0.3"/>
-  <circle cx="110" cy="125" r="2" fill="#FFA500" opacity="0.3"/>
-  <circle cx="130" cy="80" r="2" fill="#FFA500" opacity="0.3"/>
-  <circle cx="70" cy="80" r="2" fill="#FFA500" opacity="0.3"/>
-  <circle cx="100" cy="60" r="2" fill="#FFA500" opacity="0.3"/>
-  <circle cx="145" cy="55" r="2" fill="#FFA500" opacity="0.25"/>
-  <circle cx="55" cy="55" r="2" fill="#FFA500" opacity="0.25"/>
-  <!-- Eyes (happy crescent) -->
-  <path d="M88 92 Q92 86 96 92" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-  <path d="M104 92 Q108 86 112 92" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-  <!-- Blush -->
-  <ellipse cx="82" cy="100" rx="7" ry="4" class="blush"/>
-  <ellipse cx="118" cy="100" rx="7" ry="4" class="blush"/>
-  <!-- Mouth -->
-  <path d="M95 104 Q100 110 105 104" stroke="#FFA500" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <!-- Tiara on top point -->
-  <polygon points="92,32 95,22 100,28" fill="#FFA500" stroke="#E6950A" stroke-width="1"/>
-  <polygon points="97,30 100,18 103,30" fill="#FFA500" stroke="#E6950A" stroke-width="1"/>
-  <polygon points="100,28 105,22 108,32" fill="#FFA500" stroke="#E6950A" stroke-width="1"/>
-  <circle cx="95" cy="22" r="1.5" fill="#FFF" opacity="0.8"/>
-  <circle cx="100" cy="18" r="1.5" fill="#FFF" opacity="0.8"/>
-  <circle cx="105" cy="22" r="1.5" fill="#FFF" opacity="0.8"/>
+
+  <!-- Shadow -->
+  <ellipse cx="100" cy="175" rx="45" ry="8" fill="#000" opacity="0.1"/>
+
+  <!-- Main starfish body -->
+  <g class="sfd-body">
+    <!-- Central body sphere -->
+    <circle cx="100" cy="100" r="35" fill="url(#sfd-body-grad)" filter="url(#sfd-shadow)"/>
+
+    <!-- Five arms with bumpy texture -->
+    <!-- Top arm -->
+    <ellipse cx="100" cy="35" rx="20" ry="28" fill="url(#sfd-body-grad)" filter="url(#sfd-shadow)"/>
+    <!-- Top-right arm (raised in dance pose) -->
+    <g class="sfd-arm-raised">
+      <ellipse cx="150" cy="55" rx="22" ry="26" fill="url(#sfd-body-grad)" filter="url(#sfd-shadow)" transform="rotate(45 150 55)"/>
+    </g>
+    <!-- Right arm -->
+    <ellipse cx="155" cy="105" rx="26" ry="20" fill="url(#sfd-body-grad)" filter="url(#sfd-shadow)" transform="rotate(-20 155 105)"/>
+    <!-- Bottom-right arm -->
+    <ellipse cx="135" cy="155" rx="22" ry="25" fill="url(#sfd-body-grad)" filter="url(#sfd-shadow)" transform="rotate(-50 135 155)"/>
+    <!-- Left arm -->
+    <ellipse cx="45" cy="105" rx="26" ry="20" fill="url(#sfd-body-grad)" filter="url(#sfd-shadow)" transform="rotate(20 45 105)"/>
+    <!-- Bottom-left arm -->
+    <ellipse cx="65" cy="155" rx="22" ry="25" fill="url(#sfd-body-grad)" filter="url(#sfd-shadow)" transform="rotate(50 65 155)"/>
+
+    <!-- Bumpy texture dots on body and arms -->
+    <circle cx="95" cy="75" r="2" fill="#FF8C00" opacity="0.5"/>
+    <circle cx="120" cy="70" r="1.8" fill="#FF8C00" opacity="0.5"/>
+    <circle cx="130" cy="85" r="1.8" fill="#FF8C00" opacity="0.4"/>
+    <circle cx="140" cy="100" r="2" fill="#FF8C00" opacity="0.5"/>
+    <circle cx="60" cy="85" r="1.8" fill="#FF8C00" opacity="0.4"/>
+    <circle cx="70" cy="100" r="2" fill="#FF8C00" opacity="0.5"/>
+    <circle cx="100" cy="115" r="1.8" fill="#FF8C00" opacity="0.4"/>
+
+    <!-- Eyes with sparkle anime style -->
+    <circle cx="85" cy="95" r="7" fill="#1A1A1A"/>
+    <circle cx="115" cy="95" r="7" fill="#1A1A1A"/>
+    <circle cx="83" cy="92" r="4.5" fill="url(#sfd-eye-shine)"/>
+    <circle cx="113" cy="92" r="4.5" fill="url(#sfd-eye-shine)"/>
+    <circle cx="86" cy="89" r="2" fill="#FFFFFF"/>
+    <circle cx="116" cy="89" r="2" fill="#FFFFFF"/>
+
+    <!-- Blush -->
+    <ellipse cx="70" cy="105" rx="11" ry="7" fill="#FF69B4" opacity="0.25"/>
+    <ellipse cx="130" cy="105" rx="11" ry="7" fill="#FF69B4" opacity="0.25"/>
+
+    <!-- Happy mouth -->
+    <path d="M93 112 Q100 118 107 112" stroke="#FF8C00" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Tiara on top point with sparkles -->
+  <g filter="url(#sfd-sparkle)">
+    <!-- Tiara base -->
+    <ellipse cx="100" cy="30" rx="18" ry="8" fill="url(#sfd-tiara-grad)"/>
+    <!-- Center gem -->
+    <circle cx="100" cy="28" r="4" fill="url(#sfd-tiara-grad)"/>
+    <!-- Left gem -->
+    <circle cx="88" cy="32" r="3" fill="url(#sfd-tiara-grad)"/>
+    <!-- Right gem -->
+    <circle cx="112" cy="32" r="3" fill="url(#sfd-tiara-grad)"/>
+    <!-- Gem shines -->
+    <circle cx="100" cy="26" r="1.5" fill="#FFFFFF" opacity="0.8"/>
+    <circle cx="88" cy="30" r="1" fill="#FFFFFF" opacity="0.8"/>
+    <circle cx="112" cy="30" r="1" fill="#FFFFFF" opacity="0.8"/>
+  </g>
+
+  <!-- Floating sparkle particles -->
+  <circle cx="60" cy="50" r="2" fill="#FFD700" class="sfd-sparkle" style="animation-delay: 0s"/>
+  <circle cx="140" cy="40" r="2" fill="#FFD700" class="sfd-sparkle" style="animation-delay: 0.5s"/>
+  <circle cx="65" cy="135" r="1.5" fill="#FFD700" class="sfd-sparkle" style="animation-delay: 1s"/>
+  <circle cx="135" cy="130" r="1.5" fill="#FFD700" class="sfd-sparkle" style="animation-delay: 0.3s"/>
 </svg>

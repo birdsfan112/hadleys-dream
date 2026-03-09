@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <style>
+    .bg-main{stroke:#E8A200;stroke-width:2;stroke-linejoin:round}
+    .bg-shade{fill:#E8A200;stroke:none;opacity:0.3}
+    .bg-trim{stroke:#E8A200;stroke-width:1.5;fill:none}
+    .bg-sparkle{fill:#FFF;stroke:none;opacity:0.8}
+    .bg-shoulder{fill:url(#grad-ballgown-1);stroke:#E8A200;stroke-width:1.8}
+  </style>
+  <defs>
+    <linearGradient id="grad-ballgown-1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#FFA500"/>
+    </linearGradient>
+    <linearGradient id="grad-ballgown-skirt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="60%" stop-color="#FFB800"/>
+      <stop offset="100%" stop-color="#FFA500"/>
+    </linearGradient>
+  </defs>
+  <g id="clothing">
+    <!-- Off-shoulder draping (left) -->
+    <path d="M68 140 Q56 134 46 138 Q50 148 60 150 Z" class="bg-shoulder"/>
+    <!-- Off-shoulder draping (right) -->
+    <path d="M132 140 Q144 134 154 138 Q150 148 140 150 Z" class="bg-shoulder"/>
+
+    <!-- Bodice -->
+    <path d="M68 140 Q64 137 62 142 L62 198 L138 198 L138 142 Q136 137 132 140 Q116 150 100 150 Q84 150 68 140 Z"
+          fill="url(#grad-ballgown-1)" class="bg-main"/>
+    <!-- Sweetheart neckline curve -->
+    <path d="M68 140 Q84 150 100 150 Q116 150 132 140" stroke="#E8A200" stroke-width="2.5" fill="none"/>
+    <!-- Bodice center seam -->
+    <line x1="100" y1="150" x2="100" y2="198" stroke="#E8A200" stroke-width="0.8" opacity="0.4"/>
+    <!-- Bodice shading -->
+    <path d="M62 168 L72 168 L72 198 L62 198 Z" class="bg-shade"/>
+    <path d="M128 168 L138 168 L138 198 L128 198 Z" class="bg-shade"/>
+
+    <!-- Waist sash -->
+    <path d="M62 193 L138 193 L138 203 Q100 207 62 203 Z" fill="#FFA500" stroke="#E8A200" stroke-width="1.5"/>
+
+    <!-- Grand full skirt -->
+    <path d="M62 200 Q46 212 30 280 Q36 298 100 300 Q164 298 170 280 Q154 212 138 200 Z"
+          fill="url(#grad-ballgown-skirt)" class="bg-main"/>
+
+    <!-- Skirt layer lines (tiered look) -->
+    <path d="M48 235 Q100 242 152 235" class="bg-trim" opacity="0.5"/>
+    <path d="M38 265 Q100 275 162 265" class="bg-trim" opacity="0.5"/>
+
+    <!-- Skirt volume folds -->
+    <path d="M78 202 Q68 245 52 290" stroke="#E8A200" stroke-width="1" fill="none" opacity="0.35"/>
+    <path d="M122 202 Q132 245 148 290" stroke="#E8A200" stroke-width="1" fill="none" opacity="0.35"/>
+    <path d="M88 202 Q82 250 72 295" stroke="#E8A200" stroke-width="0.8" fill="none" opacity="0.25"/>
+    <path d="M112 202 Q118 250 128 295" stroke="#E8A200" stroke-width="0.8" fill="none" opacity="0.25"/>
+    <path d="M100 200 Q100 255 100 296" stroke="#E8A200" stroke-width="0.6" fill="none" opacity="0.2"/>
+
+    <!-- Skirt side shading -->
+    <path d="M62 200 Q46 212 30 280 Q34 290 46 294 Q56 225 72 202 Z" class="bg-shade" opacity="0.4"/>
+    <path d="M138 200 Q154 212 170 280 Q166 290 154 294 Q144 225 128 202 Z" class="bg-shade" opacity="0.4"/>
+
+    <!-- Sparkle details -->
+    <circle cx="80" cy="220" r="1.8" class="bg-sparkle"/>
+    <circle cx="120" cy="215" r="1.5" class="bg-sparkle"/>
+    <circle cx="65" cy="250" r="2.0" class="bg-sparkle"/>
+    <circle cx="135" cy="248" r="1.6" class="bg-sparkle"/>
+    <circle cx="92" cy="240" r="1.3" class="bg-sparkle"/>
+    <circle cx="110" cy="260" r="1.8" class="bg-sparkle"/>
+    <circle cx="50" cy="272" r="1.4" class="bg-sparkle"/>
+    <circle cx="150" cy="270" r="1.5" class="bg-sparkle"/>
+    <circle cx="78" cy="275" r="1.6" class="bg-sparkle"/>
+    <circle cx="125" cy="280" r="1.3" class="bg-sparkle"/>
+    <circle cx="100" cy="285" r="2.0" class="bg-sparkle"/>
+    <circle cx="55" cy="258" r="1.0" class="bg-sparkle"/>
+    <circle cx="142" cy="262" r="1.2" class="bg-sparkle"/>
+
+    <!-- Diamond sparkle accents (star shapes) -->
+    <g transform="translate(88,225)" opacity="0.6">
+      <line x1="-3" y1="0" x2="3" y2="0" stroke="#FFF" stroke-width="1"/>
+      <line x1="0" y1="-3" x2="0" y2="3" stroke="#FFF" stroke-width="1"/>
+    </g>
+    <g transform="translate(115,242)" opacity="0.6">
+      <line x1="-2.5" y1="0" x2="2.5" y2="0" stroke="#FFF" stroke-width="1"/>
+      <line x1="0" y1="-2.5" x2="0" y2="2.5" stroke="#FFF" stroke-width="1"/>
+    </g>
+    <g transform="translate(70,265)" opacity="0.5">
+      <line x1="-2" y1="0" x2="2" y2="0" stroke="#FFF" stroke-width="0.8"/>
+      <line x1="0" y1="-2" x2="0" y2="2" stroke="#FFF" stroke-width="0.8"/>
+    </g>
+
+    <!-- Hem accent -->
+    <path d="M30 280 Q36 298 100 300 Q164 298 170 280" stroke="#E8A200" stroke-width="2.5" fill="none"/>
+  </g>
+</svg>

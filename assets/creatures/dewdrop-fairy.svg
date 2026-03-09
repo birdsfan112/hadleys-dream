@@ -1,60 +1,185 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
   <defs>
-    <linearGradient id="wingL" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#ADD8E6" stop-opacity="0.7"/>
-      <stop offset="100%" stop-color="#87CEEB" stop-opacity="0.3"/>
+    <!-- Iridescent wing gradients -->
+    <linearGradient id="df-wing-upper" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7DD3FC" stop-opacity="0.8"/>
+      <stop offset="40%" stop-color="#A78BFA" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.6"/>
     </linearGradient>
-    <linearGradient id="wingR" x1="1" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ADD8E6" stop-opacity="0.7"/>
-      <stop offset="100%" stop-color="#87CEEB" stop-opacity="0.3"/>
+    <linearGradient id="df-wing-lower" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E0D5FF" stop-opacity="0.7"/>
+      <stop offset="50%" stop-color="#A78BFA" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#0891B2" stop-opacity="0.5"/>
     </linearGradient>
+    <!-- Body gradient -->
+    <radialGradient id="df-body-grad" cx="40%" cy="40%">
+      <stop offset="0%" stop-color="#E0F2FE"/>
+      <stop offset="100%" stop-color="#BAE6FD"/>
+    </radialGradient>
+    <!-- Hair - flowing water -->
+    <linearGradient id="df-hair-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B3E5FC"/>
+      <stop offset="50%" stop-color="#81D4FA"/>
+      <stop offset="100%" stop-color="#4FC3F7"/>
+    </linearGradient>
+    <!-- Dewdrop main sphere -->
+    <radialGradient id="df-dewdrop" cx="35%" cy="35%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+      <stop offset="25%" stop-color="#E0F7FA" stop-opacity="0.9"/>
+      <stop offset="75%" stop-color="#80DEEA" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#00838F" stop-opacity="0.4"/>
+    </radialGradient>
+    <!-- Glow effect -->
+    <filter id="df-glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
+
   <style>
-    .body{fill:#ADD8E6;stroke:#87CEEB;stroke-width:2}
-    .eye{fill:#333} .shine{fill:#FFF}
-    .blush{fill:#DDA0DD;opacity:0.3}
+    .df-body { fill: url(#df-body-grad); stroke: #4FC3F7; stroke-width: 1.5; }
+    .df-head { fill: url(#df-body-grad); stroke: #4FC3F7; stroke-width: 1; }
+    .df-dress { fill: #B3E5FC; stroke: #81D4FA; stroke-width: 1.2; }
+    .df-hair { fill: url(#df-hair-grad); }
+    .df-eye { fill: #0D47A1; }
+    .df-shine { fill: #FFFFFF; }
   </style>
-  <!-- Teardrop wings -->
-  <path d="M55 85 Q20 50 35 25 Q50 5 60 30 Q70 55 65 85 Z" fill="url(#wingL)" stroke="#87CEEB" stroke-width="1"/>
-  <path d="M145 85 Q180 50 165 25 Q150 5 140 30 Q130 55 135 85 Z" fill="url(#wingR)" stroke="#87CEEB" stroke-width="1"/>
-  <!-- Lower wings -->
-  <path d="M60 100 Q30 110 40 130 Q50 145 65 120 Z" fill="url(#wingL)" stroke="#87CEEB" stroke-width="1"/>
-  <path d="M140 100 Q170 110 160 130 Q150 145 135 120 Z" fill="url(#wingR)" stroke="#87CEEB" stroke-width="1"/>
-  <!-- Body -->
-  <ellipse cx="100" cy="120" rx="28" ry="35" class="body"/>
+
+  <!-- Ambient glow around figure -->
+  <circle cx="100" cy="110" r="70" fill="#4FC3F7" opacity="0.08" filter="url(#df-glow)"/>
+
+  <!-- Back upper wings left -->
+  <path d="M40 80 Q10 30 25 15 Q45 5 55 40 Q65 75 50 95 Z" fill="url(#df-wing-upper)" stroke="#4FC3F7" stroke-width="1.2" opacity="0.85"/>
+  <!-- Wing veins - left upper -->
+  <path d="M35 50 Q40 40 45 25" stroke="#0D47A1" stroke-width="0.6" fill="none" opacity="0.4"/>
+  <path d="M45 55 Q48 42 50 28" stroke="#0D47A1" stroke-width="0.6" fill="none" opacity="0.35"/>
+  <path d="M55 65 Q55 50 54 32" stroke="#0D47A1" stroke-width="0.6" fill="none" opacity="0.3"/>
+
+  <!-- Back upper wings right -->
+  <path d="M160 80 Q190 30 175 15 Q155 5 145 40 Q135 75 150 95 Z" fill="url(#df-wing-upper)" stroke="#4FC3F7" stroke-width="1.2" opacity="0.85"/>
+  <!-- Wing veins - right upper -->
+  <path d="M165 50 Q160 40 155 25" stroke="#0D47A1" stroke-width="0.6" fill="none" opacity="0.4"/>
+  <path d="M155 55 Q152 42 150 28" stroke="#0D47A1" stroke-width="0.6" fill="none" opacity="0.35"/>
+  <path d="M145 65 Q145 50 146 32" stroke="#0D47A1" stroke-width="0.6" fill="none" opacity="0.3"/>
+
+  <!-- Front lower wings left -->
+  <path d="M45 110 Q20 120 25 150 Q35 165 55 145 Z" fill="url(#df-wing-lower)" stroke="#4FC3F7" stroke-width="1" opacity="0.8"/>
+  <!-- Lower wing veins - left -->
+  <path d="M40 125 Q35 135 32 150" stroke="#0D47A1" stroke-width="0.5" fill="none" opacity="0.35"/>
+  <path d="M48 130 Q45 140 43 155" stroke="#0D47A1" stroke-width="0.5" fill="none" opacity="0.3"/>
+
+  <!-- Front lower wings right -->
+  <path d="M155 110 Q180 120 175 150 Q165 165 145 145 Z" fill="url(#df-wing-lower)" stroke="#4FC3F7" stroke-width="1" opacity="0.8"/>
+  <!-- Lower wing veins - right -->
+  <path d="M160 125 Q165 135 168 150" stroke="#0D47A1" stroke-width="0.5" fill="none" opacity="0.35"/>
+  <path d="M152 130 Q155 140 157 155" stroke="#0D47A1" stroke-width="0.5" fill="none" opacity="0.3"/>
+
+  <!-- Body - dress -->
+  <ellipse cx="100" cy="125" rx="20" ry="28" class="df-dress"/>
+
+  <!-- Arms -->
+  <ellipse cx="80" cy="115" rx="8" ry="12" class="df-body" transform="rotate(-30 80 115)"/>
+  <ellipse cx="120" cy="115" rx="8" ry="12" class="df-body" transform="rotate(30 120 115)"/>
+
   <!-- Head -->
-  <circle cx="100" cy="80" r="30" class="body"/>
-  <!-- Crown/tiara -->
-  <path d="M78 62 L82 50 L90 58 L100 45 L110 58 L118 50 L122 62" fill="none" stroke="#87CEEB" stroke-width="2"/>
-  <circle cx="82" cy="50" r="2.5" fill="#E0FFFF"/>
-  <circle cx="100" cy="45" r="3" fill="#B0E0E6"/>
-  <circle cx="118" cy="50" r="2.5" fill="#E0FFFF"/>
-  <!-- Eyes (big round) -->
-  <circle cx="88" cy="78" r="8" class="eye"/>
-  <circle cx="112" cy="78" r="8" class="eye"/>
-  <circle cx="91" cy="75" r="3.5" class="shine"/>
-  <circle cx="115" cy="75" r="3.5" class="shine"/>
-  <circle cx="86" cy="80" r="2" class="shine"/>
-  <circle cx="110" cy="80" r="2" class="shine"/>
-  <!-- Blush -->
-  <ellipse cx="74" cy="88" rx="8" ry="5" class="blush"/>
-  <ellipse cx="126" cy="88" rx="8" ry="5" class="blush"/>
-  <!-- Mouth -->
-  <path d="M95 92 Q100 97 105 92" stroke="#87CEEB" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <!-- Sparkle trail -->
-  <circle cx="70" cy="150" r="2" fill="#E0FFFF" opacity="0.8">
-    <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="55" cy="165" r="1.5" fill="#ADD8E6" opacity="0.6">
-    <animate attributeName="opacity" values="1;0.3;1" dur="1.8s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="130" cy="155" r="2" fill="#E0FFFF" opacity="0.7">
-    <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="145" cy="168" r="1.5" fill="#ADD8E6" opacity="0.5">
-    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="1.6s" repeatCount="indefinite"/>
-  </circle>
-  <!-- Tiny feet -->
-  <ellipse cx="90" cy="155" rx="8" ry="5" class="body"/>
-  <ellipse cx="110" cy="155" rx="8" ry="5" class="body"/>
+  <circle cx="100" cy="85" r="18" class="df-head"/>
+
+  <!-- Hair - flowing water-like strands -->
+  <path d="M90 70 Q85 55 80 40 Q78 30 82 25" class="df-hair" stroke="#4FC3F7" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M100 68 Q98 50 95 35 Q93 22 100 18" class="df-hair" stroke="#4FC3F7" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M110 70 Q115 55 120 40 Q122 30 118 25" class="df-hair" stroke="#4FC3F7" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Hair highlights -->
+  <path d="M90 70 Q88 60 86 48" stroke="#FFFFFF" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <path d="M110 70 Q112 60 114 48" stroke="#FFFFFF" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Big expressive eyes -->
+  <circle cx="92" cy="82" r="6" class="df-eye"/>
+  <circle cx="108" cy="82" r="6" class="df-eye"/>
+
+  <!-- Eye shine - star reflections -->
+  <path d="M92 77 L93 80 L96 81 L93 82 L94 85 L92 83 L90 85 L91 82 L88 81 L91 80 Z" class="df-shine"/>
+  <path d="M108 77 L109 80 L112 81 L109 82 L110 85 L108 83 L106 85 L107 82 L104 81 L107 80 Z" class="df-shine"/>
+
+  <!-- Secondary shine spots -->
+  <circle cx="90" cy="80" r="1.5" class="df-shine" opacity="0.8"/>
+  <circle cx="106" cy="80" r="1.5" class="df-shine" opacity="0.8"/>
+
+  <!-- Tiny bare feet -->
+  <ellipse cx="90" cy="155" rx="6" ry="5" class="df-body"/>
+  <ellipse cx="110" cy="155" rx="6" ry="5" class="df-body"/>
+
+  <!-- Foot details -->
+  <line x1="85" y1="158" x2="82" y2="162" stroke="#4FC3F7" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+  <line x1="95" y1="158" x2="98" y2="162" stroke="#4FC3F7" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+  <line x1="105" y1="158" x2="102" y2="162" stroke="#4FC3F7" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+  <line x1="115" y1="158" x2="118" y2="162" stroke="#4FC3F7" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Large dewdrop being held -->
+  <g transform="translate(65, 115)">
+    <!-- Dewdrop sphere -->
+    <circle cx="0" cy="0" r="16" fill="url(#df-dewdrop)"/>
+    <!-- Bright specular highlight -->
+    <ellipse cx="-5" cy="-6" rx="6" ry="5" fill="#FFFFFF" opacity="0.95"/>
+    <!-- Secondary reflection -->
+    <circle cx="4" cy="5" r="2.5" fill="#FFFFFF" opacity="0.6"/>
+  </g>
+
+  <!-- Sparkle trail behind - animated -->
+  <g>
+    <!-- Sparkle 1 -->
+    <circle cx="50" cy="90" r="2" fill="#E0F7FA" opacity="0.7"/>
+    <animate attributeName="opacity" values="0.7;0;0.7" dur="2s" repeatCount="indefinite"/>
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="0,0; -8,-5; 0,0"
+      dur="2s"
+      repeatCount="indefinite"
+      additive="sum"
+    />
+  </g>
+
+  <g>
+    <!-- Sparkle 2 -->
+    <circle cx="45" cy="110" r="1.5" fill="#B3E5FC" opacity="0.6"/>
+    <animate attributeName="opacity" values="0.6;0;0.6" dur="2.2s" repeatCount="indefinite"/>
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="0,0; -10,-8; 0,0"
+      dur="2.2s"
+      repeatCount="indefinite"
+      additive="sum"
+    />
+  </g>
+
+  <g>
+    <!-- Sparkle 3 -->
+    <circle cx="40" cy="130" r="2" fill="#E0F7FA" opacity="0.65"/>
+    <animate attributeName="opacity" values="0.65;0;0.65" dur="2.4s" repeatCount="indefinite"/>
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="0,0; -12,-10; 0,0"
+      dur="2.4s"
+      repeatCount="indefinite"
+      additive="sum"
+    />
+  </g>
+
+  <!-- Gentle floating animation -->
+  <g>
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="0,0; 0,-4; 0,0"
+      dur="3.5s"
+      repeatCount="indefinite"
+      additive="sum"
+    />
+  </g>
 </svg>

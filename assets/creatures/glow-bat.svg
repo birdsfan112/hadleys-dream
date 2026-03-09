@@ -1,42 +1,112 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="gb-body-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#483D8B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2E1A47;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gb-wing-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6A5ACD;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#4B3B8A;stop-opacity:0.8" />
+    </linearGradient>
+    <radialGradient id="gb-eye-glow" cx="40%" cy="40%" r="70%">
+      <stop offset="0%" style="stop-color:#FFFF00;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFD700;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#FFA500;stop-opacity:0.3" />
+    </radialGradient>
+    <filter id="gb-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="1" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.25"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="gb-glow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+    </filter>
+  </defs>
   <style>
-    .body{fill:#483D8B;stroke:#7B68EE;stroke-width:2}
-    .eye{fill:#9370DB} .shine{fill:#FFF}
-    .blush{fill:#9370DB;opacity:0.3}
-    .wing{fill:#483D8B;stroke:#7B68EE;stroke-width:1.5}
+    @keyframes gb-wing-beat {
+      0%, 100% { transform: rotateY(0deg); }
+      50% { transform: rotateY(-30deg); }
+    }
+    @keyframes gb-eye-glow-pulse {
+      0%, 100% { filter: drop-shadow(0px 0px 3px #FFFF00); }
+      50% { filter: drop-shadow(0px 0px 8px #FFFF00); }
+    }
+    .gb-wings { animation: gb-wing-beat 1.2s ease-in-out infinite; }
+    .gb-eyes { animation: gb-eye-glow-pulse 2s ease-in-out infinite; }
   </style>
-  <!-- Left wing -->
-  <path d="M55 95 Q20 60 15 40 Q25 55 35 50 Q30 35 25 20 Q40 40 50 38 Q48 25 50 15 Q58 40 65 55 L70 90 Z" class="wing"/>
-  <!-- Right wing -->
-  <path d="M145 95 Q180 60 185 40 Q175 55 165 50 Q170 35 175 20 Q160 40 150 38 Q152 25 150 15 Q142 40 135 55 L130 90 Z" class="wing"/>
+
+  <!-- Hanging upside down from branch -->
+  <line x1="85" y1="20" x2="85" y2="50" stroke="#8B7355" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+  <line x1="115" y1="20" x2="115" y2="50" stroke="#8B7355" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+  <!-- Branch -->
+  <ellipse cx="100" cy="18" rx="25" ry="5" fill="#654321" opacity="0.5"/>
+
+  <!-- Wings (animated wing flapping) -->
+  <g class="gb-wings">
+    <!-- Left wing (bioluminescent membrane) -->
+    <path d="M55 95 Q25 62 18 42 Q28 58 40 55 Q35 38 28 22 Q45 48 58 48 Q56 32 58 18 Q68 50 75 70 L70 92 Z" fill="url(#gb-wing-grad)" filter="url(#gb-shadow)"/>
+    <!-- Wing membrane glow -->
+    <path d="M55 95 Q25 62 18 42" fill="none" stroke="#9B89CD" stroke-width="2" opacity="0.5" filter="url(#gb-glow)"/>
+
+    <!-- Right wing (bioluminescent membrane) -->
+    <path d="M145 95 Q175 62 182 42 Q172 58 160 55 Q165 38 172 22 Q155 48 142 48 Q144 32 142 18 Q132 50 125 70 L130 92 Z" fill="url(#gb-wing-grad)" filter="url(#gb-shadow)"/>
+    <!-- Wing membrane glow -->
+    <path d="M145 95 Q175 62 182 42" fill="none" stroke="#9B89CD" stroke-width="2" opacity="0.5" filter="url(#gb-glow)"/>
+  </g>
+
   <!-- Body -->
-  <circle cx="100" cy="105" r="38" class="body"/>
-  <!-- Ears -->
-  <polygon points="75,72 65,45 85,68" class="body"/>
-  <polygon points="125,72 135,45 115,68" class="body"/>
-  <!-- Ear inner -->
-  <polygon points="77,72 69,52 83,70" fill="#6A5ACD" opacity="0.4"/>
-  <polygon points="123,72 131,52 117,70" fill="#6A5ACD" opacity="0.4"/>
-  <!-- Glowing eyes -->
-  <circle cx="85" cy="100" r="9" class="eye"/>
-  <circle cx="115" cy="100" r="9" class="eye"/>
-  <circle cx="85" cy="100" r="5" fill="#B8A9FF"/>
-  <circle cx="115" cy="100" r="5" fill="#B8A9FF"/>
-  <circle cx="83" cy="97" r="3" class="shine"/>
-  <circle cx="113" cy="97" r="3" class="shine"/>
-  <!-- Blush -->
-  <ellipse cx="72" cy="110" rx="8" ry="5" class="blush"/>
-  <ellipse cx="128" cy="110" rx="8" ry="5" class="blush"/>
-  <!-- Cute fangs -->
-  <polygon points="91,118 93,124 95,118" fill="#FFF"/>
-  <polygon points="105,118 107,124 109,118" fill="#FFF"/>
-  <!-- Mouth -->
-  <path d="M90 118 Q100 125 110 118" stroke="#7B68EE" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <!-- Moon charm -->
-  <line x1="100" y1="143" x2="100" y2="155" stroke="#7B68EE" stroke-width="1"/>
-  <circle cx="100" cy="162" r="7" fill="#FFF8DC" opacity="0.6"/>
-  <circle cx="104" cy="160" r="5.5" fill="#483D8B"/>
-  <!-- Feet -->
-  <ellipse cx="85" cy="142" rx="10" ry="6" class="body"/>
-  <ellipse cx="115" cy="142" rx="10" ry="6" class="body"/>
+  <circle cx="100" cy="108" r="40" fill="url(#gb-body-grad)" filter="url(#gb-shadow)"/>
+  <!-- Belly -->
+  <ellipse cx="100" cy="115" rx="24" ry="28" fill="#6A5ACD" opacity="0.3"/>
+
+  <!-- Ears (pointed and detailed) -->
+  <polygon points="75,70 62,38 88,65" fill="url(#gb-body-grad)" filter="url(#gb-shadow)"/>
+  <polygon points="125,70 138,38 112,65" fill="url(#gb-body-grad)" filter="url(#gb-shadow)"/>
+  <!-- Ear inner detail -->
+  <polygon points="76,68 66,50 85,64" fill="#9B89CD" opacity="0.5"/>
+  <polygon points="124,68 134,50 115,64" fill="#9B89CD" opacity="0.5"/>
+
+  <!-- Glowing yellow eyes (characteristic feature) -->
+  <g class="gb-eyes">
+    <circle cx="82" cy="102" r="10" fill="url(#gb-eye-glow)" filter="url(#gb-glow)"/>
+    <circle cx="118" cy="102" r="10" fill="url(#gb-eye-glow)" filter="url(#gb-glow)"/>
+    <!-- Pupils -->
+    <circle cx="82" cy="105" r="4" fill="#1A0033"/>
+    <circle cx="118" cy="105" r="4" fill="#1A0033"/>
+    <!-- Eye shine -->
+    <circle cx="84" cy="99" r="2" fill="#FFFFFF" opacity="0.9"/>
+    <circle cx="120" cy="99" r="2" fill="#FFFFFF" opacity="0.9"/>
+  </g>
+
+  <!-- Blush (subtle purple) -->
+  <ellipse cx="68" cy="115" rx="12" ry="7" fill="#9B89CD" opacity="0.25"/>
+  <ellipse cx="132" cy="115" rx="12" ry="7" fill="#9B89CD" opacity="0.25"/>
+
+  <!-- Cute fangs (small, not scary) -->
+  <polygon points="90,120 92,128 96,120" fill="#FFFFFF" filter="url(#gb-shadow)"/>
+  <polygon points="104,120 108,128 110,120" fill="#FFFFFF" filter="url(#gb-shadow)"/>
+
+  <!-- Mouth (cute smile) -->
+  <path d="M88 120 Q100 128 112 120" stroke="#7B68EE" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Moon charm pendant -->
+  <line x1="100" y1="148" x2="100" y2="162" stroke="#7B68EE" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="100" cy="172" r="9" fill="#FFF8DC" filter="url(#gb-shadow)"/>
+  <!-- Moon shadow (crescent) -->
+  <circle cx="106" cy="168" r="7.5" fill="#2E1A47"/>
+  <!-- Moon shine -->
+  <ellipse cx="97" cy="168" rx="5" ry="6" fill="#FFFFFF" opacity="0.6"/>
+
+  <!-- Feet (hanging) -->
+  <ellipse cx="82" cy="148" rx="12" ry="7" fill="url(#gb-body-grad)" filter="url(#gb-shadow)"/>
+  <ellipse cx="118" cy="148" rx="12" ry="7" fill="url(#gb-body-grad)" filter="url(#gb-shadow)"/>
+  <!-- Toe details -->
+  <line x1="78" y1="152" x2="72" y2="158" stroke="#483D8B" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+  <line x1="122" y1="152" x2="128" y2="158" stroke="#483D8B" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
 </svg>

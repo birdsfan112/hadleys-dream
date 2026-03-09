@@ -1,50 +1,132 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="sp-body-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7B5BA8;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#9370DB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5D3F9E;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="sp-wing-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6B4BB8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4B2B88;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="sp-eye-glow" cx="35%" cy="35%" r="75%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFA500;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#FF8C00;stop-opacity:0.4" />
+    </radialGradient>
+    <filter id="sp-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2.5"/>
+      <feOffset dx="1" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.35"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="sp-glow-filter">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5"/>
+    </filter>
+  </defs>
   <style>
-    .body{fill:#9370DB;stroke:#8A2BE2;stroke-width:2}
-    .eye-bg{fill:#333}
-    .iris{fill:#FFD700}
-    .shine{fill:#FFF}
-    .blush{fill:#DDA0DD;opacity:0.25}
+    @keyframes sp-wing-beat {
+      0%, 100% { transform: rotateY(0deg); }
+      50% { transform: rotateY(-35deg); }
+    }
+    @keyframes sp-energy-spark {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+    @keyframes sp-lightning-crackle {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+    .sp-wings { animation: sp-wing-beat 1.8s ease-in-out infinite; }
+    .sp-energy { animation: sp-energy-spark 1.5s ease-in-out infinite; }
+    .sp-lightning { animation: sp-lightning-crackle 0.8s ease-in-out infinite; }
   </style>
-  <!-- Tail feathers -->
-  <ellipse cx="90" cy="168" rx="8" ry="18" fill="#8A2BE2" transform="rotate(-10 90 168)"/>
-  <ellipse cx="100" cy="170" rx="8" ry="20" fill="#9370DB"/>
-  <ellipse cx="110" cy="168" rx="8" ry="18" fill="#8A2BE2" transform="rotate(10 110 168)"/>
-  <!-- Left wing -->
-  <path d="M60 100 Q25 75 15 55 Q20 65 30 60 Q22 48 18 35 Q25 50 38 50 Q32 38 30 25 Q38 42 48 48 L60 80 Z" class="body"/>
-  <!-- Right wing -->
-  <path d="M140 100 Q175 75 185 55 Q180 65 170 60 Q178 48 182 35 Q175 50 162 50 Q168 38 170 25 Q162 42 152 48 L140 80 Z" class="body"/>
-  <!-- Feather texture on wings -->
-  <path d="M35 62 Q45 70 55 80" fill="none" stroke="#8A2BE2" stroke-width="1" opacity="0.5"/>
-  <path d="M30 50 Q42 60 52 72" fill="none" stroke="#8A2BE2" stroke-width="1" opacity="0.5"/>
-  <path d="M40 45 Q48 55 55 68" fill="none" stroke="#8A2BE2" stroke-width="1" opacity="0.5"/>
-  <path d="M165 62 Q155 70 145 80" fill="none" stroke="#8A2BE2" stroke-width="1" opacity="0.5"/>
-  <path d="M170 50 Q158 60 148 72" fill="none" stroke="#8A2BE2" stroke-width="1" opacity="0.5"/>
-  <!-- Body -->
-  <ellipse cx="100" cy="115" rx="32" ry="38" class="body"/>
+
+  <!-- Main body -->
+  <!-- Tail feathers (dramatic, trailing energy) -->
+  <ellipse cx="88" cy="168" rx="10" ry="22" fill="url(#sp-wing-grad)" filter="url(#sp-shadow)" transform="rotate(-15 88 168)"/>
+  <ellipse cx="100" cy="172" rx="10" ry="24" fill="url(#sp-body-grad)" filter="url(#sp-shadow)"/>
+  <ellipse cx="112" cy="168" rx="10" ry="22" fill="url(#sp-wing-grad)" filter="url(#sp-shadow)" transform="rotate(15 112 168)"/>
+
+  <!-- Body (upright, commanding pose) -->
+  <ellipse cx="100" cy="120" rx="34" ry="42" fill="url(#sp-body-grad)" filter="url(#sp-shadow)"/>
+  <!-- Body detail lines -->
+  <path d="M75 105 Q92 100 108 105" stroke="#5D3F9E" stroke-width="1.2" fill="none" opacity="0.5"/>
+  <path d="M75 120 Q92 116 108 120" stroke="#5D3F9E" stroke-width="1.2" fill="none" opacity="0.5"/>
+
   <!-- Head -->
-  <circle cx="100" cy="68" r="28" class="body"/>
-  <!-- Lightning bolts near wing tips -->
-  <path d="M22 42 L26 50 L20 50 L25 58" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round">
-    <animate attributeName="opacity" values="0.5;1;0.5" dur="0.8s" repeatCount="indefinite"/>
-  </path>
-  <path d="M178 42 L174 50 L180 50 L175 58" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
-  <!-- Eyebrow angles -->
-  <line x1="80" y1="54" x2="90" y2="57" stroke="#8A2BE2" stroke-width="2" stroke-linecap="round"/>
-  <line x1="120" y1="54" x2="110" y2="57" stroke="#8A2BE2" stroke-width="2" stroke-linecap="round"/>
-  <!-- Eyes (electric) -->
-  <circle cx="88" cy="65" r="7" class="eye-bg"/>
-  <circle cx="112" cy="65" r="7" class="eye-bg"/>
-  <circle cx="88" cy="65" r="4.5" class="iris"/>
-  <circle cx="112" cy="65" r="4.5" class="iris"/>
-  <circle cx="86" cy="63" r="2.5" class="shine"/>
-  <circle cx="110" cy="63" r="2.5" class="shine"/>
-  <!-- Blush -->
-  <ellipse cx="76" cy="74" rx="7" ry="4" class="blush"/>
-  <ellipse cx="124" cy="74" rx="7" ry="4" class="blush"/>
-  <!-- Beak/mouth -->
-  <path d="M94 78 Q100 83 106 78" stroke="#8A2BE2" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <!-- Feet -->
-  <ellipse cx="88" cy="152" rx="10" ry="6" class="body"/>
-  <ellipse cx="112" cy="152" rx="10" ry="6" class="body"/>
+  <circle cx="100" cy="68" r="30" fill="url(#sp-body-grad)" filter="url(#sp-shadow)"/>
+
+  <!-- Fierce eyebrow angles -->
+  <line x1="78" y1="52" x2="90" y2="56" stroke="#5D3F9E" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="122" y1="52" x2="110" y2="56" stroke="#5D3F9E" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Eyes (electric/fierce with glow) -->
+  <circle cx="84" cy="66" r="8" fill="#2C3E50"/>
+  <circle cx="116" cy="66" r="8" fill="#2C3E50"/>
+  <!-- Electric iris -->
+  <circle cx="84" cy="67" r="5" fill="url(#sp-eye-glow)" filter="url(#sp-glow-filter)"/>
+  <circle cx="116" cy="67" r="5" fill="url(#sp-eye-glow)" filter="url(#sp-glow-filter)"/>
+  <!-- Pupil -->
+  <circle cx="84" cy="68" r="2.5" fill="#000"/>
+  <circle cx="116" cy="68" r="2.5" fill="#000"/>
+  <!-- Eye shine -->
+  <circle cx="86" cy="64" r="2" fill="#FFFFFF" opacity="0.9"/>
+  <circle cx="118" cy="64" r="2" fill="#FFFFFF" opacity="0.9"/>
+
+  <!-- Blush (ferocious) -->
+  <ellipse cx="72" cy="76" rx="12" ry="7" fill="#DDA0DD" opacity="0.2"/>
+  <ellipse cx="128" cy="76" rx="12" ry="7" fill="#DDA0DD" opacity="0.2"/>
+
+  <!-- Beak/mouth (fierce expression) -->
+  <path d="M94 82 Q100 88 106 82" stroke="#5D3F9E" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Wings (spread, made of lightning bolt shapes and feather layers) -->
+  <g class="sp-wings">
+    <!-- Left wing assembly -->
+    <g>
+      <!-- Main feather structure -->
+      <path d="M60 100 Q30 75 18 50 Q25 65 38 62 Q28 48 22 35 Q32 52 45 55 Q35 40 32 25 Q42 45 55 55 L60 85 Z" fill="url(#sp-wing-grad)" filter="url(#sp-shadow)"/>
+      <!-- Feather detail lines -->
+      <path d="M40 60 Q50 70 58 85" stroke="#5D3F9E" stroke-width="1.2" fill="none" opacity="0.6"/>
+      <path d="M35 48 Q45 60 55 75" stroke="#5D3F9E" stroke-width="1.2" fill="none" opacity="0.5"/>
+    </g>
+
+    <!-- Right wing assembly -->
+    <g>
+      <!-- Main feather structure -->
+      <path d="M140 100 Q170 75 182 50 Q175 65 162 62 Q172 48 178 35 Q168 52 155 55 Q165 40 168 25 Q158 45 145 55 L140 85 Z" fill="url(#sp-wing-grad)" filter="url(#sp-shadow)"/>
+      <!-- Feather detail lines -->
+      <path d="M160 60 Q150 70 142 85" stroke="#5D3F9E" stroke-width="1.2" fill="none" opacity="0.6"/>
+      <path d="M165 48 Q155 60 145 75" stroke="#5D3F9E" stroke-width="1.2" fill="none" opacity="0.5"/>
+    </g>
+  </g>
+
+  <!-- Crackling energy lightning bolts near wing tips -->
+  <g class="sp-lightning">
+    <!-- Left lightning -->
+    <path d="M20 45 L26 55 L20 56 L28 68" fill="none" stroke="#FFD700" stroke-width="2.5" stroke-linecap="round" filter="url(#sp-glow-filter)"/>
+    <!-- Right lightning -->
+    <path d="M180 45 L174 55 L180 56 L172 68" fill="none" stroke="#FFD700" stroke-width="2.5" stroke-linecap="round" filter="url(#sp-glow-filter)"/>
+  </g>
+
+  <!-- Additional energy crackling around body -->
+  <g class="sp-energy">
+    <path d="M50 100 L48 105 L52 108" stroke="#FFD700" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <path d="M150 100 L152 105 L148 108" stroke="#FFD700" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+  </g>
+
+  <!-- Feet (talon-like) -->
+  <ellipse cx="85" cy="160" rx="12" ry="8" fill="url(#sp-body-grad)" filter="url(#sp-shadow)"/>
+  <ellipse cx="115" cy="160" rx="12" ry="8" fill="url(#sp-body-grad)" filter="url(#sp-shadow)"/>
+  <!-- Talon spikes -->
+  <path d="M80 165 L75 172" stroke="#5D3F9E" stroke-width="2" stroke-linecap="round"/>
+  <path d="M90 165 L92 172" stroke="#5D3F9E" stroke-width="2" stroke-linecap="round"/>
+  <path d="M110 165 L108 172" stroke="#5D3F9E" stroke-width="2" stroke-linecap="round"/>
+  <path d="M120 165 L125 172" stroke="#5D3F9E" stroke-width="2" stroke-linecap="round"/>
 </svg>

@@ -1,158 +1,301 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
   <defs>
+    <!-- Gradients -->
     <linearGradient id="rm-sky" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#ffd6e0"/>
-      <stop offset="30%" stop-color="#ffe8a8"/>
-      <stop offset="60%" stop-color="#d4f0c0"/>
-      <stop offset="100%" stop-color="#c8e8ff"/>
+      <stop offset="25%" stop-color="#ffe8a8"/>
+      <stop offset="50%" stop-color="#d4f0c0"/>
+      <stop offset="75%" stop-color="#c8f0ff"/>
+      <stop offset="100%" stop-color="#d0e0ff"/>
     </linearGradient>
-    <linearGradient id="rm-hill1" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#a8e6a0"/>
-      <stop offset="100%" stop-color="#7ecb78"/>
+    <radialGradient id="rm-sun" cx="0.5" cy="0.5" r="0.6">
+      <stop offset="0%" stop-color="#FFE700"/>
+      <stop offset="70%" stop-color="#FFD700" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#FFA500" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rm-hill-pink" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0d0d8"/>
+      <stop offset="100%" stop-color="#e0b8c8"/>
     </linearGradient>
-    <linearGradient id="rm-hill2" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#b8f0b0"/>
-      <stop offset="100%" stop-color="#8ed888"/>
+    <linearGradient id="rm-hill-yellow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f5f0a8"/>
+      <stop offset="100%" stop-color="#e8e090"/>
+    </linearGradient>
+    <linearGradient id="rm-hill-green" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d0f0b8"/>
+      <stop offset="100%" stop-color="#b8d8a0"/>
+    </linearGradient>
+    <linearGradient id="rm-ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b8e890"/>
+      <stop offset="100%" stop-color="#a0d878"/>
     </linearGradient>
     <filter id="rm-glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="rm-soft-glow">
       <feGaussianBlur stdDeviation="2" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
 
-  <!-- Sky -->
-  <rect width="800" height="600" fill="url(#rm-sky)"/>
+  <!-- Background Layer -->
+  <g id="bg-layer">
+    <!-- Sky gradient -->
+    <rect width="800" height="600" fill="url(#rm-sky)"/>
 
-  <!-- Rainbow arc -->
-  <g opacity="0.45" fill="none" stroke-width="4">
-    <path d="M100 320 Q400 20 700 320" stroke="#FF9999"/>
-    <path d="M108 324 Q400 28 692 324" stroke="#FFCC99"/>
-    <path d="M116 328 Q400 36 684 328" stroke="#FFEE99"/>
-    <path d="M124 332 Q400 44 676 332" stroke="#99EE99"/>
-    <path d="M132 336 Q400 52 668 336" stroke="#99DDFF"/>
-    <path d="M140 340 Q400 60 660 340" stroke="#9999FF"/>
-    <path d="M148 344 Q400 68 652 344" stroke="#CC99FF"/>
+    <!-- Sun with warm glow -->
+    <g opacity="0.75">
+      <circle cx="700" cy="120" r="55" fill="#FFD700" opacity="0.3"/>
+      <circle cx="700" cy="120" r="40" fill="#FFF700" opacity="0.4"/>
+    </g>
+    <circle cx="700" cy="120" r="35" fill="url(#rm-sun)"/>
+    <circle cx="700" cy="120" r="18" fill="#FFFF99" opacity="0.95"/>
+
+    <!-- Fluffy white clouds -->
+    <g opacity="0.75" fill="white">
+      <ellipse cx="120" cy="60" rx="75" ry="30"/>
+      <ellipse cx="170" cy="48" rx="55" ry="24"/>
+      <ellipse cx="80" cy="52" rx="48" ry="22"/>
+    </g>
+    <g opacity="0.65" fill="white">
+      <ellipse cx="480" cy="100" rx="70" ry="28"/>
+      <ellipse cx="530" cy="88" rx="50" ry="22"/>
+    </g>
+
+    <!-- Rainbow arc spanning sky (7 color bands) -->
+    <g opacity="0.5" fill="none" stroke-width="5" stroke-linecap="round">
+      <path d="M150 360 Q400 80 650 360" stroke="#FF6B6B"/>
+      <path d="M160 364 Q400 95 640 364" stroke="#FFA500"/>
+      <path d="M170 368 Q400 110 630 368" stroke="#FFE66D"/>
+      <path d="M180 372 Q400 125 620 372" stroke="#6BCB77"/>
+      <path d="M190 376 Q400 140 610 376" stroke="#4D96FF"/>
+      <path d="M200 380 Q400 155 600 380" stroke="#6A5ACD"/>
+      <path d="M210 384 Q400 170 590 384" stroke="#D46EFF"/>
+    </g>
+
+    <!-- Distant butterflies in sky -->
+    <g opacity="0.4">
+      <g fill="#FF69B4">
+        <ellipse cx="200" cy="250" rx="4" ry="3" transform="rotate(-20 200 250)"/>
+        <ellipse cx="210" cy="250" rx="4" ry="3" transform="rotate(20 210 250)"/>
+        <line x1="205" y1="247" x2="205" y2="253" stroke="#333" stroke-width="0.5"/>
+      </g>
+      <g fill="#FFD700">
+        <ellipse cx="550" cy="200" rx="3.5" ry="2.5" transform="rotate(-15 550 200)"/>
+        <ellipse cx="560" cy="200" rx="3.5" ry="2.5" transform="rotate(15 560 200)"/>
+        <line x1="555" y1="198" x2="555" y2="202" stroke="#333" stroke-width="0.5"/>
+      </g>
+    </g>
   </g>
 
-  <!-- Distant hills -->
-  <ellipse cx="200" cy="400" rx="280" ry="100" fill="#b0e8a8" opacity="0.6"/>
-  <ellipse cx="620" cy="410" rx="300" ry="110" fill="#b0e8a8" opacity="0.5"/>
+  <!-- Middle Layer -->
+  <g id="mid-layer">
+    <!-- Distant rolling hills with varied colors -->
+    <!-- Far pink hills -->
+    <ellipse cx="200" cy="400" rx="300" ry="100" fill="url(#rm-hill-pink)" opacity="0.6"/>
+    <ellipse cx="620" cy="410" rx="320" ry="110" fill="url(#rm-hill-pink)" opacity="0.55"/>
 
-  <!-- Distant hill flowers -->
-  <g opacity="0.5">
-    <circle cx="120" cy="370" r="3" fill="#FF69B4"/>
-    <circle cx="180" cy="365" r="2.5" fill="#FFD700"/>
-    <circle cx="250" cy="375" r="3" fill="#9999FF"/>
-    <circle cx="550" cy="378" r="2.5" fill="#FF6347"/>
-    <circle cx="650" cy="372" r="3" fill="#FFB6C1"/>
-    <circle cx="720" cy="380" r="2.5" fill="#87CEEB"/>
+    <!-- Far yellow hills -->
+    <ellipse cx="400" cy="420" rx="250" ry="90" fill="url(#rm-hill-yellow)" opacity="0.5"/>
+
+    <!-- Distant hill details - small flowers -->
+    <g opacity="0.55">
+      <circle cx="120" cy="370" r="3.5" fill="#FF69B4"/>
+      <circle cx="180" cy="365" r="3" fill="#FFD700"/>
+      <circle cx="280" cy="375" r="3.5" fill="#9999FF"/>
+      <circle cx="520" cy="378" r="3" fill="#FF6347"/>
+      <circle cx="650" cy="372" r="3.5" fill="#FFB6C1"/>
+      <circle cx="730" cy="380" r="3" fill="#87CEEB"/>
+    </g>
+
+    <!-- Main rolling hills -->
+    <ellipse cx="400" cy="490" rx="520" ry="170" fill="url(#rm-hill-green)"/>
+    <ellipse cx="120" cy="510" rx="260" ry="145" fill="url(#rm-hill-yellow)" opacity="0.9"/>
+    <ellipse cx="700" cy="500" rx="280" ry="155" fill="url(#rm-hill-pink)" opacity="0.85"/>
+
+    <!-- Mid-ground tree clusters (cherry blossom pink) -->
+    <g opacity="0.8">
+      <!-- Left tree cluster -->
+      <circle cx="150" cy="380" r="35" fill="#F0B6D0"/>
+      <circle cx="135" cy="390" r="28" fill="#E89BC8"/>
+      <circle cx="165" cy="390" r="28" fill="#E89BC8"/>
+
+      <!-- Right tree cluster (wisteria purple) -->
+      <circle cx="650" cy="360" r="40" fill="#D8A8E8"/>
+      <circle cx="630" cy="375" r="32" fill="#C8A0D8"/>
+      <circle cx="670" cy="375" r="32" fill="#C8A0D8"/>
+    </g>
+
+    <!-- Small windmill in distance -->
+    <g opacity="0.5">
+      <rect x="390" y="330" width="6" height="45" fill="#8B6F47"/>
+      <!-- Windmill blades -->
+      <g transform="rotate(45 393 330)">
+        <rect x="385" y="325" width="16" height="3" fill="#D4A574"/>
+        <rect x="390" y="320" width="3" height="20" fill="#D4A574"/>
+      </g>
+    </g>
+
+    <!-- Stream/creek bridge -->
+    <g opacity="0.65">
+      <path d="M300 480 Q330 470 360 480" fill="none" stroke="#8B7355" stroke-width="4" stroke-linecap="round"/>
+      <path d="M305 480 Q330 475 355 480" fill="none" stroke="#D2B48C" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+    </g>
+
+    <!-- Stream water below bridge -->
+    <path d="M280 510 Q330 495 380 510" fill="none" stroke="#87CEEB" stroke-width="8" opacity="0.4"/>
   </g>
 
-  <!-- Main hills -->
-  <ellipse cx="400" cy="490" rx="480" ry="160" fill="url(#rm-hill1)"/>
-  <ellipse cx="120" cy="510" rx="240" ry="140" fill="url(#rm-hill2)"/>
-  <ellipse cx="700" cy="500" rx="260" ry="150" fill="url(#rm-hill2)"/>
+  <!-- Foreground Layer -->
+  <g id="fg-layer">
+    <!-- Ground grass -->
+    <rect x="0" y="480" width="800" height="120" fill="url(#rm-ground)"/>
 
-  <!-- Ground -->
-  <rect x="0" y="510" width="800" height="90" fill="#7ecb78"/>
+    <!-- Winding stone path with stepping stones -->
+    <g opacity="0.7" fill="#A9A9A9" stroke="#808080" stroke-width="1">
+      <circle cx="350" cy="560" r="12"/>
+      <circle cx="360" cy="530" r="11"/>
+      <circle cx="375" cy="500" r="12"/>
+      <circle cx="390" cy="468" r="11"/>
+      <circle cx="410" cy="435" r="12"/>
+    </g>
 
-  <!-- Winding path -->
-  <path d="M370 600 Q340 540 390 480 Q440 420 370 360" fill="none" stroke="#d4b87a" stroke-width="26" stroke-linecap="round" opacity="0.55"/>
-  <path d="M370 600 Q340 540 390 480 Q440 420 370 360" fill="none" stroke="#e0c888" stroke-width="16" stroke-linecap="round" opacity="0.35"/>
+    <!-- Path dirt -->
+    <path d="M340 560 Q345 530 360 500 Q375 465 410 430" fill="none" stroke="#D4A96E" stroke-width="12" opacity="0.4"/>
 
-  <!-- Mid-ground flowers -->
-  <g>
-    <!-- Stems -->
-    <line x1="100" y1="480" x2="100" y2="465" stroke="#5a9e54" stroke-width="2"/>
-    <line x1="180" y1="475" x2="180" y2="458" stroke="#5a9e54" stroke-width="2"/>
-    <line x1="260" y1="485" x2="260" y2="470" stroke="#5a9e54" stroke-width="2"/>
-    <line x1="330" y1="470" x2="330" y2="455" stroke="#5a9e54" stroke-width="2"/>
-    <line x1="450" y1="465" x2="450" y2="448" stroke="#5a9e54" stroke-width="2"/>
-    <line x1="520" y1="478" x2="520" y2="462" stroke="#5a9e54" stroke-width="2"/>
-    <line x1="600" y1="472" x2="600" y2="456" stroke="#5a9e54" stroke-width="2"/>
-    <line x1="680" y1="480" x2="680" y2="465" stroke="#5a9e54" stroke-width="2"/>
-    <line x1="150" y1="490" x2="150" y2="476" stroke="#5a9e54" stroke-width="2"/>
-    <line x1="480" y1="488" x2="480" y2="474" stroke="#5a9e54" stroke-width="2"/>
-    <line x1="560" y1="485" x2="560" y2="470" stroke="#5a9e54" stroke-width="2"/>
-    <line x1="720" y1="488" x2="720" y2="474" stroke="#5a9e54" stroke-width="2"/>
-    <!-- Blooms -->
-    <circle cx="100" cy="462" r="6" fill="#FF69B4"/><circle cx="100" cy="462" r="2.5" fill="#FFD700"/>
-    <circle cx="180" cy="455" r="5" fill="#FF6347"/><circle cx="180" cy="455" r="2" fill="#FFF"/>
-    <circle cx="260" cy="467" r="6" fill="#9999FF"/><circle cx="260" cy="467" r="2.5" fill="#FFE4B5"/>
-    <circle cx="330" cy="452" r="5" fill="#FFD700"/><circle cx="330" cy="452" r="2" fill="#FFF"/>
-    <circle cx="450" cy="445" r="6" fill="#FF69B4"/><circle cx="450" cy="445" r="2.5" fill="#FFE4B5"/>
-    <circle cx="520" cy="459" r="5" fill="#87CEEB"/><circle cx="520" cy="459" r="2" fill="#FFF"/>
-    <circle cx="600" cy="453" r="6" fill="#DDA0DD"/><circle cx="600" cy="453" r="2.5" fill="#FFD700"/>
-    <circle cx="680" cy="462" r="5" fill="#FF6347"/><circle cx="680" cy="462" r="2" fill="#FFE4B5"/>
-    <circle cx="150" cy="473" r="5" fill="#98FB98"/><circle cx="150" cy="473" r="2" fill="#FFD700"/>
-    <circle cx="480" cy="471" r="5" fill="#FFB6C1"/><circle cx="480" cy="471" r="2" fill="#FFF"/>
-    <circle cx="560" cy="467" r="6" fill="#FFA500"/><circle cx="560" cy="467" r="2.5" fill="#FFD700"/>
-    <circle cx="720" cy="471" r="5" fill="#FF69B4"/><circle cx="720" cy="471" r="2" fill="#FFF"/>
-  </g>
+    <!-- PACKED meadow ground with diverse colorful flowers -->
+    <!-- Row 1 - tall flowers -->
+    <g>
+      <!-- Daisies (white with yellow center) -->
+      <line x1="80" y1="520" x2="80" y2="495" stroke="#4a8e44" stroke-width="3"/>
+      <circle cx="80" cy="492" r="9" fill="#FFF"/><circle cx="80" cy="492" r="4" fill="#FFD700"/>
 
-  <!-- Foreground larger flowers -->
-  <g>
-    <line x1="80" y1="540" x2="80" y2="515" stroke="#4a8e44" stroke-width="3"/>
-    <circle cx="80" cy="512" r="9" fill="#FF69B4"/><circle cx="80" cy="512" r="4" fill="#FFD700"/>
-    <line x1="250" y1="545" x2="250" y2="518" stroke="#4a8e44" stroke-width="3"/>
-    <circle cx="250" cy="515" r="8" fill="#FFD700"/><circle cx="250" cy="515" r="3.5" fill="#FFF"/>
-    <line x1="550" y1="538" x2="550" y2="512" stroke="#4a8e44" stroke-width="3"/>
-    <circle cx="550" cy="509" r="9" fill="#9999FF"/><circle cx="550" cy="509" r="4" fill="#FFE4B5"/>
-    <line x1="700" y1="542" x2="700" y2="518" stroke="#4a8e44" stroke-width="3"/>
-    <circle cx="700" cy="515" r="8" fill="#FF6347"/><circle cx="700" cy="515" r="3.5" fill="#FFD700"/>
-    <line x1="420" y1="550" x2="420" y2="525" stroke="#4a8e44" stroke-width="3"/>
-    <circle cx="420" cy="522" r="8" fill="#DDA0DD"/><circle cx="420" cy="522" r="3.5" fill="#FFF"/>
-  </g>
+      <line x1="250" y1="535" x2="250" y2="508" stroke="#4a8e44" stroke-width="3"/>
+      <circle cx="250" cy="505" r="8" fill="#FFF"/><circle cx="250" cy="505" r="3.5" fill="#FFD700"/>
 
-  <!-- Grass tufts -->
-  <g fill="#5a9e54">
-    <path d="M30 550 L35 535 L40 550"/>
-    <path d="M35 550 L40 532 L45 550"/>
-    <path d="M160 555 L165 540 L170 555"/>
-    <path d="M165 555 L170 538 L175 555"/>
-    <path d="M470 548 L475 533 L480 548"/>
-    <path d="M475 548 L480 530 L485 548"/>
-    <path d="M640 552 L645 537 L650 552"/>
-    <path d="M645 552 L650 535 L655 552"/>
-  </g>
+      <!-- Tulips (colorful) -->
+      <line x1="550" y1="525" x2="550" y2="498" stroke="#4a8e44" stroke-width="3"/>
+      <circle cx="550" cy="495" r="9" fill="#9999FF"/><circle cx="550" cy="495" r="3.5" fill="#FFE4B5"/>
 
-  <!-- Butterflies -->
-  <g>
-    <!-- Butterfly 1 -->
-    <line x1="300" y1="350" x2="300" y2="360" stroke="#333" stroke-width="1.5"/>
-    <ellipse cx="294" cy="352" rx="8" ry="5" fill="#FF69B4" opacity="0.7" transform="rotate(-20 294 352)"/>
-    <ellipse cx="306" cy="352" rx="8" ry="5" fill="#FF69B4" opacity="0.7" transform="rotate(20 306 352)"/>
-    <!-- Butterfly 2 -->
-    <line x1="580" y1="380" x2="580" y2="390" stroke="#333" stroke-width="1.5"/>
-    <ellipse cx="574" cy="382" rx="7" ry="4.5" fill="#FFD700" opacity="0.7" transform="rotate(-15 574 382)"/>
-    <ellipse cx="586" cy="382" rx="7" ry="4.5" fill="#FFD700" opacity="0.7" transform="rotate(15 586 382)"/>
-  </g>
+      <!-- Sunflowers (large, yellow) -->
+      <line x1="120" y1="545" x2="120" y2="510" stroke="#4a8e44" stroke-width="3"/>
+      <circle cx="120" cy="507" r="10" fill="#FFD700"/><circle cx="120" cy="507" r="4" fill="#FF8C00"/>
 
-  <!-- Animated sparkle particles -->
-  <g filter="url(#rm-glow)">
-    <circle cx="130" cy="440" r="2.5" fill="#FF69B4" opacity="0.8">
-      <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="280" cy="420" r="2" fill="#FFD700" opacity="0.6">
-      <animate attributeName="opacity" values="1;0.3;1" dur="1.8s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="440" cy="400" r="2.5" fill="#9999FF" opacity="0.7">
-      <animate attributeName="opacity" values="0.5;1;0.5" dur="2.2s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="600" cy="430" r="2" fill="#FF6347" opacity="0.8">
-      <animate attributeName="opacity" values="0.3;1;0.3" dur="1.6s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="350" cy="460" r="2" fill="#98FB98" opacity="0.6">
-      <animate attributeName="opacity" values="1;0.4;1" dur="2.5s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="190" cy="450" r="2.5" fill="#DDA0DD" opacity="0.7">
-      <animate attributeName="opacity" values="0.4;1;0.4" dur="1.9s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="510" cy="415" r="2" fill="#FFB6C1" opacity="0.8">
-      <animate attributeName="opacity" values="0.6;1;0.6" dur="2.1s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="680" cy="445" r="2.5" fill="#87CEEB" opacity="0.6">
-      <animate attributeName="opacity" values="0.3;0.9;0.3" dur="2.3s" repeatCount="indefinite"/>
-    </circle>
+      <!-- Poppy red -->
+      <line x1="420" y1="548" x2="420" y2="520" stroke="#4a8e44" stroke-width="3"/>
+      <circle cx="420" cy="517" r="8.5" fill="#DC143C"/><circle cx="420" cy="517" r="3.5" fill="#2F4F4F"/>
+    </g>
+
+    <!-- Row 2 - medium flowers -->
+    <g>
+      <!-- Pink flowers -->
+      <line x1="180" y1="540" x2="180" y2="520" stroke="#4a8e44" stroke-width="2.5"/>
+      <circle cx="180" cy="517" r="7" fill="#FFB6C1"/>
+
+      <!-- Purple flowers -->
+      <line x1="320" y1="545" x2="320" y2="525" stroke="#4a8e44" stroke-width="2.5"/>
+      <circle cx="320" cy="522" r="7" fill="#DDA0DD"/>
+
+      <!-- Blue flowers -->
+      <line x1="480" y1="535" x2="480" y2="518" stroke="#4a8e44" stroke-width="2.5"/>
+      <circle cx="480" cy="515" r="6.5" fill="#6495ED"/>
+
+      <!-- Red flowers -->
+      <line x1="650" y1="540" x2="650" y2="520" stroke="#4a8e44" stroke-width="2.5"/>
+      <circle cx="650" cy="517" r="7" fill="#FF6347"/>
+
+      <!-- Orange flowers -->
+      <line x1="280" y1="550" x2="280" y2="532" stroke="#4a8e44" stroke-width="2.5"/>
+      <circle cx="280" cy="529" r="6.5" fill="#FFA500"/>
+    </g>
+
+    <!-- Row 3 - low flowers and details -->
+    <g>
+      <!-- Assorted small flowers -->
+      <line x1="150" y1="550" x2="150" y2="538" stroke="#4a8e44" stroke-width="2"/>
+      <circle cx="150" cy="535" r="5" fill="#FF69B4"/>
+
+      <line x1="380" y1="555" x2="380" y2="540" stroke="#4a8e44" stroke-width="2"/>
+      <circle cx="380" cy="537" r="5.5" fill="#FFE700"/>
+
+      <line x1="560" y1="548" x2="560" y2="533" stroke="#4a8e44" stroke-width="2"/>
+      <circle cx="560" cy="530" r="5" fill="#FF69B4"/>
+
+      <line x1="720" y1="552" x2="720" y2="538" stroke="#4a8e44" stroke-width="2"/>
+      <circle cx="720" cy="535" r="5.5" fill="#87CEEB"/>
+
+      <line x1="100" y1="558" x2="100" y2="545" stroke="#4a8e44" stroke-width="2"/>
+      <circle cx="100" cy="542" r="5" fill="#DDA0DD"/>
+
+      <line x1="450" y1="560" x2="450" y2="545" stroke="#4a8e44" stroke-width="2"/>
+      <circle cx="450" cy="542" r="5" fill="#98FB98"/>
+
+      <line x1="600" y1="555" x2="600" y2="540" stroke="#4a8e44" stroke-width="2"/>
+      <circle cx="600" cy="537" r="5" fill="#FFB6C1"/>
+    </g>
+
+    <!-- Tall grass with seed heads -->
+    <g fill="#5a9e54" opacity="0.8">
+      <!-- Grass tuft groups -->
+      <path d="M30 520 L35 495 L40 520"/>
+      <path d="M40 520 L46 492 L52 520"/>
+      <path d="M200 540 L206 515 L212 540"/>
+      <path d="M210 540 L217 512 L224 540"/>
+      <path d="M520 535 L528 508 L536 535"/>
+      <path d="M540 535 L548 506 L556 535"/>
+      <path d="M720 545 L727 518 L734 545"/>
+      <path d="M745 545 L753 515 L761 545"/>
+    </g>
+
+    <!-- Butterflies (detailed, colorful) -->
+    <g opacity="0.75">
+      <!-- Butterfly 1 pink -->
+      <line x1="300" y1="420" x2="300" y2="435" stroke="#333" stroke-width="2"/>
+      <ellipse cx="292" cy="423" rx="9" ry="6" fill="#FF69B4" opacity="0.8" transform="rotate(-25 292 423)"/>
+      <ellipse cx="308" cy="423" rx="9" ry="6" fill="#FFB6C1" opacity="0.8" transform="rotate(25 308 423)"/>
+
+      <!-- Butterfly 2 yellow -->
+      <line x1="580" y1="390" x2="580" y2="405" stroke="#333" stroke-width="2"/>
+      <ellipse cx="572" cy="393" rx="8" ry="5" fill="#FFD700" opacity="0.8" transform="rotate(-20 572 393)"/>
+      <ellipse cx="588" cy="393" rx="8" ry="5" fill="#FFA500" opacity="0.8" transform="rotate(20 588 393)"/>
+
+      <!-- Butterfly 3 purple small -->
+      <line x1="150" y1="450" x2="150" y2="460" stroke="#333" stroke-width="1.5"/>
+      <ellipse cx="144" cy="452" rx="6" ry="4" fill="#DDA0DD" opacity="0.75" transform="rotate(-20 144 452)"/>
+      <ellipse cx="156" cy="452" rx="6" ry="4" fill="#9370DB" opacity="0.75" transform="rotate(20 156 452)"/>
+    </g>
+
+    <!-- Honeybees near flowers -->
+    <g opacity="0.7">
+      <!-- Bee 1 -->
+      <ellipse cx="85" cy="510" rx="4" ry="5" fill="#FFD700"/>
+      <ellipse cx="85" cy="510" rx="2" ry="3" fill="#000"/>
+      <line x1="82" y1="512" x2="78" y2="515" stroke="#FFD700" stroke-width="1"/>
+
+      <!-- Bee 2 -->
+      <ellipse cx="425" cy="530" rx="3.5" ry="4.5" fill="#FFD700"/>
+      <ellipse cx="425" cy="530" rx="1.5" ry="2.5" fill="#000"/>
+      <line x1="422" y1="532" x2="418" y2="535" stroke="#FFD700" stroke-width="1"/>
+    </g>
+
+    <!-- Small animal silhouette (rabbit peeking) -->
+    <g opacity="0.6" fill="#8B6F47">
+      <ellipse cx="700" cy="520" rx="8" ry="10"/>
+      <ellipse cx="698" cy="505" rx="3.5" ry="7" transform="rotate(-20 698 505)"/>
+      <ellipse cx="702" cy="505" rx="3.5" ry="7" transform="rotate(20 702 505)"/>
+      <circle cx="700" cy="516" r="2" fill="#000"/>
+    </g>
+
+    <!-- Foreground sparkle particles -->
+    <g filter="url(#rm-soft-glow)" fill="#FFD700" opacity="0.8">
+      <circle cx="180" cy="480" r="2.5"><animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/></circle>
+      <circle cx="350" cy="500" r="2"><animate attributeName="opacity" values="0.4;0.95;0.4" dur="1.8s" repeatCount="indefinite"/></circle>
+      <circle cx="520" cy="490" r="2.5"><animate attributeName="opacity" values="0.5;1;0.5" dur="2.2s" repeatCount="indefinite"/></circle>
+      <circle cx="680" cy="510" r="2"><animate attributeName="opacity" values="0.3;0.9;0.3" dur="1.6s" repeatCount="indefinite"/></circle>
+      <circle cx="120" cy="520" r="2"><animate attributeName="opacity" values="0.4;1;0.4" dur="2.5s" repeatCount="indefinite"/></circle>
+      <circle cx="450" cy="545" r="2.5"><animate attributeName="opacity" values="0.6;0.9;0.6" dur="1.9s" repeatCount="indefinite"/></circle>
+      <circle cx="600" cy="525" r="2"><animate attributeName="opacity" values="0.3;0.95;0.3" dur="2.3s" repeatCount="indefinite"/></circle>
+    </g>
   </g>
 </svg>

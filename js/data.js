@@ -1,5 +1,5 @@
 // ============================================================
-// Hadley's Dream World — Game Data
+// Hadley's Dream — Game Data
 // ============================================================
 
 // --- Locations ---
@@ -26,7 +26,7 @@ const LOCATIONS = [
     id: 'cloud-garden',
     name: 'Cloud Garden',
     icon: '☁️',
-    bg: 'linear-gradient(180deg, #e8d5f5 0%, #f0e0ff 40%, #fff 100%)',
+    bg: 'linear-gradient(180deg, #c4a6e0 0%, #d8b8f0 40%, #e8d5f5 100%)',
     scene: 'assets/scenes/cloud-garden.svg',
     spots: 6,
     description: 'A floating garden above the clouds with rainbow flowers'
@@ -44,7 +44,7 @@ const LOCATIONS = [
     id: 'rainbow-meadow',
     name: 'Rainbow Meadow',
     icon: '🌈',
-    bg: 'linear-gradient(180deg, #ffd6e0 0%, #ffe8a8 30%, #d4f0c0 60%, #c8e8ff 100%)',
+    bg: 'linear-gradient(180deg, #f0a0b8 0%, #e8c878 30%, #90d090 60%, #80b8e0 100%)',
     scene: 'assets/scenes/rainbow-meadow.svg',
     spots: 6,
     description: 'A meadow where flowers bloom in every color of the rainbow'
@@ -167,75 +167,77 @@ const RARITY = {
 const FASHION_CATEGORIES = ['hair', 'top', 'bottom', 'dress', 'shoes', 'accessory', 'hat'];
 
 const FASHION_ITEMS = [
-  // Hair (3 free + 5 shop)
-  { id: 'hair-1', cat: 'hair', name: 'Long Straight', cost: 0, tags: ['classic','elegant'], color: '#5C3317' },
-  { id: 'hair-2', cat: 'hair', name: 'Pigtails', cost: 0, tags: ['cute','playful'], color: '#FFD700' },
-  { id: 'hair-3', cat: 'hair', name: 'Short Bob', cost: 0, tags: ['modern','casual'], color: '#8B0000' },
-  { id: 'hair-4', cat: 'hair', name: 'Curly Long', cost: 30, tags: ['fancy','princess'], color: '#D2691E' },
-  { id: 'hair-5', cat: 'hair', name: 'Space Buns', cost: 40, tags: ['space','pop'], color: '#FF69B4' },
-  { id: 'hair-6', cat: 'hair', name: 'Braided Crown', cost: 50, tags: ['princess','elegant'], color: '#C0C0C0' },
-  { id: 'hair-7', cat: 'hair', name: 'Punk Spikes', cost: 35, tags: ['rock','edgy'], color: '#9400D3' },
-  { id: 'hair-8', cat: 'hair', name: 'Mermaid Waves', cost: 60, tags: ['beach','fantasy'], color: '#40E0D0' },
+  // Hair (2 free + 1 shop)
+  { id: 'hair-1', cat: 'hair', name: 'Long Straight', cost: 0, tags: ['classic','elegant'], color: '#5C3317', svg: 'assets/fashion/hair-long-straight.svg' },
+  { id: 'hair-2', cat: 'hair', name: 'Pigtails', cost: 0, tags: ['cute','playful'], color: '#FFD700', svg: 'assets/fashion/hair-pigtails.svg' },
+  { id: 'hair-5', cat: 'hair', name: 'Space Buns', cost: 40, tags: ['space','pop'], color: '#FF69B4', svg: 'assets/fashion/hair-space-buns.svg' },
 
-  // Tops (3 free + 5 shop)
-  { id: 'top-1', cat: 'top', name: 'Basic Tee', cost: 0, tags: ['casual','everyday'], color: '#87CEEB' },
-  { id: 'top-2', cat: 'top', name: 'Striped Shirt', cost: 0, tags: ['casual','nautical'], color: '#FF6347' },
-  { id: 'top-3', cat: 'top', name: 'Hoodie', cost: 0, tags: ['cozy','winter','casual'], color: '#DDA0DD' },
-  { id: 'top-4', cat: 'top', name: 'Sparkle Crop', cost: 25, tags: ['pop','party'], color: '#FFD700' },
-  { id: 'top-5', cat: 'top', name: 'Denim Jacket', cost: 35, tags: ['casual','rock'], color: '#4682B4' },
-  { id: 'top-6', cat: 'top', name: 'Princess Blouse', cost: 50, tags: ['princess','elegant'], color: '#FFC0CB' },
-  { id: 'top-7', cat: 'top', name: 'Space Suit Top', cost: 60, tags: ['space','adventure'], color: '#C0C0C0' },
-  { id: 'top-8', cat: 'top', name: 'Cozy Sweater', cost: 30, tags: ['cozy','winter'], color: '#F5DEB3' },
+  // Tops (2 free + 1 shop)
+  { id: 'top-1', cat: 'top', name: 'Basic Tee', cost: 0, tags: ['casual','everyday'], color: '#87CEEB', svg: 'assets/fashion/top-basic-tee.svg' },
+  { id: 'top-3', cat: 'top', name: 'Hoodie', cost: 0, tags: ['cozy','winter','casual'], color: '#DDA0DD', svg: 'assets/fashion/top-hoodie.svg' },
+  { id: 'top-6', cat: 'top', name: 'Princess Blouse', cost: 50, tags: ['princess','elegant'], color: '#FFC0CB', svg: 'assets/fashion/top-princess-blouse.svg' },
 
-  // Bottoms (3 free + 5 shop)
-  { id: 'bottom-1', cat: 'bottom', name: 'Jeans', cost: 0, tags: ['casual','everyday'], color: '#4169E1' },
-  { id: 'bottom-2', cat: 'bottom', name: 'Pink Skirt', cost: 0, tags: ['cute','party'], color: '#FF69B4' },
-  { id: 'bottom-3', cat: 'bottom', name: 'Leggings', cost: 0, tags: ['casual','cozy','sport'], color: '#2F4F4F' },
-  { id: 'bottom-4', cat: 'bottom', name: 'Tutu', cost: 40, tags: ['princess','party','dance'], color: '#FFB6C1' },
-  { id: 'bottom-5', cat: 'bottom', name: 'Cargo Shorts', cost: 25, tags: ['adventure','beach','casual'], color: '#D2B48C' },
-  { id: 'bottom-6', cat: 'bottom', name: 'Glitter Pants', cost: 50, tags: ['pop','party','rock'], color: '#FFD700' },
-  { id: 'bottom-7', cat: 'bottom', name: 'Flowy Skirt', cost: 35, tags: ['elegant','beach'], color: '#E6E6FA' },
-  { id: 'bottom-8', cat: 'bottom', name: 'Space Pants', cost: 55, tags: ['space','adventure'], color: '#191970' },
+  // Bottoms (2 free + 1 shop)
+  { id: 'bottom-1', cat: 'bottom', name: 'Jeans', cost: 0, tags: ['casual','everyday'], color: '#4169E1', svg: 'assets/fashion/bottom-jeans.svg' },
+  { id: 'bottom-2', cat: 'bottom', name: 'Pink Skirt', cost: 0, tags: ['cute','party'], color: '#FF69B4', svg: 'assets/fashion/bottom-pink-skirt.svg' },
+  { id: 'bottom-4', cat: 'bottom', name: 'Tutu', cost: 40, tags: ['princess','party','dance'], color: '#FFB6C1', svg: 'assets/fashion/bottom-tutu.svg' },
 
-  // Dresses (3 free + 5 shop)
-  { id: 'dress-1', cat: 'dress', name: 'Sundress', cost: 0, tags: ['casual','beach','summer'], color: '#FFFFE0' },
-  { id: 'dress-2', cat: 'dress', name: 'Party Dress', cost: 0, tags: ['party','pop'], color: '#FF69B4' },
-  { id: 'dress-3', cat: 'dress', name: 'Overalls', cost: 0, tags: ['casual','adventure'], color: '#4682B4' },
-  { id: 'dress-4', cat: 'dress', name: 'Ball Gown', cost: 100, tags: ['princess','elegant','party'], color: '#FFD700' },
-  { id: 'dress-5', cat: 'dress', name: 'Mermaid Dress', cost: 80, tags: ['beach','fantasy'], color: '#40E0D0' },
-  { id: 'dress-6', cat: 'dress', name: 'Rock Star Outfit', cost: 70, tags: ['rock','pop','edgy'], color: '#2F2F2F' },
-  { id: 'dress-7', cat: 'dress', name: 'Winter Coat Dress', cost: 60, tags: ['winter','cozy','elegant'], color: '#B22222' },
-  { id: 'dress-8', cat: 'dress', name: 'Fairy Dress', cost: 120, tags: ['fantasy','princess','party'], color: '#DDA0DD' },
+  // Dresses (2 free + 1 shop)
+  { id: 'dress-1', cat: 'dress', name: 'Sundress', cost: 0, tags: ['casual','beach','summer'], color: '#FFFFE0', svg: 'assets/fashion/dress-sundress.svg' },
+  { id: 'dress-2', cat: 'dress', name: 'Party Dress', cost: 0, tags: ['party','pop'], color: '#FF69B4', svg: 'assets/fashion/dress-party-dress.svg' },
+  { id: 'dress-4', cat: 'dress', name: 'Ball Gown', cost: 100, tags: ['princess','elegant','party'], color: '#FFD700', svg: 'assets/fashion/dress-ball-gown.svg' },
 
-  // Shoes (3 free + 5 shop)
-  { id: 'shoes-1', cat: 'shoes', name: 'Sneakers', cost: 0, tags: ['casual','sport','everyday'], color: '#FFF' },
-  { id: 'shoes-2', cat: 'shoes', name: 'Sandals', cost: 0, tags: ['beach','casual','summer'], color: '#D2691E' },
-  { id: 'shoes-3', cat: 'shoes', name: 'Boots', cost: 0, tags: ['adventure','winter','rock'], color: '#8B4513' },
-  { id: 'shoes-4', cat: 'shoes', name: 'Glass Slippers', cost: 80, tags: ['princess','elegant','party'], color: '#E0FFFF' },
-  { id: 'shoes-5', cat: 'shoes', name: 'Platform Stars', cost: 50, tags: ['pop','rock','party'], color: '#FFD700' },
-  { id: 'shoes-6', cat: 'shoes', name: 'Fairy Flats', cost: 40, tags: ['fantasy','cute','elegant'], color: '#FF69B4' },
-  { id: 'shoes-7', cat: 'shoes', name: 'Space Boots', cost: 55, tags: ['space','adventure'], color: '#C0C0C0' },
-  { id: 'shoes-8', cat: 'shoes', name: 'Fuzzy Slippers', cost: 25, tags: ['cozy','winter','cute'], color: '#FFB6C1' },
+  // Shoes (2 free + 1 shop)
+  { id: 'shoes-1', cat: 'shoes', name: 'Sneakers', cost: 0, tags: ['casual','sport','everyday'], color: '#FFF', svg: 'assets/fashion/shoes-sneakers.svg' },
+  { id: 'shoes-3', cat: 'shoes', name: 'Boots', cost: 0, tags: ['adventure','winter','rock'], color: '#8B4513', svg: 'assets/fashion/shoes-boots.svg' },
+  { id: 'shoes-4', cat: 'shoes', name: 'Glass Slippers', cost: 80, tags: ['princess','elegant','party'], color: '#E0FFFF', svg: 'assets/fashion/shoes-glass-slippers.svg' },
 
-  // Accessories (3 free + 5 shop)
-  { id: 'acc-1', cat: 'accessory', name: 'Heart Necklace', cost: 0, tags: ['cute','party'], color: '#FF69B4' },
-  { id: 'acc-2', cat: 'accessory', name: 'Sunglasses', cost: 0, tags: ['beach','casual','pop'], color: '#2F2F2F' },
-  { id: 'acc-3', cat: 'accessory', name: 'Flower Bracelet', cost: 0, tags: ['cute','fantasy'], color: '#FF6347' },
-  { id: 'acc-4', cat: 'accessory', name: 'Star Earrings', cost: 30, tags: ['space','pop','party'], color: '#FFD700' },
-  { id: 'acc-5', cat: 'accessory', name: 'Princess Wand', cost: 60, tags: ['princess','fantasy'], color: '#FFD700' },
-  { id: 'acc-6', cat: 'accessory', name: 'Guitar', cost: 50, tags: ['rock','pop'], color: '#8B0000' },
-  { id: 'acc-7', cat: 'accessory', name: 'Fairy Wings', cost: 80, tags: ['fantasy','princess','party'], color: '#E6E6FA' },
-  { id: 'acc-8', cat: 'accessory', name: 'Scarf', cost: 20, tags: ['winter','cozy','casual'], color: '#FF6347' },
+  // Accessories (2 free + 1 shop)
+  { id: 'acc-1', cat: 'accessory', name: 'Heart Necklace', cost: 0, tags: ['cute','party'], color: '#FF69B4', svg: 'assets/fashion/acc-heart-necklace.svg' },
+  { id: 'acc-2', cat: 'accessory', name: 'Sunglasses', cost: 0, tags: ['beach','casual','pop'], color: '#2F2F2F', svg: 'assets/fashion/acc-sunglasses.svg' },
+  { id: 'acc-7', cat: 'accessory', name: 'Fairy Wings', cost: 80, tags: ['fantasy','princess','party'], color: '#E6E6FA', svg: 'assets/fashion/acc-fairy-wings.svg' },
 
-  // Hats (3 free + 5 shop)
-  { id: 'hat-1', cat: 'hat', name: 'Baseball Cap', cost: 0, tags: ['casual','sport'], color: '#FF6347' },
-  { id: 'hat-2', cat: 'hat', name: 'Flower Crown', cost: 0, tags: ['cute','fantasy','party'], color: '#FF69B4' },
-  { id: 'hat-3', cat: 'hat', name: 'Beanie', cost: 0, tags: ['cozy','winter','casual'], color: '#DDA0DD' },
-  { id: 'hat-4', cat: 'hat', name: 'Tiara', cost: 70, tags: ['princess','elegant','party'], color: '#FFD700' },
-  { id: 'hat-5', cat: 'hat', name: 'Witch Hat', cost: 45, tags: ['fantasy','edgy'], color: '#4B0082' },
-  { id: 'hat-6', cat: 'hat', name: 'Sun Hat', cost: 30, tags: ['beach','summer','elegant'], color: '#F5DEB3' },
-  { id: 'hat-7', cat: 'hat', name: 'Space Helmet', cost: 65, tags: ['space','adventure'], color: '#E0E0E0' },
-  { id: 'hat-8', cat: 'hat', name: 'Cat Ears', cost: 35, tags: ['cute','pop','party'], color: '#FFB6C1' }
+  // Hats (2 free + 1 shop)
+  { id: 'hat-2', cat: 'hat', name: 'Flower Crown', cost: 0, tags: ['cute','fantasy','party'], color: '#FF69B4', svg: 'assets/fashion/hat-flower-crown.svg' },
+  { id: 'hat-3', cat: 'hat', name: 'Beanie', cost: 0, tags: ['cozy','winter','casual'], color: '#DDA0DD', svg: 'assets/fashion/hat-beanie.svg' },
+  { id: 'hat-4', cat: 'hat', name: 'Tiara', cost: 70, tags: ['princess','elegant','party'], color: '#FFD700', svg: 'assets/fashion/hat-tiara.svg' }
+
+  // --- Remaining items (commented out for future expansion) ---
+  // { id: 'hair-3', cat: 'hair', name: 'Short Bob', cost: 0, tags: ['modern','casual'], color: '#8B0000' },
+  // { id: 'hair-4', cat: 'hair', name: 'Curly Long', cost: 30, tags: ['fancy','princess'], color: '#D2691E' },
+  // { id: 'hair-6', cat: 'hair', name: 'Braided Crown', cost: 50, tags: ['princess','elegant'], color: '#C0C0C0' },
+  // { id: 'hair-7', cat: 'hair', name: 'Punk Spikes', cost: 35, tags: ['rock','edgy'], color: '#9400D3' },
+  // { id: 'hair-8', cat: 'hair', name: 'Mermaid Waves', cost: 60, tags: ['beach','fantasy'], color: '#40E0D0' },
+  // { id: 'top-2', cat: 'top', name: 'Striped Shirt', cost: 0, tags: ['casual','nautical'], color: '#FF6347' },
+  // { id: 'top-4', cat: 'top', name: 'Sparkle Crop', cost: 25, tags: ['pop','party'], color: '#FFD700' },
+  // { id: 'top-5', cat: 'top', name: 'Denim Jacket', cost: 35, tags: ['casual','rock'], color: '#4682B4' },
+  // { id: 'top-7', cat: 'top', name: 'Space Suit Top', cost: 60, tags: ['space','adventure'], color: '#C0C0C0' },
+  // { id: 'top-8', cat: 'top', name: 'Cozy Sweater', cost: 30, tags: ['cozy','winter'], color: '#F5DEB3' },
+  // { id: 'bottom-3', cat: 'bottom', name: 'Leggings', cost: 0, tags: ['casual','cozy','sport'], color: '#2F4F4F' },
+  // { id: 'bottom-5', cat: 'bottom', name: 'Cargo Shorts', cost: 25, tags: ['adventure','beach','casual'], color: '#D2B48C' },
+  // { id: 'bottom-6', cat: 'bottom', name: 'Glitter Pants', cost: 50, tags: ['pop','party','rock'], color: '#FFD700' },
+  // { id: 'bottom-7', cat: 'bottom', name: 'Flowy Skirt', cost: 35, tags: ['elegant','beach'], color: '#E6E6FA' },
+  // { id: 'bottom-8', cat: 'bottom', name: 'Space Pants', cost: 55, tags: ['space','adventure'], color: '#191970' },
+  // { id: 'dress-3', cat: 'dress', name: 'Overalls', cost: 0, tags: ['casual','adventure'], color: '#4682B4' },
+  // { id: 'dress-5', cat: 'dress', name: 'Mermaid Dress', cost: 80, tags: ['beach','fantasy'], color: '#40E0D0' },
+  // { id: 'dress-6', cat: 'dress', name: 'Rock Star Outfit', cost: 70, tags: ['rock','pop','edgy'], color: '#2F2F2F' },
+  // { id: 'dress-7', cat: 'dress', name: 'Winter Coat Dress', cost: 60, tags: ['winter','cozy','elegant'], color: '#B22222' },
+  // { id: 'dress-8', cat: 'dress', name: 'Fairy Dress', cost: 120, tags: ['fantasy','princess','party'], color: '#DDA0DD' },
+  // { id: 'shoes-2', cat: 'shoes', name: 'Sandals', cost: 0, tags: ['beach','casual','summer'], color: '#D2691E' },
+  // { id: 'shoes-5', cat: 'shoes', name: 'Platform Stars', cost: 50, tags: ['pop','rock','party'], color: '#FFD700' },
+  // { id: 'shoes-6', cat: 'shoes', name: 'Fairy Flats', cost: 40, tags: ['fantasy','cute','elegant'], color: '#FF69B4' },
+  // { id: 'shoes-7', cat: 'shoes', name: 'Space Boots', cost: 55, tags: ['space','adventure'], color: '#C0C0C0' },
+  // { id: 'shoes-8', cat: 'shoes', name: 'Fuzzy Slippers', cost: 25, tags: ['cozy','winter','cute'], color: '#FFB6C1' },
+  // { id: 'acc-3', cat: 'accessory', name: 'Flower Bracelet', cost: 0, tags: ['cute','fantasy'], color: '#FF6347' },
+  // { id: 'acc-4', cat: 'accessory', name: 'Star Earrings', cost: 30, tags: ['space','pop','party'], color: '#FFD700' },
+  // { id: 'acc-5', cat: 'accessory', name: 'Princess Wand', cost: 60, tags: ['princess','fantasy'], color: '#FFD700' },
+  // { id: 'acc-6', cat: 'accessory', name: 'Guitar', cost: 50, tags: ['rock','pop'], color: '#8B0000' },
+  // { id: 'acc-8', cat: 'accessory', name: 'Scarf', cost: 20, tags: ['winter','cozy','casual'], color: '#FF6347' },
+  // { id: 'hat-1', cat: 'hat', name: 'Baseball Cap', cost: 0, tags: ['casual','sport'], color: '#FF6347' },
+  // { id: 'hat-5', cat: 'hat', name: 'Witch Hat', cost: 45, tags: ['fantasy','edgy'], color: '#4B0082' },
+  // { id: 'hat-6', cat: 'hat', name: 'Sun Hat', cost: 30, tags: ['beach','summer','elegant'], color: '#F5DEB3' },
+  // { id: 'hat-7', cat: 'hat', name: 'Space Helmet', cost: 65, tags: ['space','adventure'], color: '#E0E0E0' },
+  // { id: 'hat-8', cat: 'hat', name: 'Cat Ears', cost: 35, tags: ['cute','pop','party'], color: '#FFB6C1' }
 ];
 
 // --- Fashion Challenges ---
@@ -332,10 +334,12 @@ const DEFAULT_STATE = {
   wardrobe_unlocked: FASHION_ITEMS.filter(i => i.cost === 0).map(i => i.id),
   furniture_unlocked: FURNITURE_ITEMS.filter(i => i.cost === 0).map(i => i.id),
   fashion_scores: {},
-  outfits: {},
+  saved_outfits: [],
   room: { furniture: [], theme: 'default' },
   stats: { total_caught: 0, total_coins_earned: 100, challenges_completed: 0 },
   leaderboard: {},
   last_login: null,
-  last_save: null
+  last_save: null,
+  tutorial_completed: false,
+  last_location: 'sparkle-forest'
 };

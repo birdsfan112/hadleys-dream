@@ -1,37 +1,105 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="rs-body-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#D8A8D8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A88BAA;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="rs-shell-outer" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFB3B3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF9090;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="rs-shell-shine" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#FFB3B3;stop-opacity:0.2" />
+    </radialGradient>
+    <radialGradient id="rs-eye-shine" cx="35%" cy="35%" r="70%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D8A8D8;stop-opacity:0.3" />
+    </radialGradient>
+    <filter id="rs-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="1" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.25"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
   <style>
-    .body{fill:#DDA0DD;stroke:#DA70D6;stroke-width:2}
-    .eye{fill:#333} .shine{fill:#FFF}
-    .blush{fill:#FF69B4;opacity:0.25}
+    @keyframes rs-crawl {
+      0%, 100% { transform: translateX(-2px); }
+      50% { transform: translateX(2px); }
+    }
+    @keyframes rs-trail-fade {
+      0% { opacity: 0.4; }
+      100% { opacity: 0; }
+    }
+    .rs-body { animation: rs-crawl 2.5s ease-in-out infinite; }
+    .rs-trail-left { animation: rs-trail-fade 2s ease-out forwards; }
+    .rs-trail-right { animation: rs-trail-fade 2s ease-out forwards; }
   </style>
-  <!-- Slime trail -->
-  <circle cx="45" cy="155" r="4" fill="#DDA0DD" opacity="0.2"/>
-  <circle cx="55" cy="160" r="3" fill="#DDA0DD" opacity="0.15"/>
-  <circle cx="35" cy="160" r="3" fill="#DDA0DD" opacity="0.2"/>
-  <!-- Body blob -->
-  <ellipse cx="90" cy="140" rx="50" ry="22" class="body"/>
-  <!-- Rainbow shell -->
-  <g transform="translate(125,100)">
-    <path d="M0 35 Q-35 35 -35 10 Q-35 -15 0 -15 Q25 -15 25 5" fill="none" stroke="#FFB3B3" stroke-width="5" stroke-linecap="round"/>
-    <path d="M0 30 Q-28 30 -28 10 Q-28 -8 0 -8 Q18 -8 18 5" fill="none" stroke="#FFD9A3" stroke-width="4" stroke-linecap="round"/>
-    <path d="M0 25 Q-21 25 -21 10 Q-21 -2 0 -2 Q12 -2 12 5" fill="none" stroke="#FFFFB3" stroke-width="4" stroke-linecap="round"/>
-    <path d="M0 20 Q-14 20 -14 10 Q-14 3 0 3 Q7 3 7 7" fill="none" stroke="#B3FFB3" stroke-width="3" stroke-linecap="round"/>
-    <path d="M0 16 Q-8 16 -8 10 Q-8 6 0 6" fill="none" stroke="#B3D9FF" stroke-width="3" stroke-linecap="round"/>
-    <path d="M0 13 Q-4 13 -4 10 Q-4 8 0 8" fill="none" stroke="#E0B3FF" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Slime trail (shimmery) -->
+  <circle cx="35" cy="155" r="4" fill="#D8A8D8" class="rs-trail-left" style="animation-delay: 0s"/>
+  <circle cx="50" cy="160" r="3.5" fill="#D8A8D8" class="rs-trail-left" style="animation-delay: 0.3s"/>
+  <circle cx="25" cy="162" r="3" fill="#D8A8D8" class="rs-trail-left" style="animation-delay: 0.6s"/>
+
+  <!-- Main snail body -->
+  <g class="rs-body">
+    <!-- Body blob (soft and rounded) -->
+    <ellipse cx="85" cy="140" rx="52" ry="24" fill="url(#rs-body-grad)" filter="url(#rs-shadow)"/>
+    <!-- Belly highlight -->
+    <ellipse cx="85" cy="145" rx="32" ry="14" fill="#E8C8E8" opacity="0.4"/>
+
+    <!-- Eye stalks -->
+    <line x1="62" y1="128" x2="52" y2="95" stroke="url(#rs-body-grad)" stroke-width="3" stroke-linecap="round"/>
+    <line x1="82" y1="126" x2="78" y2="92" stroke="url(#rs-body-grad)" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Eyes with sparkle (curious, looking up) -->
+    <circle cx="52" cy="90" r="8" fill="#FFFFFF"/>
+    <circle cx="78" cy="88" r="8" fill="#FFFFFF"/>
+    <!-- Pupils -->
+    <circle cx="51" cy="87" r="4.5" fill="#2C3E50"/>
+    <circle cx="77" cy="85" r="4.5" fill="#2C3E50"/>
+    <!-- Eye shine -->
+    <circle cx="54" cy="84" r="3" fill="url(#rs-eye-shine)"/>
+    <circle cx="80" cy="82" r="3" fill="url(#rs-eye-shine)"/>
+    <circle cx="56" cy="82" r="1.5" fill="#FFFFFF" opacity="0.9"/>
+    <circle cx="82" cy="80" r="1.5" fill="#FFFFFF" opacity="0.9"/>
+
+    <!-- Blush -->
+    <ellipse cx="45" cy="108" rx="9" ry="5" fill="#FF69B4" opacity="0.2"/>
+    <ellipse cx="95" cy="105" rx="9" ry="5" fill="#FF69B4" opacity="0.2"/>
+
+    <!-- Happy mouth -->
+    <path d="M65 118 Q75 125 85 118" stroke="#A88BAA" stroke-width="2" fill="none" stroke-linecap="round"/>
   </g>
-  <!-- Eye stalks -->
-  <line x1="65" y1="130" x2="55" y2="100" stroke="#DA70D6" stroke-width="2.5" stroke-linecap="round"/>
-  <line x1="85" y1="128" x2="80" y2="98" stroke="#DA70D6" stroke-width="2.5" stroke-linecap="round"/>
-  <!-- Eyes (curious, looking up) -->
-  <circle cx="55" cy="96" r="7" fill="#FFF" stroke="#DA70D6" stroke-width="1.5"/>
-  <circle cx="80" cy="94" r="7" fill="#FFF" stroke="#DA70D6" stroke-width="1.5"/>
-  <circle cx="54" cy="93" r="4" class="eye"/>
-  <circle cx="79" cy="91" r="4" class="eye"/>
-  <circle cx="56" cy="91" r="2" class="shine"/>
-  <circle cx="81" cy="89" r="2" class="shine"/>
-  <!-- Blush -->
-  <ellipse cx="50" cy="108" rx="6" ry="4" class="blush"/>
-  <ellipse cx="88" cy="106" rx="6" ry="4" class="blush"/>
-  <!-- Mouth -->
-  <path d="M60 116 Q67 122 74 116" stroke="#DA70D6" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Rainbow spiral shell -->
+  <g transform="translate(130,105)" filter="url(#rs-shadow)">
+    <!-- Outermost red spiral band -->
+    <path d="M0 40 Q-40 40 -40 8 Q-40 -18 0 -18 Q28 -18 28 8" fill="none" stroke="url(#rs-shell-outer)" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- Orange band -->
+    <path d="M0 34 Q-32 34 -32 8 Q-32 -10 0 -10 Q20 -10 20 8" fill="none" stroke="#FFD180" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- Yellow band -->
+    <path d="M0 28 Q-24 28 -24 8 Q-24 -4 0 -4 Q14 -4 14 6" fill="none" stroke="#FFFFA6" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- Green band -->
+    <path d="M0 22 Q-16 22 -16 8 Q-16 0 0 0 Q9 0 10 5" fill="none" stroke="#A6FF9E" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- Light blue band -->
+    <path d="M0 17 Q-10 17 -10 8 Q-10 2 0 2" fill="none" stroke="#A8DAFF" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Purple band (center) -->
+    <path d="M0 14 Q-6 14 -6 8 Q-6 4 0 4" fill="none" stroke="#E8B8FF" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Shell shine highlight -->
+    <ellipse cx="-10" cy="-5" rx="12" ry="8" fill="url(#rs-shell-shine)" opacity="0.7"/>
+    <circle cx="-5" cy="5" r="4" fill="#FFFFFF" opacity="0.4"/>
+  </g>
 </svg>

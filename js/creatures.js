@@ -1,5 +1,5 @@
 // ============================================================
-// Hadley's Dream World — Creature World
+// Hadley's Dream — Creature World
 // ============================================================
 
 const CreatureWorld = (() => {
@@ -7,7 +7,10 @@ const CreatureWorld = (() => {
   let catchAnimFrame = null;
   let catchState = null;
   let catchActive = false;
+  let practiceTimeout = null;
   let cooldowns = {}; // spotKey -> timestamp when available
+  let parallaxMoveHandler = null;
+  let parallaxTouchHandler = null;
   try {
     const savedCD = sessionStorage.getItem('creature-cooldowns');
     if (savedCD) {
@@ -50,7 +53,7 @@ const CreatureWorld = (() => {
         fetch(creature.svg)
           .then(r => r.text())
           .then(text => svgCache.set(creature.id, text))
-          .catch(() => {}); // Silently fail — canvas fallback still works
+          .catch(e => console.warn('SVG load failed:', creature.id, e));
       }
     });
   }
@@ -81,6 +84,10 @@ const CreatureWorld = (() => {
   function enterLocation(loc) {
     Audio.sfx.click();
     currentLocation = loc;
+    // Save last location
+    Game.state.last_location = loc.id;
+    SaveManager.autoSave(Game.state);
+
     document.getElementById('location-select').classList.add('hidden');
     const explore = document.getElementById('location-explore');
     explore.classList.remove('hidden');
@@ -100,6 +107,12 @@ const CreatureWorld = (() => {
 
     // Preload creature SVGs for this location
     preloadSVGs(loc.id);
+
+    // Initialize particle system for this location
+    Particles.init(loc.id);
+
+    // Setup parallax touch interaction
+    setupParallax();
 
     renderSpots();
   }
@@ -166,17 +179,275 @@ const CreatureWorld = (() => {
     Audio.sfx.discover();
 
     const creature = pickCreature();
+    if (!creature) return;
     startCatchGame(creature, spotIndex);
   }
 
-  // --- Catch Mini-Game ---
-  function startCatchGame(creature, spotIndex) {
+  // --- Practice Round (first-time tutorial) ---
+  function startPracticeRound(creature, spotIndex) {
     if (catchActive) return;
     catchActive = true;
 
     const overlay = document.getElementById('catch-overlay');
     overlay.classList.remove('hidden');
+    overlay.classList.add('practice-mode');
     document.getElementById('catch-result').classList.add('hidden');
+
+    // Set rarity-based overlay tint
+    setRarityOverlayTheme(overlay, creature.rarity);
+
+    document.getElementById('catch-creature-name').textContent = creature.name;
+    const rarityEl = document.getElementById('catch-rarity');
+    rarityEl.textContent = RARITY[creature.rarity].label;
+    rarityEl.style.background = RARITY[creature.rarity].color;
+    rarityEl.style.color = '#FFF';
+    document.getElementById('catch-instruction').textContent = 'PRACTICE -- Tap when the circles line up!';
+
+    // Show creature SVG image if available
+    const svgContainer = document.getElementById('catch-creature-svg');
+    if (svgContainer) {
+      // Reset all animation classes before adding new content
+      svgContainer.classList.remove('catch-creature-entrance', 'catch-celebrate', 'catch-dodge');
+      if (svgCache.has(creature.id)) {
+        svgContainer.innerHTML = sanitizeSVG(svgCache.get(creature.id));
+        svgContainer.classList.remove('hidden');
+        void svgContainer.offsetWidth;
+        svgContainer.classList.add('catch-creature-entrance');
+      } else if (creature.svg) {
+        svgContainer.innerHTML = `<img src="${creature.svg}" alt="${creature.name}" style="width:100%;height:100%;" onerror="this.parentElement.classList.add('hidden')">`;
+        svgContainer.classList.remove('hidden');
+        void svgContainer.offsetWidth;
+        svgContainer.classList.add('catch-creature-entrance');
+      } else {
+        svgContainer.innerHTML = '';
+        svgContainer.classList.add('hidden');
+      }
+    }
+
+    const canvas = document.getElementById('catch-canvas');
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = 260 * dpr;
+    canvas.height = 260 * dpr;
+    canvas.style.width = '260px';
+    canvas.style.height = '260px';
+    const ctxC = canvas.getContext('2d');
+    ctxC.scale(dpr, dpr);
+
+    const cfg = RARITY[creature.rarity];
+    const targetRadius = 50 * cfg.ringSize;
+    const maxRadius = 120;
+    let ringRadius = maxRadius;
+    let tapped = false;
+    const speed = 100 * cfg.ringSpeed * 0.5; // halved for practice
+    let lastTime = performance.now();
+    let targetRingRotation = 0;
+
+    function drawRichRings() {
+      const cx = 130, cy = 130;
+      const rarityColor = RARITY[creature.rarity].color;
+
+      // Draw radial gradient background
+      const gradient = ctxC.createRadialGradient(cx, cy, 0, cx, cy, 130);
+      const baseColor = rarityColor.replace(')', ', 0.15)').replace('rgb', 'rgba');
+      gradient.addColorStop(0, baseColor);
+      gradient.addColorStop(1, 'rgba(0, 0, 0, 0.4)');
+      ctxC.fillStyle = gradient;
+      ctxC.beginPath();
+      ctxC.arc(cx, cy, 130, 0, Math.PI * 2);
+      ctxC.fill();
+
+      // Target ring with glow and dashed pattern
+      ctxC.save();
+      ctxC.shadowBlur = 15;
+      ctxC.shadowColor = rarityColor;
+      ctxC.setLineDash([8, 4]);
+      ctxC.beginPath();
+      ctxC.arc(cx, cy, targetRadius, 0, Math.PI * 2);
+      ctxC.strokeStyle = 'rgba(255,255,255,0.6)';
+      ctxC.lineWidth = 3;
+      ctxC.stroke();
+      ctxC.restore();
+
+      // Shrinking ring with glow and color interpolation
+      const diff = Math.abs(ringRadius - targetRadius);
+      let hue;
+      if (diff < 8) {
+        hue = 120; // green
+      } else if (diff < 20) {
+        hue = 60; // yellow
+      } else {
+        hue = 0; // red
+      }
+
+      const hsla = `hsla(${hue}, 100%, 50%, 0.8)`;
+
+      // Draw glow (softer)
+      ctxC.save();
+      ctxC.shadowBlur = 20;
+      ctxC.shadowColor = `hsla(${hue}, 100%, 50%, 0.6)`;
+      ctxC.beginPath();
+      ctxC.arc(cx, cy, ringRadius, 0, Math.PI * 2);
+      ctxC.strokeStyle = hsla;
+      ctxC.lineWidth = 6;
+      ctxC.stroke();
+      ctxC.restore();
+
+      // Draw crisp ring on top
+      ctxC.beginPath();
+      ctxC.arc(cx, cy, ringRadius, 0, Math.PI * 2);
+      ctxC.strokeStyle = hsla;
+      ctxC.lineWidth = 6;
+      ctxC.stroke();
+
+      // Draw sparkle dots on shrinking ring
+      for (let i = 0; i < 4; i++) {
+        const angle = (Math.PI / 2) * i;
+        const px = cx + Math.cos(angle) * ringRadius;
+        const py = cy + Math.sin(angle) * ringRadius;
+        const sparkleSize = 2 + Math.sin(Date.now() / 100) * 1;
+        ctxC.fillStyle = 'rgba(255,255,255,0.8)';
+        ctxC.beginPath();
+        ctxC.arc(px, py, sparkleSize, 0, Math.PI * 2);
+        ctxC.fill();
+      }
+    }
+
+    function animate(now) {
+      if (tapped) return;
+      const dt = (now - lastTime) / 1000;
+      lastTime = now;
+
+      ringRadius -= speed * dt;
+      if (ringRadius <= 0) {
+        ringRadius = maxRadius;
+      }
+
+      targetRingRotation += dt * 20; // Subtle rotation
+
+      const cx = 130, cy = 130;
+      ctxC.clearRect(0, 0, 260, 260);
+
+      drawRichRings();
+
+      // Only draw canvas creature if no SVG overlay
+      if (!svgContainer || svgContainer.classList.contains('hidden')) {
+        // Fallback creature drawing (same as real catch)
+        const c1 = creature.colors[0];
+        const c2 = creature.colors[1];
+        ctxC.beginPath();
+        ctxC.arc(cx, cy, 30, 0, Math.PI * 2);
+        ctxC.fillStyle = c1;
+        ctxC.fill();
+        ctxC.strokeStyle = c2;
+        ctxC.lineWidth = 2;
+        ctxC.stroke();
+        ctxC.fillStyle = '#333';
+        ctxC.beginPath();
+        ctxC.arc(cx - 10, cy - 5, 4, 0, Math.PI * 2);
+        ctxC.arc(cx + 10, cy - 5, 4, 0, Math.PI * 2);
+        ctxC.fill();
+        ctxC.fillStyle = '#FFF';
+        ctxC.beginPath();
+        ctxC.arc(cx - 8, cy - 7, 2, 0, Math.PI * 2);
+        ctxC.arc(cx + 12, cy - 7, 2, 0, Math.PI * 2);
+        ctxC.fill();
+        ctxC.beginPath();
+        ctxC.arc(cx, cy + 5, 6, 0, Math.PI);
+        ctxC.strokeStyle = '#FF69B4';
+        ctxC.lineWidth = 1.5;
+        ctxC.stroke();
+        ctxC.fillStyle = 'rgba(255,105,180,0.3)';
+        ctxC.beginPath();
+        ctxC.ellipse(cx - 18, cy + 2, 6, 4, 0, 0, Math.PI * 2);
+        ctxC.ellipse(cx + 18, cy + 2, 6, 4, 0, 0, Math.PI * 2);
+        ctxC.fill();
+      }
+
+      catchAnimFrame = requestAnimationFrame(animate);
+    }
+
+    function onTap() {
+      if (tapped) return;
+      tapped = true;
+      cancelAnimationFrame(catchAnimFrame);
+      canvas.removeEventListener('click', onTap);
+      canvas.removeEventListener('touchstart', onTouchTap, { passive: false });
+
+      const diff = Math.abs(ringRadius - targetRadius);
+
+      if (diff < 20) {
+        // Success (good or perfect) -- complete tutorial
+        playCatchSuccess(creature, svgContainer, canvas, ctxC);
+
+        const resultEl = document.getElementById('catch-result');
+        const resultText = document.getElementById('catch-result-text');
+        resultText.innerHTML = 'Nice! You got it!';
+        resultEl.classList.remove('hidden');
+        document.getElementById('catch-instruction').textContent = '';
+
+        Game.state.tutorial_completed = true;
+        SaveManager.autoSave(Game.state);
+
+        // After 1500ms, close practice and start real catch
+        practiceTimeout = setTimeout(() => {
+          practiceTimeout = null;
+          // Only proceed if still on creatures screen with overlay visible
+          const creaturesScreen = document.getElementById('creatures-screen');
+          if (!creaturesScreen || !creaturesScreen.classList.contains('active')) return;
+          if (overlay.classList.contains('hidden')) return;
+          overlay.classList.add('hidden');
+          overlay.classList.remove('practice-mode');
+          resultEl.classList.add('hidden');
+          if (svgContainer) {
+            svgContainer.innerHTML = '';
+            svgContainer.classList.add('hidden');
+            svgContainer.classList.remove('catch-creature-entrance');
+          }
+          catchActive = false;
+          startCatchGame(creature, spotIndex);
+        }, 1500);
+      } else {
+        // Miss -- let them try again with dodge effect
+        playMissEffect(creature, svgContainer, canvas, ctxC);
+        document.getElementById('catch-instruction').textContent = 'Try again!';
+        ringRadius = maxRadius;
+        tapped = false;
+        lastTime = performance.now();
+        setTimeout(() => {
+          svgContainer.classList.remove('catch-dodge');
+          canvas.addEventListener('click', onTap);
+          canvas.addEventListener('touchstart', onTouchTap, { passive: false });
+          catchAnimFrame = requestAnimationFrame(animate);
+        }, 500);
+      }
+    }
+
+    function onTouchTap(e) { e.preventDefault(); onTap(); }
+
+    canvas.addEventListener('click', onTap);
+    canvas.addEventListener('touchstart', onTouchTap, { passive: false });
+
+    catchAnimFrame = requestAnimationFrame(animate);
+  }
+
+  // --- Catch Mini-Game ---
+  function startCatchGame(creature, spotIndex) {
+    // Tutorial check: first-time players get a practice round
+    if (!Game.state.tutorial_completed) {
+      startPracticeRound(creature, spotIndex);
+      return;
+    }
+
+    if (catchActive) return;
+    catchActive = true;
+
+    const overlay = document.getElementById('catch-overlay');
+    overlay.classList.remove('hidden');
+    overlay.classList.remove('practice-mode');
+    document.getElementById('catch-result').classList.add('hidden');
+
+    // Set rarity-based overlay tint
+    setRarityOverlayTheme(overlay, creature.rarity);
 
     document.getElementById('catch-creature-name').textContent = creature.name;
     const rarityEl = document.getElementById('catch-rarity');
@@ -188,13 +459,20 @@ const CreatureWorld = (() => {
     // Show creature SVG image if available
     const svgContainer = document.getElementById('catch-creature-svg');
     if (svgContainer) {
+      // Reset all animation classes before adding new content
+      svgContainer.classList.remove('catch-creature-entrance', 'catch-celebrate', 'catch-dodge');
       if (svgCache.has(creature.id)) {
         svgContainer.innerHTML = sanitizeSVG(svgCache.get(creature.id));
         svgContainer.classList.remove('hidden');
+        // Force reflow so the animation replays even if class was already present
+        void svgContainer.offsetWidth;
+        svgContainer.classList.add('catch-creature-entrance');
       } else if (creature.svg) {
         // Try loading on-demand
-        svgContainer.innerHTML = `<img src="${creature.svg}" alt="${creature.name}" style="width:100%;height:100%;">`;
+        svgContainer.innerHTML = `<img src="${creature.svg}" alt="${creature.name}" style="width:100%;height:100%;" onerror="this.parentElement.classList.add('hidden')">`;
         svgContainer.classList.remove('hidden');
+        void svgContainer.offsetWidth;
+        svgContainer.classList.add('catch-creature-entrance');
       } else {
         svgContainer.innerHTML = '';
         svgContainer.classList.add('hidden');
@@ -218,6 +496,7 @@ const CreatureWorld = (() => {
     let tapped = false;
     const speed = 100 * cfg.ringSpeed; // pixels per second shrink rate
     let lastTime = performance.now();
+    let targetRingRotation = 0;
 
     function drawCreatureCanvas(cx, cy) {
       // Fallback: draw a simple kawaii circle creature on canvas
@@ -257,8 +536,75 @@ const CreatureWorld = (() => {
       ctxC.fill();
     }
 
-    // Determine if SVG is shown (skip canvas creature drawing)
-    const hasSVG = svgContainer && !svgContainer.classList.contains('hidden');
+    function drawRichRings() {
+      const cx = 130, cy = 130;
+      const rarityColor = RARITY[creature.rarity].color;
+
+      // Draw radial gradient background
+      const gradient = ctxC.createRadialGradient(cx, cy, 0, cx, cy, 130);
+      const baseColor = rarityColor.replace(')', ', 0.15)').replace('rgb', 'rgba');
+      gradient.addColorStop(0, baseColor);
+      gradient.addColorStop(1, 'rgba(0, 0, 0, 0.4)');
+      ctxC.fillStyle = gradient;
+      ctxC.beginPath();
+      ctxC.arc(cx, cy, 130, 0, Math.PI * 2);
+      ctxC.fill();
+
+      // Target ring with glow and dashed pattern
+      ctxC.save();
+      ctxC.shadowBlur = 15;
+      ctxC.shadowColor = rarityColor;
+      ctxC.setLineDash([8, 4]);
+      ctxC.beginPath();
+      ctxC.arc(cx, cy, targetRadius, 0, Math.PI * 2);
+      ctxC.strokeStyle = 'rgba(255,255,255,0.6)';
+      ctxC.lineWidth = 3;
+      ctxC.stroke();
+      ctxC.restore();
+
+      // Shrinking ring with glow and color interpolation
+      const diff = Math.abs(ringRadius - targetRadius);
+      let hue;
+      if (diff < 8) {
+        hue = 120; // green
+      } else if (diff < 20) {
+        hue = 60; // yellow
+      } else {
+        hue = 0; // red
+      }
+
+      const hsla = `hsla(${hue}, 100%, 50%, 0.8)`;
+
+      // Draw glow (softer)
+      ctxC.save();
+      ctxC.shadowBlur = 20;
+      ctxC.shadowColor = `hsla(${hue}, 100%, 50%, 0.6)`;
+      ctxC.beginPath();
+      ctxC.arc(cx, cy, ringRadius, 0, Math.PI * 2);
+      ctxC.strokeStyle = hsla;
+      ctxC.lineWidth = 6;
+      ctxC.stroke();
+      ctxC.restore();
+
+      // Draw crisp ring on top
+      ctxC.beginPath();
+      ctxC.arc(cx, cy, ringRadius, 0, Math.PI * 2);
+      ctxC.strokeStyle = hsla;
+      ctxC.lineWidth = 6;
+      ctxC.stroke();
+
+      // Draw sparkle dots on shrinking ring
+      for (let i = 0; i < 4; i++) {
+        const angle = (Math.PI / 2) * i;
+        const px = cx + Math.cos(angle) * ringRadius;
+        const py = cy + Math.sin(angle) * ringRadius;
+        const sparkleSize = 2 + Math.sin(Date.now() / 100) * 1;
+        ctxC.fillStyle = 'rgba(255,255,255,0.8)';
+        ctxC.beginPath();
+        ctxC.arc(px, py, sparkleSize, 0, Math.PI * 2);
+        ctxC.fill();
+      }
+    }
 
     function animate(now) {
       if (tapped) return;
@@ -270,27 +616,15 @@ const CreatureWorld = (() => {
         ringRadius = maxRadius; // Reset
       }
 
+      targetRingRotation += dt * 20; // Subtle rotation
+
       const cx = 130, cy = 130;
       ctxC.clearRect(0, 0, 260, 260);
 
-      // Target ring
-      ctxC.beginPath();
-      ctxC.arc(cx, cy, targetRadius, 0, Math.PI * 2);
-      ctxC.strokeStyle = 'rgba(255,255,255,0.4)';
-      ctxC.lineWidth = 3;
-      ctxC.stroke();
-
-      // Shrinking ring
-      ctxC.beginPath();
-      ctxC.arc(cx, cy, ringRadius, 0, Math.PI * 2);
-      const diff = Math.abs(ringRadius - targetRadius);
-      const color = diff < 8 ? '#4CAF50' : diff < 20 ? '#FFC107' : '#F44336';
-      ctxC.strokeStyle = color;
-      ctxC.lineWidth = 4;
-      ctxC.stroke();
+      drawRichRings();
 
       // Only draw canvas creature if no SVG overlay
-      if (!hasSVG) {
+      if (!svgContainer || svgContainer.classList.contains('hidden')) {
         drawCreatureCanvas(cx, cy);
       }
 
@@ -314,7 +648,7 @@ const CreatureWorld = (() => {
         result = 'miss';
       }
 
-      handleCatchResult(result, creature, spotIndex);
+      handleCatchResult(result, creature, spotIndex, canvas, ctxC);
     }
 
     function onTouchTap(e) { e.preventDefault(); onTap(); }
@@ -325,13 +659,14 @@ const CreatureWorld = (() => {
     catchAnimFrame = requestAnimationFrame(animate);
   }
 
-  function handleCatchResult(result, creature, spotIndex) {
+  function handleCatchResult(result, creature, spotIndex, canvas, ctxC) {
     const resultEl = document.getElementById('catch-result');
     const resultText = document.getElementById('catch-result-text');
     document.getElementById('catch-instruction').textContent = '';
 
     if (result === 'miss') {
       Audio.sfx.catchMiss();
+      playMissEffect(creature, document.getElementById('catch-creature-svg'), canvas, ctxC);
       resultText.innerHTML = `${creature.name} escaped! 💨<br><span style="font-size:0.6em">Try again!</span>`;
       resultEl.classList.remove('hidden');
       // Short cooldown
@@ -348,6 +683,9 @@ const CreatureWorld = (() => {
     if (result === 'perfect') coins = Math.floor(coins * 1.5);
 
     Audio.sfx.catchSuccess();
+
+    // Play celebration effects
+    playCatchSuccess(creature, document.getElementById('catch-creature-svg'), canvas, ctxC, result === 'perfect');
 
     if (isNew) {
       Game.state.creatures.push(creature.id);
@@ -375,13 +713,17 @@ const CreatureWorld = (() => {
 
   function closeCatch() {
     catchActive = false;
+    if (practiceTimeout) { clearTimeout(practiceTimeout); practiceTimeout = null; }
     Audio.sfx.click();
-    document.getElementById('catch-overlay').classList.add('hidden');
-    // Hide creature SVG
+    const overlayEl = document.getElementById('catch-overlay');
+    overlayEl.classList.add('hidden');
+    overlayEl.classList.remove('practice-mode');
+    // Hide creature SVG and reset all animation classes
     const svgContainer = document.getElementById('catch-creature-svg');
     if (svgContainer) {
       svgContainer.innerHTML = '';
       svgContainer.classList.add('hidden');
+      svgContainer.classList.remove('catch-creature-entrance', 'catch-celebrate', 'catch-dodge');
     }
     cancelAnimationFrame(catchAnimFrame);
     renderSpots(); // Refresh cooldown states
@@ -390,20 +732,271 @@ const CreatureWorld = (() => {
   function backToLocations() {
     Audio.sfx.click();
     currentLocation = null;
+    Particles.stop();
+    removeParallax();
     document.getElementById('location-explore').classList.add('hidden');
     document.getElementById('location-select').classList.remove('hidden');
     renderLocations(); // Refresh counts
   }
 
+  function enterLastLocation() {
+    const lastLocId = Game.state.last_location;
+    const loc = LOCATIONS.find(l => l.id === lastLocId);
+    if (!loc) {
+      // Fallback to first location if not found
+      enterLocation(LOCATIONS[0]);
+      return;
+    }
+    enterLocation(loc);
+  }
+
   function onEnter() {
-    document.getElementById('location-select').classList.remove('hidden');
-    document.getElementById('location-explore').classList.add('hidden');
+    // Auto-enter the last visited location instead of showing selector
+    document.getElementById('location-select').classList.add('hidden');
+    document.getElementById('location-explore').classList.remove('hidden');
     document.getElementById('catch-overlay').classList.add('hidden');
-    renderLocations();
+    renderLocations(); // Still render for the location selector in case they go back
+    enterLastLocation();
+  }
+
+  // --- Visual Effects Helpers ---
+  function setRarityOverlayTheme(overlay, rarity) {
+    overlay.dataset.rarity = rarity;
+  }
+
+  function playCatchSuccess(creature, svgContainer, canvas, ctxC, isPerfect = false) {
+    if (svgContainer && !svgContainer.classList.contains('hidden')) {
+      svgContainer.classList.add('catch-celebrate');
+      setTimeout(() => {
+        svgContainer.classList.remove('catch-celebrate');
+      }, 500);
+    }
+
+    // Flash overlay
+    const overlay = document.getElementById('catch-overlay');
+    overlay.classList.add('catch-overlay-flash');
+    setTimeout(() => {
+      overlay.classList.remove('catch-overlay-flash');
+    }, 400);
+
+    // Draw confetti burst
+    drawConfettiBurst(canvas, ctxC);
+
+    // For perfect, add starburst effect
+    if (isPerfect) {
+      drawGoldenStarburst(canvas, ctxC);
+    }
+  }
+
+  function playMissEffect(creature, svgContainer, canvas, ctxC) {
+    if (svgContainer && !svgContainer.classList.contains('hidden')) {
+      svgContainer.classList.add('catch-dodge');
+    }
+
+    // Draw whoosh speed lines
+    drawWhoosh(canvas, ctxC);
+
+    // Draw ring shatter
+    drawRingShatter(canvas, ctxC);
+  }
+
+  function drawConfettiBurst(canvas, ctxC) {
+    const particles = [];
+    const confettiColors = ['#FF6B9D', '#FFC107', '#4CAF50', '#2196F3', '#9C27B0', '#FF9800'];
+    const dpr = window.devicePixelRatio || 1;
+
+    // Create 30-40 confetti pieces
+    for (let i = 0; i < 35; i++) {
+      const angle = (Math.PI * 2 * i) / 35;
+      const speed = 150 + Math.random() * 100;
+      particles.push({
+        x: 130,
+        y: 130,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed - 50, // slight upward bias
+        color: confettiColors[Math.floor(Math.random() * confettiColors.length)],
+        size: 3 + Math.random() * 4,
+        rotation: Math.random() * Math.PI * 2,
+        alpha: 1,
+        life: 1.5 // seconds
+      });
+    }
+
+    let startTime = performance.now();
+    function animateConfetti(now) {
+      const elapsed = (now - startTime) / 1000;
+      if (elapsed > 1.5) {
+        ctxC.clearRect(0, 0, 260, 260);
+        return;
+      }
+
+      const dt = 1 / 60; // approximate frame delta
+      particles.forEach(p => {
+        p.x += p.vx * dt;
+        p.y += p.vy * dt + 300 * dt * dt; // gravity
+        p.vy += 300 * dt; // gravity accumulation
+        p.rotation += 0.1;
+      });
+
+      ctxC.clearRect(0, 0, 260, 260);
+
+      const t = elapsed / 1.5;
+      particles.forEach(p => {
+        if (elapsed > p.life) return;
+        p.alpha = Math.max(0, 1 - t * t);
+
+        ctxC.save();
+        ctxC.globalAlpha = p.alpha;
+        ctxC.translate(p.x, p.y);
+        ctxC.rotate(p.rotation);
+        ctxC.fillStyle = p.color;
+        ctxC.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+        ctxC.restore();
+      });
+
+      requestAnimationFrame(animateConfetti);
+    }
+    requestAnimationFrame(animateConfetti);
+  }
+
+  function drawGoldenStarburst(canvas, ctxC) {
+    const dpr = window.devicePixelRatio || 1;
+    const cx = 130, cy = 130;
+    const maxRadius = 120;
+    let radius = 0;
+    let startTime = performance.now();
+
+    function animate(now) {
+      const elapsed = (now - startTime) / 1000;
+      radius = 30 + elapsed * 200; // grows to ~60 in 0.15s
+      if (elapsed > 0.15) return;
+
+      ctxC.save();
+      ctxC.globalAlpha = Math.max(0, 1 - elapsed * 8);
+
+      // Draw star rays
+      for (let i = 0; i < 8; i++) {
+        const angle = (Math.PI / 4) * i;
+        ctxC.save();
+        ctxC.strokeStyle = 'rgba(255, 215, 0, 0.7)';
+        ctxC.lineWidth = 3;
+        ctxC.beginPath();
+        ctxC.moveTo(cx, cy);
+        ctxC.lineTo(
+          cx + Math.cos(angle) * radius,
+          cy + Math.sin(angle) * radius
+        );
+        ctxC.stroke();
+        ctxC.restore();
+      }
+
+      ctxC.restore();
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  }
+
+  function drawWhoosh(canvas, ctxC) {
+    const cx = 130, cy = 130;
+    let startTime = performance.now();
+    const direction = Math.random() > 0.5 ? 1 : -1;
+
+    function animate(now) {
+      const elapsed = (now - startTime) / 1000;
+      if (elapsed > 0.3) return;
+
+      const progress = elapsed / 0.3;
+      ctxC.save();
+      ctxC.globalAlpha = Math.max(0, 1 - progress);
+      ctxC.strokeStyle = 'rgba(255, 255, 255, 0.6)';
+      ctxC.lineWidth = 4;
+      ctxC.lineCap = 'round';
+
+      // Draw multiple speed lines
+      for (let i = 0; i < 3; i++) {
+        const offset = i * 15;
+        ctxC.beginPath();
+        ctxC.moveTo(cx + direction * (50 + progress * 60) - offset, cy - 20);
+        ctxC.lineTo(cx + direction * (80 + progress * 80) - offset, cy + 20);
+        ctxC.stroke();
+      }
+
+      ctxC.restore();
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  }
+
+  function drawRingShatter(canvas, ctxC) {
+    const cx = 130, cy = 130;
+    const shards = [];
+    const shardCount = 12;
+
+    // Create ring shatter fragments
+    for (let i = 0; i < shardCount; i++) {
+      const angle = (Math.PI * 2 * i) / shardCount;
+      shards.push({
+        angle: angle,
+        distance: 0,
+        maxDistance: 100 + Math.random() * 40,
+        speed: 400 + Math.random() * 200,
+        size: 8 + Math.random() * 8,
+        life: 0.4 // seconds
+      });
+    }
+
+    let startTime = performance.now();
+    function animate(now) {
+      const elapsed = (now - startTime) / 1000;
+      if (elapsed > 0.4) return;
+
+      ctxC.save();
+      shards.forEach(s => {
+        s.distance = Math.min(s.maxDistance, (elapsed / s.life) * s.maxDistance);
+        const px = cx + Math.cos(s.angle) * s.distance;
+        const py = cy + Math.sin(s.angle) * s.distance;
+        ctxC.globalAlpha = Math.max(0, 1 - (elapsed / s.life));
+        ctxC.fillStyle = 'rgba(200, 200, 200, 0.6)';
+        ctxC.beginPath();
+        ctxC.arc(px, py, s.size / 2, 0, Math.PI * 2);
+        ctxC.fill();
+      });
+      ctxC.restore();
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  }
+
+  // --- Parallax Touch Interaction ---
+  function setupParallax() {
+    removeParallax(); // Clean up any existing listeners
+    const sceneEl = document.getElementById('location-scene');
+    if (!sceneEl) return;
+
+    parallaxMoveHandler = function(e) {
+      const touch = e.touches ? e.touches[0] : e;
+      const rect = sceneEl.getBoundingClientRect();
+      const x = (touch.clientX - rect.left) / rect.width - 0.5; // -0.5 to 0.5
+      const y = (touch.clientY - rect.top) / rect.height - 0.5;
+      sceneEl.style.backgroundPosition = `calc(50% + ${x * 20}px) calc(100% + ${y * 10}px)`;
+    };
+
+    sceneEl.addEventListener('mousemove', parallaxMoveHandler);
+    sceneEl.addEventListener('touchmove', parallaxMoveHandler, { passive: true });
+  }
+
+  function removeParallax() {
+    const sceneEl = document.getElementById('location-scene');
+    if (!sceneEl) return;
+    if (parallaxMoveHandler) {
+      sceneEl.removeEventListener('mousemove', parallaxMoveHandler);
+      sceneEl.removeEventListener('touchmove', parallaxMoveHandler);
+      parallaxMoveHandler = null;
+    }
   }
 
   // Expose svgCache for collection modal
   function getSvgCache() { return svgCache; }
 
-  return { init, onEnter, backToLocations, closeCatch, getSvgCache, sanitizeSVG };
+  return { init, onEnter, backToLocations, closeCatch, getSvgCache, sanitizeSVG, enterLocation, enterLastLocation };
 })();

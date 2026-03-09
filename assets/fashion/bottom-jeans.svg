@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="jeans-denim" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4A72E8"/>
+      <stop offset="100%" stop-color="#3558C0"/>
+    </linearGradient>
+    <linearGradient id="jeans-shade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3558C0"/>
+      <stop offset="50%" stop-color="#4169E1"/>
+      <stop offset="100%" stop-color="#3558C0"/>
+    </linearGradient>
+  </defs>
+  <g id="clothing">
+    <!-- Waistband -->
+    <rect x="68" y="222" width="64" height="12" rx="4" fill="#3558C0" stroke="#2A479F" stroke-width="1.5"/>
+    <!-- Belt loops -->
+    <rect x="78" y="221" width="5" height="14" rx="1" fill="#3558C0" stroke="#2A479F" stroke-width="0.8"/>
+    <rect x="97" y="221" width="5" height="14" rx="1" fill="#3558C0" stroke="#2A479F" stroke-width="0.8"/>
+    <rect x="118" y="221" width="5" height="14" rx="1" fill="#3558C0" stroke="#2A479F" stroke-width="0.8"/>
+    <!-- Button -->
+    <circle cx="100" cy="228" r="3" fill="#FFD700" stroke="#DAA520" stroke-width="0.8"/>
+    <circle cx="100" cy="228" r="1.2" fill="#DAA520"/>
+
+    <!-- Left leg -->
+    <path d="M70 233 L70 288 Q70 296 78 296 L96 296 Q100 296 100 288 L100 233 Z"
+          fill="url(#jeans-denim)" stroke="#2A479F" stroke-width="1.5" stroke-linejoin="round"/>
+    <!-- Left leg shading (inner seam) -->
+    <path d="M94 240 L94 290" stroke="#3558C0" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <!-- Left pocket stitching -->
+    <path d="M74 238 L74 255 Q74 260 80 260 L90 252" stroke="#6B8EE8" stroke-width="1" fill="none" stroke-linecap="round" stroke-dasharray="2 1.5"/>
+    <!-- Left knee fade -->
+    <ellipse cx="84" cy="270" rx="8" ry="6" fill="#5A82F0" opacity="0.4"/>
+
+    <!-- Right leg -->
+    <path d="M100 233 L100 288 Q100 296 104 296 L122 296 Q130 296 130 288 L130 233 Z"
+          fill="url(#jeans-denim)" stroke="#2A479F" stroke-width="1.5" stroke-linejoin="round"/>
+    <!-- Right leg shading (inner seam) -->
+    <path d="M106 240 L106 290" stroke="#3558C0" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <!-- Right pocket stitching -->
+    <path d="M126 238 L126 255 Q126 260 120 260 L110 252" stroke="#6B8EE8" stroke-width="1" fill="none" stroke-linecap="round" stroke-dasharray="2 1.5"/>
+    <!-- Right knee fade -->
+    <ellipse cx="116" cy="270" rx="8" ry="6" fill="#5A82F0" opacity="0.4"/>
+
+    <!-- Center seam -->
+    <path d="M100 233 L100 245" stroke="#2A479F" stroke-width="1.2" fill="none"/>
+    <!-- Fly stitching -->
+    <path d="M97 234 L97 248" stroke="#6B8EE8" stroke-width="0.8" fill="none" stroke-dasharray="2 1.5"/>
+  </g>
+</svg>

@@ -1,52 +1,117 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="gs-body-grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#9B7FD4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6A4B8E;stop-opacity:1" />
+    </radialGradient>
+    <radialGradient id="gs-gem-amethyst" cx="35%" cy="35%" r="70%">
+      <stop offset="0%" style="stop-color:#E8D7FF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#9B7FD4;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#6A4B8E;stop-opacity:0.8" />
+    </radialGradient>
+    <radialGradient id="gs-gem-emerald" cx="35%" cy="35%" r="70%">
+      <stop offset="0%" style="stop-color:#E0F8D7;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#7FD47F;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#4B8E4B;stop-opacity:0.8" />
+    </radialGradient>
+    <radialGradient id="gs-gem-ruby" cx="35%" cy="35%" r="70%">
+      <stop offset="0%" style="stop-color:#FFE0D7;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#D47F7F;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#8E4B4B;stop-opacity:0.8" />
+    </radialGradient>
+    <filter id="gs-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.5"/>
+      <feOffset dx="1" dy="1.5" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.25"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="gs-glow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+    </filter>
+  </defs>
   <style>
-    .body{fill:#7B68EE;stroke:#6959CD;stroke-width:2}
-    .eye{fill:#333} .shine{fill:#FFF}
-    .blush{fill:#DDA0DD;opacity:0.25}
-    .leg{stroke:#6959CD;stroke-width:2.5;fill:none;stroke-linecap:round}
+    @keyframes gs-body-sway {
+      0%, 100% { transform: rotateZ(-2deg); }
+      50% { transform: rotateZ(2deg); }
+    }
+    @keyframes gs-gem-sparkle {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+    .gs-body { animation: gs-body-sway 2.5s ease-in-out infinite; }
+    .gs-gem { animation: gs-gem-sparkle 1.8s ease-in-out infinite; }
   </style>
-  <!-- Silk strands with jewel tips -->
-  <line x1="60" y1="40" x2="45" y2="25" stroke="#9B8FFF" stroke-width="1" opacity="0.5"/>
-  <circle cx="45" cy="25" r="3" fill="#E6E6FA" opacity="0.7"/>
-  <line x1="140" y1="40" x2="160" y2="22" stroke="#9B8FFF" stroke-width="1" opacity="0.5"/>
-  <circle cx="160" cy="22" r="3" fill="#E6E6FA" opacity="0.7"/>
-  <line x1="100" y1="55" x2="100" y2="30" stroke="#9B8FFF" stroke-width="1" opacity="0.5"/>
-  <circle cx="100" cy="30" r="3.5" fill="#E6E6FA" opacity="0.7"/>
-  <line x1="55" y1="100" x2="30" y2="90" stroke="#9B8FFF" stroke-width="1" opacity="0.4"/>
-  <circle cx="30" cy="90" r="2.5" fill="#E6E6FA" opacity="0.6"/>
-  <!-- Legs - left side -->
-  <path d="M72 90 Q50 70 35 55" class="leg"/>
-  <path d="M68 100 Q45 95 25 85" class="leg"/>
-  <path d="M68 115 Q45 120 25 130" class="leg"/>
-  <path d="M72 125 Q55 140 40 160" class="leg"/>
-  <!-- Legs - right side -->
-  <path d="M128 90 Q150 70 165 55" class="leg"/>
-  <path d="M132 100 Q155 95 175 85" class="leg"/>
-  <path d="M132 115 Q155 120 175 130" class="leg"/>
-  <path d="M128 125 Q145 140 160 160" class="leg"/>
-  <!-- Body -->
-  <circle cx="100" cy="108" r="30" class="body"/>
-  <!-- Gem facet texture lines -->
-  <path d="M78 100 L100 85 L122 100" stroke="#9B8FFF" stroke-width="1" fill="none" opacity="0.4"/>
-  <path d="M82 115 L100 105 L118 115" stroke="#9B8FFF" stroke-width="1" fill="none" opacity="0.3"/>
-  <!-- Top row of eyes (4 small) -->
-  <circle cx="86" cy="97" r="3" class="eye"/>
-  <circle cx="95" cy="95" r="3" class="eye"/>
-  <circle cx="105" cy="95" r="3" class="eye"/>
-  <circle cx="114" cy="97" r="3" class="eye"/>
-  <!-- Bottom row of eyes (2 larger) -->
-  <circle cx="90" cy="107" r="4" class="eye"/>
-  <circle cx="110" cy="107" r="4" class="eye"/>
-  <!-- Shine dots on all eyes -->
-  <circle cx="85" cy="96" r="1.5" class="shine"/>
-  <circle cx="94" cy="94" r="1.5" class="shine"/>
-  <circle cx="104" cy="94" r="1.5" class="shine"/>
-  <circle cx="113" cy="96" r="1.5" class="shine"/>
-  <circle cx="88" cy="105" r="2" class="shine"/>
-  <circle cx="108" cy="105" r="2" class="shine"/>
-  <!-- Blush -->
-  <ellipse cx="78" cy="115" rx="7" ry="4" class="blush"/>
-  <ellipse cx="122" cy="115" rx="7" ry="4" class="blush"/>
-  <!-- Mouth -->
-  <path d="M94 120 Q100 125 106 120" stroke="#6959CD" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Web strands with dewdrop jewels -->
+  <line x1="60" y1="42" x2="45" y2="25" stroke="#9B7FD4" stroke-width="1.2" opacity="0.5"/>
+  <circle cx="45" cy="25" r="3.5" fill="url(#gs-gem-emerald)" class="gs-gem" style="animation-delay: 0s" filter="url(#gs-glow)"/>
+
+  <line x1="140" y1="42" x2="160" y2="22" stroke="#9B7FD4" stroke-width="1.2" opacity="0.5"/>
+  <circle cx="160" cy="22" r="3.5" fill="url(#gs-gem-ruby)" class="gs-gem" style="animation-delay: 0.5s" filter="url(#gs-glow)"/>
+
+  <line x1="100" y1="55" x2="100" y2="28" stroke="#9B7FD4" stroke-width="1.2" opacity="0.5"/>
+  <circle cx="100" cy="28" r="4" fill="url(#gs-gem-amethyst)" class="gs-gem" style="animation-delay: 1s" filter="url(#gs-glow)"/>
+
+  <!-- Main body -->
+  <g class="gs-body">
+    <!-- Round gem-like body (deep amethyst purple) -->
+    <circle cx="100" cy="110" r="32" fill="url(#gs-body-grad)" filter="url(#gs-shadow)"/>
+
+    <!-- Faceted gem texture on body -->
+    <path d="M78 100 L100 85 L122 100" stroke="#6A4B8E" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M82 120 L100 108 L118 120" stroke="#6A4B8E" stroke-width="1.5" fill="none" opacity="0.4"/>
+    <path d="M90 130 L100 125 L110 130" stroke="#6A4B8E" stroke-width="1.2" fill="none" opacity="0.3"/>
+
+    <!-- Eyes (cute and sparkly - 6 total) -->
+    <!-- Top row (4 small) -->
+    <circle cx="84" cy="98" r="4" fill="#2C3E50"/>
+    <circle cx="94" cy="95" r="4" fill="#2C3E50"/>
+    <circle cx="106" cy="95" r="4" fill="#2C3E50"/>
+    <circle cx="116" cy="98" r="4" fill="#2C3E50"/>
+
+    <!-- Bottom row (2 larger main eyes) -->
+    <circle cx="90" cy="110" r="5" fill="#2C3E50"/>
+    <circle cx="110" cy="110" r="5" fill="#2C3E50"/>
+
+    <!-- Eye shines -->
+    <circle cx="83" cy="96" r="1.5" fill="#FFFFFF" opacity="0.9"/>
+    <circle cx="93" cy="93" r="1.5" fill="#FFFFFF" opacity="0.9"/>
+    <circle cx="105" cy="93" r="1.5" fill="#FFFFFF" opacity="0.9"/>
+    <circle cx="115" cy="96" r="1.5" fill="#FFFFFF" opacity="0.9"/>
+    <circle cx="88" cy="108" r="2" fill="#FFFFFF" opacity="0.9"/>
+    <circle cx="108" cy="108" r="2" fill="#FFFFFF" opacity="0.9"/>
+
+    <!-- Blush (sparkly) -->
+    <ellipse cx="75" cy="118" rx="10" ry="5" fill="#DDA0DD" opacity="0.25"/>
+    <ellipse cx="125" cy="118" rx="10" ry="5" fill="#DDA0DD" opacity="0.25"/>
+
+    <!-- Cute smile -->
+    <path d="M94 125 Q100 131 106 125" stroke="#6A4B8E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Stylized legs (4 pairs, curved upward) -->
+  <!-- Left side legs -->
+  <path d="M70 90 Q48 68 35 50" stroke="#6A4B8E" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#gs-shadow)"/>
+  <path d="M66 102 Q42 92 22 78" stroke="#6A4B8E" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#gs-shadow)"/>
+  <path d="M66 118 Q42 128 22 145" stroke="#6A4B8E" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#gs-shadow)"/>
+  <path d="M70 130 Q52 150 38 168" stroke="#6A4B8E" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#gs-shadow)"/>
+
+  <!-- Right side legs -->
+  <path d="M130 90 Q152 68 165 50" stroke="#6A4B8E" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#gs-shadow)"/>
+  <path d="M134 102 Q158 92 178 78" stroke="#6A4B8E" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#gs-shadow)"/>
+  <path d="M134 118 Q158 128 178 145" stroke="#6A4B8E" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#gs-shadow)"/>
+  <path d="M130 130 Q148 150 162 168" stroke="#6A4B8E" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#gs-shadow)"/>
+
+  <!-- Web fragment in background -->
+  <g opacity="0.4">
+    <line x1="25" y1="140" x2="50" y2="155" stroke="#9B7FD4" stroke-width="1"/>
+    <line x1="50" y1="155" x2="70" y2="142" stroke="#9B7FD4" stroke-width="1"/>
+    <line x1="25" y1="140" x2="40" y2="170" stroke="#9B7FD4" stroke-width="1"/>
+    <circle cx="50" cy="155" r="1.5" fill="#E6D7FF"/>
+  </g>
 </svg>

@@ -1,40 +1,131 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="fh-body-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFDAB9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFCAA0;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="fh-cheek-grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FFB6C1;stop-opacity:0.35" />
+      <stop offset="100%" style="stop-color:#FF69B4;stop-opacity:0.15" />
+    </radialGradient>
+    <radialGradient id="fh-eye-shine" cx="35%" cy="35%" r="70%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFE4B5;stop-opacity:0.3" />
+    </radialGradient>
+    <filter id="fh-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="1" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.2"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
   <style>
-    .body{fill:#FFDAB9;stroke:#FFE4B5;stroke-width:2}
-    .eye{fill:#333} .shine{fill:#FFF}
-    .blush{fill:#FF69B4;opacity:0.25}
+    @keyframes fh-cheek-puff {
+      0%, 100% { transform: scaleX(1); }
+      50% { transform: scaleX(1.1); }
+    }
+    @keyframes fh-flower-sway {
+      0%, 100% { transform: rotate(-3deg); }
+      50% { transform: rotate(3deg); }
+    }
+    @keyframes fh-petal-drift {
+      0% { transform: translateY(0px) translateX(0px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-35px) translateX(12px) rotate(180deg); opacity: 0; }
+    }
+    .fh-cheeks { animation: fh-cheek-puff 2s ease-in-out infinite; }
+    .fh-flowers { animation: fh-flower-sway 2.5s ease-in-out infinite; }
+    .fh-petal { animation: fh-petal-drift 3s ease-in infinite; }
   </style>
-  <!-- Body (very round) -->
-  <circle cx="100" cy="120" r="55" class="body"/>
-  <!-- Ears -->
-  <circle cx="68" cy="72" r="16" class="body"/>
-  <circle cx="68" cy="72" r="9" fill="#FFB6C1" opacity="0.4"/>
-  <circle cx="132" cy="72" r="16" class="body"/>
-  <circle cx="132" cy="72" r="9" fill="#FFB6C1" opacity="0.4"/>
-  <!-- Paws -->
-  <ellipse cx="76" cy="168" rx="14" ry="8" class="body"/>
-  <ellipse cx="124" cy="168" rx="14" ry="8" class="body"/>
-  <!-- Tail -->
-  <circle cx="155" cy="140" r="8" class="body"/>
-  <!-- Eyes (beady) -->
-  <circle cx="84" cy="112" r="4" class="eye"/>
-  <circle cx="116" cy="112" r="4" class="eye"/>
-  <circle cx="86" cy="110" r="2" class="shine"/>
-  <circle cx="118" cy="110" r="2" class="shine"/>
-  <!-- Blush (extra prominent) -->
-  <ellipse cx="68" cy="122" rx="12" ry="7" class="blush"/>
-  <ellipse cx="132" cy="122" rx="12" ry="7" class="blush"/>
-  <!-- Nose -->
-  <ellipse cx="100" cy="120" rx="3.5" ry="2.5" fill="#FF69B4"/>
+
+  <!-- Shadow -->
+  <ellipse cx="100" cy="180" rx="50" ry="10" fill="#000" opacity="0.1"/>
+
+  <!-- Floating petal particles -->
+  <ellipse cx="140" cy="60" r="3" fill="#FF69B4" class="fh-petal" style="animation-delay: 0s"/>
+  <ellipse cx="60" cy="50" r="2.5" fill="#FFD700" class="fh-petal" style="animation-delay: 0.7s"/>
+  <ellipse cx="120" cy="80" r="2.5" fill="#87CEEB" class="fh-petal" style="animation-delay: 1.4s"/>
+  <ellipse cx="80" cy="70" r="3" fill="#FF69B4" class="fh-petal" style="animation-delay: 2.1s"/>
+
+  <!-- Chubby round hamster body -->
+  <circle cx="100" cy="125" r="58" fill="url(#fh-body-grad)" filter="url(#fh-shadow)"/>
+
+  <!-- Belly highlight -->
+  <ellipse cx="100" cy="135" rx="38" ry="42" fill="#FFE4C4" opacity="0.45"/>
+
+  <!-- Ears (small and cute) -->
+  <circle cx="65" cy="70" r="17" fill="url(#fh-body-grad)" filter="url(#fh-shadow)"/>
+  <circle cx="135" cy="70" r="17" fill="url(#fh-body-grad)" filter="url(#fh-shadow)"/>
+  <!-- Ear inner pink -->
+  <circle cx="65" cy="70" r="10" fill="#FFB6C1" opacity="0.4"/>
+  <circle cx="135" cy="70" r="10" fill="#FFB6C1" opacity="0.4"/>
+
+  <!-- Tiny tail -->
+  <circle cx="158" cy="145" r="10" fill="url(#fh-body-grad)" filter="url(#fh-shadow)"/>
+
+  <!-- Eyes (beady and sparkly) -->
+  <circle cx="82" cy="115" r="5" fill="#2C3E50"/>
+  <circle cx="118" cy="115" r="5" fill="#2C3E50"/>
+  <!-- Eye shine -->
+  <circle cx="80" cy="112" r="2.5" fill="url(#fh-eye-shine)"/>
+  <circle cx="116" cy="112" r="2.5" fill="url(#fh-eye-shine)"/>
+  <circle cx="83" cy="110" r="1" fill="#FFFFFF" opacity="0.9"/>
+  <circle cx="119" cy="110" r="1" fill="#FFFFFF" opacity="0.9"/>
+
+  <!-- Prominent puffy cheeks (signature hamster feature) -->
+  <g class="fh-cheeks">
+    <ellipse cx="60" cy="128" rx="16" ry="12" fill="url(#fh-cheek-grad)"/>
+    <ellipse cx="140" cy="128" rx="16" ry="12" fill="url(#fh-cheek-grad)"/>
+  </g>
+
+  <!-- Pink nose -->
+  <ellipse cx="100" cy="122" rx="4.5" ry="3.5" fill="#FF69B4" filter="url(#fh-shadow)"/>
+  <circle cx="100" cy="121" r="1.5" fill="#FFFFFF" opacity="0.6"/>
+
   <!-- Whiskers -->
-  <line x1="70" y1="118" x2="55" y2="114" stroke="#D2B48C" stroke-width="1" opacity="0.5"/>
-  <line x1="70" y1="122" x2="55" y2="124" stroke="#D2B48C" stroke-width="1" opacity="0.5"/>
-  <line x1="130" y1="118" x2="145" y2="114" stroke="#D2B48C" stroke-width="1" opacity="0.5"/>
-  <line x1="130" y1="122" x2="145" y2="124" stroke="#D2B48C" stroke-width="1" opacity="0.5"/>
-  <!-- Mouth -->
-  <path d="M93 128 Q100 134 107 128" stroke="#D2691E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <!-- Flower crown -->
-  <circle cx="82" cy="72" r="5" fill="#FF69B4"/><circle cx="82" cy="72" r="2" fill="#FFD700"/>
-  <circle cx="100" cy="65" r="6" fill="#FFD700"/><circle cx="100" cy="65" r="2.5" fill="#FFF"/>
-  <circle cx="118" cy="72" r="5" fill="#87CEEB"/><circle cx="118" cy="72" r="2" fill="#FFD700"/>
+  <line x1="68" y1="120" x2="50" y2="115" stroke="#D2B48C" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+  <line x1="68" y1="125" x2="48" y2="128" stroke="#D2B48C" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+  <line x1="132" y1="120" x2="150" y2="115" stroke="#D2B48C" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+  <line x1="132" y1="125" x2="152" y2="128" stroke="#D2B48C" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Happy mouth -->
+  <path d="M92 133 Q100 140 108 133" stroke="#CD853F" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Front paws -->
+  <ellipse cx="76" cy="173" rx="15" ry="10" fill="url(#fh-body-grad)" filter="url(#fh-shadow)"/>
+  <ellipse cx="124" cy="173" rx="15" ry="10" fill="url(#fh-body-grad)" filter="url(#fh-shadow)"/>
+
+  <!-- Flower crown (multiple flowers on head) -->
+  <g class="fh-flowers">
+    <!-- Left flower (pink) -->
+    <ellipse cx="68" cy="70" rx="5.5" ry="4" fill="#FF69B4" transform="rotate(-45 68 70)" filter="url(#fh-shadow)"/>
+    <ellipse cx="68" cy="70" rx="5.5" ry="4" fill="#FF69B4" transform="rotate(45 68 70)" filter="url(#fh-shadow)"/>
+    <ellipse cx="68" cy="70" rx="4" ry="5.5" fill="#FF69B4" transform="rotate(0 68 70)" filter="url(#fh-shadow)"/>
+    <ellipse cx="68" cy="70" rx="4" ry="5.5" fill="#FF69B4" transform="rotate(90 68 70)" filter="url(#fh-shadow)"/>
+    <circle cx="68" cy="70" r="3" fill="#FFD700"/>
+
+    <!-- Center flower (golden) -->
+    <ellipse cx="100" cy="62" rx="6.5" ry="5" fill="#FFD700" transform="rotate(-45 100 62)" filter="url(#fh-shadow)"/>
+    <ellipse cx="100" cy="62" rx="6.5" ry="5" fill="#FFD700" transform="rotate(45 100 62)" filter="url(#fh-shadow)"/>
+    <ellipse cx="100" cy="62" rx="5" ry="6.5" fill="#FFD700" transform="rotate(0 100 62)" filter="url(#fh-shadow)"/>
+    <ellipse cx="100" cy="62" rx="5" ry="6.5" fill="#FFD700" transform="rotate(90 100 62)" filter="url(#fh-shadow)"/>
+    <circle cx="100" cy="62" r="3.5" fill="#FFF" filter="url(#fh-shadow)"/>
+
+    <!-- Right flower (blue) -->
+    <ellipse cx="132" cy="70" rx="5.5" ry="4" fill="#87CEEB" transform="rotate(-45 132 70)" filter="url(#fh-shadow)"/>
+    <ellipse cx="132" cy="70" rx="5.5" ry="4" fill="#87CEEB" transform="rotate(45 132 70)" filter="url(#fh-shadow)"/>
+    <ellipse cx="132" cy="70" rx="4" ry="5.5" fill="#87CEEB" transform="rotate(0 132 70)" filter="url(#fh-shadow)"/>
+    <ellipse cx="132" cy="70" rx="4" ry="5.5" fill="#87CEEB" transform="rotate(90 132 70)" filter="url(#fh-shadow)"/>
+    <circle cx="132" cy="70" r="3" fill="#FFD700"/>
+
+    <!-- Small flower buds on ears -->
+    <circle cx="50" cy="65" r="3" fill="#FF69B4" filter="url(#fh-shadow)"/>
+    <circle cx="55" cy="55" r="3" fill="#FFD700" filter="url(#fh-shadow)"/>
+    <circle cx="150" cy="55" r="3" fill="#FFD700" filter="url(#fh-shadow)"/>
+    <circle cx="150" cy="65" r="3" fill="#87CEEB" filter="url(#fh-shadow)"/>
+  </g>
 </svg>

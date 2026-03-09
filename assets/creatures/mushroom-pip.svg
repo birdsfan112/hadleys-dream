@@ -1,34 +1,142 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <!-- Cap gradients -->
+    <radialGradient id="mp-cap-grad" cx="45%" cy="35%">
+      <stop offset="0%" stop-color="#FF8A65"/>
+      <stop offset="50%" stop-color="#FF6B47"/>
+      <stop offset="100%" stop-color="#D84315"/>
+    </radialGradient>
+    <linearGradient id="mp-cap-highlight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </linearGradient>
+    <!-- Stem gradient -->
+    <linearGradient id="mp-stem-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFEF0"/>
+      <stop offset="50%" stop-color="#FFF5E6"/>
+      <stop offset="100%" stop-color="#F5DEB3"/>
+    </linearGradient>
+    <!-- Spot glow -->
+    <radialGradient id="mp-spot-glow" cx="30%" cy="30%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.2"/>
+    </radialGradient>
+    <!-- Spore particle -->
+    <radialGradient id="mp-spore" cx="30%" cy="30%">
+      <stop offset="0%" stop-color="#FFE0B2" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#FFB74D" stop-opacity="0.3"/>
+    </radialGradient>
+    <!-- Shadow filter -->
+    <filter id="mp-shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
   <style>
-    .cap{fill:#FF6347;stroke:#E5533A;stroke-width:2}
-    .stem{fill:#FFF5E6;stroke:#E8D5B8;stroke-width:2}
-    .spot{fill:white;opacity:0.85}
-    .eye{fill:#333} .shine{fill:#FFF}
-    .blush{fill:#FF6347;opacity:0.2}
+    .mp-cap { fill: url(#mp-cap-grad); stroke: #BF360C; stroke-width: 1.5; }
+    .mp-stem { fill: url(#mp-stem-grad); stroke: #D7CCC8; stroke-width: 1.5; }
+    .mp-spot { fill: url(#mp-spot-glow); stroke: #FFFFFF; stroke-width: 0.8; }
+    .mp-eye { fill: #1A1A1A; }
+    .mp-shine { fill: #FFFFFF; }
+    .mp-blush { fill: #FF8A65; opacity: 0.4; filter: url(#blur); }
   </style>
-  <!-- Cap -->
-  <ellipse cx="100" cy="80" rx="65" ry="50" class="cap"/>
-  <!-- Cap bottom edge -->
-  <path d="M35 80 Q100 95 165 80" fill="#FFF5E6" stroke="#E8D5B8" stroke-width="1"/>
-  <!-- Spots -->
-  <circle cx="75" cy="55" r="10" class="spot"/>
-  <circle cx="115" cy="45" r="12" class="spot"/>
-  <circle cx="55" cy="75" r="8" class="spot"/>
-  <circle cx="140" cy="65" r="9" class="spot"/>
-  <circle cx="100" cy="68" r="7" class="spot"/>
+
+  <filter id="blur"><feGaussianBlur in="SourceGraphic" stdDeviation="2"/></filter>
+
+  <!-- Ground shadow -->
+  <ellipse cx="100" cy="178" rx="48" ry="10" fill="#000000" opacity="0.12"/>
+
+  <!-- Main mushroom cap -->
+  <ellipse cx="100" cy="85" rx="70" ry="55" class="mp-cap" filter="url(#mp-shadow)"/>
+
+  <!-- Cap highlight for depth -->
+  <ellipse cx="85" cy="60" rx="45" ry="30" fill="url(#mp-cap-highlight)" opacity="0.8"/>
+
+  <!-- Cap rim/bottom edge -->
+  <path d="M35 85 Q100 100 165 85" fill="#FFF5E6" stroke="#D7CCC8" stroke-width="1.5"/>
+
+  <!-- White spots on cap with glow effect -->
+  <!-- Large spot upper left -->
+  <circle cx="65" cy="55" r="14" class="mp-spot"/>
+  <circle cx="65" cy="55" r="14" fill="none" stroke="#FFFFFF" stroke-width="0.5" opacity="0.6"/>
+
+  <!-- Large spot upper right -->
+  <circle cx="130" cy="48" r="16" class="mp-spot"/>
+  <circle cx="130" cy="48" r="16" fill="none" stroke="#FFFFFF" stroke-width="0.5" opacity="0.6"/>
+
+  <!-- Medium spots -->
+  <circle cx="50" cy="80" r="11" class="mp-spot"/>
+  <circle cx="150" cy="85" r="12" class="mp-spot"/>
+  <circle cx="100" cy="70" r="9.5" class="mp-spot"/>
+  <circle cx="95" cy="95" r="8" class="mp-spot"/>
+
   <!-- Stem/body -->
-  <rect x="75" y="80" width="50" height="55" rx="20" class="stem"/>
+  <rect x="70" y="85" width="60" height="65" rx="18" class="mp-stem" filter="url(#mp-shadow)"/>
+
+  <!-- Stem highlight -->
+  <ellipse cx="80" cy="115" rx="18" ry="25" fill="#FFFFFF" opacity="0.15"/>
+
   <!-- Feet -->
-  <ellipse cx="85" cy="140" rx="16" ry="10" class="stem"/>
-  <ellipse cx="115" cy="140" rx="16" ry="10" class="stem"/>
-  <!-- Eyes (dot style) -->
-  <circle cx="88" cy="105" r="4" class="eye"/>
-  <circle cx="112" cy="105" r="4" class="eye"/>
-  <circle cx="90" cy="103" r="1.5" class="shine"/>
-  <circle cx="114" cy="103" r="1.5" class="shine"/>
-  <!-- Blush -->
-  <ellipse cx="76" cy="115" rx="8" ry="5" class="blush"/>
-  <ellipse cx="124" cy="115" rx="8" ry="5" class="blush"/>
-  <!-- Mouth -->
-  <circle cx="100" cy="118" r="3" fill="#FF6347" opacity="0.6"/>
+  <ellipse cx="80" cy="155" rx="18" ry="12" class="mp-stem"/>
+  <ellipse cx="120" cy="155" rx="18" ry="12" class="mp-stem"/>
+
+  <!-- Foot shine -->
+  <ellipse cx="80" cy="150" rx="12" ry="7" fill="#FFFFFF" opacity="0.2"/>
+  <ellipse cx="120" cy="150" rx="12" ry="7" fill="#FFFFFF" opacity="0.2"/>
+
+  <!-- Eyes peeking from under cap -->
+  <circle cx="82" cy="110" r="9" class="mp-eye" stroke="#BF360C" stroke-width="1"/>
+  <circle cx="118" cy="110" r="9" class="mp-eye" stroke="#BF360C" stroke-width="1"/>
+
+  <!-- Pupils with shine -->
+  <circle cx="82" cy="112" r="5" fill="#2C2C2C"/>
+  <circle cx="118" cy="112" r="5" fill="#2C2C2C"/>
+  <!-- Main shine spots -->
+  <circle cx="84" cy="109" r="3" class="mp-shine"/>
+  <circle cx="120" cy="109" r="3" class="mp-shine"/>
+  <!-- Secondary shine -->
+  <circle cx="80" cy="113" r="1.5" class="mp-shine" opacity="0.7"/>
+  <circle cx="116" cy="113" r="1.5" class="mp-shine" opacity="0.7"/>
+
+  <!-- Rosy cheeks -->
+  <ellipse cx="55" cy="125" rx="13" ry="8" class="mp-blush"/>
+  <ellipse cx="145" cy="125" rx="13" ry="8" class="mp-blush"/>
+
+  <!-- Tiny open mouth smile -->
+  <circle cx="100" cy="130" r="4" fill="#BF360C"/>
+  <path d="M100 130 L100 136" stroke="#BF360C" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Floating spore particles - animated -->
+  <g>
+    <!-- Spore 1 -->
+    <circle cx="100" cy="40" r="3.5" fill="url(#mp-spore)" opacity="0.6"/>
+    <animate attributeName="cy" values="40;10;40" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.6;0.1;0.6" dur="3s" repeatCount="indefinite"/>
+  </g>
+
+  <g>
+    <!-- Spore 2 -->
+    <circle cx="80" cy="30" r="2.5" fill="url(#mp-spore)" opacity="0.5"/>
+    <animate attributeName="cy" values="30;-10;30" dur="3.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.5;0.05;0.5" dur="3.5s" repeatCount="indefinite"/>
+  </g>
+
+  <g>
+    <!-- Spore 3 -->
+    <circle cx="120" cy="35" r="3" fill="url(#mp-spore)" opacity="0.55"/>
+    <animate attributeName="cy" values="35;5;35" dur="3.2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.55;0.08;0.55" dur="3.2s" repeatCount="indefinite"/>
+  </g>
+
+  <!-- Gentle sway animation -->
+  <g>
+    <animateTransform
+      attributeName="transform"
+      type="rotate"
+      values="-1,100,100; 1,100,100; -1,100,100"
+      dur="4s"
+      repeatCount="indefinite"
+      additive="sum"
+    />
+  </g>
 </svg>

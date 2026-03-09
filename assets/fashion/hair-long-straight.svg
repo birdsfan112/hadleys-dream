@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="hls-main" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4A2511"/>
+      <stop offset="30%" stop-color="#5C3317"/>
+      <stop offset="70%" stop-color="#7A4B2A"/>
+      <stop offset="100%" stop-color="#5C3317"/>
+    </linearGradient>
+    <linearGradient id="hls-highlight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7A4B2A"/>
+      <stop offset="100%" stop-color="#5C3317"/>
+    </linearGradient>
+  </defs>
+  <style>
+    .hls-hair{fill:#5C3317;stroke:#4A2511;stroke-width:1.2}
+    .hls-hi{fill:#7A4B2A;opacity:0.5}
+  </style>
+
+  <!-- Back layer: long hair flowing behind body -->
+  <g id="back-layer">
+    <!-- Main back hair mass -->
+    <path d="M58 55 Q55 50 54 65 L48 130 Q44 170 46 220 Q48 228 58 225
+             L58 130 Z" class="hls-hair"/>
+    <path d="M142 55 Q145 50 146 65 L152 130 Q156 170 154 220 Q152 228 142 225
+             L142 130 Z" class="hls-hair"/>
+    <!-- Back hair center fill behind head/neck -->
+    <path d="M62 40 Q100 32 138 40 L142 55 Q142 90 140 130 L140 220
+             Q130 226 100 228 Q70 226 60 220 L60 130 Q58 90 58 55 Z"
+          fill="#5C3317" stroke="#4A2511" stroke-width="1"/>
+    <!-- Subtle highlight streaks on back hair -->
+    <path d="M70 80 Q72 140 74 210" stroke="#7A4B2A" stroke-width="3" fill="none" opacity="0.3" stroke-linecap="round"/>
+    <path d="M130 80 Q128 140 126 210" stroke="#7A4B2A" stroke-width="3" fill="none" opacity="0.3" stroke-linecap="round"/>
+  </g>
+
+  <!-- Front layer: bangs + face-framing -->
+  <g id="clothing">
+    <!-- Hair top/crown volume -->
+    <path d="M56 75 Q55 38 68 28 Q82 18 100 16 Q118 18 132 28
+             Q145 38 144 75 Q142 55 130 45 Q115 36 100 35
+             Q85 36 70 45 Q58 55 56 75 Z"
+          class="hls-hair"/>
+
+    <!-- Left face-framing hair -->
+    <path d="M56 75 Q54 60 56 50 Q57 65 55 85 Q54 100 56 120
+             Q57 130 62 135 Q63 125 62 110 Q60 95 58 80 Z"
+          class="hls-hair"/>
+
+    <!-- Right face-framing hair -->
+    <path d="M144 75 Q146 60 144 50 Q143 65 145 85 Q146 100 144 120
+             Q143 130 138 135 Q137 125 138 110 Q140 95 142 80 Z"
+          class="hls-hair"/>
+
+    <!-- Bangs - chunky swooping fringe -->
+    <path d="M62 52 Q70 42 82 46 Q76 50 72 58 Q68 65 65 68 Z"
+          class="hls-hair"/>
+    <path d="M78 44 Q90 36 102 40 Q95 45 88 50 Q82 55 76 56 Z"
+          class="hls-hair"/>
+    <path d="M98 39 Q110 35 122 42 Q115 46 108 50 Q102 54 96 52 Z"
+          class="hls-hair"/>
+    <path d="M118 41 Q130 44 138 52 Q135 58 130 62 Q125 56 120 50 Z"
+          class="hls-hair"/>
+
+    <!-- Highlight shine on top -->
+    <ellipse cx="90" cy="30" rx="14" ry="5" class="hls-hi" transform="rotate(-10 90 30)"/>
+    <ellipse cx="115" cy="28" rx="8" ry="3" class="hls-hi" transform="rotate(10 115 28)"/>
+  </g>
+</svg>

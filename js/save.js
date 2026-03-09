@@ -1,5 +1,5 @@
 // ============================================================
-// Hadley's Dream World — Save Manager (localStorage for now)
+// Hadley's Dream — Save Manager (localStorage for now)
 // Firebase can be added later as an enhancement
 // ============================================================
 

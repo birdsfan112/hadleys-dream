@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <style>
+    .ab-skin{fill:#FFDAB9;stroke:#E8C4A0;stroke-width:1.5}
+    .ab-eye{fill:#333} .ab-shine{fill:#FFF}
+    .ab-blush{fill:#FF69B4;opacity:0.2}
+    .ab-mouth{stroke:#FF69B4;stroke-width:2;fill:none;stroke-linecap:round}
+    .ab-brow{stroke:#B8926A;stroke-width:1.5;fill:none;stroke-linecap:round}
+    .ab-underwear{fill:#FFF0F0;stroke:#E8D8D0;stroke-width:1.5;stroke-linejoin:round}
+  </style>
+  <!-- Arms (flowing from torso) -->
+  <path d="
+    M62 140
+    Q50 142 44 155
+    Q38 172 42 195
+    L42 205
+    Q42 210 48 210
+    L56 210
+    Q62 210 62 205
+    L62 185
+  " class="ab-skin"/>
+  <path d="
+    M138 140
+    Q150 142 156 155
+    Q162 172 158 195
+    L158 205
+    Q158 210 152 210
+    L144 210
+    Q138 210 138 205
+    L138 185
+  " class="ab-skin"/>
+  <!-- Hands -->
+  <circle cx="50" cy="210" r="10" class="ab-skin"/>
+  <circle cx="150" cy="210" r="10" class="ab-skin"/>
+  <!-- Legs -->
+  <rect x="76" y="230" width="20" height="70" rx="10" class="ab-skin"/>
+  <rect x="104" y="230" width="20" height="70" rx="10" class="ab-skin"/>
+  <!-- Feet -->
+  <ellipse cx="84" cy="305" rx="16" ry="10" class="ab-skin"/>
+  <ellipse cx="116" cy="305" rx="16" ry="10" class="ab-skin"/>
+  <!-- Torso — soft curved path with integrated shoulders -->
+  <path d="
+    M90 125
+    Q82 126 72 132
+    Q62 138 58 148
+    Q54 162 56 180
+    Q58 195 62 205
+    L62 205
+    Q62 210 66 218
+    Q68 228 72 232
+    Q80 236 100 236
+    Q120 236 128 232
+    Q132 228 134 218
+    Q138 210 138 205
+    L138 205
+    Q142 195 146 180
+    Q148 162 142 148
+    Q138 138 128 132
+    Q118 126 110 125
+    Q104 124 100 124
+    Q96 124 90 125
+    Z
+  " class="ab-skin"/>
+  <!-- Underwear (permanent base layer) -->
+  <!-- Camisole -->
+  <path d="M78 140 Q72 138 68 144 Q64 152 64 165 L64 188 Q66 194 78 196 L122 196 Q134 194 136 188 L136 165 Q136 152 132 144 Q128 138 122 140 L116 136 Q108 130 100 130 Q92 130 84 136 Z" class="ab-underwear"/>
+  <!-- Shorts -->
+  <path d="M74 225 Q70 225 70 230 L74 260 Q78 266 88 264 L94 260 Q98 256 100 260 L106 264 Q116 266 126 260 L130 230 Q130 225 126 225 Z" class="ab-underwear"/>
+  <!-- Neck -->
+  <rect x="90" y="115" width="20" height="16" rx="8" class="ab-skin"/>
+  <!-- Head -->
+  <ellipse cx="100" cy="75" rx="42" ry="46" class="ab-skin"/>
+  <!-- Eyes -->
+  <ellipse cx="84" cy="72" rx="6" ry="7" class="ab-eye"/>
+  <ellipse cx="116" cy="72" rx="6" ry="7" class="ab-eye"/>
+  <circle cx="87" cy="69" r="2.5" class="ab-shine"/>
+  <circle cx="119" cy="69" r="2.5" class="ab-shine"/>
+  <!-- Eyebrows -->
+  <path d="M76 60 Q84 55 92 60" class="ab-brow"/>
+  <path d="M108 60 Q116 55 124 60" class="ab-brow"/>
+  <!-- Blush -->
+  <ellipse cx="68" cy="82" rx="10" ry="5" class="ab-blush"/>
+  <ellipse cx="132" cy="82" rx="10" ry="5" class="ab-blush"/>
+  <!-- Nose -->
+  <ellipse cx="100" cy="80" rx="3" ry="2.5" fill="#E8C4A0"/>
+  <!-- Mouth -->
+  <path d="M90 92 Q100 102 110 92" class="ab-mouth"/>
+</svg>

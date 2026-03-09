@@ -1,61 +1,128 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
   <defs>
-    <linearGradient id="mw-fur" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#4169E1"/>
-      <stop offset="100%" stop-color="#6495ED"/>
+    <linearGradient id="mw-body-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#5B8FDF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#4169E1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2E5DB8;stop-opacity:1" />
     </linearGradient>
+    <linearGradient id="mw-mane-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7BA8E8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4169E1;stop-opacity:0.9" />
+    </linearGradient>
+    <radialGradient id="mw-eye-glow" cx="40%" cy="35%" r="75%">
+      <stop offset="0%" style="stop-color:#87CEFA;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#00BFFF;stop-opacity:0.85" />
+      <stop offset="100%" style="stop-color:#0099CC;stop-opacity:0.4" />
+    </radialGradient>
+    <radialGradient id="mw-moon-glow" cx="40%" cy="40%" r="70%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#FFF8DC;stop-opacity:0.1" />
+    </radialGradient>
+    <filter id="mw-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="1" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="mw-glow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+    </filter>
   </defs>
   <style>
-    .body{fill:#4169E1;stroke:#1E90FF;stroke-width:2}
-    .eye{fill:#1a1a40} .shine{fill:#FFF}
-    .blush{fill:#87CEFA;opacity:0.25}
+    @keyframes mw-howl-head {
+      0%, 100% { transform: translateY(0px) rotateZ(0deg); }
+      50% { transform: translateY(-3px) rotateZ(2deg); }
+    }
+    @keyframes mw-eye-glow-pulse {
+      0%, 100% { filter: drop-shadow(0px 0px 4px #87CEFA); }
+      50% { filter: drop-shadow(0px 0px 10px #87CEFA); }
+    }
+    @keyframes mw-moon-pulse {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.35; }
+    }
+    .mw-head { animation: mw-howl-head 3s ease-in-out infinite; }
+    .mw-eyes { animation: mw-eye-glow-pulse 2s ease-in-out infinite; }
+    .mw-moon { animation: mw-moon-pulse 3s ease-in-out infinite; }
   </style>
-  <!-- Moon aura behind head -->
-  <circle cx="90" cy="55" r="28" fill="#FFF8DC" opacity="0.2"/>
-  <circle cx="90" cy="55" r="22" fill="#FFF8DC" opacity="0.15"/>
-  <circle cx="97" cy="50" r="18" fill="#4169E1" opacity="0.2"/>
-  <!-- Tail -->
-  <path d="M140 140 Q165 120 170 95 Q172 80 160 85 Q155 100 145 115" fill="#4169E1" stroke="#1E90FF" stroke-width="1.5"/>
-  <!-- Fur texture on tail -->
-  <path d="M155 105 Q160 100 158 95" stroke="#6495ED" stroke-width="1" fill="none" opacity="0.5"/>
-  <path d="M150 115 Q157 108 155 102" stroke="#6495ED" stroke-width="1" fill="none" opacity="0.4"/>
-  <!-- Body -->
-  <ellipse cx="105" cy="130" rx="40" ry="32" fill="url(#mw-fur)" stroke="#1E90FF" stroke-width="2"/>
-  <!-- Lighter underbelly -->
-  <ellipse cx="105" cy="138" rx="25" ry="18" fill="#6495ED" opacity="0.5"/>
-  <!-- Chest ruff -->
-  <path d="M72 110 Q78 120 72 128 Q80 122 85 130 Q88 120 95 128 Q92 118 100 125 Q98 115 105 120" fill="#4169E1" stroke="#6495ED" stroke-width="1"/>
-  <!-- Head (tilted slightly upward) -->
-  <circle cx="90" cy="85" r="32" class="body"/>
-  <!-- Snout pointing up-left -->
-  <ellipse cx="72" cy="78" rx="15" ry="12" class="body"/>
-  <!-- Pointed ears -->
-  <polygon points="68,58 55,28 82,50" class="body"/>
-  <polygon points="112,55 125,25 102,47" class="body"/>
-  <polygon points="70,58 60,35 80,52" fill="#1E90FF" opacity="0.3"/>
-  <polygon points="110,55 122,32 104,49" fill="#1E90FF" opacity="0.3"/>
-  <!-- Fur texture on body -->
-  <path d="M80 125 Q85 118 82 112" stroke="#6495ED" stroke-width="1" fill="none" opacity="0.4"/>
-  <path d="M110 120 Q115 115 112 108" stroke="#6495ED" stroke-width="1" fill="none" opacity="0.4"/>
-  <path d="M125 130 Q130 125 128 118" stroke="#6495ED" stroke-width="1" fill="none" opacity="0.35"/>
-  <!-- Piercing ice-blue eyes -->
-  <circle cx="80" cy="80" r="8" class="eye"/>
-  <circle cx="102" cy="82" r="8" class="eye"/>
-  <circle cx="80" cy="80" r="5.5" fill="#87CEFA"/>
-  <circle cx="102" cy="82" r="5.5" fill="#87CEFA"/>
-  <circle cx="80" cy="80" r="3" fill="#1a1a40"/>
-  <circle cx="102" cy="82" r="3" fill="#1a1a40"/>
-  <circle cx="78" cy="78" r="2.5" class="shine"/>
-  <circle cx="100" cy="80" r="2.5" class="shine"/>
-  <!-- Blush -->
-  <ellipse cx="68" cy="90" rx="7" ry="4" class="blush"/>
-  <ellipse cx="114" cy="92" rx="7" ry="4" class="blush"/>
-  <!-- Nose -->
-  <ellipse cx="63" cy="76" rx="4" ry="3" fill="#1a1a40"/>
-  <circle cx="62" cy="75" r="1.5" class="shine"/>
-  <!-- Mouth -->
-  <path d="M66 82 Q72 87 80 84" stroke="#1E90FF" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Crescent moon marking on forehead -->
+  <path d="M82 45 Q88 38 95 42 Q88 50 82 48" fill="#FFF8DC" opacity="0.5" filter="url(#mw-glow)"/>
+
+  <!-- Moon aura behind head (mystical) -->
+  <circle cx="88" cy="52" r="30" fill="url(#mw-moon-glow)" class="mw-moon"/>
+  <!-- Crescent moon shape in aura -->
+  <circle cx="95" cy="50" r="25" fill="#2E5DB8"/>
+  <circle cx="88" cy="52" r="25" fill="#4169E1" opacity="0.8"/>
+
+  <!-- Howling wolf head group -->
+  <g class="mw-head">
+    <!-- Main head -->
+    <circle cx="88" cy="85" r="34" fill="url(#mw-body-grad)" filter="url(#mw-shadow)"/>
+
+    <!-- Snout (tilted upward in howl pose) -->
+    <ellipse cx="68" cy="75" rx="16" ry="14" fill="url(#mw-body-grad)" filter="url(#mw-shadow)" transform="rotate(-20 68 75)"/>
+
+    <!-- Pointed ears (alert) -->
+    <polygon points="65,55 50,22 82,48" fill="url(#mw-body-grad)" filter="url(#mw-shadow)"/>
+    <polygon points="115,52 130,20 105,45" fill="url(#mw-body-grad)" filter="url(#mw-shadow)"/>
+    <!-- Ear inner detail -->
+    <polygon points="67,55 57,32 80,50" fill="#7BA8E8" opacity="0.4"/>
+    <polygon points="113,52 128,25 103,45" fill="#7BA8E8" opacity="0.4"/>
+
+    <!-- Flowing ethereal mane/ruff (silver-blue) -->
+    <path d="M68 65 Q62 75 68 90 Q65 105 75 115" fill="none" stroke="url(#mw-mane-grad)" stroke-width="5" stroke-linecap="round" filter="url(#mw-shadow)"/>
+    <path d="M108 62 Q115 75 110 92 Q115 107 105 118" fill="none" stroke="url(#mw-mane-grad)" stroke-width="5" stroke-linecap="round" filter="url(#mw-shadow)"/>
+  </g>
+
+  <!-- Body (noble, upright posture) -->
+  <ellipse cx="105" cy="135" rx="42" ry="35" fill="url(#mw-body-grad)" filter="url(#mw-shadow)"/>
+  <!-- Underbelly (lighter) -->
+  <ellipse cx="105" cy="143" rx="26" ry="20" fill="#7BA8E8" opacity="0.35"/>
+
+  <!-- Chest ruff (fluffy) -->
+  <path d="M75 110 Q80 122 75 132 Q82 123 88 135 Q92 122 100 130 Q98 118 108 125 Q106 113 115 120" fill="url(#mw-body-grad)" stroke="#7BA8E8" stroke-width="0.8" filter="url(#mw-shadow)"/>
+
+  <!-- Fur texture details -->
+  <path d="M82 125 Q87 118 85 110" stroke="#7BA8E8" stroke-width="1.2" fill="none" opacity="0.5"/>
+  <path d="M112 120 Q118 114 115 108" stroke="#7BA8E8" stroke-width="1.2" fill="none" opacity="0.5"/>
+
+  <!-- Piercing ice-blue eyes (fierce yet noble) -->
+  <g class="mw-eyes">
+    <circle cx="78" cy="80" r="9" fill="url(#mw-eye-glow)" filter="url(#mw-glow)"/>
+    <circle cx="102" cy="83" r="9" fill="url(#mw-eye-glow)" filter="url(#mw-glow)"/>
+    <!-- Pupils -->
+    <circle cx="78" cy="82" r="3.5" fill="#1A2A40"/>
+    <circle cx="102" cy="84" r="3.5" fill="#1A2A40"/>
+    <!-- Eye shine -->
+    <circle cx="76" cy="78" r="2.5" fill="#FFFFFF" opacity="0.95"/>
+    <circle cx="100" cy="81" r="2.5" fill="#FFFFFF" opacity="0.95"/>
+  </g>
+
+  <!-- Blush (soft) -->
+  <ellipse cx="65" cy="95" rx="12" ry="6" fill="#87CEFA" opacity="0.2"/>
+
+  <!-- Nose (delicate) -->
+  <ellipse cx="60" cy="75" rx="4" ry="3.5" fill="#1A2A40"/>
+  <circle cx="59" cy="74" r="1.5" fill="#FFFFFF" opacity="0.7"/>
+
+  <!-- Mouth (howling expression) -->
+  <path d="M63 81 Q70 88 80 84" stroke="#2E5DB8" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Tail (flowing with energy) -->
+  <path d="M142 138 Q170 120 180 95 Q185 78 170 82 Q160 100 150 118" fill="url(#mw-body-grad)" stroke="#2E5DB8" stroke-width="1.5" filter="url(#mw-shadow)"/>
+  <!-- Tail texture -->
+  <path d="M160 105 Q168 98 165 90" stroke="#7BA8E8" stroke-width="1" fill="none" opacity="0.5"/>
+
   <!-- Front paws -->
-  <ellipse cx="82" cy="160" rx="12" ry="8" class="body"/>
-  <ellipse cx="118" cy="160" rx="12" ry="8" class="body"/>
+  <ellipse cx="80" cy="168" rx="14" ry="9" fill="url(#mw-body-grad)" filter="url(#mw-shadow)"/>
+  <ellipse cx="120" cy="168" rx="14" ry="9" fill="url(#mw-body-grad)" filter="url(#mw-shadow)"/>
+  <!-- Paw pads with glow -->
+  <circle cx="78" cy="172" r="2.5" fill="#87CEFA" opacity="0.4"/>
+  <circle cx="122" cy="172" r="2.5" fill="#87CEFA" opacity="0.4"/>
 </svg>

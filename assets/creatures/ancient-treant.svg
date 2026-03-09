@@ -1,50 +1,263 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <!-- Complex bark gradients -->
+    <linearGradient id="at-bark-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5D4037"/>
+      <stop offset="50%" stop-color="#3E2723"/>
+      <stop offset="100%" stop-color="#1B5E20"/>
+    </linearGradient>
+    <linearGradient id="at-bark-light" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6D4C41"/>
+      <stop offset="50%" stop-color="#4E342E"/>
+      <stop offset="100%" stop-color="#2C1810"/>
+    </linearGradient>
+    <radialGradient id="at-bark-body" cx="40%" cy="35%">
+      <stop offset="0%" stop-color="#6D4C41"/>
+      <stop offset="100%" stop-color="#3E2723"/>
+    </radialGradient>
+    <!-- Glowing eyes -->
+    <radialGradient id="at-eye-glow" cx="30%" cy="30%">
+      <stop offset="0%" stop-color="#7CB342" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#558B2F" stop-opacity="0.5"/>
+    </radialGradient>
+    <!-- Leaf crown gradients -->
+    <linearGradient id="at-leaf-red" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6F00"/>
+      <stop offset="50%" stop-color="#E65100"/>
+      <stop offset="100%" stop-color="#BF360C"/>
+    </linearGradient>
+    <linearGradient id="at-leaf-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFB300"/>
+      <stop offset="50%" stop-color="#FFA000"/>
+      <stop offset="100%" stop-color="#FF8F00"/>
+    </linearGradient>
+    <linearGradient id="at-leaf-green" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#689F38"/>
+      <stop offset="100%" stop-color="#558B2F"/>
+    </linearGradient>
+    <!-- Moss gradient -->
+    <radialGradient id="at-moss" cx="40%" cy="40%">
+      <stop offset="0%" stop-color="#7CB342" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#558B2F" stop-opacity="0.3"/>
+    </radialGradient>
+    <!-- Firefly glow -->
+    <radialGradient id="at-firefly" cx="35%" cy="35%">
+      <stop offset="0%" stop-color="#FFEB3B" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#FFC107" stop-opacity="0.3"/>
+    </radialGradient>
+    <!-- Shadow filter -->
+    <filter id="at-shadow">
+      <feDropShadow dx="0" dy="5" stdDeviation="4" flood-opacity="0.2"/>
+    </filter>
+    <!-- Ambient glow -->
+    <filter id="at-glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
   <style>
-    .bark{fill:#8B6F47;stroke:#6B4F2F;stroke-width:2}
-    .leaf{fill:#228B22}
-    .leaf2{fill:#32CD32}
-    .eye{fill:#333} .shine{fill:#FFF}
+    .at-trunk { fill: url(#at-bark-body); stroke: #1B5E20; stroke-width: 2; }
+    .at-branch { stroke: url(#at-bark-light); fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .at-leaf { stroke-width: 0.8; }
+    .at-root { fill: url(#at-bark-light); stroke: #1B5E20; stroke-width: 1; }
   </style>
-  <!-- Root feet -->
-  <path d="M60 170 Q50 175 45 185 Q48 190 60 185 L70 175 Z" class="bark"/>
-  <path d="M140 170 Q150 175 155 185 Q152 190 140 185 L130 175 Z" class="bark"/>
-  <!-- Trunk/body -->
-  <path d="M75 170 L70 100 Q68 80 100 75 Q132 80 130 100 L125 170 Z" class="bark"/>
-  <!-- Bark texture lines -->
-  <path d="M82 170 Q85 140 80 110" stroke="#6B4F2F" stroke-width="1" fill="none" opacity="0.4"/>
-  <path d="M118 170 Q115 140 120 110" stroke="#6B4F2F" stroke-width="1" fill="none" opacity="0.4"/>
-  <path d="M95 160 Q100 130 95 105" stroke="#6B4F2F" stroke-width="1" fill="none" opacity="0.3"/>
-  <!-- Branch arms -->
-  <path d="M70 110 Q45 95 35 80" stroke="#8B6F47" stroke-width="8" fill="none" stroke-linecap="round"/>
-  <path d="M130 110 Q155 95 165 80" stroke="#8B6F47" stroke-width="8" fill="none" stroke-linecap="round"/>
-  <!-- Small branch twigs -->
-  <path d="M35 80 Q25 70 30 60" stroke="#8B6F47" stroke-width="3" fill="none" stroke-linecap="round"/>
-  <path d="M165 80 Q175 70 170 60" stroke="#8B6F47" stroke-width="3" fill="none" stroke-linecap="round"/>
-  <!-- Leaf crown -->
-  <circle cx="100" cy="55" r="30" class="leaf"/>
-  <circle cx="75" cy="62" r="22" class="leaf"/>
-  <circle cx="125" cy="62" r="22" class="leaf"/>
-  <circle cx="100" cy="42" r="22" class="leaf2"/>
-  <circle cx="82" cy="48" r="16" class="leaf2"/>
-  <circle cx="118" cy="48" r="16" class="leaf2"/>
-  <!-- Small leaf accents on arms -->
-  <circle cx="32" cy="65" r="10" class="leaf2"/>
-  <circle cx="168" cy="65" r="10" class="leaf2"/>
-  <!-- Wise eyes -->
-  <circle cx="88" cy="100" r="8" fill="#2F4F2F"/>
-  <circle cx="112" cy="100" r="8" fill="#2F4F2F"/>
-  <circle cx="88" cy="100" r="5" fill="#556B2F"/>
-  <circle cx="112" cy="100" r="5" fill="#556B2F"/>
-  <circle cx="86" cy="98" r="2.5" class="shine"/>
-  <circle cx="110" cy="98" r="2.5" class="shine"/>
-  <!-- Eyebrows (wise look) -->
-  <path d="M78 90 Q88 86 96 90" stroke="#6B4F2F" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <path d="M104 90 Q112 86 122 90" stroke="#6B4F2F" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <!-- Nose -->
-  <path d="M97 108 Q100 112 103 108" stroke="#6B4F2F" stroke-width="1.5" fill="none"/>
-  <!-- Gentle smile -->
-  <path d="M88 118 Q100 128 112 118" stroke="#6B4F2F" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <!-- Moss/lichen accent -->
-  <ellipse cx="78" cy="140" rx="6" ry="4" fill="#90EE90" opacity="0.5"/>
-  <ellipse cx="120" cy="150" rx="5" ry="3" fill="#90EE90" opacity="0.4"/>
+
+  <!-- Glow aura around treant -->
+  <circle cx="100" cy="110" r="85" fill="#7CB342" opacity="0.06" filter="url(#at-glow)"/>
+
+  <!-- Ground shadow -->
+  <ellipse cx="100" cy="192" rx="65" ry="12" fill="#000000" opacity="0.15"/>
+
+  <!-- Roots visible at bottom - gnarled and ancient -->
+  <g>
+    <!-- Root 1 - left -->
+    <path d="M70 185 Q55 190 48 198 Q50 202 65 195 L75 185 Z" class="at-root"/>
+    <!-- Root 2 - center left -->
+    <path d="M88 190 Q75 198 72 205 Q76 208 90 200 L92 190 Z" class="at-root"/>
+    <!-- Root 3 - center right -->
+    <path d="M112 190 Q125 198 128 205 Q124 208 110 200 L108 190 Z" class="at-root"/>
+    <!-- Root 4 - right -->
+    <path d="M130 185 Q145 190 152 198 Q150 202 135 195 L125 185 Z" class="at-root"/>
+
+    <!-- Root texture lines -->
+    <path d="M50 195 Q60 192 72 200" stroke="#1B5E20" stroke-width="0.8" fill="none" opacity="0.4"/>
+    <path d="M150 195 Q140 192 128 200" stroke="#1B5E20" stroke-width="0.8" fill="none" opacity="0.4"/>
+  </g>
+
+  <!-- Main trunk body - gnarled and textured -->
+  <path d="M75 190 L70 130 Q68 100 100 95 Q132 100 130 130 L125 190 Z" class="at-trunk" filter="url(#at-shadow)"/>
+
+  <!-- Trunk highlight - slightly lighter side -->
+  <ellipse cx="85" cy="140" rx="16" ry="35" fill="#8D6E63" opacity="0.15"/>
+
+  <!-- Bark texture lines - vertical cracks and grain -->
+  <path d="M82 190 Q85 150 78 115" stroke="#1B5E20" stroke-width="1.2" fill="none" opacity="0.5"/>
+  <path d="M100 195 Q100 140 100 100" stroke="#1B5E20" stroke-width="1" fill="none" opacity="0.35"/>
+  <path d="M118 190 Q115 150 122 115" stroke="#1B5E20" stroke-width="1.2" fill="none" opacity="0.5"/>
+
+  <!-- Additional bark detail - horizontal growth rings -->
+  <path d="M72 155 Q100 158 128 155" stroke="#1B5E20" stroke-width="0.8" fill="none" opacity="0.3"/>
+  <path d="M74 120 Q100 122 126 120" stroke="#1B5E20" stroke-width="0.8" fill="none" opacity="0.3"/>
+
+  <!-- Branch arms - extends outward with character -->
+  <!-- Left branch main -->
+  <path d="M70 125 Q45 110 35 90" class="at-branch" stroke="#6D4C41" stroke-width="10" stroke-opacity="0.9"/>
+  <!-- Right branch main -->
+  <path d="M130 125 Q155 110 165 90" class="at-branch" stroke="#6D4C41" stroke-width="10" stroke-opacity="0.9"/>
+
+  <!-- Secondary branch twigs - left -->
+  <path d="M35 90 Q25 80 22 65" class="at-branch" stroke="#6D4C41" stroke-width="5"/>
+  <path d="M35 90 Q48 75 55 60" class="at-branch" stroke="#6D4C41" stroke-width="4"/>
+
+  <!-- Secondary branch twigs - right -->
+  <path d="M165 90 Q175 80 178 65" class="at-branch" stroke="#6D4C41" stroke-width="5"/>
+  <path d="M165 90 Q152 75 145 60" class="at-branch" stroke="#6D4C41" stroke-width="4"/>
+
+  <!-- Leaf clusters on branches -->
+  <!-- Left branch foliage -->
+  <ellipse cx="25" cy="65" rx="12" ry="14" fill="#558B2F" opacity="0.8" transform="rotate(-35 25 65)"/>
+  <ellipse cx="55" cy="45" rx="14" ry="16" fill="#558B2F" opacity="0.8" transform="rotate(20 55 45)"/>
+
+  <!-- Right branch foliage -->
+  <ellipse cx="175" cy="65" rx="12" ry="14" fill="#558B2F" opacity="0.8" transform="rotate(35 175 65)"/>
+  <ellipse cx="145" cy="45" rx="14" ry="16" fill="#558B2F" opacity="0.8" transform="rotate(-20 145 45)"/>
+
+  <!-- Wise eyes formed in bark - glowing deep green -->
+  <!-- Left eye -->
+  <circle cx="85" cy="115" r="11" fill="#2D5016"/>
+  <circle cx="85" cy="115" r="8.5" fill="url(#at-eye-glow)"/>
+  <ellipse cx="85" cy="115" rx="5" ry="6" fill="#558B2F"/>
+  <!-- Eye shine - mystical glow -->
+  <circle cx="82" cy="110" r="3.5" fill="#FFFFFF" opacity="0.85"/>
+  <circle cx="83" cy="113" r="1.5" fill="#FFFFFF" opacity="0.6"/>
+
+  <!-- Right eye -->
+  <circle cx="115" cy="115" r="11" fill="#2D5016"/>
+  <circle cx="115" cy="115" r="8.5" fill="url(#at-eye-glow)"/>
+  <ellipse cx="115" cy="115" rx="5" ry="6" fill="#558B2F"/>
+  <!-- Eye shine -->
+  <circle cx="118" cy="110" r="3.5" fill="#FFFFFF" opacity="0.85"/>
+  <circle cx="117" cy="113" r="1.5" fill="#FFFFFF" opacity="0.6"/>
+
+  <!-- Wise eyebrows - craggy bark lines -->
+  <path d="M75 102 Q85 98 95 102" stroke="#1B5E20" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <path d="M105 102 Q115 98 125 102" stroke="#1B5E20" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- Gentle smile/expression - carved in wood -->
+  <path d="M85 130 Q100 140 115 130" stroke="#1B5E20" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Nose - subtle groove -->
+  <path d="M97 125 Q100 135 103 125" stroke="#1B5E20" stroke-width="1.5" fill="none" opacity="0.4"/>
+
+  <!-- Moss and lichen accent - on left side -->
+  <ellipse cx="72" cy="155" rx="8" ry="6" fill="url(#at-moss)"/>
+  <ellipse cx="68" cy="175" rx="7" ry="5" fill="url(#at-moss)"/>
+
+  <!-- Small flowers growing on body -->
+  <g transform="translate(128, 140)">
+    <circle cx="0" cy="0" r="3.5" fill="#C62828" opacity="0.8"/>
+    <circle cx="-3" cy="-2" r="2" fill="#E53935"/>
+    <circle cx="3" cy="-2" r="2" fill="#E53935"/>
+    <circle cx="-2" cy="3" r="2" fill="#E53935"/>
+    <circle cx="2" cy="3" r="2" fill="#E53935"/>
+  </g>
+
+  <!-- Small mushrooms at base - tiny caps -->
+  <circle cx="82" cy="185" r="4" fill="#E65100" opacity="0.7"/>
+  <circle cx="82" cy="187" r="3" fill="#F5DEB3" opacity="0.8"/>
+  <circle cx="118" cy="187" r="3.5" fill="#E65100" opacity="0.7"/>
+  <circle cx="118" cy="190" r="2.5" fill="#F5DEB3" opacity="0.8"/>
+
+  <!-- Leaf crown on top - autumn colors -->
+  <!-- Red/orange leaves -->
+  <ellipse cx="85" cy="65" rx="16" ry="20" fill="url(#at-leaf-red)" transform="rotate(-30 85 65)" opacity="0.9"/>
+  <ellipse cx="75" cy="48" rx="14" ry="18" fill="url(#at-leaf-red)" transform="rotate(-50 75 48)" opacity="0.85"/>
+
+  <!-- Gold leaves -->
+  <ellipse cx="100" cy="45" rx="18" ry="22" fill="url(#at-leaf-gold)" transform="rotate(0 100 45)" opacity="0.9"/>
+  <ellipse cx="110" cy="55" rx="14" ry="18" fill="url(#at-leaf-gold)" transform="rotate(25 110 55)" opacity="0.85"/>
+
+  <!-- Green leaves (some still alive) -->
+  <ellipse cx="115" cy="65" rx="16" ry="20" fill="url(#at-leaf-green)" transform="rotate(30 115 65)" opacity="0.8"/>
+  <ellipse cx="125" cy="48" rx="14" ry="18" fill="url(#at-leaf-green)" transform="rotate(50 125 48)" opacity="0.75"/>
+
+  <!-- Top accent leaf -->
+  <ellipse cx="100" cy="30" rx="12" ry="16" fill="url(#at-leaf-gold)" transform="rotate(-10 100 30)" opacity="0.95"/>
+
+  <!-- Leaf details - veins -->
+  <path d="M85 50 Q85 65 82 80" stroke="#1B5E20" stroke-width="0.8" fill="none" opacity="0.3"/>
+  <path d="M115 50 Q115 65 118 80" stroke="#1B5E20" stroke-width="0.8" fill="none" opacity="0.3"/>
+
+  <!-- Floating firefly particles - animated with glow -->
+  <g>
+    <!-- Firefly 1 -->
+    <circle cx="140" cy="60" r="3" fill="url(#at-firefly)"/>
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="0,0; 15,-12; 0,0"
+      dur="4s"
+      repeatCount="indefinite"
+      additive="sum"
+    />
+  </g>
+
+  <g>
+    <!-- Firefly 2 -->
+    <circle cx="60" cy="75" r="2.5" fill="url(#at-firefly)"/>
+    <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2.3s" repeatCount="indefinite"/>
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="0,0; -18,8; 0,0"
+      dur="4.5s"
+      repeatCount="indefinite"
+      additive="sum"
+    />
+  </g>
+
+  <g>
+    <!-- Firefly 3 -->
+    <circle cx="155" cy="110" r="2.8" fill="url(#at-firefly)"/>
+    <animate attributeName="opacity" values="0.5;1;0.5" dur="1.8s" repeatCount="indefinite"/>
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="0,0; 12,10; 0,0"
+      dur="3.8s"
+      repeatCount="indefinite"
+      additive="sum"
+    />
+  </g>
+
+  <g>
+    <!-- Firefly 4 - slower -->
+    <circle cx="50" cy="130" r="2" fill="url(#at-firefly)"/>
+    <animate attributeName="opacity" values="0.35;0.95;0.35" dur="2.5s" repeatCount="indefinite"/>
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="0,0; -10,-15; 0,0"
+      dur="5s"
+      repeatCount="indefinite"
+      additive="sum"
+    />
+  </g>
+
+  <!-- Gentle breathing/sway animation -->
+  <g>
+    <animateTransform
+      attributeName="transform"
+      type="rotate"
+      values="-2,100,140; 2,100,140; -2,100,140"
+      dur="5s"
+      repeatCount="indefinite"
+      additive="sum"
+    />
+  </g>
 </svg>

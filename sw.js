@@ -1,5 +1,5 @@
-// Hadley's Dream World — Service Worker
-const CACHE_NAME = 'dream-world-v5';
+// Hadley's Dream — Service Worker
+const CACHE_NAME = 'dream-world-v10';
 const ASSETS = [
   '/',
   '/index.html',
@@ -11,6 +11,7 @@ const ASSETS = [
   '/js/audio.js',
   '/js/save.js',
   '/js/creatures.js',
+  '/js/particles.js',
   '/js/fashion.js',
   '/js/room.js',
   '/js/game.js',
@@ -55,7 +56,30 @@ const ASSETS = [
   '/assets/creatures/honey-bee.svg',
   '/assets/creatures/butterfly-pixie.svg',
   '/assets/creatures/sunset-deer.svg',
-  '/assets/creatures/dream-dragon.svg'
+  '/assets/creatures/dream-dragon.svg',
+  // Fashion Studio SVGs
+  '/assets/fashion/avatar-base.svg',
+  '/assets/fashion/hair-long-straight.svg',
+  '/assets/fashion/hair-pigtails.svg',
+  '/assets/fashion/hair-space-buns.svg',
+  '/assets/fashion/top-basic-tee.svg',
+  '/assets/fashion/top-hoodie.svg',
+  '/assets/fashion/top-princess-blouse.svg',
+  '/assets/fashion/bottom-jeans.svg',
+  '/assets/fashion/bottom-pink-skirt.svg',
+  '/assets/fashion/bottom-tutu.svg',
+  '/assets/fashion/dress-sundress.svg',
+  '/assets/fashion/dress-party-dress.svg',
+  '/assets/fashion/dress-ball-gown.svg',
+  '/assets/fashion/shoes-sneakers.svg',
+  '/assets/fashion/shoes-boots.svg',
+  '/assets/fashion/shoes-glass-slippers.svg',
+  '/assets/fashion/acc-heart-necklace.svg',
+  '/assets/fashion/acc-sunglasses.svg',
+  '/assets/fashion/acc-fairy-wings.svg',
+  '/assets/fashion/hat-flower-crown.svg',
+  '/assets/fashion/hat-beanie.svg',
+  '/assets/fashion/hat-tiara.svg'
 ];
 
 self.addEventListener('install', e => {

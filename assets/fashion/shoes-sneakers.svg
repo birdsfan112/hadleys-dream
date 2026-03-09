@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="sneakers-sole" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8E8E8"/>
+      <stop offset="100%" stop-color="#CCCCCC"/>
+    </linearGradient>
+  </defs>
+  <style>
+    .sn-main{fill:#FFFFFF;stroke:#CCCCCC;stroke-width:1.8;stroke-linejoin:round}
+    .sn-shade{fill:#E8E8E8;stroke:none}
+    .sn-accent{fill:#FF6347;stroke:none}
+    .sn-sole{fill:url(#sneakers-sole);stroke:#CCCCCC;stroke-width:1.5;stroke-linejoin:round}
+    .sn-lace{stroke:#CCCCCC;stroke-width:1;fill:none;stroke-linecap:round}
+  </style>
+  <g id="clothing">
+    <!-- Left shoe sole -->
+    <ellipse cx="84" cy="312" rx="20" ry="6" class="sn-sole"/>
+    <!-- Left shoe body -->
+    <path d="
+      M64 305
+      Q64 290 72 288
+      L96 288
+      Q104 290 104 305
+      Q104 312 84 314
+      Q64 312 64 305
+      Z
+    " class="sn-main"/>
+    <!-- Left shoe shading -->
+    <path d="
+      M68 305
+      Q68 294 74 292
+      L80 292
+      Q72 296 70 305
+      Q70 310 76 312
+      L68 310
+      Q66 308 68 305
+      Z
+    " class="sn-shade" opacity="0.5"/>
+    <!-- Left shoe accent stripe -->
+    <path d="
+      M70 300
+      Q76 295 84 294
+      Q92 295 98 300
+    " fill="none" stroke="#FF6347" stroke-width="3" stroke-linecap="round"/>
+    <!-- Left shoe toe cap line -->
+    <path d="M66 306 Q72 298 84 296 Q96 298 102 306" fill="none" stroke="#CCCCCC" stroke-width="1" stroke-linecap="round"/>
+    <!-- Left shoe lace detail -->
+    <path d="M80 290 L78 294" class="sn-lace"/>
+    <path d="M86 290 L88 294" class="sn-lace"/>
+    <path d="M78 294 L88 294" class="sn-lace"/>
+    <!-- Left shoe tongue -->
+    <path d="M78 290 Q83 286 88 290" fill="#FFFFFF" stroke="#CCCCCC" stroke-width="1" stroke-linecap="round"/>
+
+    <!-- Right shoe sole -->
+    <ellipse cx="116" cy="312" rx="20" ry="6" class="sn-sole"/>
+    <!-- Right shoe body -->
+    <path d="
+      M96 305
+      Q96 290 104 288
+      L128 288
+      Q136 290 136 305
+      Q136 312 116 314
+      Q96 312 96 305
+      Z
+    " class="sn-main"/>
+    <!-- Right shoe shading -->
+    <path d="
+      M128 305
+      Q132 294 126 292
+      L120 292
+      Q128 296 130 305
+      Q130 310 124 312
+      L132 310
+      Q134 308 132 305
+      Z
+    " class="sn-shade" opacity="0.5"/>
+    <!-- Right shoe accent stripe -->
+    <path d="
+      M102 300
+      Q108 295 116 294
+      Q124 295 130 300
+    " fill="none" stroke="#FF6347" stroke-width="3" stroke-linecap="round"/>
+    <!-- Right shoe toe cap line -->
+    <path d="M98 306 Q104 298 116 296 Q128 298 134 306" fill="none" stroke="#CCCCCC" stroke-width="1" stroke-linecap="round"/>
+    <!-- Right shoe lace detail -->
+    <path d="M112 290 L110 294" class="sn-lace"/>
+    <path d="M118 290 L120 294" class="sn-lace"/>
+    <path d="M110 294 L120 294" class="sn-lace"/>
+    <!-- Right shoe tongue -->
+    <path d="M110 290 Q115 286 120 290" fill="#FFFFFF" stroke="#CCCCCC" stroke-width="1" stroke-linecap="round"/>
+  </g>
+</svg>

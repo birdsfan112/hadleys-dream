@@ -1,76 +1,134 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
   <defs>
-    <linearGradient id="vw-body" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#191970"/>
-      <stop offset="100%" stop-color="#000080"/>
+    <!-- Layered body gradient: deep space colors -->
+    <linearGradient id="vw-body-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A0A1F;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1A0A3A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#000015;stop-opacity:1" />
     </linearGradient>
+    <!-- Nebula gradient for body shading -->
+    <radialGradient id="vw-nebula" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#4B0082;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#0A0A1F;stop-opacity:0.1" />
+    </radialGradient>
+    <!-- Cosmic eye glow -->
+    <radialGradient id="vw-eye-glow" cx="40%" cy="40%" r="80%">
+      <stop offset="0%" style="stop-color:#00FFFF;stop-opacity:0.9" />
+      <stop offset="50%" style="stop-color:#0088FF;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#000088;stop-opacity:0.2" />
+    </radialGradient>
+    <!-- Energy tendril gradient -->
+    <linearGradient id="vw-energy-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4B0082;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#0A0A1F;stop-opacity:0.4" />
+    </linearGradient>
+    <filter id="vw-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2.5"/>
+      <feOffset dx="1" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="vw-glow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+    </filter>
   </defs>
   <style>
-    .body{fill:url(#vw-body);stroke:#4169E1;stroke-width:2}
-    .eye{fill:#0a0a30} .shine{fill:#FFF}
-    .blush{fill:#7B68EE;opacity:0.25}
+    @keyframes vw-undulate {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+    @keyframes vw-particle-float {
+      0% { transform: translateY(0px) translateX(0px); opacity: 1; }
+      100% { transform: translateY(-40px) translateX(8px); opacity: 0.3; }
+    }
+    @keyframes vw-eye-glow-pulse {
+      0%, 100% { filter: drop-shadow(0px 0px 4px #00FFFF); }
+      50% { filter: drop-shadow(0px 0px 12px #00FFFF); }
+    }
+    @keyframes vw-energy-crackle {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+    .vw-body { animation: vw-undulate 4s ease-in-out infinite; }
+    .vw-particle { animation: vw-particle-float 3.5s ease-in infinite; }
+    .vw-eyes { animation: vw-eye-glow-pulse 2s ease-in-out infinite; }
+    .vw-energy { animation: vw-energy-crackle 1.5s ease-in-out infinite; }
   </style>
-  <!-- Star dust particles (animated) -->
-  <circle cx="45" cy="50" r="2" fill="#FFD700" opacity="0.7">
-    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="160" cy="40" r="1.5" fill="#FFF" opacity="0.6">
-    <animate attributeName="opacity" values="1;0.3;1" dur="1.8s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="30" cy="120" r="2" fill="#FFD700" opacity="0.5">
-    <animate attributeName="opacity" values="0.5;1;0.5" dur="2.2s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="175" cy="130" r="1.5" fill="#FFF" opacity="0.7">
-    <animate attributeName="opacity" values="0.3;0.9;0.3" dur="1.6s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="60" cy="170" r="2" fill="#FFD700" opacity="0.6">
-    <animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="150" cy="175" r="1.5" fill="#FFF" opacity="0.5">
-    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="1.9s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="100" cy="185" r="2" fill="#FFD700" opacity="0.4">
-    <animate attributeName="opacity" values="0.4;1;0.4" dur="2.3s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="80" cy="30" r="1.5" fill="#FFF" opacity="0.6">
-    <animate attributeName="opacity" values="0.7;0.2;0.7" dur="1.7s" repeatCount="indefinite"/>
-  </circle>
-  <!-- Nebula patches -->
-  <circle cx="70" cy="100" r="12" fill="#9370DB" opacity="0.12"/>
-  <circle cx="130" cy="140" r="10" fill="#9370DB" opacity="0.1"/>
-  <circle cx="100" cy="60" r="8" fill="#7B68EE" opacity="0.1"/>
-  <!-- Serpentine body S-curve -->
-  <path d="M85 55 Q50 75 55 110 Q60 145 100 150 Q140 155 150 130 Q160 105 130 95" stroke="#4169E1" stroke-width="24" fill="none" stroke-linecap="round"/>
-  <path d="M85 55 Q50 75 55 110 Q60 145 100 150 Q140 155 150 130 Q160 105 130 95" stroke="#191970" stroke-width="20" fill="none" stroke-linecap="round"/>
-  <!-- Scale texture along body -->
-  <path d="M60 85 Q65 82 70 85" stroke="#4169E1" stroke-width="1" fill="none" opacity="0.4"/>
-  <path d="M55 100 Q60 97 65 100" stroke="#4169E1" stroke-width="1" fill="none" opacity="0.35"/>
-  <path d="M58 115 Q63 112 68 115" stroke="#4169E1" stroke-width="1" fill="none" opacity="0.4"/>
-  <path d="M72 135 Q77 132 82 135" stroke="#4169E1" stroke-width="1" fill="none" opacity="0.35"/>
-  <path d="M95 148 Q100 145 105 148" stroke="#4169E1" stroke-width="1" fill="none" opacity="0.3"/>
-  <path d="M120 150 Q125 147 130 150" stroke="#4169E1" stroke-width="1" fill="none" opacity="0.35"/>
-  <path d="M145 140 Q150 137 155 140" stroke="#4169E1" stroke-width="1" fill="none" opacity="0.3"/>
-  <!-- Head -->
-  <circle cx="85" cy="50" r="20" fill="#191970" stroke="#4169E1" stroke-width="2"/>
-  <!-- Horns -->
-  <polygon points="72,35 65,15 78,30" fill="#191970" stroke="#4169E1" stroke-width="1.5"/>
-  <polygon points="98,35 105,15 92,30" fill="#191970" stroke="#4169E1" stroke-width="1.5"/>
-  <!-- Whiskers -->
-  <path d="M68 52 Q45 42 30 45" stroke="#4169E1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
-  <path d="M68 56 Q48 55 35 60" stroke="#4169E1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
-  <!-- Cosmic eyes -->
-  <circle cx="78" cy="47" r="7" class="eye"/>
-  <circle cx="95" cy="47" r="7" class="eye"/>
-  <!-- Star-field dots inside eyes -->
-  <circle cx="76" cy="45" r="1.5" class="shine"/>
-  <circle cx="80" cy="49" r="1" class="shine"/>
-  <circle cx="77" cy="48" r="0.8" fill="#FFD700"/>
-  <circle cx="93" cy="45" r="1.5" class="shine"/>
-  <circle cx="97" cy="49" r="1" class="shine"/>
-  <circle cx="94" cy="48" r="0.8" fill="#FFD700"/>
-  <!-- Blush -->
-  <ellipse cx="68" cy="55" rx="6" ry="3.5" class="blush"/>
-  <ellipse cx="105" cy="55" rx="6" ry="3.5" class="blush"/>
-  <!-- Mouth -->
-  <path d="M80 58 Q86 62 92 58" stroke="#4169E1" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Cosmic dust particles (stars floating around wyrm) -->
+  <circle cx="40" cy="55" r="2.5" fill="#FFD700" class="vw-particle" style="animation-delay: 0s" filter="url(#vw-glow)"/>
+  <circle cx="165" cy="38" r="2" fill="#FFFFFF" class="vw-particle" style="animation-delay: 0.8s" filter="url(#vw-glow)"/>
+  <circle cx="25" cy="125" r="2.5" fill="#FFD700" class="vw-particle" style="animation-delay: 1.5s" filter="url(#vw-glow)"/>
+  <circle cx="180" cy="145" r="2" fill="#00FFFF" class="vw-particle" style="animation-delay: 2.2s" filter="url(#vw-glow)"/>
+  <circle cx="55" cy="175" r="2.5" fill="#FFD700" class="vw-particle" style="animation-delay: 2.8s" filter="url(#vw-glow)"/>
+
+  <!-- Main serpentine body -->
+  <g class="vw-body">
+    <!-- Head -->
+    <circle cx="85" cy="50" r="22" fill="url(#vw-body-grad)" filter="url(#vw-shadow)"/>
+    <!-- Head nebula shading -->
+    <circle cx="85" cy="50" r="22" fill="url(#vw-nebula)"/>
+
+    <!-- Horns (cosmic spikes) -->
+    <polygon points="70,32 62,8 78,28" fill="url(#vw-body-grad)" stroke="#4B0082" stroke-width="1.5" filter="url(#vw-shadow)"/>
+    <polygon points="100,32 108,8 92,28" fill="url(#vw-body-grad)" stroke="#4B0082" stroke-width="1.5" filter="url(#vw-shadow)"/>
+
+    <!-- Cosmic eyes (swirling galaxies within) -->
+    <g class="vw-eyes">
+      <circle cx="78" cy="48" r="9" fill="url(#vw-eye-glow)" filter="url(#vw-glow)"/>
+      <circle cx="95" cy="48" r="9" fill="url(#vw-eye-glow)" filter="url(#vw-glow)"/>
+    </g>
+
+    <!-- Star-field dots inside eyes (tiny galaxy points) -->
+    <circle cx="76" cy="45" r="1.2" fill="#FFFFFF" opacity="0.9"/>
+    <circle cx="80" cy="50" r="0.8" fill="#FFD700" opacity="0.8"/>
+    <circle cx="78" cy="48" r="0.5" fill="#00FFFF" opacity="0.7"/>
+    <circle cx="93" cy="45" r="1.2" fill="#FFFFFF" opacity="0.9"/>
+    <circle cx="97" cy="50" r="0.8" fill="#FFD700" opacity="0.8"/>
+    <circle cx="95" cy="48" r="0.5" fill="#00FFFF" opacity="0.7"/>
+
+    <!-- Floating whisker-like cosmic tendrils -->
+    <path d="M65 54 Q45 42 28 48" stroke="url(#vw-energy-grad)" stroke-width="2" fill="none" stroke-linecap="round" filter="url(#vw-shadow)"/>
+    <path d="M65 58 Q44 60 30 68" stroke="url(#vw-energy-grad)" stroke-width="2" fill="none" stroke-linecap="round" filter="url(#vw-shadow)"/>
+
+    <!-- Blush (ethereal glow) -->
+    <ellipse cx="66" cy="56" rx="8" ry="4" fill="#4B0082" opacity="0.25"/>
+    <ellipse cx="105" cy="56" rx="8" ry="4" fill="#4B0082" opacity="0.25"/>
+
+    <!-- Mouth (mysterious) -->
+    <path d="M80 60 Q86 65 92 60" stroke="#4B0082" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+    <!-- Main serpentine body (S-curve coil) -->
+    <path d="M85 72 Q50 92 52 128 Q55 160 100 165 Q142 168 155 140 Q165 110 135 100" stroke="url(#vw-body-grad)" stroke-width="26" fill="none" stroke-linecap="round" filter="url(#vw-shadow)"/>
+    <!-- Body nebula shading overlay -->
+    <path d="M85 72 Q50 92 52 128 Q55 160 100 165 Q142 168 155 140 Q165 110 135 100" fill="url(#vw-nebula)" opacity="0.5"/>
+
+    <!-- Scale texture pattern along body -->
+    <path d="M60 95 Q65 92 70 95" stroke="#4B0082" stroke-width="1.2" fill="none" opacity="0.5"/>
+    <path d="M55 110 Q60 107 65 110" stroke="#4B0082" stroke-width="1.2" fill="none" opacity="0.45"/>
+    <path d="M58 130 Q63 127 68 130" stroke="#4B0082" stroke-width="1.2" fill="none" opacity="0.4"/>
+    <path d="M75 155 Q80 152 85 155" stroke="#4B0082" stroke-width="1.2" fill="none" opacity="0.4"/>
+    <path d="M100 163 Q105 160 110 163" stroke="#4B0082" stroke-width="1.2" fill="none" opacity="0.35"/>
+    <path d="M128 155 Q133 152 138 155" stroke="#4B0082" stroke-width="1.2" fill="none" opacity="0.35"/>
+    <path d="M148 135 Q153 132 158 135" stroke="#4B0082" stroke-width="1.2" fill="none" opacity="0.3"/>
+
+    <!-- Energy tendrils floating around body -->
+    <g class="vw-energy">
+      <path d="M35 110 L30 100 L35 95" stroke="url(#vw-energy-grad)" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <path d="M165 125 L175 120 L172 115" stroke="url(#vw-energy-grad)" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <path d="M75 185 L78 195 L82 188" stroke="url(#vw-energy-grad)" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+    </g>
+
+    <!-- Tail coil (extends the serpentine form) -->
+    <path d="M155 140 Q175 115 175 85" stroke="url(#vw-body-grad)" stroke-width="20" fill="none" stroke-linecap="round" filter="url(#vw-shadow)"/>
+  </g>
+
+  <!-- Additional nebula cloud patches for depth -->
+  <circle cx="70" cy="105" r="15" fill="#4B0082" opacity="0.15"/>
+  <circle cx="135" cy="150" r="12" fill="#4B0082" opacity="0.12"/>
 </svg>

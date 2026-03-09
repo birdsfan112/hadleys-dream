@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="ahn-heart-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF69B4"/>
+      <stop offset="100%" stop-color="#FF4DA0"/>
+    </linearGradient>
+    <linearGradient id="ahn-chain-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#DAA520"/>
+      <stop offset="50%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#DAA520"/>
+    </linearGradient>
+  </defs>
+  <style>
+    .ahn-chain{stroke:url(#ahn-chain-grad);stroke-width:2;fill:none;stroke-linecap:round}
+    .ahn-heart{fill:url(#ahn-heart-grad);stroke:#D45690;stroke-width:1.5;stroke-linejoin:round}
+    .ahn-shade{fill:#FF4DA0;opacity:0.4;stroke:none}
+    .ahn-shine{fill:#FFF;opacity:0.5}
+  </style>
+  <g id="clothing">
+    <!-- Chain - drapes from shoulder to shoulder around neck -->
+    <path d="
+      M68 130
+      Q74 127 82 126
+      Q92 132 100 138
+      Q108 132 118 126
+      Q126 127 132 130
+    " class="ahn-chain"/>
+    <!-- Second chain line for thickness -->
+    <path d="
+      M69 132
+      Q75 129 83 128
+      Q93 134 100 140
+      Q107 134 117 128
+      Q125 129 131 132
+    " class="ahn-chain" style="stroke-width:1.2;opacity:0.5"/>
+    <!-- Heart pendant -->
+    <path d="
+      M100 142
+      Q94 136 88 140
+      Q82 144 88 152
+      L100 164
+      L112 152
+      Q118 144 112 140
+      Q106 136 100 142
+      Z
+    " class="ahn-heart"/>
+    <!-- Heart shading - left lobe shadow -->
+    <path d="
+      M100 142
+      Q94 136 88 140
+      Q84 143 86 148
+      Q90 144 96 142
+      Z
+    " class="ahn-shade"/>
+    <!-- Heart shine highlight -->
+    <ellipse cx="93" cy="144" rx="3" ry="2" class="ahn-shine" transform="rotate(-20 93 144)"/>
+    <!-- Small gold bail connecting chain to heart -->
+    <circle cx="100" cy="140" r="2.5" fill="#FFD700" stroke="#DAA520" stroke-width="1"/>
+    <circle cx="100" cy="140" r="1" fill="#FFF" opacity="0.4"/>
+  </g>
+</svg>

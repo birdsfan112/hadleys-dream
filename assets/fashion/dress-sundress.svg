@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <style>
+    .sd-main{fill:#FFFFE0;stroke:#E8D880;stroke-width:2;stroke-linejoin:round}
+    .sd-shade{fill:#FFF3A0;stroke:#E8D880;stroke-width:1.5}
+    .sd-strap{fill:#FFF3A0;stroke:#E8D880;stroke-width:2;stroke-linecap:round}
+    .sd-flower-petal{fill:#FF69B4;stroke:#E85A9F;stroke-width:0.8}
+    .sd-flower-center{fill:#FFD700;stroke:none}
+  </style>
+  <defs>
+    <clipPath id="sd-skirt-clip">
+      <ellipse cx="100" cy="280" rx="52" ry="12"/>
+      <rect x="48" y="195" width="104" height="85"/>
+    </clipPath>
+  </defs>
+  <g id="clothing">
+    <!-- Straps -->
+    <line x1="84" y1="118" x2="78" y2="140" class="sd-strap"/>
+    <line x1="116" y1="118" x2="122" y2="140" class="sd-strap"/>
+
+    <!-- Bodice -->
+    <path d="M74 140 Q70 137 74 134 L126 134 Q130 137 126 140 L128 198 L72 198 Z" class="sd-main"/>
+    <!-- Bodice shading (sides) -->
+    <path d="M72 140 L78 140 L78 198 L72 198 Z" class="sd-shade" stroke="none" opacity="0.5"/>
+    <path d="M122 140 L128 140 L128 198 L122 198 Z" class="sd-shade" stroke="none" opacity="0.5"/>
+
+    <!-- Waistline accent -->
+    <line x1="72" y1="198" x2="128" y2="198" stroke="#E8D880" stroke-width="2.5"/>
+
+    <!-- Flared skirt -->
+    <path d="M72 198 Q66 203 52 275 Q60 288 100 290 Q140 288 148 275 Q134 203 128 198 Z" class="sd-main"/>
+    <!-- Skirt fold lines -->
+    <path d="M88 203 Q84 240 78 278" stroke="#E8D880" stroke-width="1" fill="none" opacity="0.5"/>
+    <path d="M112 203 Q116 240 122 278" stroke="#E8D880" stroke-width="1" fill="none" opacity="0.5"/>
+    <path d="M100 200 L100 285" stroke="#E8D880" stroke-width="0.8" fill="none" opacity="0.3"/>
+
+    <!-- Skirt shading -->
+    <path d="M72 198 Q66 203 52 275 Q56 282 66 286 Q72 220 82 200 Z" class="sd-shade" stroke="none" opacity="0.35"/>
+    <path d="M128 198 Q134 203 148 275 Q144 282 134 286 Q128 220 118 200 Z" class="sd-shade" stroke="none" opacity="0.35"/>
+
+    <!-- Flower 1 (left skirt) -->
+    <g transform="translate(75,252)">
+      <ellipse cx="-4" cy="0" rx="3.5" ry="2.5" class="sd-flower-petal"/>
+      <ellipse cx="4" cy="0" rx="3.5" ry="2.5" class="sd-flower-petal"/>
+      <ellipse cx="0" cy="-4" rx="2.5" ry="3.5" class="sd-flower-petal"/>
+      <ellipse cx="0" cy="4" rx="2.5" ry="3.5" class="sd-flower-petal"/>
+      <circle cx="0" cy="0" r="2.5" class="sd-flower-center"/>
+    </g>
+
+    <!-- Flower 2 (right skirt) -->
+    <g transform="translate(118,268)">
+      <ellipse cx="-3.5" cy="0" rx="3" ry="2" class="sd-flower-petal"/>
+      <ellipse cx="3.5" cy="0" rx="3" ry="2" class="sd-flower-petal"/>
+      <ellipse cx="0" cy="-3.5" rx="2" ry="3" class="sd-flower-petal"/>
+      <ellipse cx="0" cy="3.5" rx="2" ry="3" class="sd-flower-petal"/>
+      <circle cx="0" cy="0" r="2" class="sd-flower-center"/>
+    </g>
+
+    <!-- Flower 3 (center-low skirt) -->
+    <g transform="translate(95,275)">
+      <ellipse cx="-3" cy="0" rx="2.8" ry="2" class="sd-flower-petal"/>
+      <ellipse cx="3" cy="0" rx="2.8" ry="2" class="sd-flower-petal"/>
+      <ellipse cx="0" cy="-3" rx="2" ry="2.8" class="sd-flower-petal"/>
+      <ellipse cx="0" cy="3" rx="2" ry="2.8" class="sd-flower-petal"/>
+      <circle cx="0" cy="0" r="2" class="sd-flower-center"/>
+    </g>
+  </g>
+</svg>

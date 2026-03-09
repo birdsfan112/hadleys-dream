@@ -1,46 +1,106 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="hb-body-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFE44D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFD700;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="hb-eye-shine" cx="35%" cy="35%" r="70%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFE44D;stop-opacity:0.3" />
+    </radialGradient>
+    <filter id="hb-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.5"/>
+      <feOffset dx="1" dy="1.5" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.2"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="hb-wing-blur">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+    </filter>
+  </defs>
   <style>
-    .body{fill:#FFD700;stroke:#DAA520;stroke-width:2}
-    .eye{fill:#333} .shine{fill:#FFF}
-    .blush{fill:#FF69B4;opacity:0.25}
+    @keyframes hb-wing-buzz {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.7; }
+    }
+    @keyframes hb-float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+    .hb-wings { animation: hb-wing-buzz 0.3s ease-in-out infinite; }
+    .hb-body { animation: hb-float 2.5s ease-in-out infinite; }
   </style>
-  <!-- Wings (behind body) -->
-  <ellipse cx="68" cy="80" rx="22" ry="14" fill="#E0F0FF" stroke="#B0D8F0" stroke-width="1" opacity="0.35" transform="rotate(-25 68 80)"/>
-  <ellipse cx="132" cy="80" rx="22" ry="14" fill="#E0F0FF" stroke="#B0D8F0" stroke-width="1" opacity="0.35" transform="rotate(25 132 80)"/>
-  <!-- Body (oval) -->
-  <ellipse cx="100" cy="110" rx="38" ry="48" class="body"/>
-  <!-- Stripes -->
-  <rect x="62" y="96" width="76" height="8" rx="4" fill="#333" opacity="0.7"/>
-  <rect x="62" y="112" width="76" height="8" rx="4" fill="#333" opacity="0.7"/>
-  <rect x="62" y="128" width="76" height="8" rx="4" fill="#333" opacity="0.7"/>
-  <!-- Head -->
-  <circle cx="100" cy="68" r="26" class="body"/>
-  <!-- Antennae -->
-  <line x1="88" y1="48" x2="78" y2="30" stroke="#DAA520" stroke-width="2" stroke-linecap="round"/>
-  <circle cx="78" cy="28" r="4" fill="#DAA520"/>
-  <line x1="112" y1="48" x2="122" y2="30" stroke="#DAA520" stroke-width="2" stroke-linecap="round"/>
-  <circle cx="122" cy="28" r="4" fill="#DAA520"/>
-  <!-- Eyes -->
-  <circle cx="90" cy="66" r="6" class="eye"/>
-  <circle cx="110" cy="66" r="6" class="eye"/>
-  <circle cx="92" cy="64" r="2.5" class="shine"/>
-  <circle cx="112" cy="64" r="2.5" class="shine"/>
-  <!-- Blush -->
-  <ellipse cx="78" cy="74" rx="8" ry="5" class="blush"/>
-  <ellipse cx="122" cy="74" rx="8" ry="5" class="blush"/>
-  <!-- Mouth -->
-  <path d="M94 78 Q100 84 106 78" stroke="#DAA520" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <!-- Legs -->
-  <line x1="72" y1="130" x2="65" y2="142" stroke="#DAA520" stroke-width="1.5" stroke-linecap="round"/>
-  <line x1="78" y1="138" x2="72" y2="150" stroke="#DAA520" stroke-width="1.5" stroke-linecap="round"/>
-  <line x1="85" y1="145" x2="80" y2="157" stroke="#DAA520" stroke-width="1.5" stroke-linecap="round"/>
-  <line x1="128" y1="130" x2="135" y2="142" stroke="#DAA520" stroke-width="1.5" stroke-linecap="round"/>
-  <line x1="122" y1="138" x2="128" y2="150" stroke="#DAA520" stroke-width="1.5" stroke-linecap="round"/>
-  <line x1="115" y1="145" x2="120" y2="157" stroke="#DAA520" stroke-width="1.5" stroke-linecap="round"/>
-  <!-- Stinger -->
-  <polygon points="100,158 96,165 104,165" fill="#DAA520"/>
-  <!-- Honey jar -->
-  <rect x="42" y="100" width="16" height="18" rx="3" fill="#DAA520" stroke="#B8860B" stroke-width="1"/>
-  <rect x="40" y="98" width="20" height="5" rx="2" fill="#B8860B"/>
-  <path d="M50 118 Q50 124 50 122" stroke="#DAA520" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+
+  <ellipse cx="100" cy="180" rx="48" ry="10" fill="#000" opacity="0.08"/>
+
+  <g class="hb-body">
+    <!-- Wings (fuzzy, translucent) -->
+    <g class="hb-wings">
+      <ellipse cx="65" cy="82" rx="24" ry="16" fill="#E0F0FF" stroke="#B0D8F0" stroke-width="1.5" opacity="0.5" transform="rotate(-28 65 82)" filter="url(#hb-wing-blur)"/>
+      <ellipse cx="135" cy="82" rx="24" ry="16" fill="#E0F0FF" stroke="#B0D8F0" stroke-width="1.5" opacity="0.5" transform="rotate(28 135 82)" filter="url(#hb-wing-blur)"/>
+      <!-- Wing vein detail -->
+      <path d="M50 75 Q65 80 78 88" stroke="#B0D8F0" stroke-width="0.8" fill="none" opacity="0.6"/>
+      <path d="M150 75 Q135 80 122 88" stroke="#B0D8F0" stroke-width="0.8" fill="none" opacity="0.6"/>
+    </g>
+
+    <!-- Body (fuzzy with feGaussianBlur) -->
+    <ellipse cx="100" cy="115" rx="40" ry="50" fill="url(#hb-body-grad)" filter="url(#hb-shadow)"/>
+    <!-- Head -->
+    <circle cx="100" cy="68" r="28" fill="url(#hb-body-grad)" filter="url(#hb-shadow)"/>
+
+    <!-- Black stripes (fuzzy) -->
+    <rect x="60" y="98" width="80" height="9" rx="4.5" fill="#333" opacity="0.75" filter="url(#hb-shadow)"/>
+    <rect x="60" y="116" width="80" height="9" rx="4.5" fill="#333" opacity="0.75" filter="url(#hb-shadow)"/>
+    <rect x="60" y="134" width="80" height="9" rx="4.5" fill="#333" opacity="0.75" filter="url(#hb-shadow)"/>
+
+    <!-- Antennae (with ball tips) -->
+    <line x1="86" y1="48" x2="74" y2="25" stroke="#CD853F" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="74" cy="24" r="4.5" fill="#CD853F" filter="url(#hb-shadow)"/>
+    <circle cx="74" cy="24" r="2" fill="#FFE44D" opacity="0.5"/>
+
+    <line x1="114" y1="48" x2="126" y2="25" stroke="#CD853F" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="126" cy="24" r="4.5" fill="#CD853F" filter="url(#hb-shadow)"/>
+    <circle cx="126" cy="24" r="2" fill="#FFE44D" opacity="0.5"/>
+
+    <!-- Eyes (compound, cute) -->
+    <circle cx="88" cy="66" r="7" fill="#2C3E50"/>
+    <circle cx="112" cy="66" r="7" fill="#2C3E50"/>
+    <!-- Eye shine -->
+    <circle cx="90" cy="63" r="3" fill="url(#hb-eye-shine)"/>
+    <circle cx="114" cy="63" r="3" fill="url(#hb-eye-shine)"/>
+    <circle cx="92" cy="61" r="1" fill="#FFFFFF" opacity="0.9"/>
+    <circle cx="116" cy="61" r="1" fill="#FFFFFF" opacity="0.9"/>
+
+    <!-- Blush -->
+    <ellipse cx="75" cy="76" rx="10" ry="6" fill="#FF69B4" opacity="0.22"/>
+    <ellipse cx="125" cy="76" rx="10" ry="6" fill="#FF69B4" opacity="0.22"/>
+
+    <!-- Mouth (happy) -->
+    <path d="M94 80 Q100 86 106 80" stroke="#CD853F" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+    <!-- Legs (6 total) -->
+    <line x1="70" y1="135" x2="60" y2="150" stroke="#CD853F" stroke-width="2" stroke-linecap="round"/>
+    <line x1="78" y1="142" x2="70" y2="158" stroke="#CD853F" stroke-width="2" stroke-linecap="round"/>
+    <line x1="86" y1="147" x2="80" y2="164" stroke="#CD853F" stroke-width="2" stroke-linecap="round"/>
+    <line x1="130" y1="135" x2="140" y2="150" stroke="#CD853F" stroke-width="2" stroke-linecap="round"/>
+    <line x1="122" y1="142" x2="130" y2="158" stroke="#CD853F" stroke-width="2" stroke-linecap="round"/>
+    <line x1="114" y1="147" x2="120" y2="164" stroke="#CD853F" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Stinger -->
+    <polygon points="100,162 96,170 104,170" fill="#CD853F" filter="url(#hb-shadow)"/>
+  </g>
+
+  <!-- Honey jar tied to leg -->
+  <rect x="45" y="105" width="16" height="20" rx="3" fill="#DAA520" stroke="#8B6914" stroke-width="1.5" filter="url(#hb-shadow)"/>
+  <!-- Jar lid -->
+  <rect x="43" y="102" width="20" height="5" rx="2" fill="#8B6914" filter="url(#hb-shadow)"/>
+  <!-- Honey inside jar -->
+  <rect x="47" y="110" width="12" height="12" fill="#FFD700" opacity="0.8"/>
+  <!-- Jar shine -->
+  <ellipse cx="48" cy="107" rx="3" ry="4" fill="#FFFFFF" opacity="0.4"/>
 </svg>

@@ -1,5 +1,5 @@
 // ============================================================
-// Hadley's Dream World — Main Game Controller
+// Hadley's Dream — Main Game Controller
 // ============================================================
 
 const Game = (() => {
@@ -19,6 +19,13 @@ const Game = (() => {
         if (!Array.isArray(state.creatures)) state.creatures = [];
         if (!Array.isArray(state.wardrobe_unlocked)) state.wardrobe_unlocked = DEFAULT_STATE.wardrobe_unlocked;
         if (!Array.isArray(state.furniture_unlocked)) state.furniture_unlocked = DEFAULT_STATE.furniture_unlocked;
+        // Migrate old saves: outfits:{} -> saved_outfits:[]
+        if (!Array.isArray(state.saved_outfits)) state.saved_outfits = [];
+        if (state.saved_outfits.length > 12) state.saved_outfits = state.saved_outfits.slice(0, 12);
+        // Migrate old saves: add tutorial_completed flag
+        if (state.tutorial_completed === undefined) state.tutorial_completed = false;
+        // Migration: ensure last_location exists
+        if (!state.last_location) state.last_location = 'sparkle-forest';
       } else {
         state = { ...DEFAULT_STATE };
       }
@@ -43,6 +50,16 @@ const Game = (() => {
       };
       const muteBtn = document.getElementById('btn-mute');
       if (muteBtn && Audio.isMuted()) muteBtn.textContent = '🔇';
+      const musicBtn = document.getElementById('btn-music-style');
+      if (musicBtn) {
+        musicBtn.onclick = () => {
+          try {
+            const style = Audio.cycleStyle();
+            const labels = { pads: 'Pads 🎹', musicbox: 'Music Box 🎶', chiptune: 'Chiptune 🕹️' };
+            showToast(labels[style] || style);
+          } catch (e) {}
+        };
+      }
       document.getElementById('btn-collection').onclick = () => openCollection();
       document.getElementById('btn-stats').onclick = () => openStats();
 
@@ -58,11 +75,9 @@ const Game = (() => {
       state = { ...DEFAULT_STATE };
     }
 
-    // ALWAYS show hub after loading, even if init had errors
+    // Boot directly into Creature World instead of hub
     setTimeout(() => {
-      showScreen('hub-screen');
-      currentMode = 'hub';
-      try { Audio.startMusic('hub'); } catch (e) {}
+      switchMode('creatures');
       try { Audio.sfx.ready(); } catch (e) {}
     }, 500);
   }
@@ -257,11 +272,30 @@ const Game = (() => {
     document.getElementById('stats-overlay').classList.add('hidden');
   }
 
+  // --- Current Mode ---
+  function getCurrentMode() {
+    return currentMode;
+  }
+
+  // --- Quick Menu ---
+  function openQuickMenu() {
+    try { Audio.sfx.click(); } catch (e) {}
+    const menu = document.getElementById('quick-menu');
+    if (menu) menu.classList.remove('hidden');
+  }
+
+  function closeQuickMenu(e) {
+    if (e && e.target !== e.currentTarget) return;
+    const menu = document.getElementById('quick-menu');
+    if (menu) menu.classList.add('hidden');
+  }
+
   // Make state accessible
   return {
     get state() { return state; },
     init, switchMode, addCoins, showToast, updateCoinsDisplay,
-    openCollection, closeCollection, openStats, closeStats
+    openCollection, closeCollection, openStats, closeStats,
+    getCurrentMode, openQuickMenu, closeQuickMenu
   };
 })();
 

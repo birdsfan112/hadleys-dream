@@ -6,7 +6,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#2DD4BF">
-  <title>Hadley's Dream World</title>
+  <title>Hadley's Dream</title>
   <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -26,25 +26,26 @@
   <!-- ========== Loading Screen ========== -->
   <div id="loading-screen" class="screen active">
     <div class="loader"></div>
-    <p>Loading Dream World...</p>
-    <p style="font-size:0.7em;color:#aaa;margin-top:10px;">v4</p>
+    <p>Loading Hadley's Dream...</p>
+    <p style="font-size:0.7em;color:rgba(255,255,255,0.4);margin-top:10px;">v9</p>
   </div>
 
   <!-- ========== Hub Screen ========== -->
   <div id="hub-screen" class="screen" style="display:none;">
     <div class="hub-settings">
       <button class="icon-btn" id="btn-mute" title="Toggle Sound">🔊</button>
+      <button class="icon-btn" id="btn-music-style" title="Change Music Style">🎵</button>
       <button class="icon-btn" id="btn-collection" title="Collection">📖</button>
       <button class="icon-btn" id="btn-stats" title="Stats">📊</button>
     </div>
 
-    <h1 class="hub-title sparkle-text">Hadley's Dream World</h1>
+    <h1 class="hub-title sparkle-text">Hadley's Dream</h1>
     <p class="hub-subtitle">Choose your adventure!</p>
 
     <div class="hub-stats">
       <div class="stat-badge"><span class="stat-icon">🪙</span> <span id="hub-coins">100</span></div>
       <div class="stat-badge"><span class="stat-icon">🐾</span> <span id="hub-creatures">0</span>/<span id="hub-creatures-total">30</span></div>
-      <div class="stat-badge"><span class="stat-icon">👗</span> <span id="hub-outfits">21</span></div>
+      <div class="stat-badge"><span class="stat-icon">👗</span> <span id="hub-outfits">14</span></div>
     </div>
 
     <div class="hub-modes">
@@ -76,6 +77,7 @@
 
   <!-- ========== Creature World Screen ========== -->
   <div id="creatures-screen" class="screen" style="display:none;">
+    <button class="floating-menu-btn" onclick="Game.openQuickMenu()" title="Menu">☰</button>
     <div class="top-bar" id="creatures-top">
       <button class="back-btn" onclick="Game.switchMode('hub')">←</button>
       <span class="title">Creature World</span>
@@ -91,6 +93,7 @@
     <!-- Location Explore -->
     <div id="location-explore" class="hidden">
       <div class="location-scene" id="location-scene">
+        <canvas id="particle-canvas" class="particle-canvas"></canvas>
         <div class="location-name" id="location-name-display"></div>
         <div class="explore-spots" id="explore-spots"></div>
         <button class="btn small back-location-btn" onclick="CreatureWorld.backToLocations()">← Back</button>
@@ -115,6 +118,7 @@
 
   <!-- ========== Fashion Studio Screen ========== -->
   <div id="fashion-screen" class="screen" style="display:none;">
+    <button class="floating-menu-btn" onclick="Game.openQuickMenu()" title="Menu">☰</button>
     <div class="top-bar">
       <button class="back-btn" onclick="Game.switchMode('hub')">←</button>
       <span class="title">Fashion Studio</span>
@@ -126,6 +130,7 @@
         <button class="btn" onclick="Fashion.startFreeMode()">Free Dress</button>
         <button class="btn pink" onclick="Fashion.startChallenge()">Challenge!</button>
         <button class="btn gold" onclick="Fashion.openShop()">Shop 🛍️</button>
+        <button class="btn teal" onclick="Fashion.openAlbum()">My Outfits 📸</button>
       </div>
       <div class="fashion-recent-scores" id="fashion-recent"></div>
     </div>
@@ -147,6 +152,7 @@
       </div>
       <div class="dressup-actions">
         <button class="btn small" onclick="Fashion.clearOutfit()">Clear</button>
+        <button class="btn small teal" id="btn-save-outfit" onclick="Fashion.saveOutfit()">Save 📸</button>
         <button class="btn small pink" id="btn-submit-outfit" onclick="Fashion.submitChallenge()">Submit</button>
         <button class="btn small" onclick="Fashion.exitDressup()">Done</button>
       </div>
@@ -161,6 +167,18 @@
       </div>
       <div class="shop-tabs" id="shop-tabs"></div>
       <div class="shop-grid" id="shop-grid"></div>
+    </div>
+
+    <!-- Photo Album -->
+    <div id="fashion-album" class="hidden scroll-area">
+      <div class="album-header">
+        <button class="btn small" onclick="Fashion.closeAlbum()">← Back</button>
+        <h2>My Outfits</h2>
+      </div>
+      <div class="album-grid" id="album-grid"></div>
+      <div class="album-empty hidden" id="album-empty">
+        <p>Save outfits in Free Dress mode to see them here!</p>
+      </div>
     </div>
 
     <!-- Challenge Result -->
@@ -220,11 +238,42 @@
     </div>
   </div>
 
+  <!-- ========== Quick Menu (Modal) ========== -->
+  <div id="quick-menu" class="hidden modal-overlay" onclick="Game.closeQuickMenu(event)">
+    <div class="quick-menu-panel" onclick="event.stopPropagation()">
+      <h3>Hadley's Dream</h3>
+      <div class="quick-menu-grid">
+        <button class="quick-menu-item" onclick="Game.closeQuickMenu(); Game.switchMode('hub');">
+          <span class="qm-icon">🏠</span>
+          <span class="qm-label">Home</span>
+        </button>
+        <button class="quick-menu-item" onclick="Game.closeQuickMenu(); Game.switchMode('creatures');">
+          <span class="qm-icon">🌿</span>
+          <span class="qm-label">Creatures</span>
+        </button>
+        <button class="quick-menu-item" onclick="Game.closeQuickMenu(); Game.switchMode('fashion');">
+          <span class="qm-icon">👗</span>
+          <span class="qm-label">Fashion</span>
+        </button>
+        <button class="quick-menu-item" onclick="Game.closeQuickMenu(); Game.openCollection();">
+          <span class="qm-icon">📖</span>
+          <span class="qm-label">Collection</span>
+        </button>
+        <button class="quick-menu-item" onclick="Game.closeQuickMenu(); Game.openStats();">
+          <span class="qm-icon">📊</span>
+          <span class="qm-label">Stats</span>
+        </button>
+      </div>
+      <button class="btn small" style="width:100%;margin-top:12px;" onclick="Game.closeQuickMenu()">Close</button>
+    </div>
+  </div>
+
   <!-- Scripts -->
   <script src="js/data.js"></script>
   <script src="js/audio.js"></script>
   <script src="js/save.js"></script>
   <script src="js/creatures.js"></script>
+  <script src="js/particles.js"></script>
   <script src="js/fashion.js"></script>
   <script src="js/room.js"></script>
   <script src="js/game.js"></script>

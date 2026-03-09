@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="pskirt-main" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF69B4"/>
+      <stop offset="100%" stop-color="#FF4DA0"/>
+    </linearGradient>
+    <linearGradient id="pskirt-pleat" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF4DA0"/>
+      <stop offset="100%" stop-color="#FF3390"/>
+    </linearGradient>
+  </defs>
+  <g id="clothing">
+    <!-- Waistband -->
+    <path d="M68 222 Q68 218 74 218 L126 218 Q132 218 132 222 L132 232 Q132 234 130 234 L70 234 Q68 234 68 232 Z"
+          fill="#FF4DA0" stroke="#FF3390" stroke-width="1.5"/>
+    <!-- Waistband bow/decoration -->
+    <circle cx="100" cy="226" r="3.5" fill="#FF69B4" stroke="#FF3390" stroke-width="1"/>
+    <path d="M92 226 Q96 222 100 226 Q96 230 92 226" fill="#FF85C2" stroke="#FF3390" stroke-width="0.8"/>
+    <path d="M108 226 Q104 222 100 226 Q104 230 108 226" fill="#FF85C2" stroke="#FF3390" stroke-width="0.8"/>
+
+    <!-- Main skirt body - A-line flare -->
+    <path d="M70 234 Q66 234 56 272 Q54 278 60 278 L140 278 Q146 278 144 272 L130 234 Z"
+          fill="url(#pskirt-main)" stroke="#FF3390" stroke-width="1.5" stroke-linejoin="round"/>
+
+    <!-- Pleat folds -->
+    <path d="M80 236 L72 275" stroke="#FF4DA0" stroke-width="1.5" fill="none" opacity="0.6"/>
+    <path d="M90 236 L84 275" stroke="#FF4DA0" stroke-width="1.5" fill="none" opacity="0.6"/>
+    <path d="M100 236 L100 275" stroke="#FF4DA0" stroke-width="1.5" fill="none" opacity="0.6"/>
+    <path d="M110 236 L118 275" stroke="#FF4DA0" stroke-width="1.5" fill="none" opacity="0.6"/>
+    <path d="M120 236 L128 275" stroke="#FF4DA0" stroke-width="1.5" fill="none" opacity="0.6"/>
+
+    <!-- Ruffled hem -->
+    <path d="M58 275 Q64 270 70 276 Q76 282 82 276 Q88 270 94 276 Q100 282 106 276 Q112 270 118 276 Q124 282 130 276 Q136 270 142 276 Q146 280 144 278"
+          fill="none" stroke="#FF3390" stroke-width="1.8" stroke-linecap="round"/>
+    <!-- Hem highlight -->
+    <path d="M60 273 Q66 268 72 274 Q78 280 84 274 Q90 268 96 274 Q102 280 108 274 Q114 268 120 274 Q126 280 132 274 Q138 268 142 274"
+          fill="none" stroke="#FF85C2" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+  </g>
+</svg>

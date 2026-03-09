@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <radialGradient id="hsb-bunL" cx="45%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#FF8DC7"/>
+      <stop offset="60%" stop-color="#FF69B4"/>
+      <stop offset="100%" stop-color="#FF1493"/>
+    </radialGradient>
+    <radialGradient id="hsb-bunR" cx="55%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#FF8DC7"/>
+      <stop offset="60%" stop-color="#FF69B4"/>
+      <stop offset="100%" stop-color="#FF1493"/>
+    </radialGradient>
+    <radialGradient id="hsb-top" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#FF8DC7"/>
+      <stop offset="100%" stop-color="#FF69B4"/>
+    </radialGradient>
+  </defs>
+  <style>
+    .hsb-hair{fill:#FF69B4;stroke:#E0559E;stroke-width:1.2}
+    .hsb-dark{fill:#FF1493;stroke:#D4107A;stroke-width:1}
+    .hsb-sparkle{fill:#FFF;opacity:0.85}
+  </style>
+
+  <!-- Back layer: short hair behind head -->
+  <g id="back-layer">
+    <!-- Hair behind head -->
+    <path d="M60 40 Q100 30 140 40 Q146 55 145 75 Q144 90 140 100
+             L138 95 Q140 75 138 55 Q120 38 100 36 Q80 38 62 55
+             Q60 75 62 95 L60 100 Q56 90 55 75 Q54 55 60 40 Z"
+          class="hsb-hair"/>
+  </g>
+
+  <!-- Front layer: space buns, bangs, sparkles -->
+  <g id="clothing">
+    <!-- Hair top crown -->
+    <path d="M56 72 Q55 42 68 32 Q82 22 100 20 Q118 22 132 32
+             Q145 42 144 72 Q142 54 128 44 Q114 36 100 35
+             Q86 36 72 44 Q58 54 56 72 Z"
+          fill="url(#hsb-top)" stroke="#E0559E" stroke-width="1.2"/>
+
+    <!-- Side hair tufts -->
+    <path d="M56 72 Q54 62 56 52 Q55 68 54 80 Q55 90 58 95
+             Q60 88 60 78 Z" class="hsb-hair"/>
+    <path d="M144 72 Q146 62 144 52 Q145 68 146 80 Q145 90 142 95
+             Q140 88 140 78 Z" class="hsb-hair"/>
+
+    <!-- Bangs - short choppy cute style -->
+    <path d="M68 48 Q76 40 86 44 Q80 50 76 56 Q73 58 70 58 Z"
+          class="hsb-hair"/>
+    <path d="M82 43 Q92 37 102 42 Q96 48 90 52 Q86 54 83 52 Z"
+          class="hsb-hair"/>
+    <path d="M98 41 Q108 37 118 43 Q112 48 106 52 Q102 54 99 52 Z"
+          class="hsb-hair"/>
+    <path d="M114 43 Q124 42 132 48 Q128 54 124 56 Q120 54 116 50 Z"
+          class="hsb-hair"/>
+
+    <!-- Left space bun -->
+    <circle cx="68" cy="30" r="20" fill="url(#hsb-bunL)" stroke="#E0559E" stroke-width="1.5"/>
+    <!-- Bun swirl detail -->
+    <path d="M60 26 Q64 20 72 22 Q78 24 76 30 Q74 36 68 34 Q62 32 64 28"
+          fill="none" stroke="#FF1493" stroke-width="1.5" opacity="0.5"/>
+    <!-- Bun bottom connection -->
+    <path d="M56 42 Q62 50 68 48 Q74 50 80 42"
+          fill="#FF69B4" stroke="#E0559E" stroke-width="1"/>
+
+    <!-- Right space bun -->
+    <circle cx="132" cy="30" r="20" fill="url(#hsb-bunR)" stroke="#E0559E" stroke-width="1.5"/>
+    <!-- Bun swirl detail -->
+    <path d="M140 26 Q136 20 128 22 Q122 24 124 30 Q126 36 132 34 Q138 32 136 28"
+          fill="none" stroke="#FF1493" stroke-width="1.5" opacity="0.5"/>
+    <!-- Bun bottom connection -->
+    <path d="M120 42 Q126 50 132 48 Q138 50 144 42"
+          fill="#FF69B4" stroke="#E0559E" stroke-width="1"/>
+
+    <!-- Sparkle dots scattered around buns -->
+    <!-- Left bun sparkles -->
+    <circle cx="54" cy="18" r="2" class="hsb-sparkle"/>
+    <circle cx="78" cy="14" r="1.5" class="hsb-sparkle"/>
+    <circle cx="50" cy="34" r="1.5" class="hsb-sparkle"/>
+    <circle cx="72" cy="10" r="1" class="hsb-sparkle"/>
+    <!-- Right bun sparkles -->
+    <circle cx="146" cy="18" r="2" class="hsb-sparkle"/>
+    <circle cx="122" cy="14" r="1.5" class="hsb-sparkle"/>
+    <circle cx="150" cy="34" r="1.5" class="hsb-sparkle"/>
+    <circle cx="128" cy="10" r="1" class="hsb-sparkle"/>
+    <!-- Top sparkles -->
+    <circle cx="100" cy="6" r="1.5" class="hsb-sparkle"/>
+    <circle cx="88" cy="10" r="1" class="hsb-sparkle"/>
+    <circle cx="112" cy="8" r="1" class="hsb-sparkle"/>
+
+    <!-- Tiny 4-point star sparkles -->
+    <g transform="translate(58,12)" class="hsb-sparkle">
+      <path d="M0,-3 L0.7,0 0,3 -0.7,0 Z"/>
+    </g>
+    <g transform="translate(142,12)" class="hsb-sparkle">
+      <path d="M0,-3 L0.7,0 0,3 -0.7,0 Z"/>
+    </g>
+    <g transform="translate(100,2)" class="hsb-sparkle">
+      <path d="M0,-2.5 L0.6,0 0,2.5 -0.6,0 Z"/>
+    </g>
+  </g>
+</svg>

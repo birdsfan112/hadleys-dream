@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <radialGradient id="asg-lens-l" cx="0.4" cy="0.35" r="0.6">
+      <stop offset="0%" stop-color="#555"/>
+      <stop offset="100%" stop-color="#2F2F2F"/>
+    </radialGradient>
+    <radialGradient id="asg-lens-r" cx="0.4" cy="0.35" r="0.6">
+      <stop offset="0%" stop-color="#555"/>
+      <stop offset="100%" stop-color="#2F2F2F"/>
+    </radialGradient>
+  </defs>
+  <style>
+    .asg-frame{fill:none;stroke:#333;stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
+    .asg-lens-l{fill:url(#asg-lens-l);stroke:#333;stroke-width:2.5}
+    .asg-lens-r{fill:url(#asg-lens-r);stroke:#333;stroke-width:2.5}
+    .asg-reflect{fill:#FFF;opacity:0.35}
+  </style>
+  <g id="clothing">
+    <!-- Left temple arm (goes to ear) -->
+    <path d="M60 72 Q56 70 50 70 Q44 72 42 76" class="asg-frame" style="stroke-width:2.5"/>
+    <!-- Right temple arm (goes to ear) -->
+    <path d="M140 72 Q144 70 150 70 Q156 72 158 76" class="asg-frame" style="stroke-width:2.5"/>
+    <!-- Left lens - round chunky -->
+    <ellipse cx="82" cy="74" rx="16" ry="14" class="asg-lens-l"/>
+    <!-- Right lens - round chunky -->
+    <ellipse cx="118" cy="74" rx="16" ry="14" class="asg-lens-r"/>
+    <!-- Bridge across nose -->
+    <path d="M96 74 Q100 78 104 74" class="asg-frame" style="stroke-width:2.5"/>
+    <!-- Left lens reflection highlight -->
+    <ellipse cx="76" cy="68" rx="5" ry="3.5" class="asg-reflect" transform="rotate(-15 76 68)"/>
+    <ellipse cx="74" cy="72" rx="2" ry="1.5" class="asg-reflect" transform="rotate(-15 74 72)"/>
+    <!-- Right lens reflection highlight -->
+    <ellipse cx="112" cy="68" rx="5" ry="3.5" class="asg-reflect" transform="rotate(-15 112 68)"/>
+    <ellipse cx="110" cy="72" rx="2" ry="1.5" class="asg-reflect" transform="rotate(-15 110 72)"/>
+    <!-- Frame top accent - chunky brow bar -->
+    <path d="M66 64 Q74 58 82 62" class="asg-frame" style="stroke-width:2"/>
+    <path d="M118 62 Q126 58 134 64" class="asg-frame" style="stroke-width:2"/>
+  </g>
+</svg>

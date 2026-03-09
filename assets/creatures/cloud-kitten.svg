@@ -1,34 +1,93 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="ck-cloud-grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#F5F5F5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D9D9D9;stop-opacity:0.8" />
+    </radialGradient>
+    <radialGradient id="ck-shadow-grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#E8E8E8;stop-opacity:0" />
+      <stop offset="100%" style="stop-color:#C0C0C0;stop-opacity:0.3" />
+    </radialGradient>
+    <radialGradient id="ck-eye-shine" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E8E8E8;stop-opacity:0.3" />
+    </radialGradient>
+    <filter id="ck-soft-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="0.5" dy="1.5" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.15"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="ck-glow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+    </filter>
+  </defs>
   <style>
-    .body{fill:#FFF;stroke:#E8E8E8;stroke-width:2}
-    .eye{fill:#333} .shine{fill:#FFF}
-    .blush{fill:#FF69B4;opacity:0.25}
+    @keyframes ck-float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    .ck-body { animation: ck-float 3.5s ease-in-out infinite; }
   </style>
-  <!-- Cloud-like body from overlapping circles -->
-  <circle cx="72" cy="130" r="32" class="body"/>
-  <circle cx="128" cy="130" r="32" class="body"/>
-  <circle cx="100" cy="118" r="38" class="body"/>
-  <circle cx="100" cy="140" r="30" class="body"/>
-  <!-- Head -->
-  <circle cx="100" cy="85" r="38" class="body"/>
-  <!-- Ears -->
-  <polygon points="72,60 65,35 82,52" fill="#FFF" stroke="#E8E8E8" stroke-width="2"/>
-  <polygon points="128,60 135,35 118,52" fill="#FFF" stroke="#E8E8E8" stroke-width="2"/>
-  <polygon points="72,58 68,42 80,53" fill="#FFB6C1" opacity="0.4"/>
-  <polygon points="128,58 132,42 120,53" fill="#FFB6C1" opacity="0.4"/>
-  <!-- Halo -->
-  <ellipse cx="100" cy="40" rx="18" ry="6" fill="none" stroke="#FFD700" stroke-width="1.5" opacity="0.4"/>
-  <!-- Eyes (sleepy curves) -->
-  <path d="M84 82 Q88 88 92 82" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-  <path d="M108 82 Q112 88 116 82" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-  <!-- Blush -->
-  <ellipse cx="76" cy="92" rx="8" ry="5" class="blush"/>
-  <ellipse cx="124" cy="92" rx="8" ry="5" class="blush"/>
-  <!-- Nose -->
-  <polygon points="97,93 103,93 100,97" fill="#FFB6C1"/>
-  <!-- Mouth -->
-  <path d="M94 99 Q100 105 106 99" stroke="#E8E8E8" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <!-- Paws -->
-  <ellipse cx="82" cy="165" rx="12" ry="7" class="body"/>
-  <ellipse cx="118" cy="165" rx="12" ry="7" class="body"/>
+
+  <!-- Soft halo glow -->
+  <ellipse cx="100" cy="38" rx="35" ry="12" fill="#FFD700" opacity="0.25" filter="url(#ck-glow)"/>
+
+  <!-- Main cloud kitten body -->
+  <g class="ck-body">
+    <!-- Cloud body made of overlapping puffy circles -->
+    <!-- Left puff -->
+    <circle cx="60" cy="125" r="34" fill="url(#ck-cloud-grad)" filter="url(#ck-soft-shadow)"/>
+    <circle cx="60" cy="125" r="34" fill="url(#ck-shadow-grad)"/>
+    <!-- Right puff -->
+    <circle cx="140" cy="125" r="34" fill="url(#ck-cloud-grad)" filter="url(#ck-soft-shadow)"/>
+    <circle cx="140" cy="125" r="34" fill="url(#ck-shadow-grad)"/>
+    <!-- Center body puff -->
+    <circle cx="100" cy="115" r="40" fill="url(#ck-cloud-grad)" filter="url(#ck-soft-shadow)"/>
+    <circle cx="100" cy="115" r="40" fill="url(#ck-shadow-grad)"/>
+    <!-- Bottom puff -->
+    <circle cx="100" cy="145" r="32" fill="url(#ck-cloud-grad)" filter="url(#ck-soft-shadow)"/>
+    <circle cx="100" cy="145" r="32" fill="url(#ck-shadow-grad)"/>
+
+    <!-- Head -->
+    <circle cx="100" cy="78" r="40" fill="url(#ck-cloud-grad)" filter="url(#ck-soft-shadow)"/>
+    <circle cx="100" cy="78" r="40" fill="url(#ck-shadow-grad)"/>
+
+    <!-- Ears (fluffy cloud tufts) -->
+    <circle cx="68" cy="52" r="14" fill="url(#ck-cloud-grad)" filter="url(#ck-soft-shadow)"/>
+    <circle cx="68" cy="52" r="14" fill="url(#ck-shadow-grad)"/>
+    <circle cx="132" cy="52" r="14" fill="url(#ck-cloud-grad)" filter="url(#ck-soft-shadow)"/>
+    <circle cx="132" cy="52" r="14" fill="url(#ck-shadow-grad)"/>
+    <!-- Inner ear pink tint -->
+    <circle cx="68" cy="53" r="8" fill="#FFB6C1" opacity="0.3"/>
+    <circle cx="132" cy="53" r="8" fill="#FFB6C1" opacity="0.3"/>
+
+    <!-- Eyes (sleepy half-closed) -->
+    <path d="M80 75 Q86 82 94 75" stroke="#2C3E50" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M106 75 Q112 82 120 75" stroke="#2C3E50" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <!-- Eye shine -->
+    <ellipse cx="87" cy="78" rx="2" ry="1.5" fill="url(#ck-eye-shine)"/>
+    <ellipse cx="113" cy="78" rx="2" ry="1.5" fill="url(#ck-eye-shine)"/>
+
+    <!-- Blush (soft pink) -->
+    <ellipse cx="70" cy="90" rx="11" ry="7" fill="#FF69B4" opacity="0.2"/>
+    <ellipse cx="130" cy="90" rx="11" ry="7" fill="#FF69B4" opacity="0.2"/>
+
+    <!-- Tiny pink nose -->
+    <circle cx="100" cy="92" r="2.5" fill="#FFB6D9"/>
+    <circle cx="100" cy="92" r="1" fill="#FFFFFF" opacity="0.5"/>
+
+    <!-- Sweet smile -->
+    <path d="M94 99 Q100 105 106 99" stroke="#D9D9D9" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+    <!-- Paw tucked under chin (one visible) -->
+    <ellipse cx="75" cy="140" rx="14" ry="10" fill="url(#ck-cloud-grad)" filter="url(#ck-soft-shadow)"/>
+    <ellipse cx="75" cy="140" rx="14" ry="10" fill="url(#ck-shadow-grad)"/>
+  </g>
 </svg>

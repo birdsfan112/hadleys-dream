@@ -1,78 +1,152 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
   <defs>
-    <linearGradient id="au-horn" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0%" stop-color="#FFD1DC"/>
-      <stop offset="50%" stop-color="#C8A2C8"/>
-      <stop offset="100%" stop-color="#FFD700"/>
+    <!-- Aurora mane gradient: shifting through all colors -->
+    <linearGradient id="au-mane-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFB6D9;stop-opacity:1" />
+      <stop offset="25%" style="stop-color:#B366FF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#66D9FF;stop-opacity:1" />
+      <stop offset="75%" style="stop-color:#66FF99;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFB6D9;stop-opacity:1" />
     </linearGradient>
-    <linearGradient id="au-mane" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#FFB6C1"/>
-      <stop offset="25%" stop-color="#C8A2C8"/>
-      <stop offset="50%" stop-color="#ADD8E6"/>
-      <stop offset="75%" stop-color="#98FB98"/>
-      <stop offset="100%" stop-color="#FFB6C1"/>
+    <!-- Aurora tail gradient -->
+    <linearGradient id="au-tail-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFB6D9;stop-opacity:1" />
+      <stop offset="33%" style="stop-color:#B366FF;stop-opacity:1" />
+      <stop offset="66%" style="stop-color:#66D9FF;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#66FF99;stop-opacity:0.8" />
     </linearGradient>
+    <!-- Body gradient (soft pink with iridescent sheen) -->
+    <linearGradient id="au-body-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD1DC;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFC0E0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFB6D9;stop-opacity:1" />
+    </linearGradient>
+    <!-- Horn (crystal with rainbow refraction) -->
+    <linearGradient id="au-horn-grad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFB6D9;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#B366FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFD700;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="au-eye-shine" cx="35%" cy="35%" r="70%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFD700;stop-opacity:0.4" />
+    </radialGradient>
+    <filter id="au-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="1" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.25"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="au-glow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5"/>
+    </filter>
   </defs>
   <style>
-    .body{fill:#FFD1DC;stroke:#C8A2C8;stroke-width:2}
-    .eye{fill:#333} .shine{fill:#FFF}
-    .blush{fill:#FF69B4;opacity:0.25}
+    @keyframes au-mane-flow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-4px); }
+    }
+    @keyframes au-tail-flow {
+      0%, 100% { transform: translateX(0px) translateY(0px); }
+      50% { transform: translateX(-3px) translateY(2px); }
+    }
+    @keyframes au-sparkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+    @keyframes au-glow-pulse {
+      0%, 100% { filter: drop-shadow(0px 0px 2px rgba(255,182,217,0.5)); }
+      50% { filter: drop-shadow(0px 0px 6px rgba(255,182,217,0.8)); }
+    }
+    .au-mane { animation: au-mane-flow 3s ease-in-out infinite; }
+    .au-tail { animation: au-tail-flow 4s ease-in-out infinite; }
+    .au-sparkle { animation: au-sparkle 1.5s ease-in-out infinite; }
+    .au-horn { animation: au-glow-pulse 2.5s ease-in-out infinite; }
   </style>
-  <!-- Aurora tail -->
-  <path d="M50 130 Q30 120 25 105" fill="none" stroke="#FFB6C1" stroke-width="3" stroke-linecap="round"/>
-  <path d="M48 135 Q26 128 20 112" fill="none" stroke="#C8A2C8" stroke-width="3" stroke-linecap="round"/>
-  <path d="M46 140 Q22 136 15 120" fill="none" stroke="#ADD8E6" stroke-width="3" stroke-linecap="round"/>
-  <!-- Legs -->
-  <rect x="72" y="148" width="12" height="28" rx="5" class="body"/>
-  <rect x="92" y="150" width="12" height="26" rx="5" class="body"/>
-  <rect x="112" y="148" width="12" height="28" rx="5" class="body"/>
-  <rect x="130" y="150" width="12" height="26" rx="5" class="body"/>
-  <!-- Hooves -->
-  <ellipse cx="78" cy="178" rx="7" ry="4" fill="#C8A2C8"/>
-  <ellipse cx="98" cy="178" rx="7" ry="4" fill="#C8A2C8"/>
-  <ellipse cx="118" cy="178" rx="7" ry="4" fill="#C8A2C8"/>
-  <ellipse cx="136" cy="178" rx="7" ry="4" fill="#C8A2C8"/>
+
+  <!-- Flowing aurora tail (graceful, animated) -->
+  <g class="au-tail">
+    <path d="M50 135 Q28 125 20 105" fill="none" stroke="url(#au-tail-grad)" stroke-width="4" stroke-linecap="round" filter="url(#au-shadow)"/>
+    <path d="M48 142 Q22 132 12 110" fill="none" stroke="url(#au-tail-grad)" stroke-width="3.5" stroke-linecap="round" opacity="0.8"/>
+    <path d="M46 148 Q18 140 8 118" fill="none" stroke="url(#au-tail-grad)" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+  </g>
+
+  <!-- Elegant legs -->
+  <rect x="70" y="148" width="13" height="30" rx="6.5" fill="url(#au-body-grad)" filter="url(#au-shadow)"/>
+  <rect x="90" y="150" width="13" height="28" rx="6.5" fill="url(#au-body-grad)" filter="url(#au-shadow)"/>
+  <rect x="110" y="148" width="13" height="30" rx="6.5" fill="url(#au-body-grad)" filter="url(#au-shadow)"/>
+  <rect x="128" y="150" width="13" height="28" rx="6.5" fill="url(#au-body-grad)" filter="url(#au-shadow)"/>
+
+  <!-- Glowing hooves with soft aura -->
+  <ellipse cx="76.5" cy="180" rx="8" ry="5" fill="#C8A2C8" filter="url(#au-shadow)"/>
+  <ellipse cx="96.5" cy="180" rx="8" ry="5" fill="#C8A2C8" filter="url(#au-shadow)"/>
+  <ellipse cx="116.5" cy="180" rx="8" ry="5" fill="#C8A2C8" filter="url(#au-shadow)"/>
+  <ellipse cx="134.5" cy="180" rx="8" ry="5" fill="#C8A2C8" filter="url(#au-shadow)"/>
+  <!-- Hoof glow -->
+  <ellipse cx="76.5" cy="180" rx="8" ry="5" fill="#FFB6D9" opacity="0.3" filter="url(#au-glow)"/>
+  <ellipse cx="96.5" cy="180" rx="8" ry="5" fill="#FFB6D9" opacity="0.3" filter="url(#au-glow)"/>
+  <ellipse cx="116.5" cy="180" rx="8" ry="5" fill="#FFB6D9" opacity="0.3" filter="url(#au-glow)"/>
+  <ellipse cx="134.5" cy="180" rx="8" ry="5" fill="#FFB6D9" opacity="0.3" filter="url(#au-glow)"/>
+
   <!-- Body -->
-  <ellipse cx="105" cy="130" rx="42" ry="28" class="body"/>
-  <!-- Lighter belly -->
-  <ellipse cx="105" cy="138" rx="30" ry="16" fill="#FFF0F5" opacity="0.5"/>
-  <!-- Neck -->
-  <ellipse cx="135" cy="100" rx="16" ry="28" class="body" transform="rotate(15 135 100)"/>
+  <ellipse cx="105" cy="130" rx="44" ry="30" fill="url(#au-body-grad)" filter="url(#au-shadow)"/>
+  <!-- Iridescent belly patch -->
+  <ellipse cx="105" cy="138" rx="32" ry="18" fill="#FFF0F5" opacity="0.6"/>
+
+  <!-- Neck (connecting to head) -->
+  <ellipse cx="135" cy="98" rx="17" ry="32" fill="url(#au-body-grad)" filter="url(#au-shadow)" transform="rotate(15 135 98)"/>
+
   <!-- Head -->
-  <circle cx="148" cy="68" r="26" class="body"/>
-  <!-- Mane -->
-  <path d="M132 55 Q125 65 128 80 Q126 90 130 100" fill="none" stroke="url(#au-mane)" stroke-width="4" stroke-linecap="round"/>
-  <path d="M136 50 Q128 62 132 76 Q130 88 134 98" fill="none" stroke="url(#au-mane)" stroke-width="3.5" stroke-linecap="round" opacity="0.8"/>
-  <path d="M140 48 Q132 58 135 72 Q132 84 137 95" fill="none" stroke="url(#au-mane)" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
-  <path d="M144 47 Q138 56 140 68" fill="none" stroke="url(#au-mane)" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
-  <!-- Horn -->
-  <polygon points="155,45 148,20 161,45" fill="url(#au-horn)" stroke="#C8A2C8" stroke-width="1"/>
-  <!-- Spiral line on horn -->
-  <path d="M152 40 Q155 36 153 32 Q150 28 152 24" fill="none" stroke="#FFD700" stroke-width="1" opacity="0.6"/>
+  <circle cx="148" cy="66" r="28" fill="url(#au-body-grad)" filter="url(#au-shadow)"/>
+
   <!-- Ear -->
-  <polygon points="138,48 132,32 145,42" fill="#FFD1DC" stroke="#C8A2C8" stroke-width="1.5"/>
-  <!-- Eye (with star shine) -->
-  <circle cx="155" cy="65" r="7" class="eye"/>
-  <polygon points="153,61 154,63 152,63" fill="#FFF" opacity="0.9"/>
-  <polygon points="153,63 155,62 155,64 153,63 151,62 151,64" fill="#FFF" opacity="0.9"/>
-  <!-- Blush -->
-  <ellipse cx="165" cy="75" rx="7" ry="4" class="blush"/>
-  <!-- Mouth -->
-  <path d="M160 78 Q164 82 168 78" stroke="#C8A2C8" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <!-- Sparkles around horn -->
-  <circle cx="140" cy="18" r="2" fill="#FFD700" opacity="0.7">
-    <animate attributeName="opacity" values="0.3;1;0.3" dur="1.8s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="165" cy="25" r="1.5" fill="#C8A2C8" opacity="0.6">
-    <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="150" cy="12" r="2" fill="#ADD8E6" opacity="0.5">
-    <animate attributeName="opacity" values="0.5;1;0.5" dur="2.2s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="170" cy="35" r="1.5" fill="#FFB6C1" opacity="0.6">
-    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="1.6s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="135" cy="30" r="2" fill="#98FB98" opacity="0.4">
-    <animate attributeName="opacity" values="0.3;0.9;0.3" dur="2.4s" repeatCount="indefinite"/>
-  </circle>
+  <polygon points="138,48 132,28 145,40" fill="url(#au-body-grad)" stroke="#B366FF" stroke-width="1.5" filter="url(#au-shadow)"/>
+  <!-- Ear inner detail -->
+  <polygon points="137,46 134,35 142,42" fill="#FFB6D9" opacity="0.5"/>
+
+  <!-- Flowing aurora mane (primary feature) -->
+  <g class="au-mane">
+    <!-- Multiple mane strands for flow effect -->
+    <path d="M132 50 Q120 62 125 85 Q122 100 130 115" fill="none" stroke="url(#au-mane-grad)" stroke-width="5" stroke-linecap="round" filter="url(#au-shadow)"/>
+    <path d="M136 47 Q126 58 130 80 Q127 95 135 110" fill="none" stroke="url(#au-mane-grad)" stroke-width="4.5" stroke-linecap="round" opacity="0.85" filter="url(#au-shadow)"/>
+    <path d="M140 45 Q132 55 135 75 Q132 88 140 105" fill="none" stroke="url(#au-mane-grad)" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
+    <path d="M144 44 Q138 52 141 68 Q138 80 144 95" fill="none" stroke="url(#au-mane-grad)" stroke-width="3.5" stroke-linecap="round" opacity="0.6"/>
+    <path d="M148 43 Q143 50 145 62" fill="none" stroke="url(#au-mane-grad)" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+  </g>
+
+  <!-- Spiral crystal horn (central feature) -->
+  <g class="au-horn" filter="url(#au-glow)">
+    <polygon points="155,42 148,16 162,42" fill="url(#au-horn-grad)" stroke="#B366FF" stroke-width="1.5"/>
+    <!-- Spiral refraction line -->
+    <path d="M152 38 Q155 33 153 28 Q150 23 152 18" fill="none" stroke="#FFD700" stroke-width="1.5" opacity="0.8"/>
+    <!-- Second spiral detail -->
+    <path d="M158 38 Q156 33 157 28 Q158 23 156 18" fill="none" stroke="#FFD700" stroke-width="1" opacity="0.5"/>
+  </g>
+
+  <!-- Magical eyes with star sparkles -->
+  <circle cx="155" cy="63" r="8" fill="#2C3E50" filter="url(#au-shadow)"/>
+  <!-- Star in eye -->
+  <g>
+    <circle cx="157" cy="60" r="3" fill="url(#au-eye-shine)" filter="url(#au-glow)"/>
+    <!-- 4-pointed star shine within eye -->
+    <polygon points="157,57 158,59 160,60 158,61 157,63 156,61 154,60 156,59" fill="#FFFFFF" opacity="0.8"/>
+  </g>
+
+  <!-- Blush (rosy magical) -->
+  <ellipse cx="167" cy="75" rx="11" ry="7" fill="#FF69B4" opacity="0.22"/>
+
+  <!-- Gentle smile -->
+  <path d="M160 78 Q165 83 170 78" stroke="#B366FF" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Floating star particles around horn (magical sparkles) -->
+  <circle cx="140" cy="15" r="2.5" fill="#FFD700" class="au-sparkle" style="animation-delay: 0s" filter="url(#au-glow)"/>
+  <circle cx="168" cy="22" r="2" fill="#B366FF" class="au-sparkle" style="animation-delay: 0.4s" filter="url(#au-glow)"/>
+  <circle cx="150" cy="8" r="2.5" fill="#66D9FF" class="au-sparkle" style="animation-delay: 0.8s" filter="url(#au-glow)"/>
+  <circle cx="172" cy="40" r="2" fill="#FFB6D9" class="au-sparkle" style="animation-delay: 1.2s" filter="url(#au-glow)"/>
+  <circle cx="135" cy="28" r="2.5" fill="#66FF99" class="au-sparkle" style="animation-delay: 1.6s" filter="url(#au-glow)"/>
 </svg>

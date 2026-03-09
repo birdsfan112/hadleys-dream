@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="tutu-band" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFC0CB"/>
+      <stop offset="100%" stop-color="#FFA0B0"/>
+    </linearGradient>
+  </defs>
+  <g id="clothing">
+    <!-- Waistband -->
+    <path d="M70 222 Q70 218 76 218 L124 218 Q130 218 130 222 L130 230 Q130 232 128 232 L72 232 Q70 232 70 230 Z"
+          fill="url(#tutu-band)" stroke="#FF8DA0" stroke-width="1.5"/>
+    <!-- Waistband ribbon -->
+    <rect x="70" y="228" width="60" height="4" rx="2" fill="#FF8DA0" stroke="#E87A8E" stroke-width="0.8"/>
+    <!-- Ribbon bow center -->
+    <circle cx="100" cy="230" r="3" fill="#FFC0CB" stroke="#FF8DA0" stroke-width="0.8"/>
+    <path d="M93 230 Q96 226 100 230 Q96 234 93 230" fill="#FFD0D8" stroke="#FF8DA0" stroke-width="0.7"/>
+    <path d="M107 230 Q104 226 100 230 Q104 234 107 230" fill="#FFD0D8" stroke="#FF8DA0" stroke-width="0.7"/>
+
+    <!-- Bottom ruffle layer (widest, most transparent) -->
+    <path d="M44 262 Q50 255 58 263 Q66 271 74 263 Q82 255 90 263 Q98 271 106 263 Q114 255 122 263 Q130 271 138 263 Q146 255 154 263 Q158 267 156 270
+             Q154 273 146 265 Q138 257 130 265 Q122 273 114 265 Q106 257 98 265 Q90 273 82 265 Q74 257 66 265 Q58 273 50 265 Q44 259 44 262 Z"
+          fill="#FFB6C1" stroke="#FF8DA0" stroke-width="1" opacity="0.4"/>
+
+    <!-- Middle ruffle layer -->
+    <path d="M48 254 Q54 247 62 255 Q70 263 78 255 Q86 247 94 255 Q102 263 110 255 Q118 247 126 255 Q134 263 142 255 Q148 249 152 254
+             Q150 258 142 250 Q134 258 126 250 Q118 258 110 250 Q102 258 94 250 Q86 258 78 250 Q70 258 62 250 Q54 258 48 254 Z"
+          fill="#FFB6C1" stroke="#FF8DA0" stroke-width="1" opacity="0.55"/>
+
+    <!-- Upper-middle ruffle layer -->
+    <path d="M52 247 Q58 240 66 248 Q74 256 82 248 Q90 240 98 248 Q106 256 114 248 Q122 240 130 248 Q138 256 146 248 Q150 244 148 250
+             Q146 254 138 246 Q130 254 122 246 Q114 254 106 246 Q98 254 90 246 Q82 254 74 246 Q66 254 58 246 Q52 252 52 247 Z"
+          fill="#FFB6C1" stroke="#FF8DA0" stroke-width="1" opacity="0.7"/>
+
+    <!-- Top ruffle layer (smallest, most opaque) -->
+    <path d="M58 240 Q64 233 72 241 Q80 249 88 241 Q96 233 104 241 Q112 249 120 241 Q128 233 136 241 Q140 245 142 242
+             Q140 246 134 238 Q126 246 118 238 Q110 246 102 238 Q94 246 86 238 Q78 246 70 238 Q62 246 58 240 Z"
+          fill="#FFB6C1" stroke="#FF8DA0" stroke-width="1.2" opacity="0.85"/>
+
+    <!-- Core body of tutu (solid connection from waistband to ruffles) -->
+    <path d="M72 232 L58 242 Q56 244 58 246 L142 246 Q144 244 142 242 L128 232 Z"
+          fill="#FFB6C1" stroke="#FF8DA0" stroke-width="1" opacity="0.9"/>
+
+    <!-- Sparkle accents -->
+    <circle cx="72" cy="248" r="1.2" fill="#FFF" opacity="0.7"/>
+    <circle cx="128" cy="252" r="1" fill="#FFF" opacity="0.6"/>
+    <circle cx="100" cy="244" r="1.3" fill="#FFF" opacity="0.7"/>
+    <circle cx="60" cy="258" r="1" fill="#FFF" opacity="0.5"/>
+    <circle cx="140" cy="260" r="1.1" fill="#FFF" opacity="0.5"/>
+    <circle cx="86" cy="256" r="0.9" fill="#FFF" opacity="0.6"/>
+    <circle cx="114" cy="260" r="1" fill="#FFF" opacity="0.6"/>
+  </g>
+</svg>

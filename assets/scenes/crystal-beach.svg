@@ -1,101 +1,215 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
   <defs>
+    <!-- Gradients -->
     <linearGradient id="cb-sky" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#87CEEB"/>
-      <stop offset="50%" stop-color="#b8e4f0"/>
-      <stop offset="100%" stop-color="#f0e6c8"/>
+      <stop offset="0%" stop-color="#FFB6D9"/>
+      <stop offset="35%" stop-color="#FFC8A2"/>
+      <stop offset="70%" stop-color="#b8e4f0"/>
+      <stop offset="100%" stop-color="#87CEEB"/>
     </linearGradient>
-    <radialGradient id="cb-sun" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0%" stop-color="#FFF8DC"/>
-      <stop offset="60%" stop-color="#FFE4B5" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#FFE4B5" stop-opacity="0"/>
+    <radialGradient id="cb-sun" cx="0.5" cy="0.5" r="0.6">
+      <stop offset="0%" stop-color="#FFFACD"/>
+      <stop offset="50%" stop-color="#FFE4B5" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#FFB347" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="cb-water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#87CEEB"/>
+      <stop offset="50%" stop-color="#6BB8D3"/>
+      <stop offset="100%" stop-color="#5AA8C3"/>
+    </linearGradient>
+    <linearGradient id="cb-sand" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f5e6d3"/>
+      <stop offset="100%" stop-color="#e0d4bf"/>
+    </linearGradient>
+    <radialGradient id="cb-tide-pool" cx="0.4" cy="0.3" r="0.6">
+      <stop offset="0%" stop-color="#87CEEB" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#4A90E2" stop-opacity="0.2"/>
     </radialGradient>
     <filter id="cb-glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="cb-crystal-glow">
       <feGaussianBlur stdDeviation="2" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
 
-  <!-- Sky -->
-  <rect width="800" height="600" fill="url(#cb-sky)"/>
+  <!-- Background Layer -->
+  <g id="bg-layer">
+    <!-- Sky gradient -->
+    <rect width="800" height="600" fill="url(#cb-sky)"/>
 
-  <!-- Sun low on horizon -->
-  <circle cx="400" cy="280" r="80" fill="url(#cb-sun)"/>
-  <circle cx="400" cy="280" r="30" fill="#FFF8DC" opacity="0.9"/>
+    <!-- Sun low on horizon with glow -->
+    <g opacity="0.8">
+      <circle cx="550" cy="200" r="65" fill="#FFE4B5" opacity="0.4"/>
+      <circle cx="550" cy="200" r="45" fill="#FFD700" opacity="0.5"/>
+    </g>
+    <circle cx="550" cy="200" r="35" fill="url(#cb-sun)"/>
+    <circle cx="550" cy="200" r="20" fill="#FFFACD" opacity="0.95"/>
 
-  <!-- Clouds -->
-  <g opacity="0.7" fill="white">
-    <ellipse cx="180" cy="70" rx="55" ry="22"/>
-    <ellipse cx="215" cy="62" rx="38" ry="18"/>
-    <ellipse cx="145" cy="66" rx="30" ry="15"/>
-    <ellipse cx="580" cy="90" rx="48" ry="20"/>
-    <ellipse cx="615" cy="82" rx="32" ry="16"/>
+    <!-- Fluffy clouds with pink tint -->
+    <g opacity="0.7" fill="white">
+      <ellipse cx="120" cy="60" rx="70" ry="28"/>
+      <ellipse cx="170" cy="50" rx="50" ry="22"/>
+      <ellipse cx="80" cy="55" rx="45" ry="20"/>
+    </g>
+    <g opacity="0.6" fill="#FFE0E6">
+      <ellipse cx="500" cy="100" rx="60" ry="26"/>
+      <ellipse cx="550" cy="90" rx="45" ry="20"/>
+    </g>
+
+    <!-- Distant ocean horizon lines -->
+    <path d="M0 260 Q200 250 400 260 Q600 270 800 260 L800 280 Q600 290 400 280 Q200 270 0 280 Z" fill="#6BB8D3" opacity="0.6"/>
+    <path d="M0 280 Q200 270 400 280 Q600 290 800 280 L800 300 Q600 310 400 300 Q200 290 0 300 Z" fill="#5AA8C3" opacity="0.5"/>
+
+    <!-- Distant palm tree silhouettes on far islands -->
+    <g opacity="0.4" fill="#4A5F3A">
+      <rect x="150" y="240" width="3" height="35" rx="1"/>
+      <path d="M152 245 Q140 240 130 245 Q140 250 152 245 M152 240 Q165 235 175 240 Q165 245 152 240"/>
+      <rect x="650" y="255" width="3" height="30" rx="1"/>
+      <path d="M652 260 Q640 256 630 260 Q640 264 652 260 M652 256 Q665 251 675 256 Q665 260 652 256"/>
+    </g>
   </g>
 
-  <!-- Distant ocean -->
-  <rect x="0" y="280" width="800" height="120" fill="#87CEEB" opacity="0.5"/>
-  <path d="M0 290 Q100 275 200 290 Q300 305 400 290 Q500 275 600 290 Q700 305 800 290 L800 310 Q700 325 600 310 Q500 295 400 310 Q300 325 200 310 Q100 295 0 310 Z" fill="#7EC8E3" opacity="0.4"/>
-  <path d="M0 310 Q80 300 160 310 Q240 320 320 310 Q400 300 480 310 Q560 320 640 310 Q720 300 800 310 L800 330 L0 330 Z" fill="#6BB8D3" opacity="0.3"/>
+  <!-- Middle Layer -->
+  <g id="mid-layer">
+    <!-- Water with wave patterns -->
+    <rect x="0" y="250" width="800" height="150" fill="url(#cb-water)"/>
 
-  <!-- Crystal formations in water -->
-  <g opacity="0.5" stroke="white" stroke-width="1.5" fill="none">
-    <polygon points="250,260 265,210 280,260" fill="#E0F0FF" fill-opacity="0.3"/>
-    <polygon points="260,260 270,220 280,260" fill="#B0D4F1" fill-opacity="0.2"/>
-    <polygon points="520,250 540,190 560,250" fill="#E0F0FF" fill-opacity="0.3"/>
-    <polygon points="530,250 540,205 550,250" fill="#B0D4F1" fill-opacity="0.2"/>
-    <polygon points="340,270 350,235 360,270" fill="#E0F0FF" fill-opacity="0.25"/>
+    <!-- Wave overlays with shimmer -->
+    <path d="M0 270 Q100 260 200 270 Q300 280 400 270 Q500 260 600 270 Q700 280 800 270 L800 290 Q700 300 600 290 Q500 280 400 290 Q300 300 200 290 Q100 280 0 290 Z" fill="#87CEEB" opacity="0.4"/>
+    <path d="M0 295 Q150 285 300 295 Q450 305 600 295 Q750 285 800 295 L800 315 Q750 325 600 315 Q450 305 300 315 Q150 305 0 315 Z" fill="#fff" opacity="0.15"/>
+
+    <!-- Crystal formations in water (purple/blue) -->
+    <g opacity="0.6" stroke="#E0F0FF" stroke-width="1.5">
+      <!-- Crystal cluster 1 -->
+      <polygon points="180,280 195,230 210,280" fill="#9370DB" fill-opacity="0.4"/>
+      <polygon points="190,280 198,245 206,280" fill="#8A5BB8" fill-opacity="0.3"/>
+      <polygon points="200,285 205,250 210,285" fill="#6495ED" fill-opacity="0.35"/>
+
+      <!-- Crystal cluster 2 -->
+      <polygon points="450,270 470,210 490,270" fill="#87CEEB" fill-opacity="0.45"/>
+      <polygon points="460,270 472,225 484,270" fill="#6BB8D3" fill-opacity="0.35"/>
+      <polygon points="470,275 475,240 480,275" fill="#5A98C3" fill-opacity="0.3"/>
+
+      <!-- Crystal cluster 3 -->
+      <polygon points="680,275 698,220 716,275" fill="#9370DB" fill-opacity="0.4"/>
+      <polygon points="690,275 702,235 714,275" fill="#6495ED" fill-opacity="0.35"/>
+    </g>
+
+    <!-- Rocky outcrops with crystal glow -->
+    <g filter="url(#cb-crystal-glow)">
+      <path d="M100 300 Q80 280 110 270 Q120 285 100 300" fill="#8B7355" opacity="0.7"/>
+      <polygon points="95,295 105,285 115,295" fill="#B0D4F1" opacity="0.5"/>
+
+      <path d="M700 310 Q720 290 750 295 Q740 310 700 310" fill="#8B7355" opacity="0.7"/>
+      <polygon points="710,305 720,295 735,300" fill="#9370DB" opacity="0.45"/>
+    </g>
+
+    <!-- Pier/dock extending into water -->
+    <g opacity="0.75">
+      <rect x="340" y="380" width="120" height="8" rx="2" fill="#8B7355"/>
+      <rect x="350" y="388" width="8" height="50" fill="#6B5345"/>
+      <rect x="410" y="388" width="8" height="55" fill="#6B5345"/>
+      <rect x="445" y="385" width="8" height="52" fill="#6B5345"/>
+    </g>
+
+    <!-- Seashells scattered on sand -->
+    <g opacity="0.65" fill="#FFF5E6" stroke="#D2B48C" stroke-width="1">
+      <path d="M280 350 Q288 340 296 350 Q288 346 280 350"/>
+      <path d="M580 365 Q590 352 600 365 Q590 358 580 365"/>
+      <path d="M120 340 Q126 330 132 340 Q126 335 120 340"/>
+      <path d="M650 355 Q660 345 670 355 Q660 350 650 355"/>
+    </g>
+
+    <!-- Starfish -->
+    <g opacity="0.75">
+      <g fill="#E74C3C">
+        <circle cx="350" cy="380" r="8"/>
+        <circle cx="350" cy="360" r="6"/>
+        <circle cx="365" cy="370" r="6"/>
+        <circle cx="335" cy="370" r="6"/>
+        <circle cx="345" cy="390" r="6"/>
+      </g>
+    </g>
   </g>
 
-  <!-- Wet sand / tide pools -->
-  <rect x="0" y="380" width="800" height="220" fill="#f0e6c8"/>
-  <path d="M0 380 Q200 370 400 380 Q600 390 800 380 L800 400 Q600 410 400 400 Q200 390 0 400 Z" fill="#d4cdb0" opacity="0.5"/>
+  <!-- Foreground Layer -->
+  <g id="fg-layer">
+    <!-- Sandy beach -->
+    <rect x="0" y="380" width="800" height="220" fill="url(#cb-sand)"/>
 
-  <!-- Tide pools -->
-  <ellipse cx="200" cy="420" rx="45" ry="18" fill="#87CEEB" opacity="0.3"/>
-  <ellipse cx="550" cy="450" rx="55" ry="20" fill="#87CEEB" opacity="0.25"/>
-  <ellipse cx="380" cy="470" rx="35" ry="14" fill="#87CEEB" opacity="0.2"/>
+    <!-- Wet sand shoreline texture -->
+    <path d="M0 380 Q200 370 400 380 Q600 390 800 380 L800 395 Q600 405 400 395 Q200 385 0 395 Z" fill="#d4cdb0" opacity="0.6"/>
 
-  <!-- Scattered shells -->
-  <path d="M150 500 Q155 492 160 500 Q155 495 150 500" fill="#FFF5E6" stroke="#D2B48C" stroke-width="1"/>
-  <path d="M480 510 Q485 502 490 510 Q485 505 480 510" fill="#FFF5E6" stroke="#D2B48C" stroke-width="1"/>
-  <path d="M620 490 Q625 482 630 490 Q625 485 620 490" fill="#FFE4C4" stroke="#D2B48C" stroke-width="1"/>
+    <!-- Tide pools with colorful reflections -->
+    <g opacity="0.5">
+      <ellipse cx="150" cy="420" rx="50" ry="20" fill="url(#cb-tide-pool)"/>
+      <ellipse cx="150" cy="418" rx="35" ry="10" fill="#87CEEB" opacity="0.3"/>
 
-  <!-- Starfish -->
-  <polygon points="320,520 323,512 330,515 325,508 332,505 324,504 322,496 320,504 312,505 319,508 314,515 321,512" fill="#FF6347" opacity="0.7"/>
+      <ellipse cx="500" cy="450" rx="60" ry="22" fill="url(#cb-tide-pool)"/>
+      <ellipse cx="500" cy="448" rx="40" ry="12" fill="#6BB8D3" opacity="0.25"/>
 
-  <!-- Small crystal clusters on beach -->
-  <g opacity="0.45" stroke="white" stroke-width="1">
-    <polygon points="100,480 108,455 116,480" fill="#E0F0FF" fill-opacity="0.4"/>
-    <polygon points="108,480 113,462 118,480" fill="#B8D8F0" fill-opacity="0.3"/>
-    <polygon points="650,475 656,458 662,475" fill="#E0F0FF" fill-opacity="0.4"/>
-    <polygon points="655,475 658,463 661,475" fill="#B8D8F0" fill-opacity="0.3"/>
-  </g>
+      <ellipse cx="300" cy="470" rx="40" ry="16" fill="url(#cb-tide-pool)"/>
+      <ellipse cx="300" cy="468" rx="25" ry="9" fill="#87CEEB" opacity="0.2"/>
+    </g>
 
-  <!-- Sparkle particles on crystals and water -->
-  <g filter="url(#cb-glow)" fill="#FFF" opacity="0.8">
-    <circle cx="265" cy="215" r="2">
-      <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="540" cy="200" r="2.5">
-      <animate attributeName="opacity" values="1;0.3;1" dur="1.8s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="350" cy="240" r="2">
-      <animate attributeName="opacity" values="0.5;1;0.5" dur="2.2s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="110" cy="460" r="2">
-      <animate attributeName="opacity" values="0.3;1;0.3" dur="1.6s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="655" cy="462" r="2">
-      <animate attributeName="opacity" values="1;0.4;1" dur="2.5s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="200" cy="415" r="2.5">
-      <animate attributeName="opacity" values="0.4;1;0.4" dur="1.9s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="550" cy="445" r="2">
-      <animate attributeName="opacity" values="0.6;1;0.6" dur="2.1s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="400" cy="285" r="2.5">
-      <animate attributeName="opacity" values="0.3;0.9;0.3" dur="2.3s" repeatCount="indefinite"/>
-    </circle>
+    <!-- Beach grasses -->
+    <g fill="#5a9e54" opacity="0.7">
+      <path d="M40 400 L45 380 L50 400"/>
+      <path d="M50 400 L56 377 L62 400"/>
+      <path d="M680 410 L686 388 L692 410"/>
+      <path d="M700 410 L708 385 L716 410"/>
+    </g>
+
+    <!-- Scattered shells and starfish on sand -->
+    <g opacity="0.7" fill="#FFF5E6" stroke="#D2B48C" stroke-width="1">
+      <path d="M80 480 Q86 468 92 480 Q86 473 80 480"/>
+      <path d="M200 510 Q208 496 216 510 Q208 502 200 510"/>
+      <path d="M520 500 Q528 486 536 500 Q528 492 520 500"/>
+      <path d="M720 490 Q728 476 736 490 Q728 482 720 490"/>
+    </g>
+
+    <!-- Colorful crystal formations on beach catching light -->
+    <g filter="url(#cb-crystal-glow)" opacity="0.75">
+      <polygon points="130,480 145,460 160,480" fill="#9370DB"/>
+      <polygon points="138,480 150,465 162,480" fill="#6495ED" opacity="0.6"/>
+
+      <polygon points="580,500 595,480 610,500" fill="#87CEEB"/>
+      <polygon points="585,500 597,485 609,500" fill="#5A98C3" opacity="0.6"/>
+
+      <polygon points="350,520 365,500 380,520" fill="#9370DB"/>
+      <polygon points="355,520 365,505 375,520" fill="#B0C4DE" opacity="0.5"/>
+    </g>
+
+    <!-- Wave foam at shoreline -->
+    <g opacity="0.5" fill="white" stroke="none">
+      <path d="M0 390 Q40 388 80 392 Q120 390 160 393 Q200 391 240 394 Q280 392 320 395 Q360 393 400 396 Q440 393 480 396 Q520 394 560 397 Q600 395 640 398 Q680 396 720 398 Q760 396 800 398 L800 405 L0 405 Z"/>
+      <circle cx="50" cy="398" r="3" opacity="0.8">
+        <animate attributeName="opacity" values="0.6;0;0.6" dur="2.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="200" cy="400" r="2.5" opacity="0.7">
+        <animate attributeName="opacity" values="0.5;0;0.5" dur="2.8s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="550" cy="399" r="3" opacity="0.75">
+        <animate attributeName="opacity" values="0.6;0;0.6" dur="2.4s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="700" cy="401" r="2.5" opacity="0.7">
+        <animate attributeName="opacity" values="0.5;0;0.5" dur="2.6s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+
+    <!-- Sparkle particles on crystals and water -->
+    <g filter="url(#cb-glow)" fill="#FFF" opacity="0.85">
+      <circle cx="150" cy="460" r="2.5"><animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/></circle>
+      <circle cx="370" cy="485" r="2"><animate attributeName="opacity" values="0.4;0.95;0.4" dur="1.8s" repeatCount="indefinite"/></circle>
+      <circle cx="550" cy="465" r="2.5"><animate attributeName="opacity" values="0.2;1;0.2" dur="2.2s" repeatCount="indefinite"/></circle>
+      <circle cx="100" cy="510" r="2"><animate attributeName="opacity" values="0.5;0.9;0.5" dur="1.6s" repeatCount="indefinite"/></circle>
+      <circle cx="680" cy="495" r="2"><animate attributeName="opacity" values="0.3;1;0.3" dur="2.5s" repeatCount="indefinite"/></circle>
+      <circle cx="250" cy="520" r="2.5"><animate attributeName="opacity" values="0.4;0.95;0.4" dur="1.9s" repeatCount="indefinite"/></circle>
+      <circle cx="600" cy="510" r="2"><animate attributeName="opacity" values="0.6;0.9;0.6" dur="2.1s" repeatCount="indefinite"/></circle>
+      <circle cx="450" cy="540" r="2.5"><animate attributeName="opacity" values="0.3;0.9;0.3" dur="2.3s" repeatCount="indefinite"/></circle>
+    </g>
   </g>
 </svg>

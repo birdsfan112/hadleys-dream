@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <radialGradient id="glass-slippers-shine" cx="0.3" cy="0.3" r="0.7">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#E0FFFF" stop-opacity="0.3"/>
+    </radialGradient>
+    <linearGradient id="glass-slippers-heel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E0FFFF" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#B0E0E6" stop-opacity="0.5"/>
+    </linearGradient>
+    <filter id="glass-slippers-glow">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <style>
+    .gs-main{fill:#E0FFFF;fill-opacity:0.6;stroke:#B0E0E6;stroke-width:1.5;stroke-linejoin:round}
+    .gs-sole{fill:#B0E0E6;fill-opacity:0.5;stroke:#89B8C4;stroke-width:1.2;stroke-linejoin:round}
+    .gs-highlight{fill:#FFFFFF;fill-opacity:0.5;stroke:none}
+    .gs-sparkle{fill:#FFFFFF;stroke:none}
+  </style>
+  <g id="clothing">
+    <!-- Left slipper heel -->
+    <path d="
+      M72 308
+      Q70 312 68 318
+      Q67 322 70 322
+      Q73 322 74 318
+      L76 310
+    " fill="url(#glass-slippers-heel)" stroke="#B0E0E6" stroke-width="1.2"/>
+    <!-- Left slipper sole -->
+    <path d="
+      M68 308
+      Q68 314 84 314
+      Q100 314 100 308
+      L100 306
+      Q100 310 84 310
+      Q68 310 68 306
+      Z
+    " class="gs-sole"/>
+    <!-- Left slipper body -->
+    <path d="
+      M68 305
+      Q68 294 76 292
+      L92 292
+      Q100 294 100 305
+      Q100 310 84 312
+      Q68 310 68 305
+      Z
+    " class="gs-main"/>
+    <!-- Left slipper highlight -->
+    <ellipse cx="80" cy="298" rx="8" ry="4" class="gs-highlight" transform="rotate(-10 80 298)"/>
+    <!-- Left slipper rim highlight -->
+    <path d="M72 294 Q80 290 90 294" fill="none" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.7" stroke-linecap="round"/>
+    <!-- Left slipper sparkles -->
+    <g filter="url(#glass-slippers-glow)">
+      <!-- Star sparkle 1 -->
+      <path d="M74 296 L75.5 293 L77 296 L74 294.5 L77 294.5 Z" class="gs-sparkle" opacity="0.9"/>
+      <!-- Star sparkle 2 -->
+      <path d="M90 300 L91 298 L92 300 L90 299 L92 299 Z" class="gs-sparkle" opacity="0.7"/>
+      <!-- Diamond sparkle -->
+      <path d="M82 290 L83.5 288 L85 290 L83.5 292 Z" class="gs-sparkle" opacity="0.8"/>
+      <!-- Dot sparkles -->
+      <circle cx="70" cy="302" r="1" class="gs-sparkle" opacity="0.6"/>
+      <circle cx="96" cy="296" r="0.8" class="gs-sparkle" opacity="0.5"/>
+    </g>
+
+    <!-- Right slipper heel -->
+    <path d="
+      M128 308
+      Q130 312 132 318
+      Q133 322 130 322
+      Q127 322 126 318
+      L124 310
+    " fill="url(#glass-slippers-heel)" stroke="#B0E0E6" stroke-width="1.2"/>
+    <!-- Right slipper sole -->
+    <path d="
+      M100 308
+      Q100 314 116 314
+      Q132 314 132 308
+      L132 306
+      Q132 310 116 310
+      Q100 310 100 306
+      Z
+    " class="gs-sole"/>
+    <!-- Right slipper body -->
+    <path d="
+      M100 305
+      Q100 294 108 292
+      L124 292
+      Q132 294 132 305
+      Q132 310 116 312
+      Q100 310 100 305
+      Z
+    " class="gs-main"/>
+    <!-- Right slipper highlight -->
+    <ellipse cx="120" cy="298" rx="8" ry="4" class="gs-highlight" transform="rotate(10 120 298)"/>
+    <!-- Right slipper rim highlight -->
+    <path d="M110 294 Q118 290 126 294" fill="none" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.7" stroke-linecap="round"/>
+    <!-- Right slipper sparkles -->
+    <g filter="url(#glass-slippers-glow)">
+      <!-- Star sparkle 1 -->
+      <path d="M123 296 L124.5 293 L126 296 L123 294.5 L126 294.5 Z" class="gs-sparkle" opacity="0.9"/>
+      <!-- Star sparkle 2 -->
+      <path d="M108 300 L109 298 L110 300 L108 299 L110 299 Z" class="gs-sparkle" opacity="0.7"/>
+      <!-- Diamond sparkle -->
+      <path d="M115 290 L116.5 288 L118 290 L116.5 292 Z" class="gs-sparkle" opacity="0.8"/>
+      <!-- Dot sparkles -->
+      <circle cx="104" cy="296" r="0.8" class="gs-sparkle" opacity="0.5"/>
+      <circle cx="130" cy="302" r="1" class="gs-sparkle" opacity="0.6"/>
+    </g>
+  </g>
+</svg>

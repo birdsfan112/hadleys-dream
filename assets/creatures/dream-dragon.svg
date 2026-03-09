@@ -1,62 +1,132 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="dd-body-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFB6C1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFB6D9;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="dd-eye-shine" cx="35%" cy="35%" r="70%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFB6C1;stop-opacity:0.3" />
+    </radialGradient>
+    <radialGradient id="dd-glow-aura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FFB6C1;stop-opacity:0.25" />
+      <stop offset="100%" style="stop-color:#FFB6C1;stop-opacity:0" />
+    </radialGradient>
+    <filter id="dd-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="1" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.2"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="dd-glow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+    </filter>
+  </defs>
   <style>
-    .body{fill:#FFB6C1;stroke:#DDA0DD;stroke-width:2}
-    .eye{fill:#333} .shine{fill:#FFF}
-    .blush{fill:#FF69B4;opacity:0.25}
+    @keyframes dd-breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    @keyframes dd-petal-drift {
+      0% { transform: translateY(0px) translateX(0px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-40px) translateX(12px) rotate(180deg); opacity: 0; }
+    }
+    @keyframes dd-heart-float {
+      0%, 100% { opacity: 0.2; transform: translateY(0px); }
+      50% { opacity: 0.6; transform: translateY(-8px); }
+    }
+    .dd-body { animation: dd-breathe 3s ease-in-out infinite; }
+    .dd-petal { animation: dd-petal-drift 3.5s ease-in infinite; }
+    .dd-heart { animation: dd-heart-float 2s ease-in-out infinite; }
   </style>
-  <!-- Tail -->
-  <path d="M140 145 Q165 155 170 140 Q175 125 160 130" stroke="#DDA0DD" stroke-width="8" fill="none" stroke-linecap="round"/>
-  <!-- Tail flower -->
-  <circle cx="170" cy="138" r="5" fill="#FF69B4"/><circle cx="170" cy="138" r="2" fill="#FFD700"/>
-  <!-- Wings (stubby) -->
-  <path d="M55 95 Q35 70 45 55 Q55 50 60 65 Q65 75 65 95 Z" fill="#DDA0DD" stroke="#C8A2C8" stroke-width="1" opacity="0.7"/>
-  <path d="M145 95 Q165 70 155 55 Q145 50 140 65 Q135 75 135 95 Z" fill="#DDA0DD" stroke="#C8A2C8" stroke-width="1" opacity="0.7"/>
+
+  <!-- Soft rosy glow aura -->
+  <circle cx="100" cy="108" r="68" fill="url(#dd-glow-aura)"/>
+
+  <!-- Elegant tail with flowers -->
+  <path d="M142 145 Q168 158 175 140 Q180 125 162 130" stroke="url(#dd-body-grad)" stroke-width="9" fill="none" stroke-linecap="round" filter="url(#dd-shadow)"/>
+  <!-- Flower on tail -->
+  <circle cx="175" cy="138" r="6" fill="#FF69B4" filter="url(#dd-shadow)"/>
+  <circle cx="175" cy="138" r="3" fill="#FFD700"/>
+
+  <!-- Stubby wings (cute, flower-patterned) -->
+  <path d="M52 98 Q32 70 42 52 Q54 48 62 68 Q68 82 68 98 Z" fill="url(#dd-body-grad)" stroke="#DDA0DD" stroke-width="1.5" opacity="0.8" filter="url(#dd-shadow)"/>
+  <!-- Wing flower pattern -->
+  <circle cx="48" cy="75" r="3" fill="#FF69B4" opacity="0.6"/>
+  <circle cx="60" cy="70" r="2.5" fill="#FFD700" opacity="0.5"/>
+
+  <path d="M148 98 Q168 70 158 52 Q146 48 138 68 Q132 82 132 98 Z" fill="url(#dd-body-grad)" stroke="#DDA0DD" stroke-width="1.5" opacity="0.8" filter="url(#dd-shadow)"/>
+  <!-- Wing flower pattern -->
+  <circle cx="152" cy="75" r="3" fill="#FF69B4" opacity="0.6"/>
+  <circle cx="140" cy="70" r="2.5" fill="#FFD700" opacity="0.5"/>
+
   <!-- Body -->
-  <ellipse cx="100" cy="125" rx="40" ry="35" class="body"/>
-  <!-- Lighter belly -->
-  <ellipse cx="100" cy="133" rx="25" ry="22" fill="#FFD6E0" stroke="none"/>
-  <!-- Head -->
-  <circle cx="100" cy="78" r="32" class="body"/>
-  <!-- Flower wreath around neck -->
-  <circle cx="72" cy="100" r="4" fill="#FF69B4"/>
-  <circle cx="72" cy="100" r="1.5" fill="#FFD700"/>
-  <circle cx="84" cy="95" r="3.5" fill="#DDA0DD"/>
-  <circle cx="84" cy="95" r="1.5" fill="#FFF"/>
-  <circle cx="100" cy="93" r="4" fill="#FFD700"/>
-  <circle cx="100" cy="93" r="1.5" fill="#FFF"/>
-  <circle cx="116" cy="95" r="3.5" fill="#FF69B4"/>
-  <circle cx="116" cy="95" r="1.5" fill="#FFD700"/>
-  <circle cx="128" cy="100" r="4" fill="#9999FF"/>
-  <circle cx="128" cy="100" r="1.5" fill="#FFF"/>
-  <!-- Eyes (dreamy half-lidded) -->
-  <circle cx="86" cy="75" r="8" class="eye"/>
-  <circle cx="114" cy="75" r="8" class="eye"/>
-  <circle cx="89" cy="73" r="3" class="shine"/>
-  <circle cx="117" cy="73" r="3" class="shine"/>
-  <!-- Eyelids -->
-  <path d="M78 72 Q86 68 94 72" fill="#FFB6C1" stroke="none"/>
-  <path d="M106 72 Q114 68 122 72" fill="#FFB6C1" stroke="none"/>
-  <!-- Blush -->
-  <ellipse cx="72" cy="84" rx="8" ry="5" class="blush"/>
-  <ellipse cx="128" cy="84" rx="8" ry="5" class="blush"/>
-  <!-- Nose -->
-  <ellipse cx="100" cy="82" rx="3" ry="2.5" fill="#DDA0DD"/>
-  <!-- Mouth -->
-  <path d="M94 88 Q100 93 106 88" stroke="#DDA0DD" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <!-- Small horns -->
-  <polygon points="82,50 78,38 86,48" fill="#DDA0DD"/>
-  <polygon points="118,50 122,38 114,48" fill="#DDA0DD"/>
+  <g class="dd-body">
+    <ellipse cx="100" cy="130" rx="42" ry="37" fill="url(#dd-body-grad)" filter="url(#dd-shadow)"/>
+    <!-- Belly -->
+    <ellipse cx="100" cy="138" rx="28" ry="24" fill="#FFD6E0" opacity="0.5"/>
+
+    <!-- Head -->
+    <circle cx="100" cy="80" r="34" fill="url(#dd-body-grad)" filter="url(#dd-shadow)"/>
+
+    <!-- Small graceful horns -->
+    <polygon points="80,48 75,32 88,46" fill="url(#dd-body-grad)" filter="url(#dd-shadow)"/>
+    <polygon points="120,48 125,32 112,46" fill="url(#dd-body-grad)" filter="url(#dd-shadow)"/>
+
+    <!-- Flower wreath around neck (precious) -->
+    <circle cx="70" cy="105" r="5" fill="#FF69B4" filter="url(#dd-shadow)"/>
+    <circle cx="70" cy="105" r="2" fill="#FFD700"/>
+    <circle cx="83" cy="98" r="4" fill="#DDA0DD" filter="url(#dd-shadow)"/>
+    <circle cx="83" cy="98" r="1.8" fill="#FFF" opacity="0.7"/>
+    <circle cx="100" cy="96" r="5" fill="#FFD700" filter="url(#dd-shadow)"/>
+    <circle cx="100" cy="96" r="2" fill="#FFF" opacity="0.6"/>
+    <circle cx="117" cy="98" r="4" fill="#FF69B4" filter="url(#dd-shadow)"/>
+    <circle cx="117" cy="98" r="1.8" fill="#FFD700" opacity="0.7"/>
+    <circle cx="130" cy="105" r="5" fill="#9999FF" filter="url(#dd-shadow)"/>
+    <circle cx="130" cy="105" r="2" fill="#FFF" opacity="0.6"/>
+
+    <!-- Eyes (dreamy, gentle half-closed) -->
+    <circle cx="85" cy="78" r="9" fill="#2C3E50"/>
+    <circle cx="115" cy="78" r="9" fill="#2C3E50"/>
+    <!-- Eye shine (soft) -->
+    <circle cx="88" cy="75" r="4" fill="url(#dd-eye-shine)"/>
+    <circle cx="118" cy="75" r="4" fill="url(#dd-eye-shine)"/>
+    <circle cx="90" cy="72" r="1.5" fill="#FFFFFF" opacity="0.8"/>
+    <circle cx="120" cy="72" r="1.5" fill="#FFFFFF" opacity="0.8"/>
+
+    <!-- Sleepy eyelids -->
+    <path d="M76 74 Q85 70 94 74" fill="#FFB6C1" opacity="0.4"/>
+    <path d="M106 74 Q115 70 124 74" fill="#FFB6C1" opacity="0.4"/>
+
+    <!-- Blush (soft and sweet) -->
+    <ellipse cx="70" cy="88" rx="11" ry="6" fill="#FF69B4" opacity="0.24"/>
+    <ellipse cx="130" cy="88" rx="11" ry="6" fill="#FF69B4" opacity="0.24"/>
+
+    <!-- Nose (tiny) -->
+    <ellipse cx="100" cy="84" rx="3.5" ry="3" fill="#DDA0DD"/>
+    <circle cx="100" cy="83" r="0.8" fill="#FFFFFF" opacity="0.6"/>
+
+    <!-- Gentle smile -->
+    <path d="M93 92 Q100 98 107 92" stroke="#DDA0DD" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </g>
+
   <!-- Feet -->
-  <ellipse cx="80" cy="158" rx="12" ry="7" class="body"/>
-  <ellipse cx="120" cy="158" rx="12" ry="7" class="body"/>
-  <!-- Floating hearts -->
-  <path d="M45 55 Q45 50 48 50 Q51 50 51 54 Q51 58 45 62 Q39 58 39 54 Q39 50 42 50 Q45 50 45 55 Z" fill="#FF69B4" opacity="0.4">
-    <animate attributeName="opacity" values="0.2;0.5;0.2" dur="1.8s" repeatCount="indefinite"/>
-  </path>
-  <path d="M155 45 Q155 40 158 40 Q161 40 161 44 Q161 48 155 52 Q149 48 149 44 Q149 40 152 40 Q155 40 155 45 Z" fill="#DDA0DD" opacity="0.3">
-    <animate attributeName="opacity" values="0.4;0.1;0.4" dur="2.2s" repeatCount="indefinite"/>
-  </path>
-  <path d="M50 130 Q50 126 52.5 126 Q55 126 55 129 Q55 132 50 135 Q45 132 45 129 Q45 126 47.5 126 Q50 126 50 130 Z" fill="#FFB6C1" opacity="0.35">
-    <animate attributeName="opacity" values="0.15;0.45;0.15" dur="2.5s" repeatCount="indefinite"/>
-  </path>
+  <ellipse cx="78" cy="165" rx="14" ry="8" fill="url(#dd-body-grad)" filter="url(#dd-shadow)"/>
+  <ellipse cx="122" cy="165" rx="14" ry="8" fill="url(#dd-body-grad)" filter="url(#dd-shadow)"/>
+
+  <!-- Floating flower petals (drifting) -->
+  <circle cx="140" cy="60" r="2.5" fill="#FF69B4" class="dd-petal" style="animation-delay: 0s"/>
+  <circle cx="60" cy="50" r="2" fill="#DDA0DD" class="dd-petal" style="animation-delay: 0.7s"/>
+  <circle cx="115" cy="70" r="2" fill="#FFD700" class="dd-petal" style="animation-delay: 1.4s"/>
+  <circle cx="80" cy="60" r="2.5" fill="#FF69B4" class="dd-petal" style="animation-delay: 2.1s"/>
+
+  <!-- Floating hearts (love/dreams) -->
+  <path d="M50 58 Q50 52 53.5 52 Q57 52 57 57 Q57 62 50 68 Q43 62 43 57 Q43 52 46.5 52 Q50 52 50 58 Z" fill="#FF69B4" class="dd-heart" style="animation-delay: 0s" opacity="0.4"/>
+  <path d="M160 48 Q160 42 163.5 42 Q167 42 167 47 Q167 52 160 58 Q153 52 153 47 Q153 42 156.5 42 Q160 42 160 48 Z" fill="#DDA0DD" class="dd-heart" style="animation-delay: 0.5s" opacity="0.35"/>
+  <path d="M55 140 Q55 135 58 135 Q61 135 61 139 Q61 143 55 147 Q49 143 49 139 Q49 135 52 135 Q55 135 55 140 Z" fill="#FFB6C1" class="dd-heart" style="animation-delay: 1s" opacity="0.3"/>
 </svg>

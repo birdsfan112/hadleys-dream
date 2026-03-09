@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="ht-gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFE44D"/>
+      <stop offset="40%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#E8A200"/>
+    </linearGradient>
+    <linearGradient id="ht-gold-peak" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFF0A0"/>
+      <stop offset="100%" stop-color="#FFD700"/>
+    </linearGradient>
+    <radialGradient id="ht-gem-pink" cx="0.35" cy="0.3" r="0.5">
+      <stop offset="0%" stop-color="#FFB0D8"/>
+      <stop offset="100%" stop-color="#FF69B4"/>
+    </radialGradient>
+    <radialGradient id="ht-gem-blue" cx="0.35" cy="0.3" r="0.5">
+      <stop offset="0%" stop-color="#B8E4FF"/>
+      <stop offset="100%" stop-color="#87CEEB"/>
+    </radialGradient>
+  </defs>
+  <style>
+    .ht-gold{fill:url(#ht-gold);stroke:#C8860A;stroke-width:1.5;stroke-linejoin:round}
+    .ht-peak{fill:url(#ht-gold-peak);stroke:#C8860A;stroke-width:1.3;stroke-linejoin:round}
+    .ht-detail{stroke:#E8A200;stroke-width:1;fill:none;stroke-linecap:round}
+    .ht-sparkle{fill:#FFF;stroke:none}
+  </style>
+  <g id="clothing">
+    <!-- Tiara base band curving across head -->
+    <path d="M58 40 Q60 36 68 34 Q80 31 100 30
+             Q120 31 132 34 Q140 36 142 40
+             L144 44 Q140 42 132 40 Q120 37 100 36
+             Q80 37 68 40 Q60 42 56 44 Z"
+          class="ht-gold"/>
+
+    <!-- Lower decorative rim -->
+    <path d="M56 44 Q58 46 68 48 Q80 50 100 50
+             Q120 50 132 48 Q142 46 144 44
+             L142 40 Q140 43 132 45 Q120 47 100 47
+             Q80 47 68 45 Q60 43 58 40 Z"
+          class="ht-gold"/>
+
+    <!-- Scallop details along band -->
+    <path d="M64 42 Q68 39 72 42" class="ht-detail"/>
+    <path d="M72 40 Q76 37 80 40" class="ht-detail"/>
+    <path d="M80 39 Q84 36 88 39" class="ht-detail"/>
+    <path d="M112 39 Q116 36 120 39" class="ht-detail"/>
+    <path d="M120 40 Q124 37 128 40" class="ht-detail"/>
+    <path d="M128 42 Q132 39 136 42" class="ht-detail"/>
+
+    <!-- Left peak -->
+    <path d="M76 36 L72 26 Q71 24 73 23 L78 28 L82 36 Z"
+          class="ht-peak"/>
+    <!-- Left peak gem (blue) -->
+    <ellipse cx="75" cy="26" rx="3" ry="3.5" fill="url(#ht-gem-blue)"
+             stroke="#5E9EBD" stroke-width="0.8"/>
+    <!-- Gem facet line -->
+    <path d="M73 25 L75 28 L77 25" stroke="#5E9EBD" stroke-width="0.5" fill="none"/>
+
+    <!-- Center peak (tallest) -->
+    <path d="M92 34 L96 22 Q98 18 100 17 Q102 18 104 22 L108 34 Z"
+          class="ht-peak"/>
+    <!-- Center peak gem (pink, larger) -->
+    <ellipse cx="100" cy="24" rx="4" ry="5" fill="url(#ht-gem-pink)"
+             stroke="#E05A9E" stroke-width="0.8"/>
+    <!-- Gem facet lines -->
+    <path d="M97 22 L100 27 L103 22" stroke="#E05A9E" stroke-width="0.5" fill="none"/>
+    <path d="M98 24 L100 20 L102 24" stroke="#FFB0D8" stroke-width="0.4" fill="none" opacity="0.6"/>
+
+    <!-- Right peak -->
+    <path d="M118 36 L122 26 Q123 24 127 23 L128 28 L124 36 Z"
+          class="ht-peak"/>
+    <!-- Right peak gem (blue) -->
+    <ellipse cx="125" cy="26" rx="3" ry="3.5" fill="url(#ht-gem-blue)"
+             stroke="#5E9EBD" stroke-width="0.8"/>
+    <!-- Gem facet line -->
+    <path d="M123 25 L125 28 L127 25" stroke="#5E9EBD" stroke-width="0.5" fill="none"/>
+
+    <!-- Small decorative dots between peaks -->
+    <circle cx="87" cy="34" r="1.5" fill="#FFD700" stroke="#C8860A" stroke-width="0.6"/>
+    <circle cx="113" cy="34" r="1.5" fill="#FFD700" stroke="#C8860A" stroke-width="0.6"/>
+
+    <!-- Sparkle effects -->
+    <!-- Sparkle near center gem -->
+    <g transform="translate(107, 20)" class="ht-sparkle" opacity="0.9">
+      <rect x="-0.6" y="-3.5" width="1.2" height="7" rx="0.6"/>
+      <rect x="-3.5" y="-0.6" width="7" height="1.2" rx="0.6"/>
+    </g>
+    <!-- Sparkle near left peak -->
+    <g transform="translate(68, 24)" class="ht-sparkle" opacity="0.7">
+      <rect x="-0.5" y="-2.5" width="1" height="5" rx="0.5"/>
+      <rect x="-2.5" y="-0.5" width="5" height="1" rx="0.5"/>
+    </g>
+    <!-- Sparkle near right peak -->
+    <g transform="translate(132, 24)" class="ht-sparkle" opacity="0.7">
+      <rect x="-0.5" y="-2.5" width="1" height="5" rx="0.5"/>
+      <rect x="-2.5" y="-0.5" width="5" height="1" rx="0.5"/>
+    </g>
+    <!-- Small sparkle on band -->
+    <g transform="translate(90, 38) rotate(45)" class="ht-sparkle" opacity="0.5">
+      <rect x="-0.4" y="-2" width="0.8" height="4" rx="0.4"/>
+      <rect x="-2" y="-0.4" width="4" height="0.8" rx="0.4"/>
+    </g>
+    <g transform="translate(110, 38) rotate(45)" class="ht-sparkle" opacity="0.5">
+      <rect x="-0.4" y="-2" width="0.8" height="4" rx="0.4"/>
+      <rect x="-2" y="-0.4" width="4" height="0.8" rx="0.4"/>
+    </g>
+
+    <!-- Gold highlight sheen on band -->
+    <path d="M68 36 Q80 33 100 32 Q112 33 118 34"
+          stroke="#FFF0A0" stroke-width="1.2" fill="none" opacity="0.5" stroke-linecap="round"/>
+  </g>
+</svg>

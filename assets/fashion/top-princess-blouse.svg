@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="princess-blouse-body" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0%" stop-color="#FFD0D8"/>
+      <stop offset="100%" stop-color="#FFC0CB"/>
+    </linearGradient>
+    <radialGradient id="princess-blouse-puff-l" cx="0.4" cy="0.4" r="0.6">
+      <stop offset="0%" stop-color="#FFD4DC"/>
+      <stop offset="100%" stop-color="#FFB0B8"/>
+    </radialGradient>
+    <radialGradient id="princess-blouse-puff-r" cx="0.6" cy="0.4" r="0.6">
+      <stop offset="0%" stop-color="#FFD4DC"/>
+      <stop offset="100%" stop-color="#FFB0B8"/>
+    </radialGradient>
+  </defs>
+  <style>
+    .pb-main{fill:#FFC0CB;stroke:#FF9EAA;stroke-width:1.8;stroke-linejoin:round}
+    .pb-shade{fill:#FFB0B8;stroke:none}
+    .pb-line{stroke:#FF9EAA;stroke-width:1.2;fill:none;stroke-linecap:round}
+    .pb-pearl{fill:#FFF;stroke:#FFD0D0;stroke-width:0.5}
+    .pb-ruffle{fill:#FFC0CB;stroke:#FF9EAA;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+  </style>
+  <g id="clothing">
+    <!-- Left puffy sleeve -->
+    <ellipse cx="46" cy="156" rx="22" ry="26" fill="url(#princess-blouse-puff-l)" stroke="#FF9EAA" stroke-width="1.8"/>
+    <!-- Left sleeve puff highlights -->
+    <path d="M36 146 Q40 142 46 144" stroke="#FFF" stroke-width="1" fill="none" opacity="0.5" stroke-linecap="round"/>
+    <path d="M33 156 Q36 152 42 154" stroke="#FFF" stroke-width="0.8" fill="none" opacity="0.4" stroke-linecap="round"/>
+    <!-- Left sleeve gather/cuff -->
+    <path d="
+      M34 178 Q40 184 46 182 Q52 184 58 178
+    " fill="#FFC0CB" stroke="#FF9EAA" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="
+      M36 180 Q40 186 46 184 Q52 186 56 180
+    " fill="none" stroke="#FF9EAA" stroke-width="1" stroke-linecap="round"/>
+
+    <!-- Right puffy sleeve -->
+    <ellipse cx="154" cy="156" rx="22" ry="26" fill="url(#princess-blouse-puff-r)" stroke="#FF9EAA" stroke-width="1.8"/>
+    <!-- Right sleeve puff highlights -->
+    <path d="M154 144 Q160 142 164 146" stroke="#FFF" stroke-width="1" fill="none" opacity="0.5" stroke-linecap="round"/>
+    <path d="M158 154 Q164 152 167 156" stroke="#FFF" stroke-width="0.8" fill="none" opacity="0.4" stroke-linecap="round"/>
+    <!-- Right sleeve gather/cuff -->
+    <path d="
+      M142 178 Q148 184 154 182 Q160 184 166 178
+    " fill="#FFC0CB" stroke="#FF9EAA" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="
+      M144 180 Q148 186 154 184 Q160 186 164 180
+    " fill="none" stroke="#FF9EAA" stroke-width="1" stroke-linecap="round"/>
+
+    <!-- Blouse body -->
+    <path d="
+      M62 136
+      Q58 136 54 146
+      Q50 160 52 182
+      Q54 202 58 216
+      Q60 230 66 236
+      Q80 242 100 242
+      Q120 242 134 236
+      Q140 230 142 216
+      Q146 202 148 182
+      Q150 160 146 146
+      Q142 136 138 136
+      L128 132
+      Q118 128 100 128
+      Q82 128 72 132
+      Z
+    " fill="url(#princess-blouse-body)" stroke="#FF9EAA" stroke-width="1.8" stroke-linejoin="round"/>
+
+    <!-- Ruffled collar - layers of scallops -->
+    <!-- Back ruffle layer -->
+    <path d="
+      M72 128
+      Q76 120 82 122
+      Q88 118 94 121
+      Q100 116 106 121
+      Q112 118 118 122
+      Q124 120 128 128
+    " class="pb-ruffle"/>
+    <!-- Front ruffle layer -->
+    <path d="
+      M74 130
+      Q78 123 84 126
+      Q90 121 96 125
+      Q100 120 104 125
+      Q110 121 116 126
+      Q122 123 126 130
+    " class="pb-ruffle"/>
+
+    <!-- Center front detail - pearl buttons -->
+    <circle cx="100" cy="150" r="2.5" class="pb-pearl"/>
+    <circle cx="100" cy="165" r="2.5" class="pb-pearl"/>
+    <circle cx="100" cy="180" r="2.5" class="pb-pearl"/>
+    <circle cx="100" cy="195" r="2.5" class="pb-pearl"/>
+    <circle cx="100" cy="210" r="2.5" class="pb-pearl"/>
+
+    <!-- Pearl button shine dots -->
+    <circle cx="99" cy="149" r="0.8" fill="#FFF" opacity="0.8"/>
+    <circle cx="99" cy="164" r="0.8" fill="#FFF" opacity="0.8"/>
+    <circle cx="99" cy="179" r="0.8" fill="#FFF" opacity="0.8"/>
+    <circle cx="99" cy="194" r="0.8" fill="#FFF" opacity="0.8"/>
+    <circle cx="99" cy="209" r="0.8" fill="#FFF" opacity="0.8"/>
+
+    <!-- Lace detail along bottom hem -->
+    <path d="
+      M68 234
+      Q72 240 78 236
+      Q82 240 88 236
+      Q92 240 98 236
+      Q102 240 108 236
+      Q112 240 118 236
+      Q122 240 128 236
+      Q132 240 132 234
+    " fill="none" stroke="#FF9EAA" stroke-width="1.3" stroke-linecap="round"/>
+    <!-- Second lace row -->
+    <path d="
+      M70 237
+      Q74 242 80 239
+      Q84 242 90 239
+      Q94 242 100 239
+      Q104 242 110 239
+      Q114 242 120 239
+      Q124 242 130 239
+      Q134 242 132 237
+    " fill="none" stroke="#FF9EAA" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+
+    <!-- Side shading -->
+    <path d="
+      M62 148
+      Q58 175 58 205
+      Q60 225 64 234
+      L70 238
+      L64 232
+      Q60 222 58 205
+      Q58 175 62 148
+      Z
+    " class="pb-shade" opacity="0.35"/>
+
+    <!-- Fabric folds -->
+    <path d="M86 162 Q89 174 87 187" class="pb-line"/>
+    <path d="M114 164 Q112 176 114 190" class="pb-line"/>
+
+    <!-- Small decorative pearls along collar -->
+    <circle cx="80" cy="126" r="1.5" class="pb-pearl"/>
+    <circle cx="90" cy="122" r="1.5" class="pb-pearl"/>
+    <circle cx="100" cy="120" r="1.5" class="pb-pearl"/>
+    <circle cx="110" cy="122" r="1.5" class="pb-pearl"/>
+    <circle cx="120" cy="126" r="1.5" class="pb-pearl"/>
+
+    <!-- Subtle sparkle accents -->
+    <path d="M75 172 L77 170 L79 172 L77 174 Z" fill="#FFF" opacity="0.5"/>
+    <path d="M125 187 L127 185 L129 187 L127 189 Z" fill="#FFF" opacity="0.5"/>
+    <path d="M80 212 L82 210 L84 212 L82 214 Z" fill="#FFF" opacity="0.4"/>
+  </g>
+</svg>

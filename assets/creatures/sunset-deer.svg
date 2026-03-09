@@ -1,52 +1,121 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
   <defs>
-    <linearGradient id="sd2-antler" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0%" stop-color="#FF4500"/>
-      <stop offset="40%" stop-color="#FFD700"/>
-      <stop offset="100%" stop-color="#FFEB3B"/>
+    <linearGradient id="sd-antler-grad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#FF6347;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFEB3B;stop-opacity:1" />
     </linearGradient>
+    <radialGradient id="sd-body-grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FF7F5C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF6347;stop-opacity:1" />
+    </radialGradient>
+    <radialGradient id="sd-aura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#FF6347;stop-opacity:0" />
+    </radialGradient>
+    <radialGradient id="sd-eye-shine" cx="35%" cy="35%" r="70%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFD700;stop-opacity:0.3" />
+    </radialGradient>
+    <filter id="sd-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="1" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.25"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="sd-glow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+    </filter>
   </defs>
   <style>
-    .body{fill:#FF6347;stroke:#FF4500;stroke-width:2}
-    .eye{fill:#333} .shine{fill:#FFF}
-    .blush{fill:#FF69B4;opacity:0.25}
+    @keyframes sd-glow-pulse {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.4; }
+    }
+    @keyframes sd-antler-glow-pulse {
+      0%, 100% { filter: drop-shadow(0px 0px 3px #FFD700); }
+      50% { filter: drop-shadow(0px 0px 8px #FFD700); }
+    }
+    .sd-aura { animation: sd-glow-pulse 3s ease-in-out infinite; }
+    .sd-antlers { animation: sd-antler-glow-pulse 2.5s ease-in-out infinite; }
   </style>
+
+  <!-- Sunset glow aura -->
+  <circle cx="100" cy="108" r="65" fill="url(#sd-aura)" class="sd-aura"/>
+
   <!-- Legs -->
-  <rect x="68" y="145" width="8" height="30" rx="4" class="body"/>
-  <rect x="82" y="148" width="8" height="28" rx="4" class="body"/>
-  <rect x="112" y="148" width="8" height="28" rx="4" class="body"/>
-  <rect x="126" y="145" width="8" height="30" rx="4" class="body"/>
-  <!-- Hooves -->
-  <ellipse cx="72" cy="177" rx="6" ry="4" fill="#FF4500"/>
-  <ellipse cx="86" cy="178" rx="6" ry="4" fill="#FF4500"/>
-  <ellipse cx="116" cy="178" rx="6" ry="4" fill="#FF4500"/>
-  <ellipse cx="130" cy="177" rx="6" ry="4" fill="#FF4500"/>
+  <rect x="66" y="145" width="10" height="32" rx="5" fill="url(#sd-body-grad)" filter="url(#sd-shadow)"/>
+  <rect x="80" y="148" width="10" height="30" rx="5" fill="url(#sd-body-grad)" filter="url(#sd-shadow)"/>
+  <rect x="110" y="148" width="10" height="30" rx="5" fill="url(#sd-body-grad)" filter="url(#sd-shadow)"/>
+  <rect x="124" y="145" width="10" height="32" rx="5" fill="url(#sd-body-grad)" filter="url(#sd-shadow)"/>
+
+  <!-- Hooves with glow -->
+  <ellipse cx="71" cy="179" rx="7" ry="5" fill="#CD5C5C" filter="url(#sd-shadow)"/>
+  <ellipse cx="85" cy="180" rx="7" ry="5" fill="#CD5C5C" filter="url(#sd-shadow)"/>
+  <ellipse cx="115" cy="180" rx="7" ry="5" fill="#CD5C5C" filter="url(#sd-shadow)"/>
+  <ellipse cx="129" cy="179" rx="7" ry="5" fill="#CD5C5C" filter="url(#sd-shadow)"/>
+
   <!-- Body -->
-  <ellipse cx="100" cy="135" rx="42" ry="28" class="body"/>
-  <!-- Lighter belly -->
-  <ellipse cx="100" cy="142" rx="28" ry="16" fill="#FF8C6B" stroke="none"/>
-  <!-- Tail spot -->
-  <circle cx="142" cy="125" r="6" fill="#FFF" opacity="0.6"/>
+  <ellipse cx="100" cy="138" rx="44" ry="30" fill="url(#sd-body-grad)" filter="url(#sd-shadow)"/>
+  <!-- Belly highlight -->
+  <ellipse cx="100" cy="145" rx="30" ry="18" fill="#FFA07A" opacity="0.4"/>
+
+  <!-- Tail spot (white) -->
+  <circle cx="144" cy="128" r="8" fill="#FFFFFF" opacity="0.7" filter="url(#sd-shadow)"/>
+
   <!-- Head -->
-  <circle cx="100" cy="78" r="30" class="body"/>
-  <!-- Antlers (sunset rays) -->
-  <path d="M82 55 L78 25 M78 35 L68 28" stroke="url(#sd2-antler)" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-  <path d="M118 55 L122 25 M122 35 L132 28" stroke="url(#sd2-antler)" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-  <!-- Eyes (gentle, large) -->
-  <circle cx="88" cy="76" r="8" class="eye"/>
-  <circle cx="112" cy="76" r="8" class="eye"/>
-  <circle cx="91" cy="73" r="3" class="shine"/>
-  <circle cx="115" cy="73" r="3" class="shine"/>
-  <!-- Lashes -->
-  <path d="M82 68 Q86 65 90 68" stroke="#333" stroke-width="1.5" fill="none"/>
-  <path d="M80 70 Q84 66 87 70" stroke="#333" stroke-width="1" fill="none"/>
-  <path d="M110 68 Q114 65 118 68" stroke="#333" stroke-width="1.5" fill="none"/>
-  <path d="M113 70 Q116 66 120 70" stroke="#333" stroke-width="1" fill="none"/>
+  <circle cx="100" cy="78" r="32" fill="url(#sd-body-grad)" filter="url(#sd-shadow)"/>
+
+  <!-- Magnificent antlers made of sunset light rays -->
+  <g class="sd-antlers" filter="url(#sd-glow)">
+    <!-- Left antler -->
+    <path d="M80 54 L75 18" stroke="url(#sd-antler-grad)" stroke-width="4" stroke-linecap="round"/>
+    <path d="M75 35 L62 22" stroke="url(#sd-antler-grad)" stroke-width="3" stroke-linecap="round"/>
+    <path d="M78 30 L68 12" stroke="url(#sd-antler-grad)" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Right antler -->
+    <path d="M120 54 L125 18" stroke="url(#sd-antler-grad)" stroke-width="4" stroke-linecap="round"/>
+    <path d="M125 35 L138 22" stroke="url(#sd-antler-grad)" stroke-width="3" stroke-linecap="round"/>
+    <path d="M122 30 L132 12" stroke="url(#sd-antler-grad)" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Flowers growing at base of antlers -->
+  <circle cx="72" cy="55" r="3.5" fill="#FF69B4"/>
+  <circle cx="128" cy="55" r="3.5" fill="#FF69B4"/>
+
+  <!-- Eyes (gentle, majestic) -->
+  <circle cx="86" cy="76" r="9" fill="#2C3E50"/>
+  <circle cx="114" cy="76" r="9" fill="#2C3E50"/>
+  <!-- Eye shine -->
+  <circle cx="89" cy="72" r="4" fill="url(#sd-eye-shine)"/>
+  <circle cx="117" cy="72" r="4" fill="url(#sd-eye-shine)"/>
+  <circle cx="91" cy="70" r="1.5" fill="#FFFFFF" opacity="0.9"/>
+  <circle cx="119" cy="70" r="1.5" fill="#FFFFFF" opacity="0.9"/>
+
+  <!-- Eyelashes (delicate) -->
+  <path d="M80 70 Q85 65 90 70" stroke="#2C3E50" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.8"/>
+  <path d="M78 72 Q83 68 88 72" stroke="#2C3E50" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <path d="M110 70 Q115 65 120 70" stroke="#2C3E50" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.8"/>
+  <path d="M112 72 Q117 68 122 72" stroke="#2C3E50" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.6"/>
+
   <!-- Blush -->
-  <ellipse cx="74" cy="84" rx="8" ry="5" class="blush"/>
-  <ellipse cx="126" cy="84" rx="8" ry="5" class="blush"/>
+  <ellipse cx="72" cy="86" rx="12" ry="6" fill="#FF69B4" opacity="0.24"/>
+  <ellipse cx="128" cy="86" rx="12" ry="6" fill="#FF69B4" opacity="0.24"/>
+
   <!-- Nose -->
-  <ellipse cx="100" cy="86" rx="4" ry="3" fill="#FF4500"/>
-  <!-- Mouth -->
-  <path d="M94 92 Q100 97 106 92" stroke="#FF4500" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <ellipse cx="100" cy="88" rx="5" ry="4" fill="#CD5C5C" filter="url(#sd-shadow)"/>
+  <circle cx="100" cy="87" r="1" fill="#FFFFFF" opacity="0.6"/>
+
+  <!-- Gentle mouth -->
+  <path d="M94 96 Q100 101 106 96" stroke="#CD5C5C" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Small birds perched on antlers -->
+  <circle cx="70" cy="30" r="2" fill="#FF69B4"/>
+  <path d="M68 32 L70 34 L72 32" stroke="#CD5C5C" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+  <circle cx="130" cy="35" r="2" fill="#FF69B4"/>
+  <path d="M128 37 L130 39 L132 37" stroke="#CD5C5C" stroke-width="0.8" fill="none" stroke-linecap="round"/>
 </svg>

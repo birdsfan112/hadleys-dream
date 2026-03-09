@@ -1,47 +1,141 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="cm-body-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#D3D3D3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A9A9A9;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cm-crystal-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E0F8FF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#B0E0E6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#87CEEB;stop-opacity:0.9" />
+    </linearGradient>
+    <radialGradient id="cm-crystal-shine" cx="35%" cy="35%" r="70%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#B0E0E6;stop-opacity:0.2" />
+    </radialGradient>
+    <radialGradient id="cm-eye-shine" cx="40%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#87CEEB;stop-opacity:0.3" />
+    </radialGradient>
+    <filter id="cm-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.5"/>
+      <feOffset dx="1" dy="1.5" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.2"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="cm-glow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5"/>
+    </filter>
+  </defs>
   <style>
-    .body{fill:#C0C0C0;stroke:#A9A9A9;stroke-width:2}
-    .eye{fill:#333} .shine{fill:#FFF}
-    .blush{fill:#FFB6C1;opacity:0.25}
-    .ear{fill:#C0C0C0;stroke:#A9A9A9;stroke-width:2}
-    .ear-inner{fill:#FFB6C1;opacity:0.5}
+    @keyframes cm-head-tilt {
+      0%, 100% { transform: rotateZ(-3deg); }
+      50% { transform: rotateZ(3deg); }
+    }
+    @keyframes cm-crystal-sparkle {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+    .cm-head { animation: cm-head-tilt 2.5s ease-in-out infinite; }
+    .cm-crystal { animation: cm-crystal-sparkle 1.8s ease-in-out infinite; }
   </style>
-  <!-- Tail -->
-  <path d="M140 140 Q165 130 175 110 Q180 95 170 85" stroke="#A9A9A9" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Curled tail with crystal at tip -->
+  <path d="M140 140 Q168 132 180 105 Q185 88 172 78" stroke="url(#cm-body-grad)" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#cm-shadow)"/>
+  <!-- Crystal at tail tip -->
+  <polygon points="170,75 175,68 182,78 177,80" fill="url(#cm-crystal-grad)" filter="url(#cm-shadow)"/>
+  <polygon points="170,75 175,68 182,78" fill="url(#cm-crystal-shine)" opacity="0.6"/>
+
   <!-- Body -->
-  <circle cx="100" cy="120" r="40" class="body"/>
-  <!-- Ears -->
-  <circle cx="68" cy="72" r="20" class="ear"/>
-  <circle cx="132" cy="72" r="20" class="ear"/>
-  <circle cx="68" cy="72" r="12" class="ear-inner"/>
-  <circle cx="132" cy="72" r="12" class="ear-inner"/>
+  <circle cx="100" cy="125" r="42" fill="url(#cm-body-grad)" filter="url(#cm-shadow)"/>
+  <!-- Belly -->
+  <ellipse cx="100" cy="132" rx="26" ry="30" fill="#E8E8E8" opacity="0.4"/>
+
   <!-- Head -->
-  <circle cx="100" cy="95" r="32" class="body"/>
-  <!-- Eyes -->
-  <circle cx="86" cy="92" r="6" class="eye"/>
-  <circle cx="114" cy="92" r="6" class="eye"/>
-  <!-- Cross-shaped shine (twinkle) -->
-  <line x1="84" y1="88" x2="84" y2="94" class="shine" stroke="#FFF" stroke-width="1.5"/>
-  <line x1="81" y1="91" x2="87" y2="91" class="shine" stroke="#FFF" stroke-width="1.5"/>
-  <line x1="112" y1="88" x2="112" y2="94" class="shine" stroke="#FFF" stroke-width="1.5"/>
-  <line x1="109" y1="91" x2="115" y2="91" class="shine" stroke="#FFF" stroke-width="1.5"/>
-  <!-- Blush -->
-  <ellipse cx="74" cy="102" rx="8" ry="5" class="blush"/>
-  <ellipse cx="126" cy="102" rx="8" ry="5" class="blush"/>
-  <!-- Nose -->
-  <polygon points="100,100 97,104 103,104" fill="#FFB6C1"/>
-  <!-- Whiskers -->
-  <line x1="75" y1="100" x2="60" y2="96" stroke="#A9A9A9" stroke-width="1" opacity="0.6"/>
-  <line x1="75" y1="103" x2="58" y2="103" stroke="#A9A9A9" stroke-width="1" opacity="0.6"/>
-  <line x1="75" y1="106" x2="60" y2="110" stroke="#A9A9A9" stroke-width="1" opacity="0.6"/>
-  <line x1="125" y1="100" x2="140" y2="96" stroke="#A9A9A9" stroke-width="1" opacity="0.6"/>
-  <line x1="125" y1="103" x2="142" y2="103" stroke="#A9A9A9" stroke-width="1" opacity="0.6"/>
-  <line x1="125" y1="106" x2="140" y2="110" stroke="#A9A9A9" stroke-width="1" opacity="0.6"/>
-  <!-- Mouth -->
-  <path d="M95 107 Q100 112 105 107" stroke="#A9A9A9" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <!-- Crystal held in paws -->
-  <rect x="88" y="140" width="24" height="24" rx="2" fill="#B0E0E6" opacity="0.7" transform="rotate(45 100 152)" stroke="#87CEEB" stroke-width="1"/>
-  <!-- Paws -->
-  <ellipse cx="85" cy="155" rx="10" ry="7" class="body"/>
-  <ellipse cx="115" cy="155" rx="10" ry="7" class="body"/>
+  <g class="cm-head">
+    <circle cx="100" cy="92" r="34" fill="url(#cm-body-grad)" filter="url(#cm-shadow)"/>
+
+    <!-- Crystal shards growing from head and back -->
+    <!-- Head crystals -->
+    <polygon points="75,65 70,48 82,62" fill="url(#cm-crystal-grad)" filter="url(#cm-shadow)" class="cm-crystal" style="animation-delay: 0s"/>
+    <polygon points="75,65 70,48 82,62" fill="url(#cm-crystal-shine)" opacity="0.5"/>
+
+    <polygon points="125,65 130,48 118,62" fill="url(#cm-crystal-grad)" filter="url(#cm-shadow)" class="cm-crystal" style="animation-delay: 0.4s"/>
+    <polygon points="125,65 130,48 118,62" fill="url(#cm-crystal-shine)" opacity="0.5"/>
+
+    <!-- Ear crystals (faceted) -->
+    <circle cx="65" cy="68" r="18" fill="url(#cm-body-grad)" filter="url(#cm-shadow)"/>
+    <circle cx="135" cy="68" r="18" fill="url(#cm-body-grad)" filter="url(#cm-shadow)"/>
+    <!-- Crystal growing from ears -->
+    <polygon points="50,62 45,42 58,58" fill="url(#cm-crystal-grad)" filter="url(#cm-shadow)" class="cm-crystal" style="animation-delay: 0.8s"/>
+    <polygon points="50,62 45,42 58,58" fill="url(#cm-crystal-shine)" opacity="0.5"/>
+
+    <polygon points="150,62 155,42 142,58" fill="url(#cm-crystal-grad)" filter="url(#cm-shadow)" class="cm-crystal" style="animation-delay: 1.2s"/>
+    <polygon points="150,62 155,42 142,58" fill="url(#cm-crystal-shine)" opacity="0.5"/>
+
+    <!-- Ear inner pink -->
+    <circle cx="65" cy="68" r="10" fill="#FFB6C1" opacity="0.35"/>
+    <circle cx="135" cy="68" r="10" fill="#FFB6C1" opacity="0.35"/>
+
+    <!-- Eyes (twinkling with star shine) -->
+    <circle cx="84" cy="90" r="7" fill="#2C3E50"/>
+    <circle cx="116" cy="90" r="7" fill="#2C3E50"/>
+    <!-- Star shine in eyes -->
+    <circle cx="84" cy="88" r="3.5" fill="url(#cm-eye-shine)"/>
+    <circle cx="116" cy="88" r="3.5" fill="url(#cm-eye-shine)"/>
+    <!-- 4-pointed star details -->
+    <line x1="84" y1="85" x2="84" y2="93" stroke="#FFFFFF" stroke-width="1.2" opacity="0.8"/>
+    <line x1="80" y1="89" x2="88" y2="89" stroke="#FFFFFF" stroke-width="1.2" opacity="0.8"/>
+    <line x1="116" y1="85" x2="116" y2="93" stroke="#FFFFFF" stroke-width="1.2" opacity="0.8"/>
+    <line x1="112" y1="89" x2="120" y2="89" stroke="#FFFFFF" stroke-width="1.2" opacity="0.8"/>
+
+    <!-- Blush -->
+    <ellipse cx="72" cy="105" rx="10" ry="6" fill="#FFB6C1" opacity="0.25"/>
+    <ellipse cx="128" cy="105" rx="10" ry="6" fill="#FFB6C1" opacity="0.25"/>
+
+    <!-- Pink nose -->
+    <polygon points="100,102 97,107 103,107" fill="#FFB6C1" filter="url(#cm-shadow)"/>
+
+    <!-- Whiskers -->
+    <line x1="72" y1="100" x2="52" y2="96" stroke="#7A7A7A" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+    <line x1="72" y1="105" x2="50" y2="105" stroke="#7A7A7A" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+    <line x1="72" y1="110" x2="52" y2="114" stroke="#7A7A7A" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+    <line x1="128" y1="100" x2="148" y2="96" stroke="#7A7A7A" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+    <line x1="128" y1="105" x2="150" y2="105" stroke="#7A7A7A" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+    <line x1="128" y1="110" x2="148" y2="114" stroke="#7A7A7A" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+
+    <!-- Mouth -->
+    <path d="M95 115 Q100 120 105 115" stroke="#A9A9A9" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Back crystals (geometric, faceted) -->
+  <polygon points="90,75 85,58 98,70" fill="url(#cm-crystal-grad)" filter="url(#cm-shadow)" class="cm-crystal" style="animation-delay: 1.6s"/>
+  <polygon points="90,75 85,58 98,70" fill="url(#cm-crystal-shine)" opacity="0.5"/>
+
+  <polygon points="110,75 115,58 102,70" fill="url(#cm-crystal-grad)" filter="url(#cm-shadow)" class="cm-crystal" style="animation-delay: 2s"/>
+  <polygon points="110,75 115,58 102,70" fill="url(#cm-crystal-shine)" opacity="0.5"/>
+
+  <!-- Paws holding lustrous crystal -->
+  <ellipse cx="82" cy="160" rx="12" ry="8" fill="url(#cm-body-grad)" filter="url(#cm-shadow)"/>
+  <ellipse cx="118" cy="160" rx="12" ry="8" fill="url(#cm-body-grad)" filter="url(#cm-shadow)"/>
+
+  <!-- Large crystal held in paws (faceted gem) -->
+  <g class="cm-crystal">
+    <!-- Top facet -->
+    <polygon points="100,135 92,125 108,125" fill="url(#cm-crystal-grad)" filter="url(#cm-shadow)"/>
+    <!-- Left facet -->
+    <polygon points="92,125 85,140 92,150" fill="url(#cm-crystal-grad)" opacity="0.95" filter="url(#cm-shadow)"/>
+    <!-- Right facet -->
+    <polygon points="108,125 115,140 108,150" fill="url(#cm-crystal-grad)" opacity="0.95" filter="url(#cm-shadow)"/>
+    <!-- Bottom facet -->
+    <polygon points="92,150 100,160 108,150" fill="url(#cm-crystal-grad)" opacity="0.9" filter="url(#cm-shadow)"/>
+    <!-- Shine highlights -->
+    <polygon points="100,135 95,128 100,130" fill="url(#cm-crystal-shine)" opacity="0.7"/>
+    <circle cx="88" cy="135" r="2" fill="#FFFFFF" opacity="0.6"/>
+  </g>
 </svg>
