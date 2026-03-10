@@ -26,6 +26,10 @@ const Game = (() => {
         if (state.tutorial_completed === undefined) state.tutorial_completed = false;
         // Migration: ensure last_location exists
         if (!state.last_location) state.last_location = 'sparkle-forest';
+        // Migration: ensure all free fashion items are in wardrobe
+        const freeItems = FASHION_ITEMS.filter(i => i.cost === 0).map(i => i.id);
+        if (!Array.isArray(state.wardrobe)) state.wardrobe = [];
+        freeItems.forEach(id => { if (!state.wardrobe.includes(id)) state.wardrobe.push(id); });
       } else {
         state = { ...DEFAULT_STATE };
       }
