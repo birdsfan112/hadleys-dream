@@ -1,22 +1,73 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <style>
+    .ov-main{fill:#5B8AD0;stroke:#4169E1;stroke-width:2;stroke-linejoin:round}
+    .ov-shade{fill:#4169E1;stroke:none;opacity:0.4}
+    .ov-strap{fill:#5B8AD0;stroke:#4169E1;stroke-width:2;stroke-linecap:round}
+    .ov-buckle{fill:#DAA520;stroke:#8B7500;stroke-width:1}
+    .ov-stitch{stroke:#8B7500;fill:none;stroke-width:0.6;stroke-linecap:round}
+  </style>
   <defs>
-    <linearGradient id="ov-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#4A90E2"/>
-      <stop offset="100%" stop-color="#1E4C9A"/>
-    </linearGradient>
-    <linearGradient id="ov-button" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#FFD700"/>
-      <stop offset="100%" stop-color="#DAA520"/>
+    <linearGradient id="ov-bib-grad" x1="0" y1="140" x2="0" y2="198">
+      <stop offset="0%" stop-color="#6B9FE5"/>
+      <stop offset="100%" stop-color="#5B8AD0"/>
     </linearGradient>
   </defs>
   <g id="clothing">
-    <path d="M70,115 L68,280 Q70,290 75,300 L75,310" fill="url(#ov-grad)"/>
-    <path d="M130,115 L132,280 Q130,290 125,300 L125,310" fill="url(#ov-grad)"/>
-    <rect x="75" y="115" width="50" height="65" fill="url(#ov-grad)"/>
-    <circle cx="85" cy="135" r="3.5" fill="url(#ov-button)"/>
-    <circle cx="100" cy="140" r="3.5" fill="url(#ov-button)"/>
-    <circle cx="115" cy="135" r="3.5" fill="url(#ov-button)"/>
-    <line x1="68" y1="180" x2="70" y2="280" stroke="url(#ov-grad)" stroke-width="1" opacity="0.5"/>
-    <line x1="132" y1="180" x2="130" y2="280" stroke="url(#ov-grad)" stroke-width="1" opacity="0.5"/>
+    <!-- Left strap from bib over shoulder -->
+    <line x1="82" y1="140" x2="76" y2="118" class="ov-strap"/>
+
+    <!-- Right strap from bib over shoulder -->
+    <line x1="118" y1="140" x2="124" y2="118" class="ov-strap"/>
+
+    <!-- Bib front (y=140 to y=198) -->
+    <path d="M82 140 L82 198 Q80 200 100 202 Q120 200 118 198 L118 140 Q110 136 100 136 Q90 136 82 140 Z" fill="url(#ov-bib-grad)" stroke="#4169E1" stroke-width="2" stroke-linejoin="round"/>
+
+    <!-- Bib shading (left edge) -->
+    <path d="M82 142 L86 142 L86 198 Q84 200 82 200 Z" class="ov-shade"/>
+
+    <!-- Bib shading (right edge) -->
+    <path d="M118 142 L114 142 L114 198 Q116 200 118 200 Z" class="ov-shade"/>
+
+    <!-- Buckle details at strap tops (small gold rectangles) -->
+    <rect x="75" y="116" width="3" height="4" class="ov-buckle" rx="0.5"/>
+    <rect x="122" y="116" width="3" height="4" class="ov-buckle" rx="0.5"/>
+
+    <!-- Large front pocket with stitching -->
+    <rect x="86" y="158" width="28" height="28" class="ov-main" fill="#6B9FE5" stroke="#4169E1" stroke-width="1.5"/>
+
+    <!-- Pocket stitching detail -->
+    <path d="M87 160 L125 160 M87 175 L125 175 M87 184 L125 184 M89 158 L89 186 M101 158 L101 186 M113 158 L113 186 M123 158 L123 186" class="ov-stitch"/>
+
+    <!-- Pants legs from y=222 to y=290 -->
+    <!-- Left pants leg -->
+    <path d="M78 198 Q76 210 74 240 L72 290 Q74 295 82 298 L84 240 Q84 215 85 200 Z" class="ov-main"/>
+
+    <!-- Right pants leg -->
+    <path d="M122 198 Q124 210 126 240 L128 290 Q126 295 118 298 L116 240 Q116 215 115 200 Z" class="ov-main"/>
+
+    <!-- Center pants seam -->
+    <path d="M82 200 Q82 245 82 290" stroke="#4169E1" stroke-width="1" fill="none" opacity="0.5"/>
+    <path d="M118 200 Q118 245 118 290" stroke="#4169E1" stroke-width="1" fill="none" opacity="0.5"/>
+
+    <!-- Pants fold lines -->
+    <path d="M74 220 Q72 260 72 290" stroke="#4169E1" stroke-width="0.8" fill="none" opacity="0.3"/>
+    <path d="M126 220 Q128 260 128 290" stroke="#4169E1" stroke-width="0.8" fill="none" opacity="0.3"/>
+
+    <!-- Pants shading (left) -->
+    <path d="M78 200 Q76 210 74 240 L72 280 Q76 290 80 295 L80 215 Z" class="ov-shade"/>
+
+    <!-- Pants shading (right) -->
+    <path d="M122 200 Q124 210 126 240 L128 280 Q124 290 120 295 L120 215 Z" class="ov-shade"/>
+
+    <!-- Side button details on left pants -->
+    <circle cx="76" cy="220" r="1.3" class="ov-buckle"/>
+    <circle cx="76" cy="245" r="1.3" class="ov-buckle"/>
+
+    <!-- Side button details on right pants -->
+    <circle cx="124" cy="220" r="1.3" class="ov-buckle"/>
+    <circle cx="124" cy="245" r="1.3" class="ov-buckle"/>
+
+    <!-- Waistline accent at bib base -->
+    <line x1="80" y1="200" x2="120" y2="200" stroke="#4169E1" stroke-width="2"/>
   </g>
 </svg>

@@ -1,19 +1,61 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <defs>
-    <linearGradient id="fs-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#E6D5F5"/>
-      <stop offset="100%" stop-color="#B8A0D9"/>
+    <linearGradient id="skirt-lavender" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#9370DB"/>
+      <stop offset="100%" stop-color="#7B5DB8"/>
     </linearGradient>
-    <radialGradient id="fs-light" cx="50%" cy="20%" r="60%">
-      <stop offset="0%" stop-color="#F5E8FF"/>
-      <stop offset="100%" stop-color="#D5C0E8"/>
-    </radialGradient>
+    <linearGradient id="skirt-light" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7B5DB8"/>
+      <stop offset="50%" stop-color="#A77CDD"/>
+      <stop offset="100%" stop-color="#7B5DB8"/>
+    </linearGradient>
+    <linearGradient id="bow-accent" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#AA8C2C"/>
+    </linearGradient>
   </defs>
   <g id="clothing">
-    <path d="M78,190 Q60,220 65,270 Q70,290 75,305 L125,305 Q130,290 135,270 Q140,220 122,190" fill="url(#fs-grad)"/>
-    <path d="M80,210 Q70,240 75,280" fill="none" stroke="url(#fs-light)" stroke-width="4" opacity="0.5"/>
-    <path d="M120,210 Q130,240 125,280" fill="none" stroke="url(#fs-light)" stroke-width="4" opacity="0.5"/>
-    <circle cx="85" cy="250" r="2" fill="#FFB6D9" opacity="0.8"/>
-    <circle cx="115" cy="260" r="2" fill="#FFB6D9" opacity="0.8"/>
+    <!-- Waistband -->
+    <rect x="68" y="222" width="64" height="11" rx="4" fill="#6B5399" stroke="#5A479F" stroke-width="1.5"/>
+    <!-- Waistband shimmer -->
+    <ellipse cx="100" cy="225" rx="28" ry="2.5" fill="#A77CDD" opacity="0.4"/>
+
+    <!-- Skirt flare - main shape -->
+    <path d="M70 233 Q60 250 55 275 Q52 290 58 305 L142 305 Q148 290 145 275 Q140 250 130 233 Z"
+          fill="url(#skirt-lavender)" stroke="#5A479F" stroke-width="1.5" stroke-linejoin="round"/>
+
+    <!-- Left side shading -->
+    <path d="M70 233 Q65 255 62 280 Q60 292 63 303"
+          stroke="#5A479F" stroke-width="1.2" fill="none" opacity="0.4"/>
+    <!-- Right side shading -->
+    <path d="M130 233 Q135 255 138 280 Q140 292 137 303"
+          stroke="#5A479F" stroke-width="1.2" fill="none" opacity="0.4"/>
+
+    <!-- Fold lines for flowy effect -->
+    <path d="M75 235 Q75 265 72 295" stroke="#A77CDD" stroke-width="0.8" fill="none" opacity="0.35" stroke-linecap="round"/>
+    <path d="M90 235 Q88 270 87 300" stroke="#A77CDD" stroke-width="0.8" fill="none" opacity="0.35" stroke-linecap="round"/>
+    <path d="M110 235 Q112 270 113 300" stroke="#A77CDD" stroke-width="0.8" fill="none" opacity="0.35" stroke-linecap="round"/>
+    <path d="M125 235 Q125 265 128 295" stroke="#A77CDD" stroke-width="0.8" fill="none" opacity="0.35" stroke-linecap="round"/>
+
+    <!-- Slightly ruffled hem detail -->
+    <path d="M58 303 Q62 305 68 304 Q75 306 82 305 Q90 307 100 306 Q110 307 118 305 Q125 306 132 304 Q138 305 142 303"
+          stroke="#6B5399" stroke-width="0.8" fill="none" opacity="0.5" stroke-linecap="round"/>
+
+    <!-- Left leg guide (subtle) -->
+    <path d="M70 233 L75 298" stroke="#A77CDD" stroke-width="0.7" fill="none" opacity="0.25"/>
+    <!-- Right leg guide (subtle) -->
+    <path d="M130 233 L125 298" stroke="#A77CDD" stroke-width="0.7" fill="none" opacity="0.25"/>
+
+    <!-- Decorative waist bow - left side -->
+    <ellipse cx="80" cy="225" rx="6" ry="8" fill="url(#bow-accent)" stroke="#8B7020" stroke-width="0.8"/>
+    <!-- Decorative waist bow - right side -->
+    <ellipse cx="120" cy="225" rx="6" ry="8" fill="url(#bow-accent)" stroke="#8B7020" stroke-width="0.8"/>
+    <!-- Bow center knot -->
+    <circle cx="100" cy="226" r="3.5" fill="#D4AF37" stroke="#8B7020" stroke-width="0.8"/>
+    <!-- Bow highlight -->
+    <ellipse cx="100" cy="224" rx="2" ry="1.5" fill="#F0D855" opacity="0.5"/>
+
+    <!-- Center seam -->
+    <path d="M100 233 L100 248" stroke="#5A479F" stroke-width="1" fill="none"/>
   </g>
 </svg>

@@ -1,17 +1,50 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <defs>
-    <radialGradient id="se-star" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#FFFF00"/>
+    <radialGradient id="ase-star-grad" cx="45%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#FFEB3B"/>
+      <stop offset="50%" stop-color="#FFD700"/>
       <stop offset="100%" stop-color="#DAA520"/>
     </radialGradient>
-    <filter id="se-glow">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5"/>
+    <linearGradient id="ase-chain-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFF8DC"/>
+      <stop offset="50%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#DAA520"/>
+    </linearGradient>
+    <filter id="ase-glow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
     </filter>
   </defs>
+  <style>
+    .ase-star{fill:url(#ase-star-grad);stroke:#B8860B;stroke-width:1}
+    .ase-inner-star{fill:#FFFF99;opacity:0.6;stroke:none}
+    .ase-chain{stroke:url(#ase-chain-grad);stroke-width:1.2;fill:none;stroke-linecap:round}
+    .ase-stud{fill:#FFD700;stroke:#DAA520;stroke-width:0.8}
+    .ase-sparkle{fill:#FFFF99;opacity:0.8}
+  </style>
   <g id="clothing">
-    <polygon points="70,55 72,45 74,55 84,55 76,62 78,72 70,65 62,72 64,62 56,55" fill="url(#se-star)" filter="url(#se-glow)"/>
-    <polygon points="130,55 132,45 134,55 144,55 136,62 138,72 130,65 122,72 124,62 116,55" fill="url(#se-star)" filter="url(#se-glow)"/>
-    <circle cx="70" cy="55" r="2" fill="#FFFF00" opacity="0.8"/>
-    <circle cx="130" cy="55" r="2" fill="#FFFF00" opacity="0.8"/>
+    <!-- Left earring stud at ear -->
+    <circle cx="55" cy="85" r="2.5" class="ase-stud"/>
+    <!-- Left chain dropping down -->
+    <path d="M56 87 Q56 92 55 100 Q55 108 56 115" class="ase-chain" filter="url(#ase-glow)"/>
+    <!-- Left star pendant -->
+    <polygon points="55,128 59,117 68,117 61,123 64,134 55,128 46,134 49,123 42,117 51,117" class="ase-star"/>
+    <!-- Left inner star highlight -->
+    <polygon points="55,126 58,119 63,119 58,123 60,130 55,126 50,130 52,123 47,119 52,119" class="ase-inner-star"/>
+    <!-- Right earring stud at ear -->
+    <circle cx="145" cy="85" r="2.5" class="ase-stud"/>
+    <!-- Right chain dropping down -->
+    <path d="M144 87 Q144 92 145 100 Q145 108 144 115" class="ase-chain" filter="url(#ase-glow)"/>
+    <!-- Right star pendant -->
+    <polygon points="145,128 149,117 158,117 151,123 154,134 145,128 136,134 139,123 132,117 141,117" class="ase-star"/>
+    <!-- Right inner star highlight -->
+    <polygon points="145,126 148,119 153,119 148,123 150,130 145,126 140,130 142,123 137,119 142,119" class="ase-inner-star"/>
+    <!-- Sparkle dots around left star -->
+    <circle cx="38" cy="120" r="1.2" class="ase-sparkle" filter="url(#ase-glow)"/>
+    <circle cx="48" cy="138" r="0.9" class="ase-sparkle" filter="url(#ase-glow)"/>
+    <circle cx="62" cy="140" r="1" class="ase-sparkle" filter="url(#ase-glow)"/>
+    <!-- Sparkle dots around right star -->
+    <circle cx="152" cy="120" r="1.2" class="ase-sparkle" filter="url(#ase-glow)"/>
+    <circle cx="142" cy="138" r="0.9" class="ase-sparkle" filter="url(#ase-glow)"/>
+    <circle cx="138" cy="140" r="1" class="ase-sparkle" filter="url(#ase-glow)"/>
   </g>
 </svg>

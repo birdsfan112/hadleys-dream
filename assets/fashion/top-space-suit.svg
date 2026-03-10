@@ -1,21 +1,79 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <defs>
-    <linearGradient id="ss-grad" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="ss-body" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#E8E8E8"/>
-      <stop offset="50%" stop-color="#B0B0B0"/>
-      <stop offset="100%" stop-color="#707070"/>
+      <stop offset="50%" stop-color="#D0D0D0"/>
+      <stop offset="100%" stop-color="#A0A0A0"/>
     </linearGradient>
-    <radialGradient id="ss-panel" cx="50%" cy="40%" r="50%">
-      <stop offset="0%" stop-color="#FFB6C1"/>
-      <stop offset="100%" stop-color="#FF69B4"/>
-    </radialGradient>
+    <linearGradient id="ss-shade" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#A0A0A0"/>
+      <stop offset="100%" stop-color="#808080"/>
+    </linearGradient>
+    <linearGradient id="ss-panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF6B6B"/>
+      <stop offset="50%" stop-color="#FF4444"/>
+      <stop offset="100%" stop-color="#CC2222"/>
+    </linearGradient>
   </defs>
+  <style>
+    .ss-main{fill:url(#ss-body);stroke:#707070;stroke-width:1.8;stroke-linejoin:round}
+    .ss-shade{fill:#A0A0A0;stroke:none}
+    .ss-fold{stroke:#909090;stroke-width:1.2;fill:none;stroke-linecap:round}
+    .ss-panel{fill:url(#ss-panel);stroke:#AA0000;stroke-width:0.8}
+    .ss-collar{fill:#C0C0C0;stroke:#707070;stroke-width:1.5}
+  </style>
   <g id="clothing">
-    <path d="M65,115 Q100,108 135,115 L140,190 Q100,195 60,190 Z" fill="url(#ss-grad)"/>
-    <ellipse cx="100" cy="145" rx="20" ry="25" fill="url(#ss-panel)" opacity="0.8"/>
-    <rect x="75" y="125" width="8" height="20" fill="#00FFFF" opacity="0.7" rx="2"/>
-    <rect x="117" y="125" width="8" height="20" fill="#00FFFF" opacity="0.7" rx="2"/>
-    <circle cx="85" cy="170" r="3" fill="#FFD700" opacity="0.9"/>
-    <circle cx="115" cy="170" r="3" fill="#FFD700" opacity="0.9"/>
+    <!-- Left padded shoulder sleeve (wider) -->
+    <path d="M56 138 Q42 140 32 156 Q26 172 28 185 Q32 192 46 192 Q62 190 62 180 Q64 168 62 154 Z" class="ss-main"/>
+    <path d="M50 160 Q40 172 42 185 Q46 190 52 188 Q56 180 54 168 Z" class="ss-shade" opacity="0.3"/>
+    <!-- Left shoulder pad -->
+    <ellipse cx="48" cy="145" rx="12" ry="8" fill="#C0C0C0" stroke="#707070" stroke-width="1.2" opacity="0.7"/>
+    <!-- Right padded shoulder sleeve (wider) -->
+    <path d="M144 138 Q158 140 168 156 Q174 172 172 185 Q168 192 154 192 Q138 190 138 180 Q136 168 138 154 Z" class="ss-main"/>
+    <path d="M150 160 Q160 172 158 185 Q154 190 148 188 Q144 180 146 168 Z" class="ss-shade" opacity="0.3"/>
+    <!-- Right shoulder pad -->
+    <ellipse cx="152" cy="145" rx="12" ry="8" fill="#C0C0C0" stroke="#707070" stroke-width="1.2" opacity="0.7"/>
+    <!-- Main space suit body -->
+    <path d="M62 140 Q58 138 56 145 Q52 160 54 180 Q56 200 60 215 Q62 228 68 234 Q80 240 100 240 Q120 240 132 234 Q138 228 140 215 Q144 200 146 180 Q148 160 144 145 Q142 138 138 140 L128 134 Q118 128 100 128 Q82 128 72 134 Z" class="ss-main"/>
+    <!-- High collar up to y=118 -->
+    <path d="M86 128 L80 118 Q88 114 100 113 Q112 114 120 118 L114 128" class="ss-collar"/>
+    <!-- Collar detail/ribbing -->
+    <path d="M82 125 Q88 120 100 119 Q112 120 118 125" fill="none" stroke="#707070" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M84 122 Q90 118 100 117 Q110 118 116 122" fill="none" stroke="#707070" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+    <!-- Center zipper line -->
+    <path d="M100 118 L100 235" fill="none" stroke="#808080" stroke-width="2.5" opacity="0.8"/>
+    <!-- Zipper detail (dashes) -->
+    <path d="M100 125 L100 140" fill="none" stroke="#F0F0F0" stroke-width="1" stroke-dasharray="2,3" opacity="0.8"/>
+    <path d="M100 150 L100 165" fill="none" stroke="#F0F0F0" stroke-width="1" stroke-dasharray="2,3" opacity="0.8"/>
+    <path d="M100 175 L100 190" fill="none" stroke="#F0F0F0" stroke-width="1" stroke-dasharray="2,3" opacity="0.8"/>
+    <!-- Chest control panel (rectangular) -->
+    <rect x="90" y="160" width="20" height="28" class="ss-panel" opacity="0.85"/>
+    <!-- Control panel buttons/elements -->
+    <rect x="92" y="165" width="3" height="5" fill="#00FF00" opacity="0.9"/>
+    <rect x="97" y="165" width="3" height="5" fill="#00FF00" opacity="0.9"/>
+    <rect x="102" y="165" width="3" height="5" fill="#FFFF00" opacity="0.9"/>
+    <rect x="107" y="165" width="3" height="5" fill="#FF0000" opacity="0.9"/>
+    <circle cx="95" cy="178" r="2.5" fill="#00FFFF" opacity="0.85"/>
+    <circle cx="105" cy="178" r="2.5" fill="#00FFFF" opacity="0.85"/>
+    <rect x="92" y="185" width="16" height="1.5" fill="#FFD700" opacity="0.7"/>
+    <path d="M94 190 L96 192 M98 190 L100 192 M102 190 L104 192 M106 190 L108 192" fill="none" stroke="#FFFFFF" stroke-width="0.8" opacity="0.6"/>
+    <!-- NASA-style circular patch on left sleeve -->
+    <circle cx="42" cy="172" r="8" fill="none" stroke="#FF6B6B" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="42" cy="172" r="6.5" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.7"/>
+    <text x="42" y="175" font-size="4" font-weight="bold" text-anchor="middle" fill="#FF6B6B" opacity="0.8">USA</text>
+    <!-- NASA patch circle on right sleeve -->
+    <circle cx="158" cy="172" r="8" fill="none" stroke="#FF6B6B" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="158" cy="172" r="6.5" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.7"/>
+    <rect x="154" y="168" width="8" height="8" fill="#FF6B6B" opacity="0.4" rx="1"/>
+    <!-- Fabric folds in suit material -->
+    <path d="M80 165 Q85 175 83 190" class="ss-fold"/>
+    <path d="M120 165 Q115 175 117 190" class="ss-fold"/>
+    <!-- Side shading -->
+    <path d="M62 148 Q58 170 56 200 Q58 220 62 230 Q66 235 72 238 L66 232 Q62 222 60 205 Q58 175 62 148 Z" class="ss-shade" opacity="0.2"/>
+    <!-- Hem line -->
+    <path d="M68 234 Q80 242 100 242 Q120 242 132 234" fill="none" stroke="#707070" stroke-width="2" stroke-linecap="round"/>
+    <!-- Sleeve cuff lines -->
+    <path d="M36 186 Q42 192 52 192" fill="none" stroke="#707070" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M164 186 Q158 192 148 192" fill="none" stroke="#707070" stroke-width="1.5" stroke-linecap="round"/>
   </g>
 </svg>

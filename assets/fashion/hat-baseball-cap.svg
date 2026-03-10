@@ -1,17 +1,80 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <defs>
-    <linearGradient id="bc-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#FF4444"/>
-      <stop offset="100%" stop-color="#CC0000"/>
+    <linearGradient id="bc-crown" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4169E1"/>
+      <stop offset="50%" stop-color="#3350C8"/>
+      <stop offset="100%" stop-color="#2850A8"/>
     </linearGradient>
-    <linearGradient id="bc-bill" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#FFB6B6"/>
-      <stop offset="100%" stop-color="#FF6B6B"/>
+    <linearGradient id="bc-crown-light" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5A7FFF"/>
+      <stop offset="100%" stop-color="#4169E1"/>
+    </linearGradient>
+    <linearGradient id="bc-brim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3350C8"/>
+      <stop offset="100%" stop-color="#2850A8"/>
+    </linearGradient>
+    <linearGradient id="bc-bill-shade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2850A8"/>
+      <stop offset="100%" stop-color="#1A3580"/>
     </linearGradient>
   </defs>
+  <style>
+    .bc-panel-stitch { stroke:#1A3580; stroke-width:1; fill:none; stroke-linecap:round }
+    .bc-button { fill:#FFD700; stroke:#C8A600; stroke-width:1.2 }
+    .bc-star { fill:#FFFFFF; opacity:0.95 }
+    .bc-highlight { fill:none; stroke:#5A7FFF; stroke-width:1.5; opacity:0.6; stroke-linecap:round }
+  </style>
   <g id="clothing">
-    <path d="M70,30 Q100,20 130,30 Q125,45 100,50 Q75,45 70,30" fill="url(#bc-grad)"/>
-    <path d="M75,45 L135,45 Q145,48 160,50 L155,55 Q145,52 135,50 L75,50 Z" fill="url(#bc-bill)"/>
-    <circle cx="100" cy="35" r="3" fill="#FFD700" opacity="0.8"/>
+    <!-- Cap button/top -->
+    <circle cx="100" cy="15" r="4.5" class="bc-button"/>
+    <circle cx="100" cy="15" r="2.5" fill="#E8A600" opacity="0.7"/>
+    <line x1="98.5" y1="15" x2="101.5" y2="15" stroke="#FFD700" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+
+    <!-- Left panel -->
+    <path d="M55 32 Q60 18 75 15 L85 40 Q70 42 55 38 Z" fill="url(#bc-crown)"/>
+
+    <!-- Center-left panel -->
+    <path d="M75 15 Q85 12 100 12 Q105 15 105 25 L85 40 Z" fill="url(#bc-crown-light)"/>
+
+    <!-- Center-right panel -->
+    <path d="M100 12 Q115 12 125 15 L115 40 Q105 42 100 40 Z" fill="url(#bc-crown-light)"/>
+
+    <!-- Right panel -->
+    <path d="M125 15 Q140 18 145 32 Q145 38 130 42 L115 40 Z" fill="url(#bc-crown)"/>
+
+    <!-- Crown shaping path (curved top) -->
+    <path d="M55 35 Q70 18 100 12 Q130 18 145 35" fill="url(#bc-crown)" opacity="0.3"/>
+
+    <!-- Panel stitching lines -->
+    <path d="M75 15 L85 40" class="bc-panel-stitch"/>
+    <path d="M100 12 L105 25" class="bc-panel-stitch"/>
+    <path d="M115 15 L115 40" class="bc-panel-stitch"/>
+
+    <!-- Brim base -->
+    <path d="M55 38 Q70 40 100 42 Q130 40 145 38 L150 48 Q135 52 100 54 Q65 52 50 48 Z" fill="url(#bc-brim)"/>
+
+    <!-- Brim shading/depth -->
+    <path d="M50 48 Q65 51 100 53 Q135 51 150 48" fill="url(#bc-bill-shade)" opacity="0.5"/>
+
+    <!-- Brim edge line -->
+    <path d="M52 48 Q70 50 100 52 Q130 50 148 48" fill="none" stroke="#1A3580" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+
+    <!-- Brim stitch detail -->
+    <path d="M55 50 Q75 51 100 51.5 Q125 51 145 50" fill="none" stroke="#2850A8" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.6"/>
+
+    <!-- Star logo on front (centered on cap) -->
+    <g transform="translate(100, 32)">
+      <!-- Star outline -->
+      <path d="M0,-6 L1.5,-1.5 L6,-1.5 L2.5,1.5 L4,6 L0,2.5 L-4,6 L-2.5,1.5 L-6,-1.5 L-1.5,-1.5 Z" class="bc-star" stroke="#FFD700" stroke-width="1"/>
+    </g>
+
+    <!-- Highlight on crown -->
+    <path d="M70 18 Q100 14 125 18" class="bc-highlight"/>
+
+    <!-- Subtle texture crosshatch on brim -->
+    <line x1="65" y1="46" x2="72" y2="50" stroke="#2850A8" stroke-width="0.6" opacity="0.4"/>
+    <line x1="85" y1="45" x2="88" y2="52" stroke="#2850A8" stroke-width="0.6" opacity="0.4"/>
+    <line x1="128" y1="45" x2="125" y2="52" stroke="#2850A8" stroke-width="0.6" opacity="0.4"/>
+    <line x1="135" y1="46" x2="128" y2="50" stroke="#2850A8" stroke-width="0.6" opacity="0.4"/>
   </g>
 </svg>

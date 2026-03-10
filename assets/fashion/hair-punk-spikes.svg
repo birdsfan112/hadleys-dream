@@ -1,23 +1,85 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <defs>
-    <linearGradient id="ps-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#BB33FF"/>
-      <stop offset="100%" stop-color="#6B00AA"/>
+    <linearGradient id="hps-main" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6B0090"/>
+      <stop offset="30%" stop-color="#8B00FF"/>
+      <stop offset="70%" stop-color="#8B00FF"/>
+      <stop offset="100%" stop-color="#6B0090"/>
     </linearGradient>
-    <linearGradient id="ps-spike" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#FF66FF"/>
-      <stop offset="100%" stop-color="#8800BB"/>
+    <linearGradient id="hps-spike" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#A855F7"/>
+      <stop offset="60%" stop-color="#8B00FF"/>
+      <stop offset="100%" stop-color="#5A0080"/>
+    </linearGradient>
+    <linearGradient id="hps-highlight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D78FFF"/>
+      <stop offset="100%" stop-color="#8B00FF"/>
     </linearGradient>
   </defs>
+  <style>
+    .hps-base{fill:#8B00FF;stroke:#6B0090;stroke-width:1}
+    .hps-spike{fill:url(#hps-spike);stroke:#5A0080;stroke-width:0.8}
+    .hps-hi{fill:#A855F7;opacity:0.5}
+    .hps-shade{fill:#5A0080;opacity:0.4}
+  </style>
+
+  <!-- No back-layer needed - short punk hair doesn't go behind body -->
   <g id="back-layer">
-    <ellipse cx="100" cy="55" rx="32" ry="28" fill="url(#ps-grad)"/>
+    <!-- Minimal base underneath -->
+    <path d="M65 70 Q100 55 135 70 Q138 80 135 95 Q100 85 65 95 Q62 80 65 70 Z" class="hps-base"/>
   </g>
+
+  <!-- Front layer: spikes radiating from crown -->
   <g id="clothing">
-    <polygon points="70,35 65,15 75,40" fill="url(#ps-spike)"/>
-    <polygon points="85,30 78,8 90,35" fill="url(#ps-spike)"/>
-    <polygon points="100,28 95,5 105,33" fill="url(#ps-spike)"/>
-    <polygon points="115,30 110,8 122,35" fill="url(#ps-spike)"/>
-    <polygon points="130,35 125,15 140,40" fill="url(#ps-spike)"/>
-    <circle cx="100" cy="60" r="28" fill="url(#ps-grad)"/>
+    <!-- Base/undercut shading on sides -->
+    <path d="M56 90 Q60 75 70 65 Q75 78 74 100 Q70 110 60 115 Z" class="hps-shade"/>
+    <path d="M144 90 Q140 75 130 65 Q125 78 126 100 Q130 110 140 115 Z" class="hps-shade"/>
+
+    <!-- Center crown base volume -->
+    <circle cx="100" cy="65" r="28" class="hps-base"/>
+
+    <!-- Left-side spikes radiating outward/upward -->
+    <!-- Spike 1 (far left, pointing down-left) -->
+    <path d="M68 75 Q58 70 52 58 Q60 65 68 75 Z" class="hps-spike"/>
+    <!-- Spike 2 (left, pointing up-left) -->
+    <path d="M72 58 Q62 45 58 25 Q68 42 76 60 Z" class="hps-spike"/>
+    <!-- Spike 3 (left-center, pointing up) -->
+    <path d="M82 48 Q80 28 78 8 Q85 28 88 50 Z" class="hps-spike"/>
+
+    <!-- Center crown spikes pointing straight up -->
+    <!-- Spike 4 (center-left) -->
+    <path d="M92 45 Q90 20 88 0 Q96 20 100 48 Z" class="hps-spike"/>
+    <!-- Spike 5 (center) -->
+    <path d="M100 42 Q100 15 98 2 Q102 15 102 44 Z" class="hps-spike"/>
+    <!-- Spike 6 (center-right) -->
+    <path d="M108 45 Q110 20 112 0 Q104 20 100 48 Z" class="hps-spike"/>
+
+    <!-- Right-side spikes pointing up-right -->
+    <!-- Spike 7 (right-center) -->
+    <path d="M118 48 Q120 28 122 8 Q115 28 112 50 Z" class="hps-spike"/>
+    <!-- Spike 8 (right, pointing up) -->
+    <path d="M128 58 Q138 45 142 25 Q132 42 124 60 Z" class="hps-spike"/>
+    <!-- Spike 9 (far right, pointing down-right) -->
+    <path d="M132 75 Q142 70 148 58 Q140 65 132 75 Z" class="hps-spike"/>
+
+    <!-- Additional smaller accent spikes -->
+    <!-- Mini spike front-left -->
+    <path d="M75 62 Q72 50 70 40 Q76 50 78 64 Z" class="hps-spike" opacity="0.8"/>
+    <!-- Mini spike front-right -->
+    <path d="M125 62 Q128 50 130 40 Q124 50 122 64 Z" class="hps-spike" opacity="0.8"/>
+
+    <!-- Highlight shine on spike tips -->
+    <ellipse cx="88" cy="5" rx="3" ry="2" class="hps-hi"/>
+    <ellipse cx="100" cy="2" rx="3" ry="2" class="hps-hi"/>
+    <ellipse cx="112" cy="5" rx="3" ry="2" class="hps-hi"/>
+    <ellipse cx="78" cy="12" rx="2" ry="2" class="hps-hi"/>
+    <ellipse cx="122" cy="12" rx="2" ry="2" class="hps-hi"/>
+
+    <!-- Side/face undercut shading (short on sides) -->
+    <path d="M56 95 Q65 105 75 115" stroke="#5A0080" stroke-width="3" fill="none" opacity="0.3" stroke-linecap="round"/>
+    <path d="M144 95 Q135 105 125 115" stroke="#5A0080" stroke-width="3" fill="none" opacity="0.3" stroke-linecap="round"/>
+
+    <!-- Metallic-ish glow on crown -->
+    <circle cx="100" cy="65" r="28" fill="none" stroke="#A855F7" stroke-width="1" opacity="0.4"/>
   </g>
 </svg>

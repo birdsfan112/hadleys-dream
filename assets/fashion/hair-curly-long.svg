@@ -1,24 +1,107 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <defs>
-    <linearGradient id="cl-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#E8A76F"/>
-      <stop offset="100%" stop-color="#B8761C"/>
+    <linearGradient id="hcl-main" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8B0000"/>
+      <stop offset="25%" stop-color="#B22222"/>
+      <stop offset="50%" stop-color="#CD5C5C"/>
+      <stop offset="75%" stop-color="#B22222"/>
+      <stop offset="100%" stop-color="#8B0000"/>
     </linearGradient>
-    <radialGradient id="cl-curl" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#F0C080"/>
-      <stop offset="100%" stop-color="#A0621A"/>
+    <linearGradient id="hcl-curl" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#CD5C5C"/>
+      <stop offset="100%" stop-color="#8B0000"/>
+    </linearGradient>
+    <radialGradient id="hcl-curl-shine" cx="40%" cy="35%" r="50%">
+      <stop offset="0%" stop-color="#FF6B6B"/>
+      <stop offset="100%" stop-color="#B22222"/>
     </radialGradient>
   </defs>
+  <style>
+    .hcl-hair{fill:#B22222;stroke:#8B0000;stroke-width:1.2}
+    .hcl-hi{fill:#CD5C5C;opacity:0.6}
+    .hcl-dark{fill:#8B0000;opacity:0.3}
+  </style>
+
+  <!-- Back layer: long flowing curls behind body -->
   <g id="back-layer">
-    <path d="M60,40 Q50,80 55,120" stroke="url(#cl-grad)" stroke-width="24" stroke-linecap="round" fill="none" opacity="0.9"/>
-    <path d="M140,40 Q150,80 145,120" stroke="url(#cl-grad)" stroke-width="24" stroke-linecap="round" fill="none" opacity="0.9"/>
+    <!-- Left side back curl mass -->
+    <path d="M55 60 Q48 85 46 120 Q45 160 50 200 Q55 220 65 220
+             Q62 190 63 150 Q65 110 68 75 Z"
+          class="hcl-hair"/>
+
+    <!-- Right side back curl mass -->
+    <path d="M145 60 Q152 85 154 120 Q155 160 150 200 Q145 220 135 220
+             Q138 190 137 150 Q135 110 132 75 Z"
+          class="hcl-hair"/>
+
+    <!-- Center back hair fill -->
+    <path d="M62 40 Q100 30 138 40 Q143 55 142 80 Q138 55 100 48
+             Q62 55 58 80 Q57 55 62 40 Z"
+          fill="#B22222" stroke="#8B0000" stroke-width="1"/>
+
+    <!-- Large spiral curl on left back -->
+    <path d="M55 90 Q50 110 52 140 Q55 160 60 175" stroke="#CD5C5C" stroke-width="4" fill="none" opacity="0.5" stroke-linecap="round"/>
+
+    <!-- Large spiral curl on right back -->
+    <path d="M145 90 Q150 110 148 140 Q145 160 140 175" stroke="#CD5C5C" stroke-width="4" fill="none" opacity="0.5" stroke-linecap="round"/>
+
+    <!-- Center back strand -->
+    <path d="M75 80 Q72 130 74 180" stroke="#CD5C5C" stroke-width="3" fill="none" opacity="0.4" stroke-linecap="round"/>
+    <path d="M125 80 Q128 130 126 180" stroke="#CD5C5C" stroke-width="3" fill="none" opacity="0.4" stroke-linecap="round"/>
   </g>
+
+  <!-- Front layer: crown, bangs, side curls, highlights -->
   <g id="clothing">
-    <circle cx="65" cy="35" r="20" fill="url(#cl-curl)"/>
-    <circle cx="90" cy="32" r="18" fill="url(#cl-curl)"/>
-    <circle cx="110" cy="32" r="18" fill="url(#cl-curl)"/>
-    <circle cx="135" cy="35" r="20" fill="url(#cl-curl)"/>
-    <circle cx="77" cy="50" r="16" fill="url(#cl-curl)" opacity="0.8"/>
-    <circle cx="123" cy="50" r="16" fill="url(#cl-curl)" opacity="0.8"/>
+    <!-- Crown/top volume - voluminous -->
+    <path d="M56 75 Q54 38 68 24 Q82 12 100 10 Q118 12 132 24
+             Q146 38 144 75 Q142 50 128 35 Q115 22 100 19
+             Q85 22 72 35 Q58 50 56 75 Z"
+          class="hcl-hair"/>
+
+    <!-- Bouncy front bangs - left section -->
+    <path d="M62 52 Q70 38 84 42 Q77 52 72 62 Q68 70 64 72 Z" class="hcl-hair"/>
+
+    <!-- Center-left bang -->
+    <path d="M80 42 Q92 30 104 36 Q96 48 88 56 Q82 64 78 66 Z" class="hcl-hair"/>
+
+    <!-- Center-right bang -->
+    <path d="M96 40 Q110 28 122 36 Q112 50 104 58 Q98 66 94 68 Z" class="hcl-hair"/>
+
+    <!-- Right bang section -->
+    <path d="M118 42 Q130 38 138 48 Q133 58 128 66 Q124 72 120 72 Z" class="hcl-hair"/>
+
+    <!-- Left face-framing curls flowing down -->
+    <path d="M56 75 Q50 90 50 110 Q51 135 58 160 Q63 175 68 185
+             Q70 170 70 145 Q69 115 67 90 Q65 80 58 75 Z"
+          class="hcl-hair"/>
+
+    <!-- Right face-framing curls flowing down -->
+    <path d="M144 75 Q150 90 150 110 Q149 135 142 160 Q137 175 132 185
+             Q130 170 130 145 Q131 115 133 90 Q135 80 142 75 Z"
+          class="hcl-hair"/>
+
+    <!-- Front left spiral curl accent -->
+    <path d="M60 95 Q55 115 58 140 Q62 160 68 175" stroke="#CD5C5C" stroke-width="3" fill="none" opacity="0.5" stroke-linecap="round"/>
+
+    <!-- Front right spiral curl accent -->
+    <path d="M140 95 Q145 115 142 140 Q138 160 132 175" stroke="#CD5C5C" stroke-width="3" fill="none" opacity="0.5" stroke-linecap="round"/>
+
+    <!-- Bouncy curl texture details -->
+    <circle cx="70" cy="85" r="8" fill="url(#hcl-curl-shine)" opacity="0.7"/>
+    <circle cx="130" cy="85" r="8" fill="url(#hcl-curl-shine)" opacity="0.7"/>
+    <circle cx="62" cy="135" r="7" fill="url(#hcl-curl-shine)" opacity="0.6"/>
+    <circle cx="138" cy="135" r="7" fill="url(#hcl-curl-shine)" opacity="0.6"/>
+
+    <!-- Top shine highlights -->
+    <ellipse cx="88" cy="22" rx="16" ry="7" class="hcl-hi" transform="rotate(-12 88 22)"/>
+    <ellipse cx="116" cy="20" rx="11" ry="5" class="hcl-hi" transform="rotate(10 116 20)"/>
+
+    <!-- Side face-frame highlights -->
+    <ellipse cx="55" cy="110" rx="5" ry="14" class="hcl-hi" transform="rotate(-20 55 110)"/>
+    <ellipse cx="145" cy="110" rx="5" ry="14" class="hcl-hi" transform="rotate(20 145 110)"/>
+
+    <!-- Dimensional shading on curls -->
+    <ellipse cx="75" cy="100" rx="6" ry="10" class="hcl-dark" transform="rotate(-15 75 100)"/>
+    <ellipse cx="125" cy="100" rx="6" ry="10" class="hcl-dark" transform="rotate(15 125 100)"/>
   </g>
 </svg>

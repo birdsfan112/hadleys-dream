@@ -1,18 +1,54 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <defs>
-    <linearGradient id="lg-grad" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="leggings-teal" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#2F8FA3"/>
-      <stop offset="100%" stop-color="#1A4D5C"/>
+      <stop offset="100%" stop-color="#1A6B7A"/>
     </linearGradient>
-    <pattern id="lg-texture" patternUnits="userSpaceOnUse" width="4" height="4">
-      <rect width="4" height="4" fill="#2F8FA3"/>
-      <circle cx="2" cy="2" r="1" fill="#1A4D5C" opacity="0.4"/>
+    <linearGradient id="leggings-shine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1A6B7A"/>
+      <stop offset="50%" stop-color="#2F8FA3"/>
+      <stop offset="100%" stop-color="#1A6B7A"/>
+    </linearGradient>
+    <pattern id="leggings-texture" patternUnits="userSpaceOnUse" width="3" height="3">
+      <rect width="3" height="3" fill="#2F8FA3"/>
+      <circle cx="1.5" cy="1.5" r="0.5" fill="#1A6B7A" opacity="0.6"/>
     </pattern>
   </defs>
   <g id="clothing">
-    <path d="M75,190 L78,270 Q85,280 85,290 L85,310 Q85,320 82,325" fill="url(#lg-grad)"/>
-    <path d="M125,190 L122,270 Q115,280 115,290 L115,310 Q115,320 118,325" fill="url(#lg-grad)"/>
-    <path d="M75,190 L78,270 Q85,280 85,290 L85,310 Q85,320 82,325" fill="url(#lg-texture)" opacity="0.3"/>
-    <path d="M125,190 L122,270 Q115,280 115,290 L115,310 Q115,320 118,325" fill="url(#lg-texture)" opacity="0.3"/>
+    <!-- Elastic waistband (thinner than jeans) -->
+    <rect x="68" y="222" width="64" height="9" rx="3" fill="#1A6B7A" stroke="#0F4D5F" stroke-width="1"/>
+    <!-- Waistband shine -->
+    <ellipse cx="100" cy="224" rx="30" ry="2" fill="#3A9FB3" opacity="0.3"/>
+
+    <!-- Left leg - tight fit -->
+    <path d="M73 231 L73 285 Q73 296 86 296 L98 296 Q100 296 100 283 L100 231 Z"
+          fill="url(#leggings-teal)" stroke="#0F4D5F" stroke-width="1.2" stroke-linejoin="round"/>
+    <!-- Left leg texture overlay -->
+    <path d="M73 231 L73 285 Q73 296 86 296 L98 296 Q100 296 100 283 L100 231 Z"
+          fill="url(#leggings-texture)" opacity="0.35"/>
+    <!-- Left leg inner seam -->
+    <path d="M96 235 L96 290" stroke="#0F4D5F" stroke-width="1" fill="none" opacity="0.6"/>
+    <!-- Left knee shading -->
+    <ellipse cx="85" cy="265" rx="7" ry="5" fill="#0F4D5F" opacity="0.25"/>
+    <!-- Left leg highlight -->
+    <path d="M75 240 L75 260 Q75 263 78 265" stroke="#4A9FB8" stroke-width="0.8" fill="none" opacity="0.4" stroke-linecap="round"/>
+
+    <!-- Right leg - tight fit -->
+    <path d="M100 231 L100 283 Q100 296 102 296 L127 296 Q127 296 127 285 L127 231 Z"
+          fill="url(#leggings-teal)" stroke="#0F4D5F" stroke-width="1.2" stroke-linejoin="round"/>
+    <!-- Right leg texture overlay -->
+    <path d="M100 231 L100 283 Q100 296 102 296 L127 296 Q127 296 127 285 L127 231 Z"
+          fill="url(#leggings-texture)" opacity="0.35"/>
+    <!-- Right leg inner seam -->
+    <path d="M104 235 L104 290" stroke="#0F4D5F" stroke-width="1" fill="none" opacity="0.6"/>
+    <!-- Right knee shading -->
+    <ellipse cx="115" cy="265" rx="7" ry="5" fill="#0F4D5F" opacity="0.25"/>
+    <!-- Right leg highlight -->
+    <path d="M125 240 L125 260 Q125 263 122 265" stroke="#4A9FB8" stroke-width="0.8" fill="none" opacity="0.4" stroke-linecap="round"/>
+
+    <!-- Center seam -->
+    <path d="M100 231 L100 245" stroke="#0F4D5F" stroke-width="1" fill="none"/>
+    <!-- Crotch detail -->
+    <path d="M98 232 L98 242" stroke="#4A9FB8" stroke-width="0.6" fill="none" opacity="0.35" stroke-dasharray="1.5 1"/>
   </g>
 </svg>

@@ -2,21 +2,136 @@
   <defs>
     <linearGradient id="ce-grad" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#FFB6C1"/>
-      <stop offset="100%" stop-color="#FF91A4"/>
+      <stop offset="50%" stop-color="#FF91A4"/>
+      <stop offset="100%" stop-color="#FF6B8A"/>
     </linearGradient>
     <linearGradient id="ce-inner" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#FFD1DC"/>
       <stop offset="100%" stop-color="#FFB6C1"/>
     </linearGradient>
+    <linearGradient id="ce-band" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF91A4"/>
+      <stop offset="100%" stop-color="#FF6B8A"/>
+    </linearGradient>
+    <linearGradient id="ce-bell" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#C8A600"/>
+    </linearGradient>
   </defs>
+  <style>
+    .ce-fur-line { stroke:#FF69B4; stroke-width:0.8; fill:none; opacity:0.5; stroke-linecap:round }
+    .ce-whisker { stroke:#FFB6C1; stroke-width:1; fill:none; opacity:0.7; stroke-linecap:round }
+    .ce-paw { fill:#FF69B4; opacity:0.3; stroke:#FF69B4; stroke-width:0.6 }
+    .ce-bell-accent { fill:none; stroke:#C8A600; stroke-width:1; opacity:0.6 }
+    .ce-shine { fill:#FFFFFF; opacity:0.4 }
+  </style>
   <g id="clothing">
-    <!-- Left ear -->
-    <polygon points="68,42 58,8 88,32" fill="url(#ce-grad)" stroke="#FF69B4" stroke-width="2" stroke-linejoin="round"/>
-    <polygon points="72,38 65,16 84,34" fill="url(#ce-inner)"/>
-    <!-- Right ear -->
-    <polygon points="132,42 142,8 112,32" fill="url(#ce-grad)" stroke="#FF69B4" stroke-width="2" stroke-linejoin="round"/>
-    <polygon points="128,38 135,16 116,34" fill="url(#ce-inner)"/>
-    <!-- Headband -->
-    <path d="M62,45 Q100,35 138,45" fill="none" stroke="url(#ce-grad)" stroke-width="5" stroke-linecap="round"/>
+    <!-- LEFT EAR - Outer shape (fluffier) -->
+    <path d="M68,42 Q60,38 55,20 Q52,5 62,0 Q72,8 75,28 Q76,35 72,42" fill="url(#ce-grad)" stroke="#FF69B4" stroke-width="2.5" stroke-linejoin="round"/>
+
+    <!-- LEFT EAR - Inner pink -->
+    <path d="M72,38 Q68,35 66,20 Q64,10 70,6 Q75,12 76,26 Q76,33 74,38" fill="url(#ce-inner)"/>
+
+    <!-- LEFT EAR - Fur texture lines -->
+    <g class="ce-fur-line">
+      <path d="M64 15 Q68 20 70 28"/>
+      <path d="M62 10 Q66 16 68 25"/>
+      <path d="M68 8 Q71 14 72 24"/>
+      <path d="M70 30 Q72 35 71 40"/>
+    </g>
+
+    <!-- LEFT EAR - Inner highlight shine -->
+    <ellipse cx="70" cy="16" rx="2.5" ry="4" class="ce-shine"/>
+
+    <!-- RIGHT EAR - Outer shape (fluffier) -->
+    <path d="M132,42 Q140,38 145,20 Q148,5 138,0 Q128,8 125,28 Q124,35 128,42" fill="url(#ce-grad)" stroke="#FF69B4" stroke-width="2.5" stroke-linejoin="round"/>
+
+    <!-- RIGHT EAR - Inner pink -->
+    <path d="M128,38 Q132,35 134,20 Q136,10 130,6 Q125,12 124,26 Q124,33 126,38" fill="url(#ce-inner)"/>
+
+    <!-- RIGHT EAR - Fur texture lines -->
+    <g class="ce-fur-line">
+      <path d="M136 15 Q132 20 130 28"/>
+      <path d="M138 10 Q134 16 132 25"/>
+      <path d="M132 8 Q129 14 128 24"/>
+      <path d="M130 30 Q128 35 129 40"/>
+    </g>
+
+    <!-- RIGHT EAR - Inner highlight shine -->
+    <ellipse cx="130" cy="16" rx="2.5" ry="4" class="ce-shine"/>
+
+    <!-- HEADBAND - Main structure -->
+    <path d="M62,45 Q78,38 100,36 Q122,38 138,45" fill="none" stroke="url(#ce-band)" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- HEADBAND - Upper rim detail -->
+    <path d="M64,42 Q80,36 100,35 Q120,36 136,42" fill="none" stroke="#FF69B4" stroke-width="1.5" opacity="0.6"/>
+
+    <!-- HEADBAND - Lower rim detail -->
+    <path d="M62,48 Q78,45 100,44 Q122,45 138,48" fill="none" stroke="#FF6B8A" stroke-width="1" opacity="0.5"/>
+
+    <!-- CENTER BELL on headband -->
+    <g transform="translate(100, 42)">
+      <!-- Bell shape -->
+      <path d="M-5,-2 Q-5,-5 0,-6 Q5,-5 5,-2 Q5,0 0,2 Q-5,0 -5,-2" fill="url(#ce-bell)" stroke="#C8A600" stroke-width="1.2"/>
+      <!-- Bell inner highlight -->
+      <ellipse cx="-1.5" cy="-2" rx="1.5" ry="1.8" class="ce-shine" opacity="0.6"/>
+      <!-- Bell detail line -->
+      <path d="M-3,-1 Q0,1 3,-1" class="ce-bell-accent"/>
+      <!-- Clapper inside -->
+      <circle cx="0" cy="1" r="0.8" fill="#C8A600" opacity="0.7"/>
+    </g>
+
+    <!-- WHISKER GROUP - Left side -->
+    <g class="ce-whisker">
+      <path d="M60 42 Q50 43 45 44"/>
+      <path d="M60 46 Q48 46 40 46"/>
+      <path d="M58 50 Q48 50 42 48"/>
+    </g>
+
+    <!-- WHISKER GROUP - Right side -->
+    <g class="ce-whisker">
+      <path d="M140 42 Q150 43 155 44"/>
+      <path d="M140 46 Q152 46 160 46"/>
+      <path d="M142 50 Q152 50 158 48"/>
+    </g>
+
+    <!-- WHISKER details near headband -->
+    <g class="ce-whisker" opacity="0.5">
+      <path d="M70 48 Q65 50 60 52"/>
+      <path d="M130 48 Q135 50 140 52"/>
+    </g>
+
+    <!-- PAW PRINT embossing on headband (left side) -->
+    <g class="ce-paw" transform="translate(75, 45)">
+      <!-- Main paw pad -->
+      <ellipse cx="0" cy="0" rx="2.5" ry="3" opacity="0.25"/>
+      <!-- Four toe pads -->
+      <circle cx="-3" cy="-3" r="1.2" opacity="0.2"/>
+      <circle cx="3" cy="-3" r="1.2" opacity="0.2"/>
+      <circle cx="-2.5" cy="3" r="1" opacity="0.2"/>
+      <circle cx="2.5" cy="3" r="1" opacity="0.2"/>
+    </g>
+
+    <!-- PAW PRINT embossing on headband (right side) -->
+    <g class="ce-paw" transform="translate(125, 45)">
+      <!-- Main paw pad -->
+      <ellipse cx="0" cy="0" rx="2.5" ry="3" opacity="0.25"/>
+      <!-- Four toe pads -->
+      <circle cx="-3" cy="-3" r="1.2" opacity="0.2"/>
+      <circle cx="3" cy="-3" r="1.2" opacity="0.2"/>
+      <circle cx="-2.5" cy="3" r="1" opacity="0.2"/>
+      <circle cx="2.5" cy="3" r="1" opacity="0.2"/>
+    </g>
+
+    <!-- Headband shine/highlight -->
+    <path d="M70 36 Q100 33 130 36" fill="none" stroke="#FFD1DC" stroke-width="1.5" opacity="0.5" stroke-linecap="round"/>
+
+    <!-- Ear outer edge shading (depth) -->
+    <path d="M55 18 Q60 5 65 2" fill="none" stroke="#FF69B4" stroke-width="1" opacity="0.4" stroke-linecap="round"/>
+    <path d="M145 18 Q140 5 135 2" fill="none" stroke="#FF69B4" stroke-width="1" opacity="0.4" stroke-linecap="round"/>
+
+    <!-- Additional ear fluff/texture at base -->
+    <path d="M68 40 Q70 42 72 40" fill="none" stroke="#FF91A4" stroke-width="1.2" opacity="0.5" stroke-linecap="round"/>
+    <path d="M132 40 Q130 42 128 40" fill="none" stroke="#FF91A4" stroke-width="1.2" opacity="0.5" stroke-linecap="round"/>
   </g>
 </svg>

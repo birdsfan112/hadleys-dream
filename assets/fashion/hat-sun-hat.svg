@@ -1,20 +1,124 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <defs>
-    <linearGradient id="sh-grad" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="sh-straw" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#F5DEB3"/>
+      <stop offset="50%" stop-color="#FFEAA7"/>
+      <stop offset="100%" stop-color="#DEB887"/>
+    </linearGradient>
+    <linearGradient id="sh-straw-shadow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8D496"/>
       <stop offset="100%" stop-color="#D2B48C"/>
     </linearGradient>
-    <linearGradient id="sh-ribbon" x1="0" y1="0" x2="1" y2="0">
+    <linearGradient id="sh-ribbon" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#FF69B4"/>
-      <stop offset="100%" stop-color="#FFB6D9"/>
+      <stop offset="50%" stop-color="#FFB6D9"/>
+      <stop offset="100%" stop-color="#FF1493"/>
+    </linearGradient>
+    <linearGradient id="sh-ribbon-dark" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FF69B4"/>
+      <stop offset="100%" stop-color="#E85BA0"/>
     </linearGradient>
   </defs>
+  <style>
+    .sh-weave { stroke:#D2B48C; stroke-width:0.8; fill:none; opacity:0.4; stroke-linecap:round }
+    .sh-bow { fill:url(#sh-ribbon); stroke:#FF1493; stroke-width:1.2; stroke-linejoin:round }
+    .sh-ribbon-band { fill:none; stroke:url(#sh-ribbon-dark); stroke-width:5; stroke-linecap:round; opacity:0.95 }
+    .sh-scallop { fill:none; stroke:#D2B48C; stroke-width:1; opacity:0.6; stroke-linecap:round }
+    .sh-highlight { fill:none; stroke:#FFFACD; stroke-width:1.5; opacity:0.5; stroke-linecap:round }
+  </style>
   <g id="clothing">
-    <ellipse cx="100" cy="40" rx="32" ry="18" fill="url(#sh-grad)"/>
-    <ellipse cx="100" cy="38" rx="28" ry="15" fill="url(#sh-grad)" opacity="0.8"/>
-    <path d="M72,45 Q70,60 75,75 Q80,70 85,65" fill="url(#sh-grad)" opacity="0.7"/>
-    <path d="M128,45 Q130,60 125,75 Q120,70 115,65" fill="url(#sh-grad)" opacity="0.7"/>
-    <path d="M85,40 L115,40 Q112,45 100,48 Q88,45 85,40" fill="url(#sh-ribbon)"/>
-    <circle cx="100" cy="42" r="2" fill="#FFD700" opacity="0.8"/>
+    <!-- Wide brim (very wide for sun hat) -->
+    <ellipse cx="100" cy="42" rx="65" ry="12" fill="url(#sh-straw)"/>
+
+    <!-- Brim shading underside -->
+    <ellipse cx="100" cy="45" rx="63" ry="10" fill="url(#sh-straw-shadow)" opacity="0.4"/>
+
+    <!-- Brim raised edge left side -->
+    <path d="M35 40 Q30 42 32 48 Q38 50 45 48" fill="url(#sh-straw)" opacity="0.6"/>
+
+    <!-- Brim raised edge right side -->
+    <path d="M165 40 Q170 42 168 48 Q162 50 155 48" fill="url(#sh-straw)" opacity="0.6"/>
+
+    <!-- Crown (rounded top part of hat) -->
+    <ellipse cx="100" cy="25" rx="28" ry="20" fill="url(#sh-straw)"/>
+
+    <!-- Crown shading highlight -->
+    <ellipse cx="100" cy="20" rx="24" ry="16" fill="#FFFACD" opacity="0.3"/>
+
+    <!-- Woven straw texture: criss-cross lines on brim (left side) -->
+    <g class="sh-weave">
+      <line x1="50" y1="35" x2="60" y2="50"/>
+      <line x1="55" y1="35" x2="70" y2="50"/>
+      <line x1="45" y1="40" x2="65" y2="48"/>
+      <line x1="40" y1="45" x2="65" y2="45"/>
+      <line x1="60" y1="35" x2="55" y2="50"/>
+      <line x1="70" y1="36" x2="60" y2="50"/>
+    </g>
+
+    <!-- Woven straw texture: criss-cross lines on brim (right side) -->
+    <g class="sh-weave">
+      <line x1="150" y1="35" x2="140" y2="50"/>
+      <line x1="145" y1="35" x2="130" y2="50"/>
+      <line x1="155" y1="40" x2="135" y2="48"/>
+      <line x1="160" y1="45" x2="135" y2="45"/>
+      <line x1="140" y1="35" x2="145" y2="50"/>
+      <line x1="130" y1="36" x2="140" y2="50"/>
+    </g>
+
+    <!-- Woven straw texture on crown -->
+    <g class="sh-weave">
+      <line x1="80" y1="15" x2="95" y2="25"/>
+      <line x1="105" y1="25" x2="120" y2="15"/>
+      <line x1="85" y1="10" x2="100" y2="20"/>
+      <line x1="100" y1="20" x2="115" y2="10"/>
+      <line x1="95" y1="12" x2="85" y2="22"/>
+      <line x1="115" y1="22" x2="105" y2="12"/>
+    </g>
+
+    <!-- Ribbon band around crown -->
+    <ellipse cx="100" cy="33" rx="30" ry="7" fill="none" stroke="url(#sh-ribbon-dark)" stroke-width="5.5" opacity="0.9" stroke-linecap="round"/>
+
+    <!-- Ribbon band inner line -->
+    <ellipse cx="100" cy="33" rx="28" ry="5" fill="none" stroke="#FF1493" stroke-width="1" opacity="0.6"/>
+
+    <!-- Ribbon bow on side (right) -->
+    <g transform="translate(140, 33)">
+      <!-- Left petal of bow -->
+      <ellipse cx="-8" cy="0" rx="6" ry="8" class="sh-bow" opacity="0.9"/>
+      <!-- Right petal of bow -->
+      <ellipse cx="8" cy="0" rx="6" ry="8" class="sh-bow" opacity="0.9"/>
+      <!-- Bow center knot -->
+      <circle cx="0" cy="0" r="3.5" fill="#FF1493" stroke="#E85BA0" stroke-width="1.2"/>
+      <!-- Knot highlight -->
+      <circle cx="-1" cy="-1" r="1.5" fill="#FFB6D9" opacity="0.7"/>
+    </g>
+
+    <!-- Scalloped edges on brim front -->
+    <g class="sh-scallop" opacity="0.5">
+      <path d="M55 45 Q60 40 65 45"/>
+      <path d="M75 45 Q80 40 85 45"/>
+      <path d="M95 45 Q100 40 105 45"/>
+      <path d="M115 45 Q120 40 125 45"/>
+      <path d="M135 45 Q140 40 145 45"/>
+    </g>
+
+    <!-- Scalloped edges on brim back (subtle) -->
+    <g class="sh-scallop" opacity="0.3">
+      <path d="M60 38 Q70 35 80 38"/>
+      <path d="M120 38 Q130 35 140 38"/>
+    </g>
+
+    <!-- Brim edge highlight line (gives dimension) -->
+    <path d="M40 43 Q70 41 100 40 Q130 41 160 43" class="sh-highlight" opacity="0.6"/>
+
+    <!-- Crown highlight/shine -->
+    <path d="M85 15 Q100 10 115 15" class="sh-highlight" opacity="0.5"/>
+
+    <!-- Small straw texture details -->
+    <line x1="75" y1="20" x2="78" y2="28" stroke="#D2B48C" stroke-width="0.6" opacity="0.3"/>
+    <line x1="122" y1="20" x2="125" y2="28" stroke="#D2B48C" stroke-width="0.6" opacity="0.3"/>
+
+    <!-- Ribbon texture lines on band -->
+    <path d="M90 30 Q100 28 110 30" fill="none" stroke="#E85BA0" stroke-width="1.2" opacity="0.5" stroke-linecap="round"/>
   </g>
 </svg>

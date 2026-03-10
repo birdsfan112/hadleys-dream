@@ -1,19 +1,82 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <defs>
-    <linearGradient id="sb-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#A00000"/>
-      <stop offset="100%" stop-color="#6B0000"/>
+    <linearGradient id="hsb-main" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8B4513"/>
+      <stop offset="20%" stop-color="#A0522D"/>
+      <stop offset="50%" stop-color="#CD853F"/>
+      <stop offset="80%" stop-color="#A0522D"/>
+      <stop offset="100%" stop-color="#8B4513"/>
     </linearGradient>
-    <filter id="sb-shadow">
-      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.3"/>
-    </filter>
+    <linearGradient id="hsb-highlight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#CD853F"/>
+      <stop offset="100%" stop-color="#A0522D"/>
+    </linearGradient>
   </defs>
+  <style>
+    .hsb-hair{fill:#A0522D;stroke:#8B4513;stroke-width:1.2}
+    .hsb-hi{fill:#CD853F;opacity:0.6}
+    .hsb-shade{fill:#8B4513;opacity:0.3}
+  </style>
+
+  <!-- Back layer: short back hair -->
   <g id="back-layer">
-    <path d="M65,45 Q65,25 100,20 Q135,25 135,45 Q135,70 100,85 Q65,70 65,45" fill="url(#sb-grad)" filter="url(#sb-shadow)"/>
+    <!-- Left side back hair -->
+    <path d="M58 60 Q52 65 50 85 Q49 105 52 115 Q56 110 58 95 Q59 75 60 65 Z" class="hsb-hair"/>
+
+    <!-- Center back hair fill -->
+    <path d="M62 45 Q100 38 138 45 Q142 60 140 90 Q135 75 100 70 Q65 75 60 90 Q58 60 62 45 Z"
+          fill="#A0522D" stroke="#8B4513" stroke-width="1"/>
+
+    <!-- Right side back hair -->
+    <path d="M142 60 Q148 65 150 85 Q151 105 148 115 Q144 110 142 95 Q141 75 140 65 Z" class="hsb-hair"/>
+
+    <!-- Back hair strand texture -->
+    <path d="M70 80 Q72 95 74 110" stroke="#CD853F" stroke-width="2" fill="none" opacity="0.4" stroke-linecap="round"/>
+    <path d="M130 80 Q128 95 126 110" stroke="#CD853F" stroke-width="2" fill="none" opacity="0.4" stroke-linecap="round"/>
   </g>
+
+  <!-- Front layer: crown, bangs, side pieces -->
   <g id="clothing">
-    <ellipse cx="65" cy="50" rx="18" ry="22" fill="url(#sb-grad)"/>
-    <ellipse cx="135" cy="50" rx="18" ry="22" fill="url(#sb-grad)"/>
-    <path d="M70,80 Q100,92 130,80" stroke="url(#sb-grad)" stroke-width="2" fill="none" opacity="0.6"/>
+    <!-- Crown/top volume -->
+    <path d="M56 75 Q54 42 68 28 Q82 16 100 14 Q118 16 132 28
+             Q146 42 144 75 Q142 50 130 38 Q115 28 100 26
+             Q85 28 70 38 Q58 50 56 75 Z"
+          class="hsb-hair"/>
+
+    <!-- Left face-framing piece -->
+    <path d="M56 75 Q53 65 54 50 Q54 70 52 90 Q51 108 56 118
+             Q61 112 62 98 Q62 82 59 68 Z"
+          class="hsb-hair"/>
+
+    <!-- Right face-framing piece -->
+    <path d="M144 75 Q147 65 146 50 Q146 70 148 90 Q149 108 144 118
+             Q139 112 138 98 Q138 82 141 68 Z"
+          class="hsb-hair"/>
+
+    <!-- Left bang piece -->
+    <path d="M62 56 Q72 44 84 48 Q77 54 72 62 Q68 68 64 70 Z" class="hsb-hair"/>
+
+    <!-- Center-left bang -->
+    <path d="M80 48 Q92 38 104 42 Q96 50 88 56 Q82 62 78 64 Z" class="hsb-hair"/>
+
+    <!-- Center-right bang -->
+    <path d="M96 46 Q108 36 120 42 Q112 50 104 56 Q98 62 94 64 Z" class="hsb-hair"/>
+
+    <!-- Right bang piece -->
+    <path d="M118 48 Q130 44 138 52 Q134 60 128 66 Q124 68 120 67 Z" class="hsb-hair"/>
+
+    <!-- Chin-length flip on left -->
+    <path d="M58 100 Q54 110 56 125 Q60 118 63 105 Z" class="hsb-hair"/>
+
+    <!-- Chin-length flip on right -->
+    <path d="M142 100 Q146 110 144 125 Q140 118 137 105 Z" class="hsb-hair"/>
+
+    <!-- Top shine highlight -->
+    <ellipse cx="92" cy="25" rx="16" ry="6" class="hsb-hi" transform="rotate(-12 92 25)"/>
+    <ellipse cx="118" cy="24" rx="10" ry="4" class="hsb-hi" transform="rotate(8 118 24)"/>
+
+    <!-- Side shine highlights -->
+    <ellipse cx="65" cy="65" rx="6" ry="10" class="hsb-hi" transform="rotate(-15 65 65)"/>
+    <ellipse cx="135" cy="65" rx="6" ry="10" class="hsb-hi" transform="rotate(15 135 65)"/>
   </g>
 </svg>

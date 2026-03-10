@@ -1,21 +1,86 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <style>
+    .dm-main{fill:#66CDAA;stroke:#3CB371;stroke-width:2;stroke-linejoin:round}
+    .dm-shade{fill:#3CB371;stroke:none;opacity:0.35}
+    .dm-shell{fill:#FFD700;stroke:#DAA520;stroke-width:1;stroke-linejoin:round}
+    .dm-pearl{fill:#F0F8FF;stroke:#E6E6FA;stroke-width:0.8}
+    .dm-scale{fill:#20B2AA;stroke:#3CB371;stroke-width:0.5}
+  </style>
   <defs>
-    <linearGradient id="merm-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#40E0D0"/>
-      <stop offset="50%" stop-color="#20B8A0"/>
-      <stop offset="100%" stop-color="#008080"/>
-    </linearGradient>
-    <linearGradient id="merm-tail" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#20B8A0"/>
-      <stop offset="100%" stop-color="#006666"/>
+    <linearGradient id="dm-bodice-grad" x1="0" y1="134" x2="0" y2="198">
+      <stop offset="0%" stop-color="#7FFFD4"/>
+      <stop offset="100%" stop-color="#66CDAA"/>
     </linearGradient>
   </defs>
   <g id="clothing">
-    <path d="M70,115 Q100,108 130,115 L135,210 Q100,230 65,210 Z" fill="url(#merm-grad)"/>
-    <path d="M65,210 Q70,250 75,290 L125,290 Q130,250 135,210" fill="url(#merm-tail)"/>
-    <path d="M75,240 Q85,260 80,290" fill="none" stroke="#00FFFF" stroke-width="2" opacity="0.6"/>
-    <path d="M125,240 Q115,260 120,290" fill="none" stroke="#00FFFF" stroke-width="2" opacity="0.6"/>
-    <circle cx="95" cy="200" r="2" fill="#FFD700" opacity="0.8"/>
-    <circle cx="105" cy="200" r="2" fill="#FFD700" opacity="0.8"/>
+    <!-- Fitted shell bra straps -->
+    <line x1="82" y1="118" x2="80" y2="138" class="dm-shell" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="118" y1="118" x2="120" y2="138" class="dm-shell" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Shell-shaped bodice -->
+    <path d="M76 140 Q72 137 76 134 L124 134 Q128 137 124 140 L126 198 L74 198 Z" fill="url(#dm-bodice-grad)" stroke="#3CB371" stroke-width="2" stroke-linejoin="round"/>
+
+    <!-- Shell curve definition (left) -->
+    <path d="M74 145 Q78 142 80 150 Q78 155 74 160" stroke="#3CB371" stroke-width="1.2" fill="none" opacity="0.5"/>
+
+    <!-- Shell curve definition (right) -->
+    <path d="M126 145 Q122 142 120 150 Q122 155 126 160" stroke="#3CB371" stroke-width="1.2" fill="none" opacity="0.5"/>
+
+    <!-- Bodice shading -->
+    <path d="M74 142 L78 142 L78 198 L74 198 Z" class="dm-shade"/>
+    <path d="M122 142 L126 142 L126 198 L122 198 Z" class="dm-shade"/>
+
+    <!-- Waistline accent -->
+    <line x1="74" y1="198" x2="126" y2="198" stroke="#3CB371" stroke-width="2.5"/>
+
+    <!-- Pearl decorations on bodice -->
+    <circle cx="100" cy="155" r="2" class="dm-pearl"/>
+    <circle cx="88" cy="170" r="1.8" class="dm-pearl"/>
+    <circle cx="112" cy="170" r="1.8" class="dm-pearl"/>
+    <circle cx="95" cy="185" r="1.5" class="dm-pearl"/>
+    <circle cx="105" cy="185" r="1.5" class="dm-pearl"/>
+
+    <!-- Fitted skirt with tail fin -->
+    <path d="M74 198 L72 240 Q68 260 65 280 Q70 295 85 298 Q82 270 80 240 Z" class="dm-main"/>
+    <path d="M78 240 L76 270 Q75 285 80 295 Q90 300 100 302 Q100 290 102 240 Z" class="dm-main"/>
+    <path d="M102 240 Q104 290 100 302 Q110 300 120 295 Q125 285 124 270 L122 240 Z" class="dm-main"/>
+    <path d="M126 198 L128 240 Q130 270 135 280 Q132 295 115 298 Q120 270 120 240 Z" class="dm-main"/>
+
+    <!-- Tail fin flare (bottom) -->
+    <path d="M80 295 Q85 310 95 315 Q100 318 105 315 Q115 310 120 295 Q110 303 100 305 Q90 303 80 295 Z" class="dm-main"/>
+
+    <!-- Scale texture pattern (overlapping semicircles) -->
+    <!-- Row 1 -->
+    <path d="M74 210 Q74 213 77 213 Q80 213 80 210" class="dm-scale" fill="none"/>
+    <path d="M82 210 Q82 213 85 213 Q88 213 88 210" class="dm-scale" fill="none"/>
+    <path d="M90 210 Q90 213 93 213 Q96 213 96 210" class="dm-scale" fill="none"/>
+    <path d="M98 210 Q98 213 101 213 Q104 213 104 210" class="dm-scale" fill="none"/>
+    <path d="M106 210 Q106 213 109 213 Q112 213 112 210" class="dm-scale" fill="none"/>
+    <path d="M114 210 Q114 213 117 213 Q120 213 120 210" class="dm-scale" fill="none"/>
+    <path d="M122 210 Q122 213 125 213 Q128 213 128 210" class="dm-scale" fill="none"/>
+
+    <!-- Row 2 -->
+    <path d="M75 220 Q75 223 78 223 Q81 223 81 220" class="dm-scale" fill="none"/>
+    <path d="M83 220 Q83 223 86 223 Q89 223 89 220" class="dm-scale" fill="none"/>
+    <path d="M91 220 Q91 223 94 223 Q97 223 97 220" class="dm-scale" fill="none"/>
+    <path d="M99 220 Q99 223 102 223 Q105 223 105 220" class="dm-scale" fill="none"/>
+    <path d="M107 220 Q107 223 110 223 Q113 223 113 220" class="dm-scale" fill="none"/>
+    <path d="M115 220 Q115 223 118 223 Q121 223 121 220" class="dm-scale" fill="none"/>
+    <path d="M123 220 Q123 223 126 223 Q129 223 129 220" class="dm-scale" fill="none"/>
+
+    <!-- Row 3 -->
+    <path d="M76 230 Q76 233 79 233 Q82 233 82 230" class="dm-scale" fill="none"/>
+    <path d="M84 230 Q84 233 87 233 Q90 233 90 230" class="dm-scale" fill="none"/>
+    <path d="M92 230 Q92 233 95 233 Q98 233 98 230" class="dm-scale" fill="none"/>
+    <path d="M100 230 Q100 233 103 233 Q106 233 106 230" class="dm-scale" fill="none"/>
+    <path d="M108 230 Q108 233 111 233 Q114 233 114 230" class="dm-scale" fill="none"/>
+    <path d="M116 230 Q116 233 119 233 Q122 233 122 230" class="dm-scale" fill="none"/>
+
+    <!-- Skirt fold lines -->
+    <path d="M80 205 Q78 250 76 285" stroke="#3CB371" stroke-width="0.8" fill="none" opacity="0.4"/>
+    <path d="M120 205 Q122 250 124 285" stroke="#3CB371" stroke-width="0.8" fill="none" opacity="0.4"/>
+
+    <!-- Shading on tail -->
+    <path d="M74 198 L72 240 Q68 260 65 280 Q68 275 75 255 Q76 225 78 205 Z" class="dm-shade"/>
   </g>
 </svg>

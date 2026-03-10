@@ -1,19 +1,55 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <defs>
-    <radialGradient id="sc-grad" cx="50%" cy="40%" r="60%">
-      <stop offset="0%" stop-color="#FFE680"/>
-      <stop offset="100%" stop-color="#CC8800"/>
-    </radialGradient>
-    <filter id="sc-sparkle">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-    </filter>
+    <linearGradient id="sc-body" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF1493"/>
+      <stop offset="100%" stop-color="#FF69B4"/>
+    </linearGradient>
+    <linearGradient id="sc-shadow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#C71585"/>
+      <stop offset="100%" stop-color="#FF1493"/>
+    </linearGradient>
   </defs>
+  <style>
+    .sc-main{fill:url(#sc-body);stroke:#C71585;stroke-width:1.8;stroke-linejoin:round}
+    .sc-shade{fill:#C71585;stroke:none}
+    .sc-fold{stroke:#C71585;stroke-width:1.2;fill:none;stroke-linecap:round}
+    .sc-sparkle{fill:#FFFFFF;stroke:#FFD700;stroke-width:0.4}
+  </style>
   <g id="clothing">
-    <path d="M70,115 Q100,110 130,115 L135,160 Q100,165 65,160 Z" fill="url(#sc-grad)"/>
-    <polygon points="90,125 92,135 102,135 94,140 96,150 90,145 84,150 86,140 78,135 88,135" fill="#FFD700" filter="url(#sc-sparkle)"/>
-    <polygon points="110,125 112,135 122,135 114,140 116,150 110,145 104,150 106,140 98,135 108,135" fill="#FFD700" filter="url(#sc-sparkle)"/>
-    <circle cx="100" cy="145" r="3" fill="#FFFF00" opacity="0.9"/>
-    <circle cx="80" cy="155" r="2" fill="#FFD700" opacity="0.8"/>
-    <circle cx="120" cy="155" r="2" fill="#FFD700" opacity="0.8"/>
+    <!-- Left spaghetti strap -->
+    <path d="M72 130 Q68 125 66 140 Q65 160 68 175" fill="none" stroke="#FF1493" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M74 130 Q70 125 68 140 Q67 160 70 175" fill="none" stroke="url(#sc-shadow)" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+    <!-- Right spaghetti strap -->
+    <path d="M128 130 Q132 125 134 140 Q135 160 132 175" fill="none" stroke="#FF1493" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M126 130 Q130 125 132 140 Q133 160 130 175" fill="none" stroke="url(#sc-shadow)" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+    <!-- Crop top body - shorter -->
+    <path d="M68 135 Q65 138 65 148 Q63 162 68 185 Q72 195 80 198 Q88 200 100 200 Q112 200 120 198 Q128 195 132 185 Q137 162 135 148 Q135 138 132 135 Q125 132 100 130 Q75 132 68 135 Z" class="sc-main"/>
+    <!-- Sweetheart neckline -->
+    <path d="M82 137 Q88 128 100 128 Q112 128 118 137" fill="url(#sc-body)" stroke="#C71585" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M80 138 Q90 130 100 129 Q110 130 120 138" fill="none" stroke="#C71585" stroke-width="2" stroke-linecap="round"/>
+    <!-- Heart details at neckline -->
+    <path d="M94 137 Q92 132 88 132 Q84 132 84 135 Q84 138 90 142 Q88 138 90 135" fill="#FFB6C1" opacity="0.7"/>
+    <path d="M106 137 Q108 132 112 132 Q116 132 116 135 Q116 138 110 142 Q112 138 110 135" fill="#FFB6C1" opacity="0.7"/>
+    <!-- Fabric fold details -->
+    <path d="M88 160 Q92 170 90 185" class="sc-fold"/>
+    <path d="M112 162 Q110 172 112 188" class="sc-fold"/>
+    <!-- Side shading -->
+    <path d="M68 145 Q65 165 68 185 Q72 193 80 197 L74 190 Q70 180 68 165 Q66 150 68 145 Z" class="sc-shade" opacity="0.25"/>
+    <!-- Sparkle dots scattered across surface -->
+    <circle cx="85" cy="148" r="2" class="sc-sparkle" opacity="0.9"/>
+    <circle cx="92" cy="155" r="1.5" class="sc-sparkle" opacity="0.8"/>
+    <circle cx="108" cy="152" r="2" class="sc-sparkle" opacity="0.85"/>
+    <circle cx="115" cy="160" r="1.5" class="sc-sparkle" opacity="0.8"/>
+    <circle cx="78" cy="168" r="1.8" class="sc-sparkle" opacity="0.85"/>
+    <circle cx="100" cy="175" r="2" class="sc-sparkle" opacity="0.9"/>
+    <circle cx="122" cy="170" r="1.5" class="sc-sparkle" opacity="0.8"/>
+    <circle cx="88" cy="185" r="1.5" class="sc-sparkle" opacity="0.75"/>
+    <circle cx="112" cy="183" r="1.8" class="sc-sparkle" opacity="0.8"/>
+    <!-- Additional sparkles for shimmer -->
+    <circle cx="75" cy="152" r="1.2" class="sc-sparkle" opacity="0.6"/>
+    <circle cx="125" cy="155" r="1.2" class="sc-sparkle" opacity="0.6"/>
+    <circle cx="100" cy="145" r="1.5" class="sc-sparkle" opacity="0.7"/>
+    <!-- Hem line -->
+    <path d="M80 198 Q88 202 100 202 Q112 202 120 198" fill="none" stroke="#C71585" stroke-width="2" stroke-linecap="round"/>
   </g>
 </svg>

@@ -1,20 +1,67 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <defs>
-    <linearGradient id="sp-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1A1A3E"/>
-      <stop offset="100%" stop-color="#0A0A1A"/>
+    <linearGradient id="space-navy" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1B1B3A"/>
+      <stop offset="100%" stop-color="#2D2D5E"/>
     </linearGradient>
-    <linearGradient id="sp-stripe" x1="0" y1="0" x2="1" y2="0">
+    <linearGradient id="space-glow" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="#00FFFF"/>
+      <stop offset="50%" stop-color="#1FFAFF"/>
       <stop offset="100%" stop-color="#00FFFF"/>
     </linearGradient>
+    <linearGradient id="space-metal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3A4A5A"/>
+      <stop offset="50%" stop-color="#505A6A"/>
+      <stop offset="100%" stop-color="#1A2A3A"/>
+    </linearGradient>
+    <filter id="glow-effect">
+      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
   <g id="clothing">
-    <path d="M75,190 L78,270 L82,295" fill="url(#sp-grad)"/>
-    <path d="M125,190 L122,270 L118,295" fill="url(#sp-grad)"/>
-    <line x1="78" y1="190" x2="78" y2="285" stroke="url(#sp-stripe)" stroke-width="1.5" opacity="0.7"/>
-    <line x1="122" y1="190" x2="122" y2="285" stroke="url(#sp-stripe)" stroke-width="1.5" opacity="0.7"/>
-    <circle cx="78" cy="240" r="3" fill="#00FFFF" opacity="0.6"/>
-    <circle cx="122" cy="250" r="3" fill="#00FFFF" opacity="0.6"/>
+    <!-- Metallic waistband -->
+    <rect x="68" y="222" width="64" height="12" rx="4" fill="url(#space-metal)" stroke="#00FFFF" stroke-width="1.5" filter="url(#glow-effect)"/>
+    <!-- Waistband glow inner -->
+    <rect x="70" y="224" width="60" height="8" rx="3" fill="#00FFFF" opacity="0.15" filter="url(#glow-effect)"/>
+
+    <!-- Left pant leg -->
+    <path d="M70 234 L70 288 Q70 296 78 296 L96 296 Q100 296 100 288 L100 234 Z"
+          fill="url(#space-navy)" stroke="#2D2D5E" stroke-width="1.5" stroke-linejoin="round"/>
+
+    <!-- Left glowing stripe on outer edge -->
+    <path d="M68 238 L68 290" stroke="url(#space-glow)" stroke-width="2.5" opacity="0.8" filter="url(#glow-effect)" stroke-linecap="round"/>
+    <!-- Left inner seam -->
+    <path d="M96 240 L96 292" stroke="#2D2D5E" stroke-width="1.2" fill="none" opacity="0.5"/>
+    <!-- Left tech detail -->
+    <path d="M75 260 L85 260" stroke="#00FFFF" stroke-width="0.8" opacity="0.4" filter="url(#glow-effect)"/>
+
+    <!-- Right pant leg -->
+    <path d="M100 234 L100 288 Q100 296 104 296 L122 296 Q130 296 130 288 L130 234 Z"
+          fill="url(#space-navy)" stroke="#2D2D5E" stroke-width="1.5" stroke-linejoin="round"/>
+
+    <!-- Right glowing stripe on outer edge -->
+    <path d="M132 238 L132 290" stroke="url(#space-glow)" stroke-width="2.5" opacity="0.8" filter="url(#glow-effect)" stroke-linecap="round"/>
+    <!-- Right inner seam -->
+    <path d="M104 240 L104 292" stroke="#2D2D5E" stroke-width="1.2" fill="none" opacity="0.5"/>
+    <!-- Right tech detail -->
+    <path d="M115 260 L125 260" stroke="#00FFFF" stroke-width="0.8" opacity="0.4" filter="url(#glow-effect)"/>
+
+    <!-- Tech panel left -->
+    <rect x="72" y="245" width="12" height="10" rx="1.5" fill="#3A4A5A" stroke="#00FFFF" stroke-width="0.8" filter="url(#glow-effect)"/>
+    <circle cx="78" cy="249" r="0.7" fill="#00FFFF" opacity="0.55" filter="url(#glow-effect)"/>
+
+    <!-- Tech panel right -->
+    <rect x="116" y="245" width="12" height="10" rx="1.5" fill="#3A4A5A" stroke="#00FFFF" stroke-width="0.8" filter="url(#glow-effect)"/>
+    <circle cx="122" cy="249" r="0.7" fill="#00FFFF" opacity="0.55" filter="url(#glow-effect)"/>
+
+    <!-- Holographic shimmer -->
+    <ellipse cx="100" cy="270" rx="8" ry="4" fill="#1FFAFF" opacity="0.1" filter="url(#glow-effect)"/>
+
+    <!-- Center seam -->
+    <path d="M100 234 L100 248" stroke="#2D2D5E" stroke-width="1.2" fill="none"/>
   </g>
 </svg>

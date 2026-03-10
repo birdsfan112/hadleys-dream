@@ -1,19 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <defs>
-    <linearGradient id="cs-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#F5DEB3"/>
-      <stop offset="100%" stop-color="#D2B48C"/>
+    <linearGradient id="cs-body" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFA500"/>
+      <stop offset="100%" stop-color="#FF8C00"/>
     </linearGradient>
-    <radialGradient id="cs-knit" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#FFFACD"/>
-      <stop offset="100%" stop-color="#DAA520"/>
-    </radialGradient>
+    <linearGradient id="cs-cuff" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF8C00"/>
+      <stop offset="100%" stop-color="#E67300"/>
+    </linearGradient>
   </defs>
+  <style>
+    .cs-main{fill:url(#cs-body);stroke:#D94200;stroke-width:1.8;stroke-linejoin:round}
+    .cs-shade{fill:#E67300;stroke:none}
+    .cs-rib{stroke:#D94200;stroke-width:1.2;fill:none;stroke-linecap:round}
+    .cs-cuff{fill:url(#cs-cuff);stroke:#D94200;stroke-width:1.5}
+  </style>
   <g id="clothing">
-    <path d="M65,115 Q100,105 135,115 L138,190 Q100,198 62,190 Z" fill="url(#cs-grad)" rx="8"/>
-    <path d="M70,120 Q100,115 130,120" fill="none" stroke="url(#cs-knit)" stroke-width="2" opacity="0.6"/>
-    <path d="M70,140 Q100,135 130,140" fill="none" stroke="url(#cs-knit)" stroke-width="2" opacity="0.6"/>
-    <path d="M70,160 Q100,155 130,160" fill="none" stroke="url(#cs-knit)" stroke-width="2" opacity="0.6"/>
-    <circle cx="100" cy="175" r="4" fill="#FFD700" opacity="0.8"/>
+    <!-- Left sleeve with cuff -->
+    <path d="M62 140 Q50 142 42 155 Q36 168 38 180 Q40 188 50 190 Q58 190 62 186 Q64 170 62 155 Z" class="cs-main"/>
+    <ellipse cx="56" cy="188" rx="8" ry="4" class="cs-cuff"/>
+    <path d="M44 186 Q42 189 46 191 Q50 190 52 188" class="cs-rib" opacity="0.7"/>
+    <path d="M46 160 Q42 170 44 180 Q46 180 48 174 Q50 164 48 158 Z" class="cs-shade" opacity="0.3"/>
+    <!-- Right sleeve with cuff -->
+    <path d="M138 140 Q150 142 158 155 Q164 168 162 180 Q160 188 150 190 Q142 190 138 186 Q136 170 138 155 Z" class="cs-main"/>
+    <ellipse cx="144" cy="188" rx="8" ry="4" class="cs-cuff"/>
+    <path d="M156 186 Q158 189 154 191 Q150 190 148 188" class="cs-rib" opacity="0.7"/>
+    <path d="M154 160 Q158 170 156 180 Q154 180 152 174 Q150 164 152 158 Z" class="cs-shade" opacity="0.3"/>
+    <!-- Sweater body extending lower -->
+    <path d="M62 140 Q58 138 56 145 Q52 160 54 180 Q56 200 60 220 Q62 232 68 240 Q80 246 100 246 Q120 246 132 240 Q138 232 140 220 Q144 200 146 180 Q148 160 144 145 Q142 138 138 140 L128 134 Q118 128 100 128 Q82 128 72 134 Z" class="cs-main"/>
+    <!-- Neckline round collar -->
+    <path d="M82 132 Q88 122 100 120 Q112 122 118 132" fill="url(#cs-body)" stroke="#D94200" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M80 133 Q90 124 100 122 Q110 124 120 133" fill="none" stroke="#D94200" stroke-width="2" stroke-linecap="round"/>
+    <!-- Cable knit texture lines on front -->
+    <path d="M88 155 Q92 165 90 185" class="cs-rib"/>
+    <path d="M100 150 Q100 170 100 195" class="cs-rib"/>
+    <path d="M112 158 Q110 168 112 188" class="cs-rib"/>
+    <path d="M85 200 Q92 205 100 206 Q108 205 115 200" class="cs-rib" opacity="0.6"/>
+    <!-- Horizontal ribbed pattern for hem -->
+    <path d="M68 238 Q80 244 100 244 Q120 244 132 238" fill="none" stroke="#D94200" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M70 241 Q82 246 100 246 Q118 246 130 241" fill="none" stroke="#D94200" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+    <!-- Side shading -->
+    <path d="M62 148 Q58 170 56 200 Q58 220 62 235 Q66 240 72 243 L66 237 Q62 227 60 205 Q58 175 62 148 Z" class="cs-shade" opacity="0.25"/>
+    <!-- Sleeve hems with ribbed detail -->
+    <path d="M38 183 Q44 190 56 190" fill="none" stroke="#D94200" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M162 183 Q156 190 144 190" fill="none" stroke="#D94200" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- Inner cuff ribbing -->
+    <path d="M46 186 Q50 189 54 187" class="cs-rib" opacity="0.5"/>
+    <path d="M146 186 Q150 189 154 187" class="cs-rib" opacity="0.5"/>
   </g>
 </svg>

@@ -1,19 +1,96 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <defs>
-    <linearGradient id="wh-grad" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="wh-cone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4B0082"/>
+      <stop offset="50%" stop-color="#3D0066"/>
+      <stop offset="100%" stop-color="#2E0854"/>
+    </linearGradient>
+    <linearGradient id="wh-cone-light" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#6B00AA"/>
       <stop offset="100%" stop-color="#4B0082"/>
     </linearGradient>
     <linearGradient id="wh-brim" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#8B00BB"/>
-      <stop offset="100%" stop-color="#6B00AA"/>
+      <stop offset="0%" stop-color="#3D0066"/>
+      <stop offset="100%" stop-color="#2E0854"/>
+    </linearGradient>
+    <linearGradient id="wh-band" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#C8A600"/>
+      <stop offset="50%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#C8A600"/>
     </linearGradient>
   </defs>
+  <style>
+    .wh-buckle { fill:#FFD700; stroke:#C8A600; stroke-width:1.2 }
+    .wh-web { stroke:#C8A600; stroke-width:0.8; fill:none; stroke-linecap:round }
+    .wh-star { fill:#FFD700; filter:drop-shadow(0 0 2px rgba(200,166,0,0.6)) }
+    .wh-highlight { fill:none; stroke:#7B2EB0; stroke-width:1; opacity:0.5; stroke-linecap:round }
+    .wh-curl { stroke:#2E0854; stroke-width:1.5; fill:none; stroke-linecap:round }
+  </style>
   <g id="clothing">
-    <path d="M70,50 L80,15 Q100,5 120,15 L130,50 Z" fill="url(#wh-grad)"/>
-    <ellipse cx="100" cy="52" rx="35" ry="8" fill="url(#wh-brim)"/>
-    <circle cx="100" cy="18" r="3" fill="#FFD700" opacity="0.9"/>
-    <circle cx="95" cy="30" r="2" fill="#FF69B4" opacity="0.8"/>
-    <circle cx="105" cy="28" r="2" fill="#FF69B4" opacity="0.8"/>
+    <!-- Tall cone point -->
+    <path d="M100,-10 L80 45 L120 45 Z" fill="url(#wh-cone)"/>
+
+    <!-- Left side of cone with shading -->
+    <path d="M100,-10 L80 45 Q85 40 100 35 Q95 25 100,-10" fill="url(#wh-cone-light)" opacity="0.6"/>
+
+    <!-- Right side of cone with highlight -->
+    <path d="M100,-10 L120 45 Q115 40 100 35 Q105 25 100,-10" fill="#5B0092" opacity="0.4"/>
+
+    <!-- Brim (very wide) -->
+    <path d="M45 42 Q65 38 100 40 Q135 38 155 42 Q160 50 155 55 Q135 58 100 60 Q65 58 45 55 Q40 50 45 42 Z" fill="url(#wh-brim)"/>
+
+    <!-- Brim curl left edge -->
+    <path d="M45 42 Q42 45 43 52 Q45 57 50 58" class="wh-curl"/>
+
+    <!-- Brim curl right edge -->
+    <path d="M155 42 Q158 45 157 52 Q155 57 150 58" class="wh-curl"/>
+
+    <!-- Brim inner edge line -->
+    <path d="M50 44 Q70 42 100 43 Q130 42 150 44" fill="none" stroke="#5B0092" stroke-width="1.5" opacity="0.7"/>
+
+    <!-- Brim outer edge shaping -->
+    <ellipse cx="100" cy="56" rx="55" ry="6" fill="#2E0854" opacity="0.3"/>
+
+    <!-- Hat band around cone base -->
+    <path d="M80 45 Q90 47 100 48 Q110 47 120 45" fill="none" stroke="url(#wh-band)" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- Gold buckle on band -->
+    <rect x="95" y="44" width="10" height="6" rx="1" class="wh-buckle"/>
+    <rect x="97" y="45" width="6" height="4" rx="0.5" fill="#E8A600" opacity="0.7"/>
+    <line x1="100" y1="45" x2="100" y2="49" stroke="#C8A600" stroke-width="1" opacity="0.8"/>
+
+    <!-- Star decoration on cone -->
+    <g transform="translate(100, 15)">
+      <path d="M0,-4 L1,-1.5 L4,-1.5 L1.5,0.5 L2.5,4 L0,2 L-2.5,4 L-1.5,0.5 L-4,-1.5 L-1,-1.5 Z" class="wh-star"/>
+    </g>
+
+    <!-- Spider web strands (left side) -->
+    <g class="wh-web" opacity="0.7">
+      <line x1="100" y1="0" x2="70" y2="40"/>
+      <line x1="100" y1="5" x2="65" y2="42"/>
+      <line x1="100" y1="10" x2="68" y2="43"/>
+    </g>
+
+    <!-- Spider web strands (right side) -->
+    <g class="wh-web" opacity="0.7">
+      <line x1="100" y1="0" x2="130" y2="40"/>
+      <line x1="100" y1="5" x2="135" y2="42"/>
+      <line x1="100" y1="10" x2="132" y2="43"/>
+    </g>
+
+    <!-- Web rings -->
+    <circle cx="88" cy="28" r="3" class="wh-web" opacity="0.5"/>
+    <circle cx="112" cy="28" r="3" class="wh-web" opacity="0.5"/>
+
+    <!-- Small star details -->
+    <circle cx="75" cy="32" r="1" class="wh-star" opacity="0.6"/>
+    <circle cx="125" cy="32" r="1" class="wh-star" opacity="0.6"/>
+
+    <!-- Cone highlight stripe -->
+    <path d="M95 -5 Q100 20 102 40" class="wh-highlight"/>
+
+    <!-- Subtle texture lines on cone -->
+    <path d="M82 35 Q88 25 92 10" fill="none" stroke="#6B00AA" stroke-width="0.8" opacity="0.3" stroke-linecap="round"/>
+    <path d="M118 35 Q112 25 108 10" fill="none" stroke="#6B00AA" stroke-width="0.8" opacity="0.3" stroke-linecap="round"/>
   </g>
 </svg>

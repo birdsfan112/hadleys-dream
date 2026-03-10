@@ -1,20 +1,67 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <defs>
-    <linearGradient id="sand-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#D2691E"/>
-      <stop offset="100%" stop-color="#8B4513"/>
+    <linearGradient id="sd-sole" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFB380"/>
+      <stop offset="100%" stop-color="#FF8C42"/>
     </linearGradient>
-    <linearGradient id="sand-strap" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#CD853F"/>
-      <stop offset="100%" stop-color="#8B4513"/>
+    <linearGradient id="sd-body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF7F50"/>
+      <stop offset="100%" stop-color="#E5673E"/>
     </linearGradient>
   </defs>
+  <style>
+    .sd-sole{fill:url(#sd-sole);stroke:#E5673E;stroke-width:1.5;stroke-linejoin:round}
+    .sd-body{fill:url(#sd-body);stroke:#D4563C;stroke-width:1.8;stroke-linejoin:round}
+    .sd-shade{fill:#E5673E;stroke:none;opacity:0.5}
+    .sd-strap{fill:none;stroke:#FF7F50;stroke-width:2.2;stroke-linecap:round}
+    .sd-flower{fill:#FFD700;stroke:#FFC700;stroke-width:0.8}
+    .sd-detail{fill:none;stroke:#FFB380;stroke-width:1;stroke-linecap:round}
+  </style>
   <g id="clothing">
-    <ellipse cx="80" cy="315" rx="12" ry="10" fill="url(#sand-grad)"/>
-    <ellipse cx="120" cy="315" rx="12" ry="10" fill="url(#sand-grad)"/>
-    <path d="M80,310 Q80,305 80,300" stroke="url(#sand-strap)" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M120,310 Q120,305 120,300" stroke="url(#sand-strap)" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M75,312 Q80,308 85,312" stroke="url(#sand-strap)" stroke-width="1.5" opacity="0.7"/>
-    <path d="M115,312 Q120,308 125,312" stroke="url(#sand-strap)" stroke-width="1.5" opacity="0.7"/>
+    <!-- Left sandal sole (thin, minimal) -->
+    <ellipse cx="84" cy="312" rx="19" ry="5" class="sd-sole"/>
+    <!-- Left sandal body (open-toe, thinner profile) -->
+    <path d="M72 307 Q72 295 80 292 L88 292 Q96 295 96 307 Q96 311 84 313 Q72 311 72 307 Z" class="sd-body"/>
+    <!-- Left sandal shading -->
+    <path d="M76 307 Q76 298 82 295 L86 295 Q80 299 79 307 Q79 310 85 311 L76 310 Q75 309 76 307 Z" class="sd-shade"/>
+    <!-- Left crisscross strap 1 -->
+    <path d="M75 303 Q84 298 93 303" class="sd-strap"/>
+    <!-- Left crisscross strap 2 -->
+    <path d="M75 305 Q84 300 93 305" class="sd-strap"/>
+    <!-- Left ankle strap -->
+    <path d="M74 300 Q84 297 94 300" fill="none" stroke="#FF7F50" stroke-width="1.8" stroke-linecap="round"/>
+    <!-- Left flower decoration on strap -->
+    <g transform="translate(84, 298)">
+      <circle cx="0" cy="0" r="2" class="sd-flower"/>
+      <circle cx="-1.5" cy="-1.5" r="1.2" class="sd-flower"/>
+      <circle cx="1.5" cy="-1.5" r="1.2" class="sd-flower"/>
+      <circle cx="-1.5" cy="1.5" r="1.2" class="sd-flower"/>
+      <circle cx="1.5" cy="1.5" r="1.2" class="sd-flower"/>
+    </g>
+    <!-- Left toe detail -->
+    <path d="M74 308 Q80 302 84 300 Q88 302 94 308" class="sd-detail"/>
+
+    <!-- Right sandal sole -->
+    <ellipse cx="116" cy="312" rx="19" ry="5" class="sd-sole"/>
+    <!-- Right sandal body -->
+    <path d="M104 307 Q104 295 112 292 L120 292 Q128 295 128 307 Q128 311 116 313 Q104 311 104 307 Z" class="sd-body"/>
+    <!-- Right sandal shading -->
+    <path d="M124 307 Q124 298 118 295 L114 295 Q120 299 121 307 Q121 310 115 311 L124 310 Q125 309 124 307 Z" class="sd-shade"/>
+    <!-- Right crisscross strap 1 -->
+    <path d="M107 303 Q116 298 125 303" class="sd-strap"/>
+    <!-- Right crisscross strap 2 -->
+    <path d="M107 305 Q116 300 125 305" class="sd-strap"/>
+    <!-- Right ankle strap -->
+    <path d="M106 300 Q116 297 126 300" fill="none" stroke="#FF7F50" stroke-width="1.8" stroke-linecap="round"/>
+    <!-- Right flower decoration on strap -->
+    <g transform="translate(116, 298)">
+      <circle cx="0" cy="0" r="2" class="sd-flower"/>
+      <circle cx="-1.5" cy="-1.5" r="1.2" class="sd-flower"/>
+      <circle cx="1.5" cy="-1.5" r="1.2" class="sd-flower"/>
+      <circle cx="-1.5" cy="1.5" r="1.2" class="sd-flower"/>
+      <circle cx="1.5" cy="1.5" r="1.2" class="sd-flower"/>
+    </g>
+    <!-- Right toe detail -->
+    <path d="M106 308 Q112 302 116 300 Q120 302 126 308" class="sd-detail"/>
   </g>
 </svg>

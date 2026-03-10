@@ -1,24 +1,120 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <defs>
-    <linearGradient id="mw-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#60E8D0"/>
-      <stop offset="100%" stop-color="#209090"/>
+    <linearGradient id="hmw-main" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#004D4D"/>
+      <stop offset="25%" stop-color="#008B8B"/>
+      <stop offset="50%" stop-color="#20B2AA"/>
+      <stop offset="75%" stop-color="#008B8B"/>
+      <stop offset="100%" stop-color="#004D4D"/>
     </linearGradient>
-    <linearGradient id="mw-wave" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#80F8E8"/>
-      <stop offset="50%" stop-color="#40E0D0"/>
-      <stop offset="100%" stop-color="#008080"/>
+    <linearGradient id="hmw-wave" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#20B2AA"/>
+      <stop offset="100%" stop-color="#006666"/>
     </linearGradient>
+    <radialGradient id="hmw-sparkle" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#40E0D0"/>
+      <stop offset="100%" stop-color="#008B8B"/>
+    </radialGradient>
   </defs>
+  <style>
+    .hmw-hair{fill:#008B8B;stroke:#004D4D;stroke-width:1.2}
+    .hmw-hi{fill:#20B2AA;opacity:0.6}
+    .hmw-accent{fill:#00CED1;opacity:0.5}
+    .hmw-dark{fill:#004D4D;opacity:0.3}
+  </style>
+
+  <!-- Back layer: long flowing waves behind body -->
   <g id="back-layer">
-    <path d="M70,40 Q68,80 72,120" stroke="url(#mw-grad)" stroke-width="28" stroke-linecap="round" fill="none"/>
-    <path d="M130,40 Q132,80 128,120" stroke="url(#mw-grad)" stroke-width="28" stroke-linecap="round" fill="none"/>
+    <!-- Left side flowing wave -->
+    <path d="M55 60 Q48 100 48 150 Q48 190 52 225 Q58 228 63 220
+             Q63 175 65 125 Q67 85 68 60 Z"
+          class="hmw-hair"/>
+
+    <!-- Right side flowing wave -->
+    <path d="M145 60 Q152 100 152 150 Q152 190 148 225 Q142 228 137 220
+             Q137 175 135 125 Q133 85 132 60 Z"
+          class="hmw-hair"/>
+
+    <!-- Center back hair fill -->
+    <path d="M62 42 Q100 32 138 42 Q144 55 143 80 Q138 58 100 50
+             Q62 58 57 80 Q56 55 62 42 Z"
+          fill="#008B8B" stroke="#004D4D" stroke-width="1"/>
+
+    <!-- Wave pattern on left back -->
+    <path d="M58 100 Q56 130 58 160 Q60 190 65 220" stroke="url(#hmw-wave)" stroke-width="4" fill="none" opacity="0.5" stroke-linecap="round"/>
+
+    <!-- Wave pattern on right back -->
+    <path d="M142 100 Q144 130 142 160 Q140 190 135 220" stroke="url(#hmw-wave)" stroke-width="4" fill="none" opacity="0.5" stroke-linecap="round"/>
+
+    <!-- Center flowing strands -->
+    <path d="M75 85 Q73 140 75 190 Q77 220 80 225" stroke="#20B2AA" stroke-width="3" fill="none" opacity="0.4" stroke-linecap="round"/>
+    <path d="M125 85 Q127 140 125 190 Q123 220 120 225" stroke="#20B2AA" stroke-width="3" fill="none" opacity="0.4" stroke-linecap="round"/>
   </g>
+
+  <!-- Front layer: crown, flowing waves, sparkles -->
   <g id="clothing">
-    <ellipse cx="100" cy="35" rx="24" ry="22" fill="url(#mw-grad)"/>
-    <path d="M80,50 Q85,65 80,80" stroke="url(#mw-wave)" stroke-width="3" fill="none" opacity="0.8"/>
-    <path d="M120,50 Q115,65 120,80" stroke="url(#mw-wave)" stroke-width="3" fill="none" opacity="0.8"/>
-    <circle cx="95" cy="45" r="2" fill="#00FFFF" opacity="0.9"/>
-    <circle cx="105" cy="45" r="2" fill="#00FFFF" opacity="0.9"/>
+    <!-- Crown/top volume -->
+    <path d="M56 78 Q54 42 68 26 Q82 14 100 12 Q118 14 132 26
+             Q146 42 144 78 Q142 52 130 37 Q115 24 100 21
+             Q85 24 70 37 Q58 52 56 78 Z"
+          class="hmw-hair"/>
+
+    <!-- Flowing side wave - left -->
+    <path d="M56 78 Q50 105 50 135 Q51 170 58 205 Q64 222 70 225
+             Q68 190 68 150 Q67 110 65 85 Z"
+          class="hmw-hair"/>
+
+    <!-- Flowing side wave - right -->
+    <path d="M144 78 Q150 105 150 135 Q149 170 142 205 Q136 222 130 225
+             Q132 190 132 150 Q133 110 135 85 Z"
+          class="hmw-hair"/>
+
+    <!-- Bangs - soft wavy -->
+    <path d="M64 54 Q72 42 84 48 Q77 56 72 66 Q68 72 64 74 Z" class="hmw-hair"/>
+
+    <!-- Center-left bang -->
+    <path d="M82 46 Q94 34 106 42 Q98 54 90 62 Q84 70 80 72 Z" class="hmw-hair"/>
+
+    <!-- Center-right bang -->
+    <path d="M94 44 Q108 32 122 42 Q112 56 104 64 Q98 72 92 74 Z" class="hmw-hair"/>
+
+    <!-- Right bang section -->
+    <path d="M116 48 Q128 42 136 52 Q131 62 126 70 Q122 74 118 74 Z" class="hmw-hair"/>
+
+    <!-- Left flowing wave strands with curves -->
+    <path d="M60 100 Q55 125 58 155 Q62 185 68 220" stroke="url(#hmw-wave)" stroke-width="3" fill="none" opacity="0.6" stroke-linecap="round"/>
+
+    <!-- Right flowing wave strands with curves -->
+    <path d="M140 100 Q145 125 142 155 Q138 185 132 220" stroke="url(#hmw-wave)" stroke-width="3" fill="none" opacity="0.6" stroke-linecap="round"/>
+
+    <!-- Secondary wavy curves for depth -->
+    <path d="M70 95 Q68 140 70 190" stroke="#20B2AA" stroke-width="2" fill="none" opacity="0.3" stroke-linecap="round"/>
+    <path d="M130 95 Q132 140 130 190" stroke="#20B2AA" stroke-width="2" fill="none" opacity="0.3" stroke-linecap="round"/>
+
+    <!-- Wavy texture detail lines -->
+    <path d="M62 120 Q64 145 62 170" stroke="#20B2AA" stroke-width="1.5" fill="none" opacity="0.4" stroke-linecap="round"/>
+    <path d="M138 120 Q136 145 138 170" stroke="#20B2AA" stroke-width="1.5" fill="none" opacity="0.4" stroke-linecap="round"/>
+
+    <!-- Sparkle/shimmer circles on crown -->
+    <circle cx="95" cy="32" r="5" fill="url(#hmw-sparkle)" opacity="0.8"/>
+    <circle cx="110" cy="30" r="4" fill="url(#hmw-sparkle)" opacity="0.7"/>
+
+    <!-- Wave sparkles -->
+    <circle cx="58" cy="130" r="3" class="hmw-accent"/>
+    <circle cx="142" cy="130" r="3" class="hmw-accent"/>
+    <circle cx="65" cy="180" r="2.5" class="hmw-accent"/>
+    <circle cx="135" cy="180" r="2.5" class="hmw-accent"/>
+
+    <!-- Top shine highlight -->
+    <ellipse cx="92" cy="24" rx="16" ry="8" class="hmw-hi" transform="rotate(-14 92 24)"/>
+    <ellipse cx="118" cy="22" rx="10" ry="5" class="hmw-hi" transform="rotate(12 118 22)"/>
+
+    <!-- Side wave shine -->
+    <ellipse cx="55" cy="125" rx="4" ry="15" class="hmw-hi" transform="rotate(-25 55 125)"/>
+    <ellipse cx="145" cy="125" rx="4" ry="15" class="hmw-hi" transform="rotate(25 145 125)"/>
+
+    <!-- Dimensional shading on waves -->
+    <path d="M65 140 Q62 165 64 190" stroke="#004D4D" stroke-width="2" fill="none" opacity="0.2" stroke-linecap="round"/>
+    <path d="M135 140 Q138 165 136 190" stroke="#004D4D" stroke-width="2" fill="none" opacity="0.2" stroke-linecap="round"/>
   </g>
 </svg>

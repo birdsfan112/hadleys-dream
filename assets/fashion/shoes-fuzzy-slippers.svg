@@ -1,20 +1,67 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <defs>
-    <radialGradient id="fuzz-grad" cx="50%" cy="40%" r="50%">
-      <stop offset="0%" stop-color="#FFD9E8"/>
-      <stop offset="100%" stop-color="#FF69B4"/>
-    </radialGradient>
-    <filter id="fuzz-texture">
-      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1"/>
-    </filter>
+    <linearGradient id="fs-sole" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFC0D9"/>
+      <stop offset="100%" stop-color="#FFB0CC"/>
+    </linearGradient>
+    <linearGradient id="fs-body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFB6C1"/>
+      <stop offset="100%" stop-color="#FF91A4"/>
+    </linearGradient>
   </defs>
+  <style>
+    .fs-body{fill:url(#fs-body);stroke:#FF91A4;stroke-width:1.8;stroke-linejoin:round}
+    .fs-sole{fill:url(#fs-sole);stroke:#FF91A4;stroke-width:1.5;stroke-linejoin:round}
+    .fs-shade{fill:#FF91A4;stroke:none;opacity:0.5}
+    .fs-fuzzy{fill:none;stroke:#FFB6C1;stroke-width:0.8;stroke-linecap:round;opacity:0.7}
+    .fs-lining{fill:none;stroke:#FFCCE0;stroke-width:1.2;stroke-linecap:round}
+    .fs-ear{fill:#FFB6C1;stroke:#FF91A4;stroke-width:1}
+  </style>
   <g id="clothing">
-    <ellipse cx="80" cy="318" rx="15" ry="12" fill="url(#fuzz-grad)" filter="url(#fuzz-texture)"/>
-    <ellipse cx="120" cy="318" rx="15" ry="12" fill="url(#fuzz-grad)" filter="url(#fuzz-texture)"/>
-    <circle cx="75" cy="313" r="3" fill="#FFB6D9" opacity="0.9"/>
-    <circle cx="85" cy="313" r="3" fill="#FFB6D9" opacity="0.9"/>
-    <circle cx="115" cy="313" r="3" fill="#FFB6D9" opacity="0.9"/>
-    <circle cx="125" cy="313" r="3" fill="#FFB6D9" opacity="0.9"/>
+    <!-- Left slipper sole (soft rounded) -->
+    <ellipse cx="84" cy="312" rx="21" ry="6.5" class="fs-sole"/>
+    <!-- Left slipper body (puffy/rounded shape) -->
+    <path d="M62 305 Q62 287 76 284 Q84 282 92 284 Q106 287 106 305 Q106 313 84 316 Q62 313 62 305 Z" class="fs-body"/>
+    <!-- Left slipper shading -->
+    <path d="M68 305 Q68 293 78 290 L88 290 Q78 296 76 305 Q76 311 86 314 L68 312 Q66 309 68 305 Z" class="fs-shade"/>
+    <!-- Left inner lining -->
+    <path d="M70 300 Q70 295 78 293 L90 293 Q85 298 84 305" class="fs-lining"/>
+    <!-- Left bunny ear details -->
+    <g transform="translate(74, 283)">
+      <ellipse cx="0" cy="-6" rx="4" ry="8" class="fs-ear"/>
+      <path d="M-2 -8 Q0 -12 2 -8" fill="none" stroke="#FF91A4" stroke-width="0.8"/>
+    </g>
+    <g transform="translate(94, 283)">
+      <ellipse cx="0" cy="-6" rx="4" ry="8" class="fs-ear"/>
+      <path d="M-2 -8 Q0 -12 2 -8" fill="none" stroke="#FF91A4" stroke-width="0.8"/>
+    </g>
+    <!-- Left fuzzy texture (wavy lines around edges) -->
+    <path d="M63 308 Q68 310 74 309" class="fs-fuzzy"/>
+    <path d="M94 309 Q100 310 105 308" class="fs-fuzzy"/>
+    <path d="M62 300 Q61 305 62 310" class="fs-fuzzy"/>
+    <path d="M106 300 Q107 305 106 310" class="fs-fuzzy"/>
+
+    <!-- Right slipper sole -->
+    <ellipse cx="116" cy="312" rx="21" ry="6.5" class="fs-sole"/>
+    <!-- Right slipper body -->
+    <path d="M94 305 Q94 287 108 284 Q116 282 124 284 Q138 287 138 305 Q138 313 116 316 Q94 313 94 305 Z" class="fs-body"/>
+    <!-- Right slipper shading -->
+    <path d="M132 305 Q132 293 122 290 L112 290 Q122 296 124 305 Q124 311 114 314 L132 312 Q134 309 132 305 Z" class="fs-shade"/>
+    <!-- Right inner lining -->
+    <path d="M130 300 Q130 295 122 293 L110 293 Q115 298 116 305" class="fs-lining"/>
+    <!-- Right bunny ear details -->
+    <g transform="translate(106, 283)">
+      <ellipse cx="0" cy="-6" rx="4" ry="8" class="fs-ear"/>
+      <path d="M-2 -8 Q0 -12 2 -8" fill="none" stroke="#FF91A4" stroke-width="0.8"/>
+    </g>
+    <g transform="translate(126, 283)">
+      <ellipse cx="0" cy="-6" rx="4" ry="8" class="fs-ear"/>
+      <path d="M-2 -8 Q0 -12 2 -8" fill="none" stroke="#FF91A4" stroke-width="0.8"/>
+    </g>
+    <!-- Right fuzzy texture -->
+    <path d="M95 308 Q100 310 106 309" class="fs-fuzzy"/>
+    <path d="M126 309 Q132 310 137 308" class="fs-fuzzy"/>
+    <path d="M94 300 Q93 305 94 310" class="fs-fuzzy"/>
+    <path d="M138 300 Q139 305 138 310" class="fs-fuzzy"/>
   </g>
 </svg>

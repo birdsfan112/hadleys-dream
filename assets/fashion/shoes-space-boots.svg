@@ -1,20 +1,67 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <defs>
-    <linearGradient id="sb-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#E8E8E8"/>
-      <stop offset="100%" stop-color="#909090"/>
+    <linearGradient id="sb-sole" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D0D0D0"/>
+      <stop offset="100%" stop-color="#989898"/>
     </linearGradient>
-    <linearGradient id="sb-accent" x1="0" y1="0" x2="1" y2="0">
+    <linearGradient id="sb-body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#C8C8C8"/>
+      <stop offset="100%" stop-color="#808080"/>
+    </linearGradient>
+    <linearGradient id="sb-glow" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#00FFFF"/>
-      <stop offset="100%" stop-color="#00FFFF"/>
+      <stop offset="100%" stop-color="#0099FF"/>
     </linearGradient>
   </defs>
+  <style>
+    .sb-sole{fill:url(#sb-sole);stroke:#606060;stroke-width:1.5;stroke-linejoin:round}
+    .sb-body{fill:url(#sb-body);stroke:#505050;stroke-width:1.8;stroke-linejoin:round}
+    .sb-shade{fill:#707070;stroke:none;opacity:0.5}
+    .sb-accent{fill:none;stroke:url(#sb-glow);stroke-width:2.5;stroke-linecap:round}
+    .sb-panel{fill:#B0B0B0;stroke:#606060;stroke-width:0.8}
+    .sb-glow-dot{fill:#00FFFF;opacity:0.8;filter:drop-shadow(0 0 2px #00FFFF)}
+  </style>
   <g id="clothing">
-    <path d="M72,305 L70,290 Q70,280 75,280 L85,305" fill="url(#sb-grad)"/>
-    <path d="M128,305 L130,290 Q130,280 125,280 L115,305" fill="url(#sb-grad)"/>
-    <line x1="75" y1="280" x2="75" y2="305" stroke="url(#sb-accent)" stroke-width="2" opacity="0.8"/>
-    <line x1="125" y1="280" x2="125" y2="305" stroke="url(#sb-accent)" stroke-width="2" opacity="0.8"/>
-    <circle cx="78" cy="295" r="2" fill="#00FFFF" opacity="0.9"/>
-    <circle cx="122" cy="295" r="2" fill="#00FFFF" opacity="0.9"/>
+    <!-- Left boot sole (thick) -->
+    <ellipse cx="84" cy="312" rx="21" ry="7" class="sb-sole"/>
+    <!-- Left boot body (tall, extending up to y=275) -->
+    <path d="M64 305 Q64 285 72 278 Q80 275 88 278 Q96 285 96 305 Q96 312 84 315 Q64 312 64 305 Z" class="sb-body"/>
+    <!-- Left boot shading -->
+    <path d="M70 305 Q70 290 76 280 L84 276 Q80 285 79 305 Q79 311 87 314 L70 312 Q69 309 70 305 Z" class="sb-shade"/>
+    <!-- Left metallic panel details -->
+    <rect x="68" y="283" width="6" height="16" class="sb-panel" rx="1"/>
+    <rect x="82" y="280" width="6" height="20" class="sb-panel" rx="1"/>
+    <!-- Left glowing cyan accent line (center) -->
+    <path d="M84 278 Q84 290 84 305" class="sb-accent"/>
+    <!-- Left ribbed ankle section -->
+    <line x1="66" y1="295" x2="102" y2="295" stroke="#707070" stroke-width="1.2" opacity="0.6"/>
+    <line x1="66" y1="300" x2="102" y2="300" stroke="#707070" stroke-width="1.2" opacity="0.6"/>
+    <!-- Left glowing accent lines on sides -->
+    <path d="M72 290 Q71 295 72 300" class="sb-accent" opacity="0.7"/>
+    <path d="M96 290 Q97 295 96 300" class="sb-accent" opacity="0.7"/>
+    <!-- Left glow dots -->
+    <circle cx="75" cy="287" r="2" class="sb-glow-dot"/>
+    <circle cx="93" cy="293" r="1.5" class="sb-glow-dot"/>
+
+    <!-- Right boot sole -->
+    <ellipse cx="116" cy="312" rx="21" ry="7" class="sb-sole"/>
+    <!-- Right boot body (tall) -->
+    <path d="M96 305 Q96 285 104 278 Q112 275 120 278 Q128 285 128 305 Q128 312 116 315 Q96 312 96 305 Z" class="sb-body"/>
+    <!-- Right boot shading -->
+    <path d="M130 305 Q130 290 124 280 L116 276 Q120 285 121 305 Q121 311 113 314 L130 312 Q131 309 130 305 Z" class="sb-shade"/>
+    <!-- Right metallic panel details -->
+    <rect x="126" y="283" width="6" height="16" class="sb-panel" rx="1"/>
+    <rect x="112" y="280" width="6" height="20" class="sb-panel" rx="1"/>
+    <!-- Right glowing cyan accent line (center) -->
+    <path d="M116 278 Q116 290 116 305" class="sb-accent"/>
+    <!-- Right ribbed ankle section -->
+    <line x1="98" y1="295" x2="134" y2="295" stroke="#707070" stroke-width="1.2" opacity="0.6"/>
+    <line x1="98" y1="300" x2="134" y2="300" stroke="#707070" stroke-width="1.2" opacity="0.6"/>
+    <!-- Right glowing accent lines on sides -->
+    <path d="M104 290 Q103 295 104 300" class="sb-accent" opacity="0.7"/>
+    <path d="M128 290 Q129 295 128 300" class="sb-accent" opacity="0.7"/>
+    <!-- Right glow dots -->
+    <circle cx="107" cy="287" r="2" class="sb-glow-dot"/>
+    <circle cx="125" cy="293" r="1.5" class="sb-glow-dot"/>
   </g>
 </svg>

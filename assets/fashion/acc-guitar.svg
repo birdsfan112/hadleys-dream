@@ -1,20 +1,65 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <defs>
-    <linearGradient id="gt-body" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#8B3A1A"/>
-      <stop offset="100%" stop-color="#5C2410"/>
+    <linearGradient id="agt-body-dark" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6B3410"/>
+      <stop offset="50%" stop-color="#8B4513"/>
+      <stop offset="100%" stop-color="#6B3410"/>
     </linearGradient>
-    <radialGradient id="gt-sound" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#FFB347"/>
+    <linearGradient id="agt-body-light" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#A0522D"/>
       <stop offset="100%" stop-color="#8B4513"/>
+    </linearGradient>
+    <radialGradient id="agt-hole" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#D2B48C"/>
+      <stop offset="100%" stop-color="#704214"/>
     </radialGradient>
+    <linearGradient id="agt-neck" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#704214"/>
+      <stop offset="50%" stop-color="#8B4513"/>
+      <stop offset="100%" stop-color="#704214"/>
+    </linearGradient>
   </defs>
+  <style>
+    .agt-body{fill:url(#agt-body-dark);stroke:#5C2410;stroke-width:1.5;stroke-linejoin:round}
+    .agt-body-shine{fill:url(#agt-body-light);opacity:0.4;stroke:none}
+    .agt-hole{fill:url(#agt-hole);stroke:#3D1F0A;stroke-width:1}
+    .agt-neck{stroke:url(#agt-neck);stroke-width:3;fill:none;stroke-linecap:round}
+    .agt-strings{stroke:#E8E8E8;stroke-width:0.7;fill:none;stroke-linecap:round;opacity:0.9}
+    .agt-peg{fill:#704214;stroke:#5C2410;stroke-width:1}
+  </style>
   <g id="clothing">
-    <ellipse cx="115" cy="160" rx="18" ry="28" fill="url(#gt-body)"/>
-    <circle cx="115" cy="155" r="8" fill="url(#gt-sound)"/>
-    <path d="M115,125 L115,100" stroke="#DAA520" stroke-width="2" stroke-linecap="round"/>
-    <line x1="112" y1="105" x2="118" y2="105" stroke="#DAA520" stroke-width="1.5"/>
-    <line x1="111" y1="110" x2="119" y2="110" stroke="#DAA520" stroke-width="1.5"/>
-    <line x1="110" y1="115" x2="120" y2="115" stroke="#DAA520" stroke-width="1.5"/>
+    <!-- Guitar neck extending up -->
+    <path d="M145 160 L142 130" class="agt-neck"/>
+    <!-- Guitar body (hourglass shape) -->
+    <path d="
+      M130 160
+      Q120 150 118 168
+      Q115 190 130 220
+      Q145 190 142 168
+      Q140 150 130 160
+      Z
+    " class="agt-body"/>
+    <!-- Body highlight/shading -->
+    <ellipse cx="128" cy="180" rx="8" ry="15" class="agt-body-shine"/>
+    <!-- Sound hole -->
+    <circle cx="130" cy="180" r="5" class="agt-hole"/>
+    <!-- Sound hole highlight -->
+    <circle cx="130" cy="179" r="2" fill="#FFE4B5" opacity="0.5" stroke="none"/>
+    <!-- Guitar strings (6 strings) -->
+    <line x1="135" y1="165" x2="135" y2="220" class="agt-strings"/>
+    <line x1="137" y1="162" x2="137" y2="220" class="agt-strings"/>
+    <line x1="129" y1="162" x2="129" y2="220" class="agt-strings"/>
+    <line x1="131" y1="165" x2="131" y2="220" class="agt-strings"/>
+    <line x1="139" y1="168" x2="139" y2="215" class="agt-strings"/>
+    <line x1="127" y1="168" x2="127" y2="215" class="agt-strings"/>
+    <!-- Neck wood grain detail -->
+    <line x1="142" y1="135" x2="140" y2="145" stroke="#704214" stroke-width="0.5" opacity="0.5" stroke-linecap="round"/>
+    <line x1="144" y1="140" x2="142" y2="150" stroke="#704214" stroke-width="0.5" opacity="0.5" stroke-linecap="round"/>
+    <!-- Tuning pegs at headstock -->
+    <circle cx="138" cy="118" r="2.5" class="agt-peg"/>
+    <circle cx="144" cy="115" r="2.5" class="agt-peg"/>
+    <circle cx="145" cy="125" r="2.5" class="agt-peg"/>
+    <!-- Bridge area shading -->
+    <rect x="128" y="208" width="4" height="8" fill="#704214" opacity="0.6" rx="1"/>
   </g>
 </svg>

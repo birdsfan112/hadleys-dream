@@ -1,21 +1,71 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <defs>
-    <linearGradient id="gp-grad" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="glitter-gold" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#FFD700"/>
       <stop offset="100%" stop-color="#DAA520"/>
     </linearGradient>
-    <filter id="gp-glitter">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
+    <linearGradient id="glitter-shine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#DAA520"/>
+      <stop offset="50%" stop-color="#FFE14D"/>
+      <stop offset="100%" stop-color="#DAA520"/>
+    </linearGradient>
+    <linearGradient id="glitter-gem" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFE14D"/>
+      <stop offset="100%" stop-color="#CC8800"/>
+    </linearGradient>
+    <filter id="sparkle-filter">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.8"/>
     </filter>
   </defs>
   <g id="clothing">
-    <path d="M75,190 L78,270 L82,295" fill="url(#gp-grad)"/>
-    <path d="M125,190 L122,270 L118,295" fill="url(#gp-grad)"/>
-    <circle cx="78" cy="210" r="2" fill="#FFFF00" filter="url(#gp-glitter)" opacity="0.9"/>
-    <circle cx="85" cy="240" r="2.5" fill="#FFFF00" filter="url(#gp-glitter)" opacity="0.85"/>
-    <circle cx="80" cy="260" r="2" fill="#FFD700" filter="url(#gp-glitter)" opacity="0.8"/>
-    <circle cx="122" cy="220" r="2.5" fill="#FFFF00" filter="url(#gp-glitter)" opacity="0.9"/>
-    <circle cx="115" cy="245" r="2" fill="#FFD700" filter="url(#gp-glitter)" opacity="0.85"/>
-    <circle cx="120" cy="270" r="2.5" fill="#FFFF00" filter="url(#gp-glitter)" opacity="0.8"/>
+    <!-- Glamorous waistband -->
+    <rect x="68" y="222" width="64" height="12" rx="4" fill="#CC8800" stroke="#8B6914" stroke-width="1.5"/>
+    <!-- Waistband shine -->
+    <ellipse cx="100" cy="225" rx="30" ry="3" fill="#FFE14D" opacity="0.4" filter="url(#sparkle-filter)"/>
+
+    <!-- Gem button -->
+    <circle cx="100" cy="228" r="3.5" fill="url(#glitter-gem)" stroke="#8B6914" stroke-width="0.8" filter="url(#sparkle-filter)"/>
+    <!-- Gem highlight -->
+    <circle cx="100" cy="226" r="1.5" fill="#FFFF99" opacity="0.6" filter="url(#sparkle-filter)"/>
+
+    <!-- Left pant leg -->
+    <path d="M70 234 L70 288 Q70 296 78 296 L96 296 Q100 296 100 288 L100 234 Z"
+          fill="url(#glitter-gold)" stroke="#8B6914" stroke-width="1.5" stroke-linejoin="round"/>
+
+    <!-- Left leg inner seam -->
+    <path d="M94 240 L94 290" stroke="#8B6914" stroke-width="1.2" fill="none" opacity="0.5"/>
+
+    <!-- Left leg highlight streak -->
+    <path d="M72 238 L75 270 L74 285" stroke="#FFE14D" stroke-width="1.5" fill="none" opacity="0.4" stroke-linecap="round"/>
+
+    <!-- Left leg glitter -->
+    <circle cx="76" cy="248" r="1.1" fill="#FFFF99" opacity="0.7" filter="url(#sparkle-filter)"/>
+    <circle cx="82" cy="258" r="0.9" fill="#FFFF99" opacity="0.6" filter="url(#sparkle-filter)"/>
+    <circle cx="78" cy="272" r="1" fill="#FFFF99" opacity="0.65" filter="url(#sparkle-filter)"/>
+    <circle cx="72" cy="265" r="0.9" fill="#FFFF99" opacity="0.6" filter="url(#sparkle-filter)"/>
+
+    <!-- Right pant leg -->
+    <path d="M100 234 L100 288 Q100 296 104 296 L122 296 Q130 296 130 288 L130 234 Z"
+          fill="url(#glitter-gold)" stroke="#8B6914" stroke-width="1.5" stroke-linejoin="round"/>
+
+    <!-- Right leg inner seam -->
+    <path d="M106 240 L106 290" stroke="#8B6914" stroke-width="1.2" fill="none" opacity="0.5"/>
+
+    <!-- Right leg highlight streak -->
+    <path d="M128 238 L125 270 L126 285" stroke="#FFE14D" stroke-width="1.5" fill="none" opacity="0.4" stroke-linecap="round"/>
+
+    <!-- Right leg glitter -->
+    <circle cx="124" cy="248" r="1.1" fill="#FFFF99" opacity="0.7" filter="url(#sparkle-filter)"/>
+    <circle cx="118" cy="258" r="0.9" fill="#FFFF99" opacity="0.6" filter="url(#sparkle-filter)"/>
+    <circle cx="122" cy="272" r="1" fill="#FFFF99" opacity="0.65" filter="url(#sparkle-filter)"/>
+    <circle cx="128" cy="265" r="0.9" fill="#FFFF99" opacity="0.6" filter="url(#sparkle-filter)"/>
+
+    <!-- Shiny highlight -->
+    <ellipse cx="100" cy="265" rx="5" ry="4" fill="#FFE14D" opacity="0.15" filter="url(#sparkle-filter)"/>
+
+    <!-- Center seam -->
+    <path d="M100 234 L100 248" stroke="#8B6914" stroke-width="1.2" fill="none"/>
+    <!-- Crotch sparkle detail -->
+    <path d="M97 235 L97 245" stroke="#FFE14D" stroke-width="0.8" fill="none" opacity="0.3" stroke-dasharray="1.5 1"/>
   </g>
 </svg>

@@ -1,18 +1,52 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <defs>
-    <pattern id="ts-stripes" patternUnits="userSpaceOnUse" width="8" height="0" x="0" y="115">
+    <pattern id="ss-stripes" patternUnits="userSpaceOnUse" width="8" height="85" x="0" y="115">
       <rect width="4" height="85" fill="#FF4444"/>
       <rect x="4" width="4" height="85" fill="#FFFFFF"/>
     </pattern>
-    <linearGradient id="ts-edge" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#CC0000"/>
-      <stop offset="100%" stop-color="#CC0000"/>
+    <linearGradient id="ss-body" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF6666"/>
+      <stop offset="100%" stop-color="#FF4444"/>
     </linearGradient>
   </defs>
+  <style>
+    .ss-main{fill:url(#ss-body);stroke:#CC2222;stroke-width:1.8;stroke-linejoin:round}
+    .ss-shade{fill:#DD3333;stroke:none}
+    .ss-fold{stroke:#DD3333;stroke-width:1.2;fill:none;stroke-linecap:round}
+    .ss-button{fill:#FFFF00;stroke:#FF9900;stroke-width:0.8}
+  </style>
   <g id="clothing">
-    <path d="M65,115 Q100,108 135,115 L140,190 Q100,195 60,190 Z" fill="url(#ts-stripes)"/>
-    <path d="M65,115 Q100,108 135,115 L140,190 Q100,195 60,190 Z" fill="none" stroke="url(#ts-edge)" stroke-width="1.5"/>
-    <circle cx="85" cy="145" r="3" fill="#FFFF00" opacity="0.7"/>
-    <circle cx="115" cy="155" r="3" fill="#FFFF00" opacity="0.7"/>
+    <!-- Left sleeve -->
+    <path d="M62 140 Q50 142 42 155 Q36 168 38 180 Q40 186 50 186 Q58 186 62 178 Q64 168 62 155 Z" class="ss-main"/>
+    <path d="M46 160 Q42 170 44 180 Q46 178 48 172 Q50 164 48 158 Z" class="ss-shade" opacity="0.3"/>
+    <!-- Right sleeve -->
+    <path d="M138 140 Q150 142 158 155 Q164 168 162 180 Q160 186 150 186 Q142 186 138 178 Q136 168 138 155 Z" class="ss-main"/>
+    <path d="M154 160 Q158 170 156 180 Q154 178 152 172 Q150 164 152 158 Z" class="ss-shade" opacity="0.3"/>
+    <!-- T-shirt body with striped pattern -->
+    <path d="M62 140 Q58 138 56 145 Q52 160 54 180 Q56 200 60 215 Q62 228 68 234 Q80 240 100 240 Q120 240 132 234 Q138 228 140 215 Q144 200 146 180 Q148 160 144 145 Q142 138 138 140 L128 134 Q118 128 100 128 Q82 128 72 134 Z" class="ss-main"/>
+    <!-- Stripe pattern overlay -->
+    <path d="M62 140 Q58 138 56 145 Q52 160 54 180 Q56 200 60 215 Q62 228 68 234 Q80 240 100 240 Q120 240 132 234 Q138 228 140 215 Q144 200 146 180 Q148 160 144 145 Q142 138 138 140 L128 134 Q118 128 100 128 Q82 128 72 134 Z" fill="url(#ss-stripes)" opacity="0.85"/>
+    <!-- Neckline -->
+    <path d="M82 132 Q88 122 100 120 Q112 122 118 132" fill="url(#ss-body)" stroke="#CC2222" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M80 133 Q90 124 100 122 Q110 124 120 133" fill="none" stroke="#CC2222" stroke-width="2" stroke-linecap="round"/>
+    <!-- Fabric folds -->
+    <path d="M88 165 Q92 175 90 185" class="ss-fold"/>
+    <path d="M112 168 Q110 178 112 190" class="ss-fold"/>
+    <path d="M95 200 Q100 205 105 200" class="ss-fold"/>
+    <!-- Side shading -->
+    <path d="M62 148 Q58 170 56 200 Q58 220 62 230 Q66 235 72 238 L66 232 Q62 222 60 205 Q58 175 62 148 Z" class="ss-shade" opacity="0.25"/>
+    <!-- Bottom hem -->
+    <path d="M68 234 Q80 242 100 242 Q120 242 132 234" fill="none" stroke="#CC2222" stroke-width="2" stroke-linecap="round"/>
+    <!-- Sleeve hems -->
+    <path d="M38 178 Q44 186 56 186" fill="none" stroke="#CC2222" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M162 178 Q156 186 144 186" fill="none" stroke="#CC2222" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- Yellow star buttons down center -->
+    <circle cx="100" cy="155" r="3.5" class="ss-button"/>
+    <circle cx="100" cy="180" r="3.5" class="ss-button"/>
+    <circle cx="100" cy="205" r="3.5" class="ss-button"/>
+    <!-- Button shine -->
+    <circle cx="99" cy="154" r="1.2" fill="#FFFFCC" opacity="0.6"/>
+    <circle cx="99" cy="179" r="1.2" fill="#FFFFCC" opacity="0.6"/>
+    <circle cx="99" cy="204" r="1.2" fill="#FFFFCC" opacity="0.6"/>
   </g>
 </svg>

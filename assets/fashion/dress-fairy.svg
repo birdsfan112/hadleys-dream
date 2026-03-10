@@ -1,24 +1,77 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <style>
+    .df-main{fill:#DDA0DD;stroke:#BA55D3;stroke-width:2;stroke-linejoin:round}
+    .df-shade{fill:#C771C7;stroke:none;opacity:0.4}
+    .df-strap{fill:#E0B0FF;stroke:#BA55D3;stroke-width:1.8;stroke-linecap:round}
+    .df-sparkle{fill:#FFD700;stroke:none}
+    .df-shimmer{fill:#FFFFFF;stroke:none;opacity:0.6}
+  </style>
   <defs>
-    <linearGradient id="fairy-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#DA70D6"/>
-      <stop offset="100%" stop-color="#8B008B"/>
-    </linearGradient>
-    <linearGradient id="fairy-wing" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#FFB6D9"/>
-      <stop offset="100%" stop-color="#FF69B4"/>
+    <linearGradient id="df-bodice-grad" x1="0" y1="134" x2="0" y2="198">
+      <stop offset="0%" stop-color="#E0B0FF"/>
+      <stop offset="100%" stop-color="#DDA0DD"/>
     </linearGradient>
   </defs>
-  <g id="back-layer">
-    <path d="M60,140 Q55,160 65,180 Q70,165 75,150 Z" fill="url(#fairy-wing)" opacity="0.7"/>
-    <path d="M140,140 Q145,160 135,180 Q130,165 125,150 Z" fill="url(#fairy-wing)" opacity="0.7"/>
-  </g>
   <g id="clothing">
-    <path d="M70,115 Q100,108 130,115 L135,220 Q100,235 65,220 Z" fill="url(#fairy-grad)"/>
-    <path d="M75,220 Q70,250 75,280 Q80,290 85,295" fill="none" stroke="url(#fairy-grad)" stroke-width="8" opacity="0.6"/>
-    <path d="M125,220 Q130,250 125,280 Q120,290 115,295" fill="none" stroke="url(#fairy-grad)" stroke-width="8" opacity="0.6"/>
-    <circle cx="100" cy="130" r="3" fill="#FFD700" opacity="0.9"/>
-    <circle cx="90" cy="180" r="2" fill="#FFD700" opacity="0.8"/>
-    <circle cx="110" cy="180" r="2" fill="#FFD700" opacity="0.8"/>
+    <!-- Leaf-shaped left strap -->
+    <path d="M76 118 Q72 128 74 140" class="df-strap" fill="none"/>
+    <path d="M74 118 L80 140" class="df-strap" fill="none"/>
+
+    <!-- Leaf-shaped right strap -->
+    <path d="M124 118 Q128 128 126 140" class="df-strap" fill="none"/>
+    <path d="M126 118 L120 140" class="df-strap" fill="none"/>
+
+    <!-- Fitted bodice -->
+    <path d="M72 140 Q68 136 72 134 L128 134 Q132 136 128 140 L130 198 L70 198 Z" fill="url(#df-bodice-grad)" stroke="#BA55D3" stroke-width="2" stroke-linejoin="round"/>
+
+    <!-- Bodice shading (left) -->
+    <path d="M70 142 L76 142 L76 198 L70 198 Z" class="df-shade"/>
+
+    <!-- Bodice shading (right) -->
+    <path d="M124 142 L130 142 L130 198 L124 198 Z" class="df-shade"/>
+
+    <!-- Waistline accent -->
+    <line x1="70" y1="198" x2="130" y2="198" stroke="#BA55D3" stroke-width="2.5"/>
+
+    <!-- Petal-shaped scalloped skirt hem -->
+    <path d="M70 198 Q64 208 56 250 Q60 268 70 285 Q76 290 82 291 Q88 264 92 220 Z" class="df-main"/>
+    <path d="M92 220 Q94 260 95 285 Q100 292 100 292 Q100 292 105 285 Q106 260 108 220 Z" class="df-main"/>
+    <path d="M108 220 Q112 264 118 291 Q124 290 130 285 Q140 268 144 250 Q136 208 130 198 L128 220 Z" class="df-main"/>
+
+    <!-- Scallop petal definition lines -->
+    <path d="M56 250 Q60 268 70 285" stroke="#BA55D3" stroke-width="1" fill="none" opacity="0.5"/>
+    <path d="M95 285 Q100 292 100 292" stroke="#BA55D3" stroke-width="1" fill="none" opacity="0.5"/>
+    <path d="M130 285 Q140 268 144 250" stroke="#BA55D3" stroke-width="1" fill="none" opacity="0.5"/>
+
+    <!-- Skirt fold lines -->
+    <path d="M80 202 Q78 245 75 280" stroke="#BA55D3" stroke-width="0.8" fill="none" opacity="0.4"/>
+    <path d="M120 202 Q122 245 125 280" stroke="#BA55D3" stroke-width="0.8" fill="none" opacity="0.4"/>
+    <path d="M100 200 L100 290" stroke="#BA55D3" stroke-width="0.7" fill="none" opacity="0.3"/>
+
+    <!-- Skirt shading (left) -->
+    <path d="M70 198 Q64 208 56 250 Q62 265 70 280 Q72 220 82 200 Z" class="df-shade"/>
+
+    <!-- Skirt shading (right) -->
+    <path d="M130 198 Q136 208 144 250 Q138 265 130 280 Q128 220 118 200 Z" class="df-shade"/>
+
+    <!-- Wing shapes on back bodice (left) -->
+    <path d="M74 156 Q68 160 66 168 Q68 162 74 160 Z" class="df-shimmer" stroke="#BA55D3" stroke-width="1"/>
+
+    <!-- Wing shapes on back bodice (right) -->
+    <path d="M126 156 Q132 160 134 168 Q132 162 126 160 Z" class="df-shimmer" stroke="#BA55D3" stroke-width="1"/>
+
+    <!-- Scattered sparkles on skirt -->
+    <circle cx="75" cy="240" r="1.5" class="df-sparkle"/>
+    <circle cx="95" cy="260" r="1.2" class="df-sparkle"/>
+    <circle cx="125" cy="245" r="1.5" class="df-sparkle"/>
+    <circle cx="85" cy="275" r="1" class="df-sparkle"/>
+    <circle cx="115" cy="270" r="1.2" class="df-sparkle"/>
+
+    <!-- Iridescent shimmer highlights -->
+    <circle cx="80" cy="165" r="2" class="df-shimmer"/>
+    <circle cx="120" cy="175" r="1.8" class="df-shimmer"/>
+    <circle cx="100" cy="155" r="1.5" class="df-shimmer"/>
+    <path d="M88 210 Q92 220 96 215" stroke="#FFFFFF" stroke-width="1" fill="none" opacity="0.5"/>
+    <path d="M112 210 Q108 220 104 215" stroke="#FFFFFF" stroke-width="1" fill="none" opacity="0.5"/>
   </g>
 </svg>

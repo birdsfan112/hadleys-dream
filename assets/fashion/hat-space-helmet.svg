@@ -1,20 +1,101 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <defs>
-    <radialGradient id="sh-glass" cx="35%" cy="35%" r="65%">
-      <stop offset="0%" stop-color="#FFFFFF"/>
-      <stop offset="50%" stop-color="#B0E0E6"/>
+    <radialGradient id="sh-dome" cx="30%" cy="25%" r="70%">
+      <stop offset="0%" stop-color="#E8F8FF"/>
+      <stop offset="35%" stop-color="#B0E0E6"/>
+      <stop offset="70%" stop-color="#87CEEB"/>
       <stop offset="100%" stop-color="#4A90E2"/>
     </radialGradient>
-    <linearGradient id="sh-metal" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#E8E8E8"/>
-      <stop offset="100%" stop-color="#707070"/>
+    <radialGradient id="sh-dome-inner" cx="40%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="50%" stop-color="#D0EEF8"/>
+      <stop offset="100%" stop-color="#87CEEB"/>
+    </radialGradient>
+    <linearGradient id="sh-metal-rim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F0F0F0"/>
+      <stop offset="50%" stop-color="#D0D0D0"/>
+      <stop offset="100%" stop-color="#808080"/>
+    </linearGradient>
+    <linearGradient id="sh-antenna" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#C8A600"/>
     </linearGradient>
   </defs>
+  <style>
+    .sh-visor-shine { fill:none; stroke:#FFFFFF; stroke-width:2; opacity:0.8; stroke-linecap:round }
+    .sh-light { fill:#FF6B9D; stroke:#FF1493; stroke-width:0.8; filter:drop-shadow(0 0 3px #FF6B9D) }
+    .sh-button { fill:#00CED1; stroke:#008B8B; stroke-width:0.8; filter:drop-shadow(0 0 2px #00CED1) }
+    .sh-highlight { fill:none; stroke:#E8F8FF; stroke-width:1.5; opacity:0.7; stroke-linecap:round }
+    .sh-antenna-light { fill:#FFD700; stroke:#C8A600; stroke-width:1.2; filter:drop-shadow(0 0 2px rgba(255,215,0,0.5)) }
+  </style>
   <g id="clothing">
-    <circle cx="100" cy="45" r="28" fill="url(#sh-glass)"/>
-    <path d="M75,65 L70,75 Q70,80 75,82 L125,82 Q130,80 130,75 L125,65" fill="url(#sh-metal)"/>
-    <circle cx="100" cy="45" r="28" fill="none" stroke="url(#sh-metal)" stroke-width="2"/>
-    <path d="M85,40 Q100,30 115,40" fill="none" stroke="#00FFFF" stroke-width="1.5" opacity="0.8"/>
-    <circle cx="100" cy="45" r="4" fill="#FFD700" opacity="0.7"/>
+    <!-- Main helmet dome (larger, covering most of head) -->
+    <ellipse cx="100" cy="50" rx="45" ry="50" fill="url(#sh-dome)"/>
+
+    <!-- Inner dome gradient for depth -->
+    <ellipse cx="100" cy="50" rx="42" ry="47" fill="url(#sh-dome-inner)" opacity="0.5"/>
+
+    <!-- Top reflection highlight (visor shine) -->
+    <ellipse cx="100" cy="25" rx="35" ry="20" fill="none" stroke="#FFFFFF" stroke-width="2.5" opacity="0.6"/>
+
+    <!-- Curved visor reflection (upper arc) -->
+    <path d="M70 35 Q100 20 130 35" class="sh-visor-shine" opacity="0.7"/>
+
+    <!-- Secondary visor curve reflection -->
+    <path d="M75 50 Q100 35 125 50" class="sh-visor-shine" opacity="0.5"/>
+
+    <!-- Metallic rim at bottom of helmet -->
+    <ellipse cx="100" cy="95" rx="47" ry="10" fill="url(#sh-metal-rim)"/>
+
+    <!-- Rim rim detail line -->
+    <ellipse cx="100" cy="93" rx="45" ry="7" fill="none" stroke="#606060" stroke-width="1.5" opacity="0.7"/>
+
+    <!-- Antenna on top -->
+    <line x1="100" y1="0" x2="100" y2="25" stroke="url(#sh-antenna)" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="100" cy="0" r="2.5" class="sh-antenna-light"/>
+
+    <!-- Antenna cap/bulb -->
+    <circle cx="100" cy="-2" r="3" fill="#FFD700" stroke="#C8A600" stroke-width="1.2" opacity="0.9"/>
+
+    <!-- Antenna segments/ridges -->
+    <line x1="98.5" y1="8" x2="101.5" y2="8" stroke="#C8A600" stroke-width="1" opacity="0.6"/>
+    <line x1="98.5" y1="16" x2="101.5" y2="16" stroke="#C8A600" stroke-width="1" opacity="0.6"/>
+
+    <!-- Left side indicator light -->
+    <circle cx="75" cy="48" r="3.5" class="sh-light"/>
+    <circle cx="75" cy="48" r="2" fill="#FF69B4" opacity="0.9"/>
+
+    <!-- Left side button group -->
+    <circle cx="65" cy="60" r="2" class="sh-button"/>
+    <circle cx="65" cy="68" r="2" class="sh-button"/>
+
+    <!-- Right side indicator light -->
+    <circle cx="125" cy="48" r="3.5" class="sh-light"/>
+    <circle cx="125" cy="48" r="2" fill="#FF69B4" opacity="0.9"/>
+
+    <!-- Right side button group -->
+    <circle cx="135" cy="60" r="2" class="sh-button"/>
+    <circle cx="135" cy="68" r="2" class="sh-button"/>
+
+    <!-- Center lower lights/controls -->
+    <circle cx="100" cy="80" r="2.5" class="sh-button" opacity="0.8"/>
+
+    <!-- Horizontal seam line on dome (equator line) -->
+    <path d="M60 50 Q100 48 140 50" fill="none" stroke="#4A90E2" stroke-width="1.5" opacity="0.5" stroke-linecap="round"/>
+
+    <!-- Curved visor panel line (indicates flat front) -->
+    <path d="M80 45 Q100 40 120 45" fill="none" stroke="#4A90E2" stroke-width="1.2" opacity="0.4" stroke-linecap="round"/>
+
+    <!-- Dome highlights on upper sides -->
+    <path d="M65 35 Q70 25 80 20" class="sh-highlight" opacity="0.6"/>
+    <path d="M135 35 Q130 25 120 20" class="sh-highlight" opacity="0.6"/>
+
+    <!-- Subtle scratches/wear marks on dome -->
+    <path d="M85 65 Q90 70 95 65" fill="none" stroke="#87CEEB" stroke-width="0.8" opacity="0.3" stroke-linecap="round"/>
+    <path d="M105 65 Q110 70 115 65" fill="none" stroke="#87CEEB" stroke-width="0.8" opacity="0.3" stroke-linecap="round"/>
+
+    <!-- Visor frame accent lines -->
+    <path d="M75 48 L80 45" fill="none" stroke="#D0D0D0" stroke-width="1" opacity="0.6"/>
+    <path d="M125 48 L120 45" fill="none" stroke="#D0D0D0" stroke-width="1" opacity="0.6"/>
   </g>
 </svg>

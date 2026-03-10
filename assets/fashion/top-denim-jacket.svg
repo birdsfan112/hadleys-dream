@@ -1,21 +1,73 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <defs>
-    <linearGradient id="dj-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#4A90E2"/>
-      <stop offset="100%" stop-color="#1E4C9A"/>
+    <linearGradient id="dj-body" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4169E1"/>
+      <stop offset="100%" stop-color="#2850A8"/>
+    </linearGradient>
+    <linearGradient id="dj-dark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2850A8"/>
+      <stop offset="100%" stop-color="#1a3a70"/>
     </linearGradient>
     <linearGradient id="dj-button" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#D4AF37"/>
-      <stop offset="100%" stop-color="#AA8c2c"/>
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#DAA520"/>
     </linearGradient>
   </defs>
+  <style>
+    .dj-main{fill:url(#dj-body);stroke:#1a3a70;stroke-width:1.8;stroke-linejoin:round}
+    .dj-shade{fill:#2850A8;stroke:none}
+    .dj-lapel{fill:url(#dj-dark);stroke:#1a3a70;stroke-width:1.5}
+    .dj-button{fill:url(#dj-button);stroke:#AA8c2c;stroke-width:0.8}
+    .dj-stitch{stroke:#FFD700;stroke-width:1.2;fill:none;stroke-dasharray:3,2;stroke-linecap:round}
+    .dj-pocket{fill:#1a3a70;stroke:#1a3a70;stroke-width:0.8}
+  </style>
   <g id="clothing">
-    <path d="M60,115 L70,120 L75,190 Q100,195 125,190 L130,120 L140,115 Q100,110 60,115" fill="url(#dj-grad)"/>
-    <line x1="100" y1="120" x2="100" y2="185" stroke="#2E5C8A" stroke-width="1.5" opacity="0.6"/>
-    <circle cx="90" cy="140" r="3" fill="url(#dj-button)"/>
-    <circle cx="100" cy="160" r="3" fill="url(#dj-button)"/>
-    <circle cx="110" cy="140" r="3" fill="url(#dj-button)"/>
-    <rect x="65" y="120" width="10" height="15" fill="#2E5C8A" opacity="0.5" rx="1"/>
-    <rect x="125" y="120" width="10" height="15" fill="#2E5C8A" opacity="0.5" rx="1"/>
+    <!-- Left jacket sleeve -->
+    <path d="M62 140 Q48 142 38 158 Q32 172 35 185 Q38 192 50 192 Q60 190 62 180 Q64 168 62 155 Z" class="dj-main"/>
+    <path d="M44 162 Q40 172 42 185 Q45 190 50 188 Q48 180 46 170 Z" class="dj-shade" opacity="0.3"/>
+    <!-- Right jacket sleeve -->
+    <path d="M138 140 Q152 142 162 158 Q168 172 165 185 Q162 192 150 192 Q140 190 138 180 Q136 168 138 155 Z" class="dj-main"/>
+    <path d="M156 162 Q160 172 158 185 Q155 190 150 188 Q152 180 154 170 Z" class="dj-shade" opacity="0.3"/>
+    <!-- Main jacket body -->
+    <path d="M62 140 Q58 138 56 145 Q52 160 54 180 Q56 200 60 215 Q62 228 68 234 Q80 240 100 240 Q120 240 132 234 Q138 228 140 215 Q144 200 146 180 Q148 160 144 145 Q142 138 138 140 L128 134 Q118 128 100 128 Q82 128 72 134 Z" class="dj-main"/>
+    <!-- Left lapel -->
+    <path d="M80 135 L95 135 L92 185 Q88 188 80 180 Z" class="dj-lapel"/>
+    <!-- Right lapel -->
+    <path d="M120 135 L105 135 L108 185 Q112 188 120 180 Z" class="dj-lapel"/>
+    <!-- Collar at neckline -->
+    <path d="M82 132 Q88 122 100 120 Q112 122 118 132" fill="url(#dj-body)" stroke="#1a3a70" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M80 133 Q90 124 100 122 Q110 124 120 133" fill="none" stroke="#1a3a70" stroke-width="2" stroke-linecap="round"/>
+    <!-- Collar detail -->
+    <path d="M85 130 L95 132 L93 145 Q88 143 85 140 Z" class="dj-lapel" opacity="0.8"/>
+    <path d="M115 130 L105 132 L107 145 Q112 143 115 140 Z" class="dj-lapel" opacity="0.8"/>
+    <!-- Center button-up line (zipper effect) -->
+    <path d="M100 122 L100 190" class="dj-stitch"/>
+    <!-- Stitching along edges -->
+    <path d="M60 142 Q58 165 60 190" class="dj-stitch"/>
+    <path d="M140 142 Q142 165 140 190" class="dj-stitch"/>
+    <!-- Buttons down center -->
+    <circle cx="100" cy="145" r="3.5" class="dj-button"/>
+    <circle cx="100" cy="165" r="3.5" class="dj-button"/>
+    <circle cx="100" cy="185" r="3.5" class="dj-button"/>
+    <!-- Button shine -->
+    <circle cx="99" cy="144" r="1.2" fill="#FFFACD" opacity="0.6"/>
+    <circle cx="99" cy="164" r="1.2" fill="#FFFACD" opacity="0.6"/>
+    <circle cx="99" cy="184" r="1.2" fill="#FFFACD" opacity="0.6"/>
+    <!-- Chest pocket flaps (left) -->
+    <rect x="68" y="155" width="14" height="12" class="dj-pocket" opacity="0.6" rx="1"/>
+    <path d="M68 163 L82 163" fill="none" stroke="#1a3a70" stroke-width="1" opacity="0.5"/>
+    <!-- Chest pocket flaps (right) -->
+    <rect x="118" y="155" width="14" height="12" class="dj-pocket" opacity="0.6" rx="1"/>
+    <path d="M118 163 L132 163" fill="none" stroke="#1a3a70" stroke-width="1" opacity="0.5"/>
+    <!-- Sleeve cuffs -->
+    <ellipse cx="50" cy="190" rx="6" ry="3" fill="#2850A8" stroke="#1a3a70" stroke-width="1.2" opacity="0.7"/>
+    <ellipse cx="150" cy="190" rx="6" ry="3" fill="#2850A8" stroke="#1a3a70" stroke-width="1.2" opacity="0.7"/>
+    <!-- Cuff stitching -->
+    <path d="M44 188 L56 192" class="dj-stitch"/>
+    <path d="M144 188 L156 192" class="dj-stitch"/>
+    <!-- Side shading -->
+    <path d="M62 148 Q58 170 56 200 Q58 220 62 230 Q66 235 72 238 L66 232 Q62 222 60 205 Q58 175 62 148 Z" class="dj-shade" opacity="0.25"/>
+    <!-- Hem line -->
+    <path d="M68 234 Q80 242 100 242 Q120 242 132 234" fill="none" stroke="#1a3a70" stroke-width="2" stroke-linecap="round"/>
   </g>
 </svg>

@@ -1,21 +1,64 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <style>
+    .wc-main{fill:#8B0000;stroke:#660000;stroke-width:2;stroke-linejoin:round}
+    .wc-shade{fill:#660000;stroke:none;opacity:0.4}
+    .wc-fur{fill:#F5F5DC;stroke:#EEEEEE;stroke-width:0.8;stroke-linejoin:round}
+    .wc-fur-wave{fill:none;stroke:#F5F5DC;stroke-width:1.5;opacity:0.7}
+    .wc-button{fill:#DAA520;stroke:#8B7500;stroke-width:0.8}
+  </style>
   <defs>
-    <linearGradient id="wc-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#FF4444"/>
-      <stop offset="100%" stop-color="#CC0000"/>
-    </linearGradient>
-    <linearGradient id="wc-fur" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#FFFFFF"/>
-      <stop offset="100%" stop-color="#F0F0F0"/>
+    <linearGradient id="wc-coat-grad" x1="0" y1="134" x2="0" y2="296">
+      <stop offset="0%" stop-color="#A00000"/>
+      <stop offset="100%" stop-color="#8B0000"/>
     </linearGradient>
   </defs>
   <g id="clothing">
-    <path d="M60,115 Q100,105 140,115 L145,290 Q100,300 55,290 Z" fill="url(#wc-grad)"/>
-    <path d="M65,115 L65,280" stroke="url(#wc-fur)" stroke-width="4" opacity="0.7"/>
-    <path d="M135,115 L135,280" stroke="url(#wc-fur)" stroke-width="4" opacity="0.7"/>
-    <path d="M70,120 Q100,115 130,120" fill="none" stroke="url(#wc-fur)" stroke-width="3" opacity="0.6"/>
-    <circle cx="85" cy="145" r="2.5" fill="#FFD700" opacity="0.8"/>
-    <circle cx="100" cy="160" r="2.5" fill="#FFD700" opacity="0.8"/>
-    <circle cx="115" cy="145" r="2.5" fill="#FFD700" opacity="0.8"/>
+    <!-- Left long sleeve -->
+    <path d="M72 140 Q68 150 66 170 L66 186 Q68 175 72 160 Z" class="wc-main"/>
+
+    <!-- Right long sleeve -->
+    <path d="M128 140 Q132 150 134 170 L134 186 Q132 175 128 160 Z" class="wc-main"/>
+
+    <!-- Long coat body (shoulders to y=296) -->
+    <path d="M72 140 Q68 145 68 160 L64 240 Q60 270 70 290 Q82 296 100 298 Q118 296 130 290 Q140 270 136 240 L132 160 Q132 145 128 140 L128 198 L72 198 Z" fill="url(#wc-coat-grad)" stroke="#660000" stroke-width="2" stroke-linejoin="round"/>
+
+    <!-- Coat shading (left) -->
+    <path d="M68 150 L74 150 L74 240 Q70 265 70 285 L68 160 Z" class="wc-shade"/>
+
+    <!-- Coat shading (right) -->
+    <path d="M132 150 L126 150 L126 240 Q130 265 130 285 L132 160 Z" class="wc-shade"/>
+
+    <!-- Fur trim collar (wavy white/cream path at neckline) -->
+    <path d="M76 134 Q80 130 85 132 Q90 129 95 131 Q100 128 105 131 Q110 129 115 132 Q120 130 124 134" class="wc-fur-wave" stroke-linecap="round"/>
+    <path d="M76 134 Q80 132 85 134 Q90 132 95 133 Q100 130 105 133 Q110 132 115 134 Q120 132 124 134" class="wc-fur-wave"/>
+
+    <!-- Fur trim at hem (wavy pattern) -->
+    <path d="M70 290 Q72 295 75 292 Q78 296 82 293 Q86 297 90 294 Q94 298 100 296 Q106 298 110 294 Q114 297 118 293 Q122 296 125 292 Q128 295 130 290" class="wc-fur-wave" stroke-linecap="round"/>
+
+    <!-- Double-breasted buttons (left column) -->
+    <circle cx="82" cy="150" r="2.2" class="wc-button"/>
+    <circle cx="82" cy="170" r="2.2" class="wc-button"/>
+    <circle cx="82" cy="190" r="2.2" class="wc-button"/>
+
+    <!-- Double-breasted buttons (right column) -->
+    <circle cx="118" cy="150" r="2.2" class="wc-button"/>
+    <circle cx="118" cy="170" r="2.2" class="wc-button"/>
+    <circle cx="118" cy="190" r="2.2" class="wc-button"/>
+
+    <!-- Belt at waist -->
+    <rect x="68" y="196" width="64" height="4" class="wc-button" rx="2"/>
+    <circle cx="82" cy="198" r="1.5" class="wc-shade"/>
+    <circle cx="100" cy="198" r="1.5" class="wc-shade"/>
+    <circle cx="118" cy="198" r="1.5" class="wc-shade"/>
+
+    <!-- Waistline accent -->
+    <line x1="72" y1="198" x2="128" y2="198" stroke="#660000" stroke-width="2"/>
+
+    <!-- Fold lines on coat -->
+    <path d="M80 210 Q78 260 75 290" stroke="#660000" stroke-width="0.8" fill="none" opacity="0.3"/>
+    <path d="M120 210 Q122 260 125 290" stroke="#660000" stroke-width="0.8" fill="none" opacity="0.3"/>
+
+    <!-- Center front line -->
+    <path d="M100 140 L100 298" stroke="#660000" stroke-width="1" fill="none" opacity="0.2"/>
   </g>
 </svg>

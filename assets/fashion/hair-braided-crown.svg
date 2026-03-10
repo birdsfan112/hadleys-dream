@@ -1,23 +1,92 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <defs>
-    <linearGradient id="bc-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#E8E8E8"/>
-      <stop offset="100%" stop-color="#808080"/>
+    <linearGradient id="hbc-main" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8B7500"/>
+      <stop offset="25%" stop-color="#B8860B"/>
+      <stop offset="50%" stop-color="#DAA520"/>
+      <stop offset="75%" stop-color="#B8860B"/>
+      <stop offset="100%" stop-color="#8B7500"/>
     </linearGradient>
-    <linearGradient id="bc-braid" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#F5F5F5"/>
-      <stop offset="50%" stop-color="#C0C0C0"/>
-      <stop offset="100%" stop-color="#A0A0A0"/>
+    <linearGradient id="hbc-braid" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F0E68C"/>
+      <stop offset="50%" stop-color="#DAA520"/>
+      <stop offset="100%" stop-color="#9B8300"/>
+    </linearGradient>
+    <linearGradient id="hbc-dark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#B8860B"/>
+      <stop offset="100%" stop-color="#8B7500"/>
     </linearGradient>
   </defs>
+  <style>
+    .hbc-hair{fill:#B8860B;stroke:#8B7500;stroke-width:1.2}
+    .hbc-hi{fill:#DAA520;opacity:0.6}
+    .hbc-braid-line{stroke:#9B8300;stroke-width:0.8;fill:none;opacity:0.7}
+  </style>
+
+  <!-- Back layer: loose hair behind head -->
   <g id="back-layer">
-    <path d="M70,45 Q100,30 130,45 Q125,55 100,60 Q75,55 70,45" fill="url(#bc-grad)"/>
+    <!-- Back hair fill -->
+    <path d="M60 50 Q100 35 140 50 Q145 65 142 85 Q135 68 100 62 Q65 68 58 85 Q55 65 60 50 Z"
+          fill="#B8860B" stroke="#8B7500" stroke-width="1"/>
+
+    <!-- Left side loose hair -->
+    <path d="M56 75 Q50 80 48 100 Q46 120 50 138 Q56 130 58 110 Q59 90 60 78 Z" class="hbc-hair"/>
+
+    <!-- Right side loose hair -->
+    <path d="M144 75 Q150 80 152 100 Q154 120 150 138 Q144 130 142 110 Q141 90 140 78 Z" class="hbc-hair"/>
+
+    <!-- Back hair strands -->
+    <path d="M70 70 Q72 105 75 140" stroke="#DAA520" stroke-width="2" fill="none" opacity="0.4" stroke-linecap="round"/>
+    <path d="M130 70 Q128 105 125 140" stroke="#DAA520" stroke-width="2" fill="none" opacity="0.4" stroke-linecap="round"/>
   </g>
+
+  <!-- Front layer: crown, braids, bangs, wisps -->
   <g id="clothing">
-    <path d="M65,50 Q75,35 100,32 Q125,35 135,50" fill="none" stroke="url(#bc-braid)" stroke-width="6" stroke-linecap="round"/>
-    <path d="M68,52 Q78,38 100,36 Q122,38 132,52" fill="none" stroke="url(#bc-braid)" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
-    <circle cx="100" cy="35" r="4" fill="#FFD700" opacity="0.9"/>
-    <circle cx="80" cy="48" r="3" fill="#FFD700" opacity="0.8"/>
-    <circle cx="120" cy="48" r="3" fill="#FFD700" opacity="0.8"/>
+    <!-- Hair crown/top volume -->
+    <path d="M56 80 Q54 45 68 30 Q82 18 100 15 Q118 18 132 30
+             Q146 45 144 80 Q142 55 130 40 Q115 28 100 25
+             Q85 28 70 40 Q58 55 56 80 Z"
+          class="hbc-hair"/>
+
+    <!-- Main braided crown path (wraps around top) -->
+    <path d="M70 32 Q85 24 100 22 Q115 24 130 32" fill="none" stroke="url(#hbc-braid)" stroke-width="12" stroke-linecap="round" opacity="0.95"/>
+
+    <!-- Braid cross-hatching texture - left side -->
+    <path d="M72 30 Q78 27 85 28 Q82 32 76 33 Z" class="hbc-braid-line" stroke="url(#hbc-dark)"/>
+    <path d="M80 28 Q88 26 96 27 Q92 32 84 34 Z" class="hbc-braid-line" stroke="url(#hbc-dark)"/>
+    <path d="M104 27 Q112 26 120 28 Q116 32 108 34 Z" class="hbc-braid-line" stroke="url(#hbc-dark)"/>
+    <path d="M115 28 Q123 27 130 30 Q125 33 118 34 Z" class="hbc-braid-line" stroke="url(#hbc-dark)"/>
+
+    <!-- Secondary braid layer for depth -->
+    <path d="M68 35 Q85 30 100 28 Q115 30 132 35" fill="none" stroke="url(#hbc-braid)" stroke-width="8" stroke-linecap="round" opacity="0.6"/>
+
+    <!-- Left face-framing wisp -->
+    <path d="M56 80 Q52 70 54 55 Q55 75 53 95 Q52 115 57 128
+             Q62 120 63 105 Q63 85 60 70 Z"
+          class="hbc-hair"/>
+
+    <!-- Right face-framing wisp -->
+    <path d="M144 80 Q148 70 146 55 Q145 75 147 95 Q148 115 143 128
+             Q138 120 137 105 Q137 85 140 70 Z"
+          class="hbc-hair"/>
+
+    <!-- Bangs - soft swoops -->
+    <path d="M64 56 Q74 46 86 50 Q79 56 74 64 Q70 68 66 70 Z" class="hbc-hair"/>
+    <path d="M82 48 Q94 40 106 44 Q98 52 90 58 Q84 62 80 62 Z" class="hbc-hair"/>
+    <path d="M100 46 Q112 40 124 46 Q116 54 108 60 Q102 64 98 64 Z" class="hbc-hair"/>
+    <path d="M118 50 Q128 47 136 54 Q131 62 125 68 Q120 68 116 66 Z" class="hbc-hair"/>
+
+    <!-- Braid centerline sparkle details -->
+    <circle cx="100" cy="24" r="3" fill="#FFD700" opacity="0.8"/>
+    <circle cx="75" cy="33" r="2" fill="#FFD700" opacity="0.7"/>
+    <circle cx="125" cy="33" r="2" fill="#FFD700" opacity="0.7"/>
+
+    <!-- Top shine highlights -->
+    <ellipse cx="90" cy="28" rx="14" ry="5" class="hbc-hi" transform="rotate(-10 90 28)"/>
+    <ellipse cx="116" cy="26" rx="9" ry="4" class="hbc-hi" transform="rotate(10 116 26)"/>
+
+    <!-- Side shine -->
+    <ellipse cx="62" cy="70" rx="5" ry="12" class="hbc-hi" transform="rotate(-20 62 70)"/>
+    <ellipse cx="138" cy="70" rx="5" ry="12" class="hbc-hi" transform="rotate(20 138 70)"/>
   </g>
 </svg>
