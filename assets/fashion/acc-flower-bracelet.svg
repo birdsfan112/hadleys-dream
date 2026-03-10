@@ -1,9 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <defs>
-    <linearGradient id="afb-vine" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#32CD32"/>
-      <stop offset="100%" stop-color="#1a6b1a"/>
-    </linearGradient>
     <radialGradient id="afb-petal" cx="40%" cy="40%" r="60%">
       <stop offset="0%" stop-color="#FF85C1"/>
       <stop offset="100%" stop-color="#FF69B4"/>
@@ -14,40 +10,53 @@
     </radialGradient>
   </defs>
   <style>
-    .afb-vine{stroke:url(#afb-vine);stroke-width:3;fill:none;stroke-linecap:round}
-    .afb-petal{fill:url(#afb-petal);stroke:#FF1493;stroke-width:0.8}
-    .afb-center{fill:url(#afb-center);stroke:#DAA520;stroke-width:0.6}
+    .afb-petal{fill:url(#afb-petal);stroke:#E0559E;stroke-width:0.6}
+    .afb-center{fill:url(#afb-center);stroke:#DAA520;stroke-width:0.5}
     .afb-leaf{fill:#228B22;stroke:#1a6b1a;stroke-width:0.5}
+    .afb-band{fill:none;stroke:#32CD32;stroke-width:3;stroke-linecap:round}
   </style>
   <g id="clothing">
-    <!-- Main vine -->
-    <path d="M38 238 Q48 235 58 238" class="afb-vine"/>
-    <!-- Flower 1 (left) -->
-    <circle cx="45" cy="228" r="4" class="afb-petal"/>
-    <circle cx="52" cy="232" r="4" class="afb-petal"/>
-    <circle cx="48" cy="240" r="4" class="afb-petal"/>
-    <circle cx="42" cy="240" r="4" class="afb-petal"/>
-    <circle cx="40" cy="232" r="4" class="afb-petal"/>
-    <circle cx="48" cy="232" r="3.5" class="afb-center"/>
-    <!-- Flower 2 (center) -->
-    <circle cx="100" cy="226" r="4" class="afb-petal"/>
-    <circle cx="107" cy="230" r="4" class="afb-petal"/>
-    <circle cx="103" cy="238" r="4" class="afb-petal"/>
-    <circle cx="97" cy="238" r="4" class="afb-petal"/>
-    <circle cx="96" cy="230" r="4" class="afb-petal"/>
-    <circle cx="103" cy="230" r="3.5" class="afb-center"/>
-    <!-- Flower 3 (right) -->
-    <circle cx="150" cy="230" r="4" class="afb-petal"/>
-    <circle cx="157" cy="234" r="4" class="afb-petal"/>
-    <circle cx="153" cy="242" r="4" class="afb-petal"/>
-    <circle cx="147" cy="242" r="4" class="afb-petal"/>
-    <circle cx="148" cy="234" r="4" class="afb-petal"/>
-    <circle cx="153" cy="234" r="3.5" class="afb-center"/>
-    <!-- Leaves -->
-    <ellipse cx="70" cy="232" rx="3" ry="6" class="afb-leaf" transform="rotate(45 70 232)"/>
-    <ellipse cx="125" cy="228" rx="3" ry="6" class="afb-leaf" transform="rotate(-30 125 228)"/>
-    <!-- Vine connectors -->
-    <path d="M54 236 Q65 235 75 234" stroke="url(#afb-vine)" stroke-width="1.5" fill="none" opacity="0.6"/>
-    <path d="M109 238 Q120 237 135 236" stroke="url(#afb-vine)" stroke-width="1.5" fill="none" opacity="0.6"/>
+    <!-- Vine band wrapping around LEFT WRIST (y=182-192, x=34-54) -->
+    <path d="M34 186 Q36 180 42 178 Q50 176 56 180 Q58 184 56 188
+             Q52 192 44 194 Q36 192 34 186 Z"
+          fill="#3CB371" stroke="#228B22" stroke-width="1.2" opacity="0.85"/>
+
+    <!-- Vine texture lines on band -->
+    <path d="M36 184 Q42 180 50 179" class="afb-band" stroke-width="1.5" opacity="0.5"/>
+    <path d="M38 190 Q44 192 52 190" class="afb-band" stroke-width="1.5" opacity="0.5"/>
+
+    <!-- Flower 1 — top of wrist -->
+    <g transform="translate(44, 178)">
+      <ellipse cx="-3" cy="0" rx="2.5" ry="1.8" class="afb-petal"/>
+      <ellipse cx="3" cy="0" rx="2.5" ry="1.8" class="afb-petal"/>
+      <ellipse cx="0" cy="-3" rx="1.8" ry="2.5" class="afb-petal"/>
+      <ellipse cx="0" cy="3" rx="1.8" ry="2.5" class="afb-petal"/>
+      <ellipse cx="-2" cy="-2" rx="2" ry="1.5" class="afb-petal" transform="rotate(45)"/>
+      <circle cx="0" cy="0" r="2" class="afb-center"/>
+    </g>
+
+    <!-- Flower 2 — outer wrist side -->
+    <g transform="translate(35, 186)">
+      <ellipse cx="-2.5" cy="0" rx="2" ry="1.5" class="afb-petal"/>
+      <ellipse cx="2.5" cy="0" rx="2" ry="1.5" class="afb-petal"/>
+      <ellipse cx="0" cy="-2.5" rx="1.5" ry="2" class="afb-petal"/>
+      <ellipse cx="0" cy="2.5" rx="1.5" ry="2" class="afb-petal"/>
+      <circle cx="0" cy="0" r="1.8" class="afb-center"/>
+    </g>
+
+    <!-- Flower 3 — inner wrist -->
+    <g transform="translate(52, 184)">
+      <ellipse cx="-2.5" cy="0" rx="2" ry="1.5" class="afb-petal"/>
+      <ellipse cx="2.5" cy="0" rx="2" ry="1.5" class="afb-petal"/>
+      <ellipse cx="0" cy="-2.5" rx="1.5" ry="2" class="afb-petal"/>
+      <ellipse cx="0" cy="2.5" rx="1.5" ry="2" class="afb-petal"/>
+      <circle cx="0" cy="0" r="1.8" class="afb-center"/>
+    </g>
+
+    <!-- Small leaves between flowers -->
+    <ellipse cx="39" cy="181" rx="2" ry="3.5" class="afb-leaf" transform="rotate(35 39 181)"/>
+    <ellipse cx="49" cy="181" rx="2" ry="3.5" class="afb-leaf" transform="rotate(-35 49 181)"/>
+    <ellipse cx="54" cy="190" rx="1.5" ry="3" class="afb-leaf" transform="rotate(-60 54 190)"/>
+    <ellipse cx="36" cy="192" rx="1.5" ry="3" class="afb-leaf" transform="rotate(50 36 192)"/>
   </g>
 </svg>

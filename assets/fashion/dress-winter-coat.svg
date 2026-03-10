@@ -1,64 +1,104 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <style>
     .wc-main{fill:#8B0000;stroke:#660000;stroke-width:2;stroke-linejoin:round}
-    .wc-shade{fill:#660000;stroke:none;opacity:0.4}
-    .wc-fur{fill:#F5F5DC;stroke:#EEEEEE;stroke-width:0.8;stroke-linejoin:round}
-    .wc-fur-wave{fill:none;stroke:#F5F5DC;stroke-width:1.5;opacity:0.7}
+    .wc-shade{fill:#660000;stroke:none;opacity:0.35}
+    .wc-fur{fill:#F5F5DC;stroke:#DDD5A0;stroke-width:0.8;stroke-linejoin:round}
     .wc-button{fill:#DAA520;stroke:#8B7500;stroke-width:0.8}
+    .wc-fold{stroke:#660000;stroke-width:0.8;fill:none;stroke-linecap:round}
   </style>
   <defs>
-    <linearGradient id="wc-coat-grad" x1="0" y1="134" x2="0" y2="296">
+    <linearGradient id="wc-coat-grad" x1="0" y1="134" x2="0" y2="298">
       <stop offset="0%" stop-color="#A00000"/>
       <stop offset="100%" stop-color="#8B0000"/>
     </linearGradient>
   </defs>
   <g id="clothing">
-    <!-- Left long sleeve -->
-    <path d="M72 140 Q68 150 66 170 L66 186 Q68 175 72 160 Z" class="wc-main"/>
+    <!-- Left long sleeve (proper width, extending out from body) -->
+    <path d="M62 140 Q48 142 38 158 Q32 172 35 186
+             Q38 192 50 192 Q60 190 62 180
+             Q64 168 62 155 Z" class="wc-main"/>
+    <!-- Left sleeve shading -->
+    <path d="M44 162 Q40 172 42 185 Q46 190 50 188
+             Q48 180 46 170 Z" class="wc-shade"/>
+    <!-- Left sleeve cuff fur -->
+    <path d="M35 186 Q38 190 44 192 Q50 193 56 192 Q60 191 62 188"
+          fill="none" stroke="#F5F5DC" stroke-width="4" stroke-linecap="round" opacity="0.85"/>
 
     <!-- Right long sleeve -->
-    <path d="M128 140 Q132 150 134 170 L134 186 Q132 175 128 160 Z" class="wc-main"/>
+    <path d="M138 140 Q152 142 162 158 Q168 172 165 186
+             Q162 192 150 192 Q140 190 138 180
+             Q136 168 138 155 Z" class="wc-main"/>
+    <!-- Right sleeve shading -->
+    <path d="M156 162 Q160 172 158 185 Q154 190 150 188
+             Q152 180 154 170 Z" class="wc-shade"/>
+    <!-- Right sleeve cuff fur -->
+    <path d="M165 186 Q162 190 156 192 Q150 193 144 192 Q140 191 138 188"
+          fill="none" stroke="#F5F5DC" stroke-width="4" stroke-linecap="round" opacity="0.85"/>
 
-    <!-- Long coat body (shoulders to y=296) -->
-    <path d="M72 140 Q68 145 68 160 L64 240 Q60 270 70 290 Q82 296 100 298 Q118 296 130 290 Q140 270 136 240 L132 160 Q132 145 128 140 L128 198 L72 198 Z" fill="url(#wc-coat-grad)" stroke="#660000" stroke-width="2" stroke-linejoin="round"/>
+    <!-- Long coat body (shoulders to hem at y=298) -->
+    <path d="M62 140 Q58 145 56 160 L52 240
+             Q48 270 58 290 Q70 296 100 298
+             Q130 296 142 290 Q152 270 148 240
+             L144 160 Q142 145 138 140
+             L128 134 Q118 128 100 128
+             Q82 128 72 134 Z"
+          fill="url(#wc-coat-grad)" stroke="#660000" stroke-width="2" stroke-linejoin="round"/>
 
-    <!-- Coat shading (left) -->
-    <path d="M68 150 L74 150 L74 240 Q70 265 70 285 L68 160 Z" class="wc-shade"/>
+    <!-- Fur trim collar (fluffy wavy cream at neckline) -->
+    <path d="M72 130 Q78 124 86 126 Q92 122 100 124
+             Q108 122 114 126 Q122 124 128 130"
+          fill="#F5F5DC" stroke="#DDD5A0" stroke-width="1.2" opacity="0.9"/>
+    <path d="M74 134 Q80 128 88 130 Q94 126 100 128
+             Q106 126 112 130 Q120 128 126 134"
+          fill="#F5F5DC" stroke="#DDD5A0" stroke-width="1" opacity="0.7"/>
 
-    <!-- Coat shading (right) -->
-    <path d="M132 150 L126 150 L126 240 Q130 265 130 285 L132 160 Z" class="wc-shade"/>
+    <!-- Coat left side shading -->
+    <path d="M56 155 L60 155 L58 240 Q54 265 58 285
+             L52 240 Q50 170 56 155 Z" class="wc-shade"/>
 
-    <!-- Fur trim collar (wavy white/cream path at neckline) -->
-    <path d="M76 134 Q80 130 85 132 Q90 129 95 131 Q100 128 105 131 Q110 129 115 132 Q120 130 124 134" class="wc-fur-wave" stroke-linecap="round"/>
-    <path d="M76 134 Q80 132 85 134 Q90 132 95 133 Q100 130 105 133 Q110 132 115 134 Q120 132 124 134" class="wc-fur-wave"/>
-
-    <!-- Fur trim at hem (wavy pattern) -->
-    <path d="M70 290 Q72 295 75 292 Q78 296 82 293 Q86 297 90 294 Q94 298 100 296 Q106 298 110 294 Q114 297 118 293 Q122 296 125 292 Q128 295 130 290" class="wc-fur-wave" stroke-linecap="round"/>
+    <!-- Coat right side shading -->
+    <path d="M144 155 L140 155 L142 240 Q146 265 142 285
+             L148 240 Q150 170 144 155 Z" class="wc-shade"/>
 
     <!-- Double-breasted buttons (left column) -->
-    <circle cx="82" cy="150" r="2.2" class="wc-button"/>
-    <circle cx="82" cy="170" r="2.2" class="wc-button"/>
-    <circle cx="82" cy="190" r="2.2" class="wc-button"/>
+    <circle cx="85" cy="155" r="2.5" class="wc-button"/>
+    <circle cx="85" cy="175" r="2.5" class="wc-button"/>
+    <circle cx="85" cy="195" r="2.5" class="wc-button"/>
+    <!-- Button shines -->
+    <circle cx="84" cy="154" r="1" fill="#FFFACD" opacity="0.5"/>
+    <circle cx="84" cy="174" r="1" fill="#FFFACD" opacity="0.5"/>
+    <circle cx="84" cy="194" r="1" fill="#FFFACD" opacity="0.5"/>
 
     <!-- Double-breasted buttons (right column) -->
-    <circle cx="118" cy="150" r="2.2" class="wc-button"/>
-    <circle cx="118" cy="170" r="2.2" class="wc-button"/>
-    <circle cx="118" cy="190" r="2.2" class="wc-button"/>
+    <circle cx="115" cy="155" r="2.5" class="wc-button"/>
+    <circle cx="115" cy="175" r="2.5" class="wc-button"/>
+    <circle cx="115" cy="195" r="2.5" class="wc-button"/>
+    <circle cx="114" cy="154" r="1" fill="#FFFACD" opacity="0.5"/>
+    <circle cx="114" cy="174" r="1" fill="#FFFACD" opacity="0.5"/>
+    <circle cx="114" cy="194" r="1" fill="#FFFACD" opacity="0.5"/>
 
     <!-- Belt at waist -->
-    <rect x="68" y="196" width="64" height="4" class="wc-button" rx="2"/>
-    <circle cx="82" cy="198" r="1.5" class="wc-shade"/>
-    <circle cx="100" cy="198" r="1.5" class="wc-shade"/>
-    <circle cx="118" cy="198" r="1.5" class="wc-shade"/>
+    <rect x="56" y="196" width="88" height="5" rx="2" fill="#DAA520" stroke="#8B7500" stroke-width="1"/>
+    <!-- Belt buckle -->
+    <rect x="94" y="194" width="12" height="9" rx="2" fill="#FFD700" stroke="#8B7500" stroke-width="1"/>
+    <rect x="97" y="196" width="6" height="5" rx="1" fill="#8B7500" opacity="0.5"/>
 
-    <!-- Waistline accent -->
-    <line x1="72" y1="198" x2="128" y2="198" stroke="#660000" stroke-width="2"/>
+    <!-- Fur trim at hem (fluffy wavy) -->
+    <path d="M58 288 Q62 294 68 290 Q72 296 78 292
+             Q84 298 90 294 Q96 300 100 296
+             Q104 300 110 294 Q116 298 122 292
+             Q128 296 132 290 Q138 294 142 288"
+          fill="#F5F5DC" stroke="#DDD5A0" stroke-width="1" opacity="0.9"/>
 
-    <!-- Fold lines on coat -->
-    <path d="M80 210 Q78 260 75 290" stroke="#660000" stroke-width="0.8" fill="none" opacity="0.3"/>
-    <path d="M120 210 Q122 260 125 290" stroke="#660000" stroke-width="0.8" fill="none" opacity="0.3"/>
+    <!-- Fold lines on coat skirt -->
+    <path d="M78 205 Q74 250 70 288" class="wc-fold" opacity="0.3"/>
+    <path d="M122 205 Q126 250 130 288" class="wc-fold" opacity="0.3"/>
 
-    <!-- Center front line -->
-    <path d="M100 140 L100 298" stroke="#660000" stroke-width="1" fill="none" opacity="0.2"/>
+    <!-- Center front seam -->
+    <path d="M100 134 L100 298" stroke="#660000" stroke-width="1" fill="none" opacity="0.2"/>
+
+    <!-- Sleeve hems -->
+    <path d="M35 186 Q42 192 56 192" fill="none" stroke="#660000" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M165 186 Q158 192 144 192" fill="none" stroke="#660000" stroke-width="1.5" stroke-linecap="round"/>
   </g>
 </svg>
