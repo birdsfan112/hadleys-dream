@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <radialGradient id="fuzz-grad" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#FFD9E8"/>
+      <stop offset="100%" stop-color="#FF69B4"/>
+    </radialGradient>
+    <filter id="fuzz-texture">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1"/>
+    </filter>
+  </defs>
+  <g id="clothing">
+    <ellipse cx="80" cy="318" rx="15" ry="12" fill="url(#fuzz-grad)" filter="url(#fuzz-texture)"/>
+    <ellipse cx="120" cy="318" rx="15" ry="12" fill="url(#fuzz-grad)" filter="url(#fuzz-texture)"/>
+    <circle cx="75" cy="313" r="3" fill="#FFB6D9" opacity="0.9"/>
+    <circle cx="85" cy="313" r="3" fill="#FFB6D9" opacity="0.9"/>
+    <circle cx="115" cy="313" r="3" fill="#FFB6D9" opacity="0.9"/>
+    <circle cx="125" cy="313" r="3" fill="#FFB6D9" opacity="0.9"/>
+  </g>
+</svg>

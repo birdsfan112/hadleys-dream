@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="sp-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1A1A3E"/>
+      <stop offset="100%" stop-color="#0A0A1A"/>
+    </linearGradient>
+    <linearGradient id="sp-stripe" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00FFFF"/>
+      <stop offset="100%" stop-color="#00FFFF"/>
+    </linearGradient>
+  </defs>
+  <g id="clothing">
+    <path d="M75,190 L78,270 L82,295" fill="url(#sp-grad)"/>
+    <path d="M125,190 L122,270 L118,295" fill="url(#sp-grad)"/>
+    <line x1="78" y1="190" x2="78" y2="285" stroke="url(#sp-stripe)" stroke-width="1.5" opacity="0.7"/>
+    <line x1="122" y1="190" x2="122" y2="285" stroke="url(#sp-stripe)" stroke-width="1.5" opacity="0.7"/>
+    <circle cx="78" cy="240" r="3" fill="#00FFFF" opacity="0.6"/>
+    <circle cx="122" cy="250" r="3" fill="#00FFFF" opacity="0.6"/>
+  </g>
+</svg>

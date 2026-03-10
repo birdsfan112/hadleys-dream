@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="fp-body" cx="50%" cy="55%" r="50%">
+      <stop offset="0%" stop-color="#32CD32"/>
+      <stop offset="100%" stop-color="#228B22"/>
+    </radialGradient>
+    <linearGradient id="fp-wing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="50%" stop-color="#FFA500"/>
+      <stop offset="100%" stop-color="#228B22"/>
+    </linearGradient>
+    <radialGradient id="fp-crown" cx="50%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#FFFF00"/>
+      <stop offset="100%" stop-color="#FFD700"/>
+    </radialGradient>
+    <filter id="fp-glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      @keyframes fp-float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-5px); }
+      }
+      @keyframes fp-shimmer {
+        0%, 100% { opacity: 0.8; }
+        50% { opacity: 1; }
+      }
+      .fp-creature { animation: fp-float 3s ease-in-out infinite; }
+      .fp-wing { animation: fp-shimmer 2s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <g class="fp-creature">
+    <!-- Back wings (fern-like) -->
+    <g class="fp-wing">
+      <path d="M 70 90 Q 50 70 40 50 Q 45 75 50 95" fill="url(#fp-wing)" opacity="0.7"/>
+      <path d="M 65 85 Q 48 68 40 50" stroke="#228B22" stroke-width="1" fill="none" opacity="0.5"/>
+      <path d="M 70 90 Q 52 72 45 55" stroke="#228B22" stroke-width="1" fill="none" opacity="0.5"/>
+      <path d="M 75 92 Q 56 75 50 60" stroke="#228B22" stroke-width="1" fill="none" opacity="0.5"/>
+    </g>
+
+    <g class="fp-wing">
+      <path d="M 130 90 Q 150 70 160 50 Q 155 75 150 95" fill="url(#fp-wing)" opacity="0.7"/>
+      <path d="M 135 85 Q 152 68 160 50" stroke="#228B22" stroke-width="1" fill="none" opacity="0.5"/>
+      <path d="M 130 90 Q 148 72 155 55" stroke="#228B22" stroke-width="1" fill="none" opacity="0.5"/>
+      <path d="M 125 92 Q 144 75 150 60" stroke="#228B22" stroke-width="1" fill="none" opacity="0.5"/>
+    </g>
+
+    <!-- Body -->
+    <ellipse cx="100" cy="120" rx="50" ry="55" fill="url(#fp-body)"/>
+
+    <!-- Head -->
+    <circle cx="100" cy="55" r="32" fill="url(#fp-body)"/>
+
+    <!-- Crown -->
+    <circle cx="100" cy="25" r="18" fill="url(#fp-crown)" filter="url(#fp-glow)"/>
+    <path d="M 88 32 L 85 22 L 92 28" fill="#FFD700"/>
+    <path d="M 100 30 L 100 15 L 105 28" fill="#FFD700"/>
+    <path d="M 112 32 L 115 22 L 108 28" fill="#FFD700"/>
+
+    <!-- Eyes -->
+    <circle cx="90" cy="50" r="7" fill="#FFFFFF"/>
+    <circle cx="110" cy="50" r="7" fill="#FFFFFF"/>
+    <circle cx="89" cy="49" r="4" fill="#2D5016"/>
+    <circle cx="109" cy="49" r="4" fill="#2D5016"/>
+    <circle cx="91" cy="47" r="2" fill="#FFFFFF"/>
+    <circle cx="111" cy="47" r="2" fill="#FFFFFF"/>
+
+    <!-- Blush -->
+    <ellipse cx="72" cy="58" rx="6" ry="5" fill="#FF69B4" opacity="0.3"/>
+    <ellipse cx="128" cy="58" rx="6" ry="5" fill="#FF69B4" opacity="0.3"/>
+
+    <!-- Beak -->
+    <path d="M 100 63 L 108 68 L 100 70 Z" fill="#FFD700"/>
+
+    <!-- Mouth -->
+    <path d="M 98 72 Q 100 75 102 72" stroke="#2D5016" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+    <!-- Tail feathers -->
+    <path d="M 65 140 Q 45 155 35 175" stroke="#FFD700" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.8"/>
+    <path d="M 135 140 Q 155 155 165 175" stroke="#FFD700" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.8"/>
+
+    <!-- Legs -->
+    <ellipse cx="85" cy="170" rx="8" ry="15" fill="#8B6914"/>
+    <ellipse cx="115" cy="170" rx="8" ry="15" fill="#8B6914"/>
+    <circle cx="85" cy="185" r="7" fill="#FFD700"/>
+    <circle cx="115" cy="185" r="7" fill="#FFD700"/>
+  </g>
+</svg>

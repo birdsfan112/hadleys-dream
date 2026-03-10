@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="pp-body" cx="50%" cy="55%" r="50%">
+      <stop offset="0%" stop-color="#FFB6D9"/>
+      <stop offset="100%" stop-color="#FF69B4"/>
+    </radialGradient>
+    <radialGradient id="pp-head" cx="50%" cy="55%" r="50%">
+      <stop offset="0%" stop-color="#FFC0CB"/>
+      <stop offset="100%" stop-color="#FFB6D9"/>
+    </radialGradient>
+    <radialGradient id="pp-horn" cx="50%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#FFFF00"/>
+      <stop offset="100%" stop-color="#FFD700"/>
+    </radialGradient>
+    <linearGradient id="pp-wing-rainbow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF0000"/>
+      <stop offset="14%" stop-color="#FF7F00"/>
+      <stop offset="28%" stop-color="#FFFF00"/>
+      <stop offset="42%" stop-color="#00FF00"/>
+      <stop offset="57%" stop-color="#0000FF"/>
+      <stop offset="71%" stop-color="#4B0082"/>
+      <stop offset="85%" stop-color="#9400D3"/>
+      <stop offset="100%" stop-color="#FF69B4"/>
+    </linearGradient>
+    <filter id="pp-glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="pp-sparkle-glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      @keyframes pp-soar {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+      }
+      @keyframes pp-wing-flutter {
+        0%, 100% { transform: rotateZ(-8deg); }
+        50% { transform: rotateZ(8deg); }
+      }
+      @keyframes pp-sparkle {
+        0%, 100% { opacity: 0.4; }
+        50% { opacity: 1; }
+      }
+      @keyframes pp-horn-glow {
+        0%, 100% { filter: drop-shadow(0 0 4px #FFD700); }
+        50% { filter: drop-shadow(0 0 12px #FFD700); }
+      }
+      .pp-creature { animation: pp-soar 2.8s ease-in-out infinite; }
+      .pp-wing { animation: pp-wing-flutter 1.4s ease-in-out infinite; }
+      .pp-sparkle { animation: pp-sparkle 1.5s ease-in-out infinite; }
+      .pp-horn { animation: pp-horn-glow 2s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <g class="pp-creature">
+    <!-- Grand rainbow wings (LEGENDARY SPECIAL) -->
+    <g class="pp-wing">
+      <path d="M 60 95 Q 30 60 20 20 Q 25 80 50 120 Z" fill="url(#pp-wing-rainbow)" filter="url(#pp-glow)" opacity="0.95"/>
+      <path d="M 140 95 Q 170 60 180 20 Q 175 80 150 120 Z" fill="url(#pp-wing-rainbow)" filter="url(#pp-glow)" opacity="0.95"/>
+    </g>
+
+    <!-- Extra wing shine -->
+    <ellipse cx="35" cy="80" rx="15" ry="25" fill="#FFFFFF" opacity="0.3" class="pp-sparkle"/>
+    <ellipse cx="165" cy="80" rx="15" ry="25" fill="#FFFFFF" opacity="0.3" class="pp-sparkle"/>
+
+    <!-- Body -->
+    <ellipse cx="100" cy="130" rx="52" ry="60" fill="url(#pp-body)" filter="url(#pp-glow)"/>
+
+    <!-- Neck -->
+    <ellipse cx="100" cy="75" rx="32" ry="38" fill="url(#pp-head)"/>
+
+    <!-- Head -->
+    <circle cx="100" cy="50" r="32" fill="url(#pp-head)" filter="url(#pp-glow)"/>
+
+    <!-- Unicorn horn (golden and GLORIOUS) -->
+    <g class="pp-horn">
+      <path d="M 100 18 L 95 -5 L 100 15 L 105 -5 Z" fill="url(#pp-horn)" filter="url(#pp-sparkle-glow)"/>
+      <path d="M 100 18 Q 98 5 100 -3" stroke="#FFFF00" stroke-width="1.5" fill="none" opacity="0.6"/>
+      <!-- Horn rings -->
+      <path d="M 95 10 Q 100 8 105 10" stroke="#FFD700" stroke-width="1" fill="none" opacity="0.4"/>
+      <path d="M 96 5 Q 100 3 104 5" stroke="#FFD700" stroke-width="1" fill="none" opacity="0.4"/>
+    </g>
+
+    <!-- Sparkle crown around horn -->
+    <circle cx="100" cy="10" r="18" fill="none" stroke="#FFFF00" stroke-width="1" opacity="0.3" class="pp-sparkle"/>
+
+    <!-- Eyes (large, dreamy, magical) -->
+    <circle cx="88" cy="45" r="9" fill="#FFFFFF" filter="url(#pp-sparkle-glow)"/>
+    <circle cx="112" cy="45" r="9" fill="#FFFFFF" filter="url(#pp-sparkle-glow)"/>
+    <circle cx="88" cy="45" r="6" fill="#FF69B4"/>
+    <circle cx="112" cy="45" r="6" fill="#FF69B4"/>
+    <circle cx="91" cy="41" r="3" fill="#FFFFFF"/>
+    <circle cx="115" cy="41" r="3" fill="#FFFFFF"/>
+    <!-- Eye sparkles (extra magical) -->
+    <circle cx="93" cy="39" r="1.5" fill="#FFFF00" class="pp-sparkle"/>
+    <circle cx="117" cy="39" r="1.5" fill="#FFFF00" class="pp-sparkle"/>
+
+    <!-- Blush (rosy and radiant) -->
+    <ellipse cx="70" cy="55" rx="9" ry="8" fill="#FF69B4" opacity="0.4"/>
+    <ellipse cx="130" cy="55" rx="9" ry="8" fill="#FF69B4" opacity="0.4"/>
+
+    <!-- Snout -->
+    <ellipse cx="100" cy="65" rx="14" ry="11" fill="url(#pp-head)"/>
+
+    <!-- Nose -->
+    <ellipse cx="100" cy="65" rx="5" ry="4" fill="#FF69B4" opacity="0.6"/>
+
+    <!-- Mouth (joyful smile) -->
+    <path d="M 94 73 Q 100 80 106 73" stroke="#FF69B4" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+    <!-- Mane (flowing and magical) -->
+    <path d="M 75 32 Q 70 20 75 12" stroke="#FFD700" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.8"/>
+    <path d="M 85 28 Q 82 15 88 8" stroke="#FFD700" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.75"/>
+    <path d="M 95 26 Q 95 12 98 5" stroke="#FFD700" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <path d="M 105 26 Q 105 12 102 5" stroke="#FFD700" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <path d="M 115 28 Q 118 15 112 8" stroke="#FFD700" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.75"/>
+    <path d="M 125 32 Q 130 20 125 12" stroke="#FFD700" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.8"/>
+
+    <!-- Front legs -->
+    <ellipse cx="75" cy="180" rx="14" ry="25" fill="url(#pp-body)"/>
+    <ellipse cx="125" cy="180" rx="14" ry="25" fill="url(#pp-body)"/>
+    <!-- Hooves -->
+    <ellipse cx="75" cy="203" rx="11" ry="8" fill="#FFD700"/>
+    <ellipse cx="125" cy="203" rx="11" ry="8" fill="#FFD700"/>
+
+    <!-- Tail (flowing, multi-colored like mane) -->
+    <path d="M 55 120 Q 35 125 25 155" stroke="#FFD700" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.8" filter="url(#pp-glow)"/>
+    <path d="M 60 125 Q 40 135 32 165" stroke="#FF69B4" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.7" filter="url(#pp-glow)"/>
+
+    <!-- Floating magical sparkles around body -->
+    <circle cx="120" cy="95" r="3" fill="#FFFF00" class="pp-sparkle"/>
+    <circle cx="75" cy="110" r="3" fill="#FFFF00" class="pp-sparkle"/>
+    <circle cx="130" cy="135" r="2.5" fill="#FF69B4" class="pp-sparkle"/>
+    <circle cx="70" cy="140" r="2.5" fill="#FF69B4" class="pp-sparkle"/>
+    <circle cx="100" cy="155" r="2" fill="#FFFF00" class="pp-sparkle"/>
+  </g>
+</svg>

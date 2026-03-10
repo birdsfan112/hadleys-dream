@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="eo-body" cx="50%" cy="55%" r="50%">
+      <stop offset="0%" stop-color="#DAA520"/>
+      <stop offset="100%" stop-color="#8B6914"/>
+    </radialGradient>
+    <radialGradient id="eo-crown" cx="50%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#FFFF00"/>
+      <stop offset="100%" stop-color="#FFD700"/>
+    </radialGradient>
+    <filter id="eo-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="1" dy="2" result="offsetblur"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="eo-glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      @keyframes eo-bob {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-3px); }
+      }
+      @keyframes eo-glow-pulse {
+        0%, 100% { filter: drop-shadow(0 0 2px #FFD700); }
+        50% { filter: drop-shadow(0 0 6px #FFD700); }
+      }
+      .eo-creature { animation: eo-bob 3s ease-in-out infinite; }
+      .eo-crown-item { animation: eo-glow-pulse 2s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <g class="eo-creature">
+    <!-- Body -->
+    <ellipse cx="100" cy="125" rx="50" ry="55" fill="url(#eo-body)" filter="url(#eo-shadow)"/>
+
+    <!-- Head -->
+    <circle cx="100" cy="55" r="35" fill="url(#eo-body)"/>
+
+    <!-- Ear tufts -->
+    <path d="M 75 25 Q 70 5 75 15" stroke="#8B6914" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M 125 25 Q 130 5 125 15" stroke="#8B6914" stroke-width="5" fill="none" stroke-linecap="round"/>
+
+    <!-- Golden crown -->
+    <g class="eo-crown-item">
+      <circle cx="100" cy="18" r="16" fill="url(#eo-crown)" filter="url(#eo-glow)"/>
+      <path d="M 88 24 L 85 12 L 92 20" fill="#FFD700"/>
+      <path d="M 100 22 L 100 8 L 104 20" fill="#FFD700"/>
+      <path d="M 112 24 L 115 12 L 108 20" fill="#FFD700"/>
+      <circle cx="100" cy="18" r="14" fill="none" stroke="#FFFF00" stroke-width="1" opacity="0.6"/>
+    </g>
+
+    <!-- Large eyes (wise owl) -->
+    <circle cx="85" cy="50" r="10" fill="#FFFFFF"/>
+    <circle cx="115" cy="50" r="10" fill="#FFFFFF"/>
+    <circle cx="85" cy="50" r="6" fill="#2D5016"/>
+    <circle cx="115" cy="50" r="6" fill="#2D5016"/>
+    <circle cx="87" cy="47" r="3" fill="#FFFFFF"/>
+    <circle cx="117" cy="47" r="3" fill="#FFFFFF"/>
+
+    <!-- Eyebrows (wise expression) -->
+    <path d="M 78 42 Q 85 38 92 40" stroke="#5C4033" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M 108 40 Q 115 38 122 42" stroke="#5C4033" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+    <!-- Blush -->
+    <ellipse cx="65" cy="60" rx="7" ry="6" fill="#FF69B4" opacity="0.25"/>
+    <ellipse cx="135" cy="60" rx="7" ry="6" fill="#FF69B4" opacity="0.25"/>
+
+    <!-- Beak -->
+    <path d="M 100 68 L 107 75 L 100 77 Z" fill="#FFD700"/>
+
+    <!-- Wise mouth -->
+    <path d="M 95 78 Q 100 82 105 78" stroke="#5C4033" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+    <!-- Wing details -->
+    <ellipse cx="65" cy="110" rx="18" ry="40" fill="#6B5D4F" opacity="0.5"/>
+    <ellipse cx="135" cy="110" rx="18" ry="40" fill="#6B5D4F" opacity="0.5"/>
+
+    <!-- Feather pattern -->
+    <path d="M 60 90 Q 65 95 60 100" stroke="#5C4033" stroke-width="1" fill="none" opacity="0.4"/>
+    <path d="M 65 85 Q 70 90 65 100" stroke="#5C4033" stroke-width="1" fill="none" opacity="0.4"/>
+    <path d="M 70 90 Q 75 95 70 105" stroke="#5C4033" stroke-width="1" fill="none" opacity="0.4"/>
+
+    <!-- Legs -->
+    <ellipse cx="85" cy="175" rx="10" ry="18" fill="#8B6914"/>
+    <ellipse cx="115" cy="175" rx="10" ry="18" fill="#8B6914"/>
+
+    <!-- Talons -->
+    <path d="M 80 190 L 75 198" stroke="#556B2F" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M 85 190 L 85 198" stroke="#556B2F" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M 90 190 L 95 198" stroke="#556B2F" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M 110 190 L 105 198" stroke="#556B2F" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M 115 190 L 115 198" stroke="#556B2F" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M 120 190 L 125 198" stroke="#556B2F" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="jb-body" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#B0E0E6"/>
+      <stop offset="100%" stop-color="#87CEEB"/>
+    </radialGradient>
+    <radialGradient id="jb-tentacle" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#ADD8E6"/>
+      <stop offset="100%" stop-color="#87CEEB"/>
+    </radialGradient>
+    <filter id="jb-glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      @keyframes jb-bob {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-6px); }
+      }
+      @keyframes jb-pulse {
+        0%, 100% { opacity: 0.7; }
+        50% { opacity: 1; }
+      }
+      @keyframes jb-drift1 {
+        0%, 100% { transform: translateX(0px) translateY(0px); }
+        50% { transform: translateX(2px) translateY(3px); }
+      }
+      @keyframes jb-drift2 {
+        0%, 100% { transform: translateX(0px) translateY(0px); }
+        50% { transform: translateX(-2px) translateY(2px); }
+      }
+      .jb-creature { animation: jb-bob 2.5s ease-in-out infinite; }
+      .jb-tentacle1 { animation: jb-drift1 3s ease-in-out infinite; }
+      .jb-tentacle2 { animation: jb-drift2 3.5s ease-in-out infinite; }
+      .jb-glow-item { animation: jb-pulse 2s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <g class="jb-creature">
+    <!-- Main body -->
+    <circle cx="100" cy="80" r="55" fill="url(#jb-body)" opacity="0.85" filter="url(#jb-glow)"/>
+
+    <!-- Inner glow circles -->
+    <circle cx="100" cy="70" r="35" fill="#E0F6FF" opacity="0.3"/>
+    <circle cx="100" cy="75" r="20" fill="#FFFFFF" opacity="0.2"/>
+
+    <!-- Left tentacles -->
+    <g class="jb-tentacle1">
+      <path d="M 60 130 Q 45 150 40 175" stroke="url(#jb-tentacle)" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.8"/>
+      <circle cx="40" cy="175" r="6" fill="url(#jb-tentacle)" opacity="0.8"/>
+    </g>
+
+    <g class="jb-tentacle2">
+      <path d="M 75 135 Q 65 160 62 185" stroke="url(#jb-tentacle)" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.8"/>
+      <circle cx="62" cy="185" r="5" fill="url(#jb-tentacle)" opacity="0.8"/>
+    </g>
+
+    <!-- Center tentacles -->
+    <g class="jb-tentacle1">
+      <path d="M 100 135 Q 100 160 100 190" stroke="url(#jb-tentacle)" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.8"/>
+      <circle cx="100" cy="190" r="6" fill="url(#jb-tentacle)" opacity="0.8"/>
+    </g>
+
+    <!-- Right tentacles -->
+    <g class="jb-tentacle2">
+      <path d="M 125 135 Q 135 160 138 185" stroke="url(#jb-tentacle)" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.8"/>
+      <circle cx="138" cy="185" r="5" fill="url(#jb-tentacle)" opacity="0.8"/>
+    </g>
+
+    <g class="jb-tentacle1">
+      <path d="M 140 130 Q 155 150 160 175" stroke="url(#jb-tentacle)" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.8"/>
+      <circle cx="160" cy="175" r="6" fill="url(#jb-tentacle)" opacity="0.8"/>
+    </g>
+
+    <!-- Eyes (big and cute) -->
+    <circle cx="85" cy="70" r="10" fill="#FFFFFF" opacity="0.9"/>
+    <circle cx="115" cy="70" r="10" fill="#FFFFFF" opacity="0.9"/>
+    <circle cx="85" cy="70" r="6" fill="#4682B4"/>
+    <circle cx="115" cy="70" r="6" fill="#4682B4"/>
+    <circle cx="87" cy="67" r="3" fill="#FFFFFF" class="jb-glow-item"/>
+    <circle cx="117" cy="67" r="3" fill="#FFFFFF" class="jb-glow-item"/>
+
+    <!-- Blush -->
+    <ellipse cx="68" cy="85" rx="7" ry="6" fill="#FF69B4" opacity="0.25"/>
+    <ellipse cx="132" cy="85" rx="7" ry="6" fill="#FF69B4" opacity="0.25"/>
+
+    <!-- Happy mouth -->
+    <path d="M 93 95 Q 100 103 107 95" stroke="#4682B4" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/>
+
+    <!-- Bioluminescent spots -->
+    <circle cx="75" cy="60" r="3" fill="#FFB6FF" opacity="0.6" class="jb-glow-item"/>
+    <circle cx="125" cy="60" r="3" fill="#FFB6FF" opacity="0.6" class="jb-glow-item"/>
+    <circle cx="90" cy="110" r="2.5" fill="#FFB6FF" opacity="0.5" class="jb-glow-item"/>
+    <circle cx="110" cy="110" r="2.5" fill="#FFB6FF" opacity="0.5" class="jb-glow-item"/>
+  </g>
+</svg>

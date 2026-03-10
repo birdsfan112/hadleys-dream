@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="lg-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2F8FA3"/>
+      <stop offset="100%" stop-color="#1A4D5C"/>
+    </linearGradient>
+    <pattern id="lg-texture" patternUnits="userSpaceOnUse" width="4" height="4">
+      <rect width="4" height="4" fill="#2F8FA3"/>
+      <circle cx="2" cy="2" r="1" fill="#1A4D5C" opacity="0.4"/>
+    </pattern>
+  </defs>
+  <g id="clothing">
+    <path d="M75,190 L78,270 Q85,280 85,290 L85,310 Q85,320 82,325" fill="url(#lg-grad)"/>
+    <path d="M125,190 L122,270 Q115,280 115,290 L115,310 Q115,320 118,325" fill="url(#lg-grad)"/>
+    <path d="M75,190 L78,270 Q85,280 85,290 L85,310 Q85,320 82,325" fill="url(#lg-texture)" opacity="0.3"/>
+    <path d="M125,190 L122,270 Q115,280 115,290 L115,310 Q115,320 118,325" fill="url(#lg-texture)" opacity="0.3"/>
+  </g>
+</svg>

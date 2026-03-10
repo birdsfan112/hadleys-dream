@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="cl-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8A76F"/>
+      <stop offset="100%" stop-color="#B8761C"/>
+    </linearGradient>
+    <radialGradient id="cl-curl" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F0C080"/>
+      <stop offset="100%" stop-color="#A0621A"/>
+    </radialGradient>
+  </defs>
+  <g id="back-layer">
+    <path d="M60,40 Q50,80 55,120" stroke="url(#cl-grad)" stroke-width="24" stroke-linecap="round" fill="none" opacity="0.9"/>
+    <path d="M140,40 Q150,80 145,120" stroke="url(#cl-grad)" stroke-width="24" stroke-linecap="round" fill="none" opacity="0.9"/>
+  </g>
+  <g id="clothing">
+    <circle cx="65" cy="35" r="20" fill="url(#cl-curl)"/>
+    <circle cx="90" cy="32" r="18" fill="url(#cl-curl)"/>
+    <circle cx="110" cy="32" r="18" fill="url(#cl-curl)"/>
+    <circle cx="135" cy="35" r="20" fill="url(#cl-curl)"/>
+    <circle cx="77" cy="50" r="16" fill="url(#cl-curl)" opacity="0.8"/>
+    <circle cx="123" cy="50" r="16" fill="url(#cl-curl)" opacity="0.8"/>
+  </g>
+</svg>

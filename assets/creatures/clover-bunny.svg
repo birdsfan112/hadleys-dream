@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="cb-body" cx="50%" cy="55%" r="50%">
+      <stop offset="0%" stop-color="#98FB98"/>
+      <stop offset="100%" stop-color="#3CB371"/>
+    </radialGradient>
+    <radialGradient id="cb-face" cx="50%" cy="55%" r="50%">
+      <stop offset="0%" stop-color="#90EE90"/>
+      <stop offset="100%" stop-color="#66BB6A"/>
+    </radialGradient>
+    <radialGradient id="cb-clover" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7CFC00"/>
+      <stop offset="100%" stop-color="#228B22"/>
+    </radialGradient>
+    <filter id="cb-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="1" dy="2" result="offsetblur"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      @keyframes cb-hop {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-6px); }
+      }
+      @keyframes cb-twitch {
+        0%, 100% { transform: translateY(0px); }
+        25% { transform: translateY(-2px); }
+        75% { transform: translateY(-2px); }
+      }
+      .cb-creature { animation: cb-hop 2.5s ease-in-out infinite; }
+      .cb-ears { animation: cb-twitch 1.5s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <g class="cb-creature">
+    <!-- Four-leaf clover (held) -->
+    <g transform="translate(145, 35)">
+      <!-- Leaf 1 (top) -->
+      <circle cx="0" cy="-12" r="10" fill="url(#cb-clover)"/>
+      <!-- Leaf 2 (right) -->
+      <circle cx="12" cy="0" r="10" fill="url(#cb-clover)"/>
+      <!-- Leaf 3 (bottom) -->
+      <circle cx="0" cy="12" r="10" fill="url(#cb-clover)"/>
+      <!-- Leaf 4 (left) -->
+      <circle cx="-12" cy="0" r="10" fill="url(#cb-clover)"/>
+      <!-- Stem -->
+      <line x1="0" y1="8" x2="0" y2="20" stroke="#228B22" stroke-width="2"/>
+    </g>
+
+    <!-- Body -->
+    <ellipse cx="100" cy="125" rx="48" ry="55" fill="url(#cb-body)" filter="url(#cb-shadow)"/>
+
+    <!-- Head -->
+    <circle cx="100" cy="65" r="32" fill="url(#cb-face)"/>
+
+    <!-- Ears (long bunny ears) -->
+    <g class="cb-ears">
+      <ellipse cx="80" cy="28" rx="12" ry="35" fill="url(#cb-body)"/>
+      <ellipse cx="120" cy="28" rx="12" ry="35" fill="url(#cb-body)"/>
+      <!-- Ear inner -->
+      <ellipse cx="80" cy="32" rx="6" ry="28" fill="#FFB6C1" opacity="0.5"/>
+      <ellipse cx="120" cy="32" rx="6" ry="28" fill="#FFB6C1" opacity="0.5"/>
+    </g>
+
+    <!-- Eyes (big and sparkling) -->
+    <circle cx="88" cy="60" r="8" fill="#FFFFFF"/>
+    <circle cx="112" cy="60" r="8" fill="#FFFFFF"/>
+    <circle cx="88" cy="60" r="5" fill="#228B22"/>
+    <circle cx="112" cy="60" r="5" fill="#228B22"/>
+    <circle cx="90" cy="57" r="2" fill="#FFFFFF"/>
+    <circle cx="114" cy="57" r="2" fill="#FFFFFF"/>
+
+    <!-- Blush (rosy cheeks) -->
+    <ellipse cx="70" cy="70" rx="8" ry="7" fill="#FFB6C1" opacity="0.4"/>
+    <ellipse cx="130" cy="70" rx="8" ry="7" fill="#FFB6C1" opacity="0.4"/>
+
+    <!-- Nose -->
+    <ellipse cx="100" cy="75" rx="5" ry="4" fill="#FFB6C1" opacity="0.6"/>
+
+    <!-- Mouth -->
+    <path d="M 95 82 Q 100 88 105 82" stroke="#228B22" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <!-- Mouth details -->
+    <path d="M 98 85 Q 100 88 102 85" stroke="#228B22" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.6"/>
+
+    <!-- Paws/feet -->
+    <ellipse cx="70" cy="170" rx="13" ry="20" fill="url(#cb-body)"/>
+    <ellipse cx="130" cy="170" rx="13" ry="20" fill="url(#cb-body)"/>
+    <!-- Paw pads -->
+    <ellipse cx="70" cy="188" rx="10" ry="8" fill="#90EE90"/>
+    <ellipse cx="130" cy="188" rx="10" ry="8" fill="#90EE90"/>
+
+    <!-- Front paws -->
+    <ellipse cx="85" cy="155" rx="10" ry="15" fill="url(#cb-body)"/>
+    <ellipse cx="115" cy="155" rx="10" ry="15" fill="url(#cb-body)"/>
+
+    <!-- Tail (fluffy cotton tail) -->
+    <circle cx="60" cy="115" r="18" fill="#FFFFFF" opacity="0.85"/>
+    <circle cx="55" cy="125" r="15" fill="#FFFFFF" opacity="0.8"/>
+
+    <!-- Grass tufts around -->
+    <path d="M 35 160 Q 32 145 38 150" stroke="#228B22" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/>
+    <path d="M 165 160 Q 168 145 162 150" stroke="#228B22" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/>
+  </g>
+</svg>

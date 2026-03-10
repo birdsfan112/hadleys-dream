@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="wf-body" cx="50%" cy="55%" r="50%">
+      <stop offset="0%" stop-color="#D4E6F1"/>
+      <stop offset="100%" stop-color="#B0C4DE"/>
+    </radialGradient>
+    <radialGradient id="wf-face" cx="50%" cy="55%" r="50%">
+      <stop offset="0%" stop-color="#E6E6FA"/>
+      <stop offset="100%" stop-color="#D4E6F1"/>
+    </radialGradient>
+    <linearGradient id="wf-scarf" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E6E6FA"/>
+      <stop offset="100%" stop-color="#D4E6F1"/>
+    </linearGradient>
+    <filter id="wf-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="1" dy="2" result="offsetblur"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      @keyframes wf-prance {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-4px); }
+      }
+      @keyframes wf-flutter {
+        0%, 100% { transform: translateX(0px) rotateZ(-5deg); }
+        50% { transform: translateX(3px) rotateZ(5deg); }
+      }
+      .wf-creature { animation: wf-prance 2.8s ease-in-out infinite; }
+      .wf-scarf { animation: wf-flutter 2s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <g class="wf-creature">
+    <!-- Scarf blowing in wind -->
+    <g class="wf-scarf">
+      <path d="M 70 90 Q 50 85 45 105" stroke="url(#wf-scarf)" stroke-width="12" fill="none" stroke-linecap="round" filter="url(#wf-shadow)"/>
+      <path d="M 130 90 Q 150 85 155 105" stroke="url(#wf-scarf)" stroke-width="12" fill="none" stroke-linecap="round" filter="url(#wf-shadow)"/>
+      <path d="M 80 95 Q 60 100 55 120" stroke="url(#wf-scarf)" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <path d="M 120 95 Q 140 100 145 120" stroke="url(#wf-scarf)" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.7"/>
+    </g>
+
+    <!-- Body -->
+    <ellipse cx="100" cy="125" rx="45" ry="50" fill="url(#wf-body)" filter="url(#wf-shadow)"/>
+
+    <!-- Head -->
+    <circle cx="100" cy="65" r="33" fill="url(#wf-face)"/>
+
+    <!-- Ears (pointed fox ears) -->
+    <path d="M 75 35 L 68 10 L 78 35 Z" fill="url(#wf-body)"/>
+    <path d="M 125 35 L 132 10 L 122 35 Z" fill="url(#wf-body)"/>
+    <!-- Ear inner pink -->
+    <path d="M 75 32 L 70 18 L 76 32 Z" fill="#FFB6C1" opacity="0.4"/>
+    <path d="M 125 32 L 130 18 L 124 32 Z" fill="#FFB6C1" opacity="0.4"/>
+
+    <!-- Snout -->
+    <ellipse cx="100" cy="78" rx="18" ry="14" fill="url(#wf-face)"/>
+
+    <!-- Eyes (big and dreamy) -->
+    <circle cx="87" cy="60" r="8" fill="#FFFFFF"/>
+    <circle cx="113" cy="60" r="8" fill="#FFFFFF"/>
+    <circle cx="87" cy="60" r="5" fill="#8B7DB8"/>
+    <circle cx="113" cy="60" r="5" fill="#8B7DB8"/>
+    <circle cx="89" cy="57" r="2" fill="#FFFFFF"/>
+    <circle cx="115" cy="57" r="2" fill="#FFFFFF"/>
+
+    <!-- Blush -->
+    <ellipse cx="72" cy="70" rx="7" ry="6" fill="#FF69B4" opacity="0.35"/>
+    <ellipse cx="128" cy="70" rx="7" ry="6" fill="#FF69B4" opacity="0.35"/>
+
+    <!-- Nose -->
+    <ellipse cx="100" cy="78" rx="4" ry="3" fill="#8B7DB8" opacity="0.7"/>
+
+    <!-- Mouth (gentle smile) -->
+    <path d="M 96 85 Q 100 89 104 85" stroke="#8B7DB8" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+    <!-- Whiskers -->
+    <line x1="70" y1="75" x2="55" y2="72" stroke="#D4E6F1" stroke-width="1" opacity="0.6"/>
+    <line x1="70" y1="80" x2="55" y2="83" stroke="#D4E6F1" stroke-width="1" opacity="0.6"/>
+    <line x1="130" y1="75" x2="145" y2="72" stroke="#D4E6F1" stroke-width="1" opacity="0.6"/>
+    <line x1="130" y1="80" x2="145" y2="83" stroke="#D4E6F1" stroke-width="1" opacity="0.6"/>
+
+    <!-- Front legs -->
+    <ellipse cx="75" cy="165" rx="12" ry="20" fill="url(#wf-body)"/>
+    <ellipse cx="125" cy="165" rx="12" ry="20" fill="url(#wf-body)"/>
+    <ellipse cx="75" cy="183" rx="9" ry="10" fill="#B0C4DE"/>
+    <ellipse cx="125" cy="183" rx="9" ry="10" fill="#B0C4DE"/>
+
+    <!-- Fluffy tail -->
+    <path d="M 55 120 Q 40 110 35 135 Q 38 155 55 160" fill="url(#wf-body)" filter="url(#wf-shadow)"/>
+    <ellipse cx="40" cy="130" rx="12" ry="18" fill="url(#wf-body)" opacity="0.8"/>
+  </g>
+</svg>

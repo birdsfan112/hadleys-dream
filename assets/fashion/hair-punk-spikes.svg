@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="ps-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#BB33FF"/>
+      <stop offset="100%" stop-color="#6B00AA"/>
+    </linearGradient>
+    <linearGradient id="ps-spike" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF66FF"/>
+      <stop offset="100%" stop-color="#8800BB"/>
+    </linearGradient>
+  </defs>
+  <g id="back-layer">
+    <ellipse cx="100" cy="55" rx="32" ry="28" fill="url(#ps-grad)"/>
+  </g>
+  <g id="clothing">
+    <polygon points="70,35 65,15 75,40" fill="url(#ps-spike)"/>
+    <polygon points="85,30 78,8 90,35" fill="url(#ps-spike)"/>
+    <polygon points="100,28 95,5 105,33" fill="url(#ps-spike)"/>
+    <polygon points="115,30 110,8 122,35" fill="url(#ps-spike)"/>
+    <polygon points="130,35 125,15 140,40" fill="url(#ps-spike)"/>
+    <circle cx="100" cy="60" r="28" fill="url(#ps-grad)"/>
+  </g>
+</svg>

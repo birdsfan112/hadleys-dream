@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="cm-cap" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#BA55D3"/>
+      <stop offset="100%" stop-color="#9370DB"/>
+    </radialGradient>
+    <radialGradient id="cm-stem" cx="50%" cy="55%" r="50%">
+      <stop offset="0%" stop-color="#D8BFD8"/>
+      <stop offset="100%" stop-color="#DDA0DD"/>
+    </radialGradient>
+    <filter id="cm-glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      @keyframes cm-glow-pulse {
+        0%, 100% { filter: drop-shadow(0 0 4px #BA55D3); }
+        50% { filter: drop-shadow(0 0 12px #BA55D3); }
+      }
+      @keyframes cm-sway {
+        0%, 100% { transform: rotateZ(-2deg); }
+        50% { transform: rotateZ(2deg); }
+      }
+      .cm-creature { animation: cm-sway 3s ease-in-out infinite; }
+      .cm-glow-item { animation: cm-glow-pulse 2s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <g class="cm-creature">
+    <!-- Stem -->
+    <ellipse cx="100" cy="135" rx="28" ry="50" fill="url(#cm-stem)"/>
+
+    <!-- Cap -->
+    <ellipse cx="100" cy="70" rx="65" ry="50" fill="url(#cm-cap)" class="cm-glow-item"/>
+
+    <!-- Cap spots (glowing) -->
+    <circle cx="75" cy="45" r="10" fill="#FFB6FF" opacity="0.6" class="cm-glow-item"/>
+    <circle cx="125" cy="45" r="10" fill="#FFB6FF" opacity="0.6" class="cm-glow-item"/>
+    <circle cx="60" cy="70" r="8" fill="#FFB6FF" opacity="0.5" class="cm-glow-item"/>
+    <circle cx="140" cy="70" r="8" fill="#FFB6FF" opacity="0.5" class="cm-glow-item"/>
+    <circle cx="100" cy="55" r="9" fill="#FFB6FF" opacity="0.55" class="cm-glow-item"/>
+
+    <!-- Eyes -->
+    <circle cx="85" cy="65" r="8" fill="#FFFFFF"/>
+    <circle cx="115" cy="65" r="8" fill="#FFFFFF"/>
+    <circle cx="85" cy="65" r="5" fill="#8B008B"/>
+    <circle cx="115" cy="65" r="5" fill="#8B008B"/>
+    <circle cx="87" cy="62" r="2" fill="#FFFFFF"/>
+    <circle cx="117" cy="62" r="2" fill="#FFFFFF"/>
+
+    <!-- Blush -->
+    <ellipse cx="70" cy="75" rx="7" ry="6" fill="#FFB6FF" opacity="0.3"/>
+    <ellipse cx="130" cy="75" rx="7" ry="6" fill="#FFB6FF" opacity="0.3"/>
+
+    <!-- Mouth (cute smile) -->
+    <path d="M 93 82 Q 100 88 107 82" stroke="#8B008B" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+    <!-- Underside gills -->
+    <path d="M 75 95 Q 75 105 75 115" stroke="#D8BFD8" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M 85 95 Q 85 105 85 115" stroke="#D8BFD8" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M 95 95 Q 95 105 95 115" stroke="#D8BFD8" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M 105 95 Q 105 105 105 115" stroke="#D8BFD8" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M 115 95 Q 115 105 115 115" stroke="#D8BFD8" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M 125 95 Q 125 105 125 115" stroke="#D8BFD8" stroke-width="1.5" fill="none" opacity="0.5"/>
+
+    <!-- Base of stem -->
+    <ellipse cx="100" cy="180" rx="32" ry="15" fill="#D8BFD8" opacity="0.7"/>
+
+    <!-- Extra glowing spots for mystery -->
+    <circle cx="80" cy="130" r="4" fill="#FFB6FF" opacity="0.4" class="cm-glow-item"/>
+    <circle cx="120" cy="130" r="4" fill="#FFB6FF" opacity="0.4" class="cm-glow-item"/>
+    <circle cx="100" cy="150" r="3" fill="#FFB6FF" opacity="0.3" class="cm-glow-item"/>
+  </g>
+</svg>

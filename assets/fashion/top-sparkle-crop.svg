@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <radialGradient id="sc-grad" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#FFE680"/>
+      <stop offset="100%" stop-color="#CC8800"/>
+    </radialGradient>
+    <filter id="sc-sparkle">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+    </filter>
+  </defs>
+  <g id="clothing">
+    <path d="M70,115 Q100,110 130,115 L135,160 Q100,165 65,160 Z" fill="url(#sc-grad)"/>
+    <polygon points="90,125 92,135 102,135 94,140 96,150 90,145 84,150 86,140 78,135 88,135" fill="#FFD700" filter="url(#sc-sparkle)"/>
+    <polygon points="110,125 112,135 122,135 114,140 116,150 110,145 104,150 106,140 98,135 108,135" fill="#FFD700" filter="url(#sc-sparkle)"/>
+    <circle cx="100" cy="145" r="3" fill="#FFFF00" opacity="0.9"/>
+    <circle cx="80" cy="155" r="2" fill="#FFD700" opacity="0.8"/>
+    <circle cx="120" cy="155" r="2" fill="#FFD700" opacity="0.8"/>
+  </g>
+</svg>

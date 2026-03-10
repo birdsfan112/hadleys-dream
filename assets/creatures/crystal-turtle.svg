@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="ct-body" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#6FFEFF"/>
+      <stop offset="100%" stop-color="#40E0D0"/>
+    </radialGradient>
+    <radialGradient id="ct-shell" cx="45%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#48D1CC"/>
+      <stop offset="50%" stop-color="#40E0D0"/>
+      <stop offset="100%" stop-color="#20B2AA"/>
+    </radialGradient>
+    <filter id="ct-glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="ct-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="1" dy="2" result="offsetblur"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      @keyframes ct-bob {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-4px); }
+      }
+      @keyframes ct-shimmer {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+      }
+      .ct-creature { animation: ct-bob 3.2s ease-in-out infinite; }
+      .ct-crystal { animation: ct-shimmer 2.5s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <g class="ct-creature">
+    <!-- Shell -->
+    <ellipse cx="100" cy="110" rx="70" ry="65" fill="url(#ct-shell)" filter="url(#ct-shadow)"/>
+
+    <!-- Crystal facets on shell -->
+    <polygon points="75,80 85,75 85,90 75,95" fill="#FFFFFF" opacity="0.4" class="ct-crystal"/>
+    <polygon points="115,80 125,75 125,90 115,95" fill="#FFFFFF" opacity="0.4" class="ct-crystal"/>
+    <polygon points="100,60 110,65 100,80 90,65" fill="#FFFFFF" opacity="0.3" class="ct-crystal"/>
+    <polygon points="100,130 110,135 100,150 90,135" fill="#FFFFFF" opacity="0.3" class="ct-crystal"/>
+
+    <!-- Shell pattern lines -->
+    <path d="M 100 65 Q 100 110 100 155" stroke="#20B2AA" stroke-width="2" fill="none" opacity="0.5"/>
+    <path d="M 65 110 Q 100 110 135 110" stroke="#20B2AA" stroke-width="2" fill="none" opacity="0.5"/>
+    <circle cx="100" cy="110" r="25" fill="none" stroke="#20B2AA" stroke-width="1" opacity="0.3"/>
+
+    <!-- Body -->
+    <circle cx="100" cy="70" r="35" fill="url(#ct-body)"/>
+
+    <!-- Head -->
+    <circle cx="100" cy="45" r="28" fill="url(#ct-body)"/>
+
+    <!-- Crystal crown spikes -->
+    <g class="ct-crystal">
+      <polygon points="100,10 102,20 98,20" fill="#FFFFFF" filter="url(#ct-glow)"/>
+      <polygon points="85,18 87,28 83,28" fill="#FFFFFF" filter="url(#ct-glow)"/>
+      <polygon points="115,18 117,28 113,28" fill="#FFFFFF" filter="url(#ct-glow)"/>
+    </g>
+
+    <!-- Eyes -->
+    <circle cx="90" cy="40" r="7" fill="#FFFFFF"/>
+    <circle cx="110" cy="40" r="7" fill="#FFFFFF"/>
+    <circle cx="89" cy="39" r="4" fill="#008080"/>
+    <circle cx="109" cy="39" r="4" fill="#008080"/>
+    <circle cx="91" cy="37" r="2" fill="#FFFFFF"/>
+    <circle cx="111" cy="37" r="2" fill="#FFFFFF"/>
+
+    <!-- Blush -->
+    <ellipse cx="72" cy="48" rx="6" ry="5" fill="#FF69B4" opacity="0.3"/>
+    <ellipse cx="128" cy="48" rx="6" ry="5" fill="#FF69B4" opacity="0.3"/>
+
+    <!-- Mouth -->
+    <path d="M 95 55 Q 100 60 105 55" stroke="#008080" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+    <!-- Front left leg -->
+    <ellipse cx="55" cy="145" rx="15" ry="20" fill="url(#ct-body)"/>
+    <ellipse cx="55" cy="162" rx="12" ry="10" fill="#40E0D0"/>
+    <!-- Crystal shine on leg -->
+    <ellipse cx="58" cy="150" rx="4" ry="6" fill="#FFFFFF" opacity="0.4" class="ct-crystal"/>
+
+    <!-- Front right leg -->
+    <ellipse cx="145" cy="145" rx="15" ry="20" fill="url(#ct-body)"/>
+    <ellipse cx="145" cy="162" rx="12" ry="10" fill="#40E0D0"/>
+    <!-- Crystal shine on leg -->
+    <ellipse cx="142" cy="150" rx="4" ry="6" fill="#FFFFFF" opacity="0.4" class="ct-crystal"/>
+
+    <!-- Back left leg -->
+    <ellipse cx="45" cy="130" rx="12" ry="18" fill="#40E0D0"/>
+    <ellipse cx="45" cy="147" rx="10" ry="8" fill="#20B2AA"/>
+
+    <!-- Back right leg -->
+    <ellipse cx="155" cy="130" rx="12" ry="18" fill="#40E0D0"/>
+    <ellipse cx="155" cy="147" rx="10" ry="8" fill="#20B2AA"/>
+
+    <!-- Shell shine -->
+    <ellipse cx="70" cy="75" rx="18" ry="25" fill="#FFFFFF" opacity="0.2"/>
+  </g>
+</svg>

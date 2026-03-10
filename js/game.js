@@ -62,6 +62,7 @@ const Game = (() => {
       }
       document.getElementById('btn-collection').onclick = () => openCollection();
       document.getElementById('btn-stats').onclick = () => openStats();
+      document.getElementById('btn-save-menu').onclick = () => openSaveMenu();
 
       // Update displays
       updateCoinsDisplay();
@@ -75,9 +76,9 @@ const Game = (() => {
       state = { ...DEFAULT_STATE };
     }
 
-    // Boot directly into Creature World instead of hub
+    // Boot into the hub (title screen)
     setTimeout(() => {
-      switchMode('creatures');
+      switchMode('hub');
       try { Audio.sfx.ready(); } catch (e) {}
     }, 500);
   }
@@ -272,6 +273,17 @@ const Game = (() => {
     document.getElementById('stats-overlay').classList.add('hidden');
   }
 
+  // --- Save Menu ---
+  function openSaveMenu() {
+    try { Audio.sfx.click(); } catch (e) {}
+    document.getElementById('save-menu-overlay').classList.remove('hidden');
+  }
+
+  function closeSaveMenu(e) {
+    if (e && e.target !== e.currentTarget) return;
+    document.getElementById('save-menu-overlay').classList.add('hidden');
+  }
+
   // --- Current Mode ---
   function getCurrentMode() {
     return currentMode;
@@ -295,6 +307,7 @@ const Game = (() => {
     get state() { return state; },
     init, switchMode, addCoins, showToast, updateCoinsDisplay,
     openCollection, closeCollection, openStats, closeStats,
+    openSaveMenu, closeSaveMenu,
     getCurrentMode, openQuickMenu, closeQuickMenu
   };
 })();

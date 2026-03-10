@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="ce-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFB6C1"/>
+      <stop offset="100%" stop-color="#FF91A4"/>
+    </linearGradient>
+    <linearGradient id="ce-inner" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFD1DC"/>
+      <stop offset="100%" stop-color="#FFB6C1"/>
+    </linearGradient>
+  </defs>
+  <g id="clothing">
+    <!-- Left ear -->
+    <polygon points="68,42 58,8 88,32" fill="url(#ce-grad)" stroke="#FF69B4" stroke-width="2" stroke-linejoin="round"/>
+    <polygon points="72,38 65,16 84,34" fill="url(#ce-inner)"/>
+    <!-- Right ear -->
+    <polygon points="132,42 142,8 112,32" fill="url(#ce-grad)" stroke="#FF69B4" stroke-width="2" stroke-linejoin="round"/>
+    <polygon points="128,38 135,16 116,34" fill="url(#ce-inner)"/>
+    <!-- Headband -->
+    <path d="M62,45 Q100,35 138,45" fill="none" stroke="url(#ce-grad)" stroke-width="5" stroke-linecap="round"/>
+  </g>
+</svg>

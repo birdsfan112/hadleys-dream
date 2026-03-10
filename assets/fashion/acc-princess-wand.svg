@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="pw-stick" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#CC9900"/>
+    </linearGradient>
+    <radialGradient id="pw-star" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFF00"/>
+      <stop offset="100%" stop-color="#FFD700"/>
+    </radialGradient>
+    <filter id="pw-shine">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+    </filter>
+  </defs>
+  <g id="clothing">
+    <line x1="130" y1="140" x2="145" y2="120" stroke="url(#pw-stick)" stroke-width="3" stroke-linecap="round"/>
+    <polygon points="145,120 150,115 148,125 155,125 148,128 150,140 145,135 140,140 142,128 135,125 142,125" fill="url(#pw-star)" filter="url(#pw-shine)"/>
+    <circle cx="145" cy="120" r="4" fill="#FFD700" opacity="0.9"/>
+    <circle cx="148" cy="115" r="2" fill="#FFFF00" opacity="0.8"/>
+    <circle cx="150" cy="125" r="2" fill="#FFFF00" opacity="0.8"/>
+  </g>
+</svg>

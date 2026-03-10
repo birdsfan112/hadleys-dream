@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="bh-body" cx="50%" cy="55%" r="50%">
+      <stop offset="0%" stop-color="#D2B48C"/>
+      <stop offset="100%" stop-color="#CD853F"/>
+    </radialGradient>
+    <radialGradient id="bh-berry" cx="35%" cy="35%" r="50%">
+      <stop offset="0%" stop-color="#FF8A8A"/>
+      <stop offset="100%" stop-color="#FF6B6B"/>
+    </radialGradient>
+    <filter id="bh-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="1" dy="2" result="offsetblur"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      @keyframes bh-bob {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-3px); }
+      }
+      .bh-creature { animation: bh-bob 2.5s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <g class="bh-creature">
+    <!-- Body -->
+    <ellipse cx="100" cy="120" rx="55" ry="60" fill="url(#bh-body)" filter="url(#bh-shadow)"/>
+
+    <!-- Head -->
+    <circle cx="100" cy="50" r="35" fill="url(#bh-body)"/>
+
+    <!-- Spines (back) -->
+    <path d="M 70 60 Q 65 30 70 10" stroke="#8B6914" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M 85 55 Q 82 25 85 5" stroke="#8B6914" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M 100 52 Q 100 20 100 0" stroke="#8B6914" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M 115 55 Q 118 25 115 5" stroke="#8B6914" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M 130 60 Q 135 30 130 10" stroke="#8B6914" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+    <!-- Spines (body) -->
+    <path d="M 55 100 Q 40 85 30 75" stroke="#8B6914" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M 50 130 Q 35 125 25 125" stroke="#8B6914" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M 145 100 Q 160 85 170 75" stroke="#8B6914" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M 150 130 Q 165 125 175 125" stroke="#8B6914" stroke-width="5" fill="none" stroke-linecap="round"/>
+
+    <!-- Berries on spines -->
+    <circle cx="68" cy="15" r="6" fill="url(#bh-berry)"/>
+    <circle cx="83" cy="8" r="6" fill="url(#bh-berry)"/>
+    <circle cx="100" cy="5" r="6" fill="url(#bh-berry)"/>
+    <circle cx="117" cy="8" r="6" fill="url(#bh-berry)"/>
+    <circle cx="132" cy="15" r="6" fill="url(#bh-berry)"/>
+    <circle cx="32" cy="73" r="5" fill="url(#bh-berry)"/>
+    <circle cx="27" cy="123" r="5" fill="url(#bh-berry)"/>
+    <circle cx="168" cy="73" r="5" fill="url(#bh-berry)"/>
+    <circle cx="173" cy="123" r="5" fill="url(#bh-berry)"/>
+
+    <!-- Eyes -->
+    <circle cx="88" cy="45" r="7" fill="#FFFFFF"/>
+    <circle cx="112" cy="45" r="7" fill="#FFFFFF"/>
+    <circle cx="87" cy="44" r="4" fill="#2D5016"/>
+    <circle cx="111" cy="44" r="4" fill="#2D5016"/>
+    <circle cx="89" cy="42" r="2" fill="#FFFFFF"/>
+    <circle cx="113" cy="42" r="2" fill="#FFFFFF"/>
+
+    <!-- Blush -->
+    <ellipse cx="70" cy="55" rx="7" ry="5" fill="#FF69B4" opacity="0.3"/>
+    <ellipse cx="130" cy="55" rx="7" ry="5" fill="#FF69B4" opacity="0.3"/>
+
+    <!-- Snout -->
+    <ellipse cx="100" cy="65" rx="12" ry="10" fill="#D2B48C"/>
+    <circle cx="95" cy="65" r="2" fill="#5C4033"/>
+    <circle cx="105" cy="65" r="2" fill="#5C4033"/>
+
+    <!-- Mouth -->
+    <path d="M 100 68 Q 100 72 98 74" stroke="#5C4033" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M 100 68 Q 100 72 102 74" stroke="#5C4033" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+    <!-- Front legs -->
+    <ellipse cx="75" cy="170" rx="12" ry="18" fill="url(#bh-body)"/>
+    <ellipse cx="125" cy="170" rx="12" ry="18" fill="url(#bh-body)"/>
+    <ellipse cx="75" cy="185" rx="10" ry="8" fill="#8B6914"/>
+    <ellipse cx="125" cy="185" rx="10" ry="8" fill="#8B6914"/>
+  </g>
+</svg>

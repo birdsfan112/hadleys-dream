@@ -9,7 +9,7 @@
   <title>Hadley's Dream</title>
   <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/creatures.css">
   <link rel="stylesheet" href="css/fashion.css">
@@ -27,7 +27,7 @@
   <div id="loading-screen" class="screen active">
     <div class="loader"></div>
     <p>Loading Hadley's Dream...</p>
-    <p style="font-size:0.7em;color:rgba(255,255,255,0.4);margin-top:10px;">v9</p>
+    <p style="font-size:0.7em;color:rgba(255,255,255,0.4);margin-top:10px;">v11</p>
   </div>
 
   <!-- ========== Hub Screen ========== -->
@@ -37,6 +37,7 @@
       <button class="icon-btn" id="btn-music-style" title="Change Music Style">🎵</button>
       <button class="icon-btn" id="btn-collection" title="Collection">📖</button>
       <button class="icon-btn" id="btn-stats" title="Stats">📊</button>
+      <button class="icon-btn" id="btn-save-menu" title="Save / Load">💾</button>
     </div>
 
     <h1 class="hub-title sparkle-text">Hadley's Dream</h1>
@@ -79,7 +80,7 @@
   <div id="creatures-screen" class="screen" style="display:none;">
     <button class="floating-menu-btn" onclick="Game.openQuickMenu()" title="Menu">☰</button>
     <div class="top-bar" id="creatures-top">
-      <button class="back-btn" onclick="Game.switchMode('hub')">←</button>
+      <button class="back-btn labeled" onclick="Game.switchMode('hub')">← Home</button>
       <span class="title">Creature World</span>
       <span class="coins-display">🪙 <span class="coins-val">0</span></span>
     </div>
@@ -94,9 +95,12 @@
     <div id="location-explore" class="hidden">
       <div class="location-scene" id="location-scene">
         <canvas id="particle-canvas" class="particle-canvas"></canvas>
-        <div class="location-name" id="location-name-display"></div>
+        <div class="location-header-row">
+          <div class="location-name" id="location-name-display"></div>
+          <div class="catch-progress" id="catch-progress"></div>
+        </div>
         <div class="explore-spots" id="explore-spots"></div>
-        <button class="btn small back-location-btn" onclick="CreatureWorld.backToLocations()">← Back</button>
+        <button class="btn small back-location-btn" onclick="CreatureWorld.backToLocations()">← Locations</button>
       </div>
     </div>
 
@@ -120,7 +124,7 @@
   <div id="fashion-screen" class="screen" style="display:none;">
     <button class="floating-menu-btn" onclick="Game.openQuickMenu()" title="Menu">☰</button>
     <div class="top-bar">
-      <button class="back-btn" onclick="Game.switchMode('hub')">←</button>
+      <button class="back-btn labeled" onclick="Game.switchMode('hub')">← Home</button>
       <span class="title">Fashion Studio</span>
       <span class="coins-display">🪙 <span class="coins-val">0</span></span>
     </div>
@@ -235,6 +239,21 @@
       <div id="stats-content"></div>
       <div id="leaderboard-content" style="margin-top:16px;"></div>
       <button class="btn small" style="margin-top:16px;width:100%;" onclick="Game.closeStats()">Close</button>
+    </div>
+  </div>
+
+  <!-- ========== Save/Load Modal ========== -->
+  <div id="save-menu-overlay" class="hidden modal-overlay" onclick="Game.closeSaveMenu(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+      <h2>Save & Load</h2>
+      <p style="text-align:center;font-size:0.85em;color:#666;margin-bottom:16px;">Keep your progress safe!</p>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <button class="btn teal" onclick="SaveManager.exportSave()" style="width:100%;">Export Save File</button>
+        <button class="btn pink" onclick="document.getElementById('import-file-input').click()" style="width:100%;">Import Save File</button>
+        <input type="file" id="import-file-input" accept=".json" style="display:none;" onchange="SaveManager.importSave(this)">
+      </div>
+      <p style="text-align:center;font-size:0.75em;color:#999;margin-top:12px;">Export downloads a file. Import loads it back.</p>
+      <button class="btn small" style="margin-top:16px;width:100%;" onclick="Game.closeSaveMenu()">Close</button>
     </div>
   </div>
 

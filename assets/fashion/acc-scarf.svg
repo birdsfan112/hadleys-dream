@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="scf-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF4444"/>
+      <stop offset="100%" stop-color="#CC0000"/>
+    </linearGradient>
+    <linearGradient id="scf-flow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FF6B6B"/>
+      <stop offset="50%" stop-color="#FF4444"/>
+      <stop offset="100%" stop-color="#CC0000"/>
+    </linearGradient>
+  </defs>
+  <g id="clothing">
+    <path d="M75,100 Q85,95 100,96 Q115,95 125,100 Q120,110 100,112 Q80,110 75,100" fill="url(#scf-grad)"/>
+    <path d="M80,108 L65,140 Q62,155 68,170" fill="url(#scf-grad)" opacity="0.8"/>
+    <path d="M120,108 L135,140 Q138,155 132,170" fill="url(#scf-grad)" opacity="0.8"/>
+    <path d="M80,108 L65,140" fill="none" stroke="url(#scf-flow)" stroke-width="1.5" opacity="0.6"/>
+    <path d="M120,108 L135,140" fill="none" stroke="url(#scf-flow)" stroke-width="1.5" opacity="0.6"/>
+  </g>
+</svg>

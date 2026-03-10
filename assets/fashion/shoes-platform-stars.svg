@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="ps-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#DAA520"/>
+    </linearGradient>
+    <filter id="ps-glow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+    </filter>
+  </defs>
+  <g id="clothing">
+    <rect x="72" y="305" width="16" height="12" fill="url(#ps-grad)" rx="2"/>
+    <rect x="112" y="305" width="16" height="12" fill="url(#ps-grad)" rx="2"/>
+    <polygon points="80,295 82,285 84,295 94,295 86,302 88,312 80,305 72,312 74,302 66,295" fill="#FFD700" filter="url(#ps-glow)"/>
+    <polygon points="120,295 122,285 124,295 134,295 126,302 128,312 120,305 112,312 114,302 106,295" fill="#FFD700" filter="url(#ps-glow)"/>
+    <circle cx="80" cy="310" r="1.5" fill="#FF69B4" opacity="0.7"/>
+    <circle cx="120" cy="310" r="1.5" fill="#FF69B4" opacity="0.7"/>
+  </g>
+</svg>

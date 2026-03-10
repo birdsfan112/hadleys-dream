@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="em-body" cx="50%" cy="60%" r="50%">
+      <stop offset="0%" stop-color="#9966CC"/>
+      <stop offset="100%" stop-color="#6A5ACD"/>
+    </radialGradient>
+    <linearGradient id="em-wing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9370DB"/>
+      <stop offset="50%" stop-color="#6A5ACD"/>
+      <stop offset="100%" stop-color="#483D8B"/>
+    </linearGradient>
+    <filter id="em-glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      @keyframes em-float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-6px); }
+      }
+      @keyframes em-flutter {
+        0%, 100% { transform: scaleY(1); }
+        25% { transform: scaleY(0.85); }
+        75% { transform: scaleY(0.85); }
+      }
+      @keyframes em-glow-pulse {
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 1; }
+      }
+      .em-creature { animation: em-float 2.8s ease-in-out infinite; }
+      .em-wing { animation: em-flutter 1.3s ease-in-out infinite; }
+      .em-glow-dot { animation: em-glow-pulse 1.8s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <g class="em-creature">
+    <!-- Upper wings -->
+    <g class="em-wing">
+      <ellipse cx="60" cy="75" rx="38" ry="50" fill="url(#em-wing)" filter="url(#em-glow)"/>
+      <ellipse cx="140" cy="75" rx="38" ry="50" fill="url(#em-wing)" filter="url(#em-glow)"/>
+    </g>
+
+    <!-- Lower wings -->
+    <g class="em-wing">
+      <ellipse cx="70" cy="135" rx="30" ry="45" fill="url(#em-wing)" opacity="0.85" filter="url(#em-glow)"/>
+      <ellipse cx="130" cy="135" rx="30" ry="45" fill="url(#em-wing)" opacity="0.85" filter="url(#em-glow)"/>
+    </g>
+
+    <!-- Wing glow patterns -->
+    <circle cx="45" cy="50" r="7" fill="#B19CD9" opacity="0.6" class="em-glow-dot"/>
+    <circle cx="155" cy="50" r="7" fill="#B19CD9" opacity="0.6" class="em-glow-dot"/>
+    <circle cx="55" cy="125" r="6" fill="#B19CD9" opacity="0.5" class="em-glow-dot"/>
+    <circle cx="145" cy="125" r="6" fill="#B19CD9" opacity="0.5" class="em-glow-dot"/>
+    <circle cx="80" cy="80" r="5" fill="#B19CD9" opacity="0.5" class="em-glow-dot"/>
+    <circle cx="120" cy="80" r="5" fill="#B19CD9" opacity="0.5" class="em-glow-dot"/>
+
+    <!-- Body -->
+    <ellipse cx="100" cy="105" rx="16" ry="32" fill="url(#em-body)"/>
+
+    <!-- Head -->
+    <circle cx="100" cy="70" r="22" fill="url(#em-body)"/>
+
+    <!-- Antennae -->
+    <path d="M 93 50 Q 85 25 80 10" stroke="#6A5ACD" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M 107 50 Q 115 25 120 10" stroke="#6A5ACD" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- Antenna tips glow -->
+    <circle cx="80" cy="8" r="3" fill="#B19CD9" class="em-glow-dot"/>
+    <circle cx="120" cy="8" r="3" fill="#B19CD9" class="em-glow-dot"/>
+
+    <!-- Eyes (large and expressive) -->
+    <circle cx="90" cy="65" r="7" fill="#FFFFFF"/>
+    <circle cx="110" cy="65" r="7" fill="#FFFFFF"/>
+    <circle cx="90" cy="65" r="4" fill="#4B0082"/>
+    <circle cx="110" cy="65" r="4" fill="#4B0082"/>
+    <circle cx="92" cy="62" r="2" fill="#FFFFFF"/>
+    <circle cx="112" cy="62" r="2" fill="#FFFFFF"/>
+
+    <!-- Blush -->
+    <ellipse cx="80" cy="73" rx="6" ry="5" fill="#FFB6FF" opacity="0.3"/>
+    <ellipse cx="120" cy="73" rx="6" ry="5" fill="#FFB6FF" opacity="0.3"/>
+
+    <!-- Mouth -->
+    <path d="M 97 80 Q 100 84 103 80" stroke="#4B0082" stroke-width="1" fill="none" stroke-linecap="round"/>
+
+    <!-- Body segments/glow rings -->
+    <circle cx="100" cy="85" r="8" fill="none" stroke="#B19CD9" stroke-width="1" opacity="0.5"/>
+    <circle cx="100" cy="105" r="8" fill="none" stroke="#B19CD9" stroke-width="1" opacity="0.5"/>
+    <circle cx="100" cy="125" r="8" fill="none" stroke="#B19CD9" stroke-width="1" opacity="0.4"/>
+
+    <!-- Trailing glow particles -->
+    <circle cx="85" cy="110" r="2" fill="#B19CD9" opacity="0.3" class="em-glow-dot"/>
+    <circle cx="115" cy="110" r="2" fill="#B19CD9" opacity="0.3" class="em-glow-dot"/>
+  </g>
+</svg>

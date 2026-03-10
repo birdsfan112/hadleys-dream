@@ -32,13 +32,13 @@ const CreatureWorld = (() => {
 
   const svgCache = new Map(); // creatureId -> svg text
 
-  // Spot icons per location
+  // Camouflage spot icons per location — blend into the scene
   const SPOT_ICONS = {
-    'sparkle-forest': ['🌳', '🍄', '🌸', '🪨', '🌿', '🦋'],
-    'crystal-beach':  ['🐚', '🪸', '🌊', '🏝️', '⛱️', '🪨'],
-    'cloud-garden':   ['☁️', '🌸', '🌈', '💫', '🦋'],
-    'moon-cave':      ['🪨', '💎', '🌙', '🕯️', '✨'],
-    'rainbow-meadow': ['🌻', '🌺', '🍀', '🌷', '🦋', '🌼']
+    'sparkle-forest': ['🌿', '🍃', '🪨', '🌳', '🍂', '🌱', '🪵', '🌳'],
+    'crystal-beach':  ['🐚', '🪨', '🌊', '🪸', '🏝️', '🐚', '🪨', '🌊'],
+    'cloud-garden':   ['☁️', '💨', '🌸', '☁️', '🌿', '💨', '☁️', '🌸'],
+    'moon-cave':      ['🪨', '💎', '🌑', '🪨', '🕳️', '💎', '🪨', '🌑'],
+    'rainbow-meadow': ['🌱', '🍀', '🌿', '🪨', '🌱', '🍀', '🌾', '🌿']
   };
 
   function init() {
@@ -114,6 +114,9 @@ const CreatureWorld = (() => {
     // Setup parallax touch interaction
     setupParallax();
 
+    // Update catch progress counter
+    updateCatchProgress();
+
     renderSpots();
   }
 
@@ -130,22 +133,27 @@ const CreatureWorld = (() => {
       const now = Date.now();
       if (cooldowns[key] && cooldowns[key] > now) {
         spot.classList.add('on-cooldown');
-        // Set timeout to re-enable
         setTimeout(() => {
           spot.classList.remove('on-cooldown');
         }, cooldowns[key] - now);
       }
 
-      // Position spots semi-randomly but spread out
-      const col = i % 3;
-      const row = Math.floor(i / 3);
-      const x = 15 + col * 30 + (Math.sin(i * 2.5) * 10);
-      const y = 10 + row * 35 + (Math.cos(i * 3.1) * 8);
+      // Spread spots across the scene with more variety
+      const col = i % 4;
+      const row = Math.floor(i / 4);
+      const x = 8 + col * 22 + (Math.sin(i * 2.7 + 1.3) * 8);
+      const y = 8 + row * 38 + (Math.cos(i * 3.4 + 0.7) * 10);
       spot.style.left = `${x}%`;
       spot.style.top = `${y}%`;
 
+      // Some spots appear after a delay (harder to find)
+      if (i >= spotCount - 2) {
+        spot.classList.add('delayed');
+        spot.style.animationDelay = `${2 + i * 0.5}s`;
+      }
+
       spot.innerHTML = `
-        <div class="spot-glow"></div>
+        <div class="spot-hint"></div>
         ${icons[i % icons.length]}
       `;
       spot.onclick = () => discoverCreature(i, spot);
@@ -156,6 +164,8 @@ const CreatureWorld = (() => {
   function pickCreature() {
     // Get creatures for current location
     const locCreatures = CREATURES.filter(c => c.location === currentLocation.id);
+    const caught = Game.state.creatures || [];
+
     // Weighted random by rarity
     const roll = Math.random();
     let cumulative = 0;
@@ -164,14 +174,21 @@ const CreatureWorld = (() => {
       cumulative += cfg.chance;
       if (roll <= cumulative) { selectedRarity = r; break; }
     }
+
     // Filter by rarity
-    const pool = locCreatures.filter(c => c.rarity === selectedRarity);
+    let pool = locCreatures.filter(c => c.rarity === selectedRarity);
     if (pool.length === 0) {
-      // Fallback to common
-      const fallback = locCreatures.filter(c => c.rarity === 'common');
-      return fallback[Math.floor(Math.random() * fallback.length)];
+      pool = locCreatures.filter(c => c.rarity === 'common');
     }
-    return pool[Math.floor(Math.random() * pool.length)];
+
+    // Smart weighting: uncaught creatures get 4x the weight
+    const weighted = [];
+    pool.forEach(c => {
+      const weight = caught.includes(c.id) ? 1 : 4;
+      for (let i = 0; i < weight; i++) weighted.push(c);
+    });
+
+    return weighted[Math.floor(Math.random() * weighted.length)];
   }
 
   function discoverCreature(spotIndex, spotEl) {
@@ -708,6 +725,7 @@ const CreatureWorld = (() => {
     saveCooldowns();
 
     SaveManager.autoSave(Game.state);
+    updateCatchProgress();
     catchActive = false;
   }
 
@@ -751,12 +769,13 @@ const CreatureWorld = (() => {
   }
 
   function onEnter() {
-    // Auto-enter the last visited location instead of showing selector
-    document.getElementById('location-select').classList.add('hidden');
-    document.getElementById('location-explore').classList.remove('hidden');
+    // Show the location picker so the player can choose where to explore
+    document.getElementById('location-select').classList.remove('hidden');
+    document.getElementById('location-explore').classList.add('hidden');
     document.getElementById('catch-overlay').classList.add('hidden');
-    renderLocations(); // Still render for the location selector in case they go back
-    enterLastLocation();
+    Particles.stop();
+    removeParallax();
+    renderLocations();
   }
 
   // --- Visual Effects Helpers ---
@@ -993,6 +1012,16 @@ const CreatureWorld = (() => {
       sceneEl.removeEventListener('touchmove', parallaxMoveHandler);
       parallaxMoveHandler = null;
     }
+  }
+
+  // --- Catch Progress Counter ---
+  function updateCatchProgress() {
+    if (!currentLocation) return;
+    const el = document.getElementById('catch-progress');
+    if (!el) return;
+    const locCreatures = CREATURES.filter(c => c.location === currentLocation.id);
+    const caught = locCreatures.filter(c => Game.state.creatures.includes(c.id)).length;
+    el.textContent = `${caught}/${locCreatures.length} caught`;
   }
 
   // Expose svgCache for collection modal

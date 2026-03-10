@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="bc-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF4444"/>
+      <stop offset="100%" stop-color="#CC0000"/>
+    </linearGradient>
+    <linearGradient id="bc-bill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFB6B6"/>
+      <stop offset="100%" stop-color="#FF6B6B"/>
+    </linearGradient>
+  </defs>
+  <g id="clothing">
+    <path d="M70,30 Q100,20 130,30 Q125,45 100,50 Q75,45 70,30" fill="url(#bc-grad)"/>
+    <path d="M75,45 L135,45 Q145,48 160,50 L155,55 Q145,52 135,50 L75,50 Z" fill="url(#bc-bill)"/>
+    <circle cx="100" cy="35" r="3" fill="#FFD700" opacity="0.8"/>
+  </g>
+</svg>

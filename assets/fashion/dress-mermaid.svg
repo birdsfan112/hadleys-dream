@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="merm-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#40E0D0"/>
+      <stop offset="50%" stop-color="#20B8A0"/>
+      <stop offset="100%" stop-color="#008080"/>
+    </linearGradient>
+    <linearGradient id="merm-tail" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#20B8A0"/>
+      <stop offset="100%" stop-color="#006666"/>
+    </linearGradient>
+  </defs>
+  <g id="clothing">
+    <path d="M70,115 Q100,108 130,115 L135,210 Q100,230 65,210 Z" fill="url(#merm-grad)"/>
+    <path d="M65,210 Q70,250 75,290 L125,290 Q130,250 135,210" fill="url(#merm-tail)"/>
+    <path d="M75,240 Q85,260 80,290" fill="none" stroke="#00FFFF" stroke-width="2" opacity="0.6"/>
+    <path d="M125,240 Q115,260 120,290" fill="none" stroke="#00FFFF" stroke-width="2" opacity="0.6"/>
+    <circle cx="95" cy="200" r="2" fill="#FFD700" opacity="0.8"/>
+    <circle cx="105" cy="200" r="2" fill="#FFD700" opacity="0.8"/>
+  </g>
+</svg>

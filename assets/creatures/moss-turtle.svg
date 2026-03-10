@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="mt-body" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#8FBC8F"/>
+      <stop offset="100%" stop-color="#6B8E23"/>
+    </radialGradient>
+    <radialGradient id="mt-shell" cx="45%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#7CB342"/>
+      <stop offset="100%" stop-color="#556B2F"/>
+    </radialGradient>
+    <filter id="mt-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="1" dy="2" result="offsetblur"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      @keyframes mt-bob {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-4px); }
+      }
+      .mt-creature { animation: mt-bob 3s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <g class="mt-creature">
+    <!-- Shell -->
+    <ellipse cx="100" cy="110" rx="70" ry="65" fill="url(#mt-shell)" filter="url(#mt-shadow)"/>
+    <!-- Shell pattern lines -->
+    <path d="M 100 65 Q 100 110 100 155" stroke="#556B2F" stroke-width="2" fill="none" opacity="0.6"/>
+    <path d="M 65 110 Q 100 110 135 110" stroke="#556B2F" stroke-width="2" fill="none" opacity="0.6"/>
+    <circle cx="100" cy="110" r="25" fill="none" stroke="#556B2F" stroke-width="1" opacity="0.4"/>
+
+    <!-- Body -->
+    <circle cx="100" cy="70" r="35" fill="url(#mt-body)"/>
+
+    <!-- Head -->
+    <circle cx="100" cy="45" r="28" fill="url(#mt-body)"/>
+
+    <!-- Eyes -->
+    <circle cx="90" cy="40" r="7" fill="#FFFFFF"/>
+    <circle cx="110" cy="40" r="7" fill="#FFFFFF"/>
+    <circle cx="89" cy="39" r="4" fill="#2D5016"/>
+    <circle cx="109" cy="39" r="4" fill="#2D5016"/>
+    <circle cx="91" cy="37" r="2" fill="#FFFFFF"/>
+    <circle cx="111" cy="37" r="2" fill="#FFFFFF"/>
+
+    <!-- Blush -->
+    <ellipse cx="72" cy="48" rx="6" ry="5" fill="#FF69B4" opacity="0.3"/>
+    <ellipse cx="128" cy="48" rx="6" ry="5" fill="#FF69B4" opacity="0.3"/>
+
+    <!-- Mouth -->
+    <path d="M 95 55 Q 100 60 105 55" stroke="#2D5016" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+    <!-- Front left leg -->
+    <ellipse cx="55" cy="145" rx="15" ry="20" fill="url(#mt-body)"/>
+    <ellipse cx="55" cy="162" rx="12" ry="10" fill="#6B8E23"/>
+
+    <!-- Front right leg -->
+    <ellipse cx="145" cy="145" rx="15" ry="20" fill="url(#mt-body)"/>
+    <ellipse cx="145" cy="162" rx="12" ry="10" fill="#6B8E23"/>
+
+    <!-- Back left leg -->
+    <ellipse cx="45" cy="130" rx="12" ry="18" fill="#6B8E23"/>
+    <ellipse cx="45" cy="147" rx="10" ry="8" fill="#556B2F"/>
+
+    <!-- Back right leg -->
+    <ellipse cx="155" cy="130" rx="12" ry="18" fill="#6B8E23"/>
+    <ellipse cx="155" cy="147" rx="10" ry="8" fill="#556B2F"/>
+  </g>
+</svg>

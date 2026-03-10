@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="cs-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D2B48C"/>
+      <stop offset="100%" stop-color="#8B7355"/>
+    </linearGradient>
+    <linearGradient id="cs-pocket" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#A0826D"/>
+      <stop offset="100%" stop-color="#6B5344"/>
+    </linearGradient>
+  </defs>
+  <g id="clothing">
+    <path d="M75,190 L70,250 Q75,260 78,270 L78,290" fill="url(#cs-grad)"/>
+    <path d="M125,190 L130,250 Q125,260 122,270 L122,290" fill="url(#cs-grad)"/>
+    <rect x="65" y="210" width="12" height="20" fill="url(#cs-pocket)" rx="2"/>
+    <rect x="123" y="210" width="12" height="20" fill="url(#cs-pocket)" rx="2"/>
+    <circle cx="71" cy="218" r="1.5" fill="#556B2F" opacity="0.7"/>
+    <circle cx="129" cy="218" r="1.5" fill="#556B2F" opacity="0.7"/>
+  </g>
+</svg>

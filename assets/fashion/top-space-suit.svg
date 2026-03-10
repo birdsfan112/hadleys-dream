@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="ss-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8E8E8"/>
+      <stop offset="50%" stop-color="#B0B0B0"/>
+      <stop offset="100%" stop-color="#707070"/>
+    </linearGradient>
+    <radialGradient id="ss-panel" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#FFB6C1"/>
+      <stop offset="100%" stop-color="#FF69B4"/>
+    </radialGradient>
+  </defs>
+  <g id="clothing">
+    <path d="M65,115 Q100,108 135,115 L140,190 Q100,195 60,190 Z" fill="url(#ss-grad)"/>
+    <ellipse cx="100" cy="145" rx="20" ry="25" fill="url(#ss-panel)" opacity="0.8"/>
+    <rect x="75" y="125" width="8" height="20" fill="#00FFFF" opacity="0.7" rx="2"/>
+    <rect x="117" y="125" width="8" height="20" fill="#00FFFF" opacity="0.7" rx="2"/>
+    <circle cx="85" cy="170" r="3" fill="#FFD700" opacity="0.9"/>
+    <circle cx="115" cy="170" r="3" fill="#FFD700" opacity="0.9"/>
+  </g>
+</svg>

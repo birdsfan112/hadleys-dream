@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <radialGradient id="fb-flower" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF6B6B"/>
+      <stop offset="100%" stop-color="#CC0000"/>
+    </radialGradient>
+    <linearGradient id="fb-band" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFB6D9"/>
+      <stop offset="100%" stop-color="#FF69B4"/>
+    </linearGradient>
+  </defs>
+  <g id="clothing">
+    <path d="M65,190 Q80,185 100,185 Q120,185 135,190" fill="none" stroke="url(#fb-band)" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+    <circle cx="80" cy="185" r="6" fill="url(#fb-flower)"/>
+    <circle cx="100" cy="182" r="6" fill="url(#fb-flower)"/>
+    <circle cx="120" cy="185" r="6" fill="url(#fb-flower)"/>
+    <circle cx="80" cy="185" r="3" fill="#FFD700" opacity="0.9"/>
+    <circle cx="100" cy="182" r="3" fill="#FFD700" opacity="0.9"/>
+    <circle cx="120" cy="185" r="3" fill="#FFD700" opacity="0.9"/>
+  </g>
+</svg>

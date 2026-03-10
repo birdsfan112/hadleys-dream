@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="ps-body" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#FFFACD"/>
+      <stop offset="100%" stop-color="#FFD700"/>
+    </radialGradient>
+    <radialGradient id="ps-wing" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#FFFFE0"/>
+      <stop offset="100%" stop-color="#FFFACD"/>
+    </radialGradient>
+    <filter id="ps-glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      @keyframes ps-float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-8px); }
+      }
+      @keyframes ps-flutter {
+        0%, 100% { transform: scaleY(1) rotateZ(-5deg); }
+        50% { transform: scaleY(0.8) rotateZ(5deg); }
+      }
+      @keyframes ps-sparkle {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 1; }
+      }
+      @keyframes ps-drift {
+        0% { transform: translateX(0px) translateY(0px); }
+        25% { transform: translateX(3px) translateY(-2px); }
+        50% { transform: translateX(0px) translateY(0px); }
+        75% { transform: translateX(-3px) translateY(2px); }
+        100% { transform: translateX(0px) translateY(0px); }
+      }
+      .ps-creature { animation: ps-float 2.5s ease-in-out infinite; }
+      .ps-wing { animation: ps-flutter 1.2s ease-in-out infinite; }
+      .ps-sparkle { animation: ps-sparkle 1.5s ease-in-out infinite; }
+      .ps-dust { animation: ps-drift 4s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <g class="ps-creature">
+    <!-- Pollen dust particles (trailing) -->
+    <g class="ps-dust">
+      <circle cx="50" cy="80" r="2" fill="#FFD700" opacity="0.4" class="ps-sparkle"/>
+      <circle cx="55" cy="100" r="2" fill="#FFD700" opacity="0.3" class="ps-sparkle"/>
+      <circle cx="60" cy="120" r="1.5" fill="#FFD700" opacity="0.3" class="ps-sparkle"/>
+    </g>
+
+    <!-- Wings -->
+    <g class="ps-wing">
+      <ellipse cx="75" cy="85" rx="32" ry="45" fill="url(#ps-wing)" filter="url(#ps-glow)"/>
+      <ellipse cx="125" cy="85" rx="32" ry="45" fill="url(#ps-wing)" filter="url(#ps-glow)"/>
+    </g>
+
+    <!-- Wing shimmer patterns -->
+    <circle cx="60" cy="65" r="6" fill="#FFFFFF" opacity="0.5" class="ps-sparkle"/>
+    <circle cx="140" cy="65" r="6" fill="#FFFFFF" opacity="0.5" class="ps-sparkle"/>
+    <circle cx="70" cy="110" r="5" fill="#FFFFFF" opacity="0.4" class="ps-sparkle"/>
+    <circle cx="130" cy="110" r="5" fill="#FFFFFF" opacity="0.4" class="ps-sparkle"/>
+
+    <!-- Body -->
+    <ellipse cx="100" cy="110" rx="18" ry="32" fill="url(#ps-body)" filter="url(#ps-glow)"/>
+
+    <!-- Head -->
+    <circle cx="100" cy="70" r="24" fill="url(#ps-body)" filter="url(#ps-glow)"/>
+
+    <!-- Hair/crown of pollen -->
+    <circle cx="90" cy="48" r="8" fill="#FFD700" opacity="0.7" class="ps-sparkle"/>
+    <circle cx="100" cy="42" r="9" fill="#FFD700" opacity="0.75" class="ps-sparkle"/>
+    <circle cx="110" cy="48" r="8" fill="#FFD700" opacity="0.7" class="ps-sparkle"/>
+
+    <!-- Eyes (big and magical) -->
+    <circle cx="90" cy="65" r="7" fill="#FFFFFF"/>
+    <circle cx="110" cy="65" r="7" fill="#FFFFFF"/>
+    <circle cx="90" cy="65" r="4" fill="#FFD700"/>
+    <circle cx="110" cy="65" r="4" fill="#FFD700"/>
+    <circle cx="92" cy="62" r="2" fill="#FFFFFF"/>
+    <circle cx="112" cy="62" r="2" fill="#FFFFFF"/>
+
+    <!-- Blush -->
+    <ellipse cx="80" cy="75" rx="6" ry="5" fill="#FF69B4" opacity="0.3"/>
+    <ellipse cx="120" cy="75" rx="6" ry="5" fill="#FF69B4" opacity="0.3"/>
+
+    <!-- Mouth (happy smile) -->
+    <path d="M 96 82 Q 100 87 104 82" stroke="#FFD700" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+    <!-- Sparkle aura around body -->
+    <circle cx="85" cy="85" r="3" fill="#FFFFFF" opacity="0.5" class="ps-sparkle"/>
+    <circle cx="115" cy="85" r="3" fill="#FFFFFF" opacity="0.5" class="ps-sparkle"/>
+    <circle cx="100" cy="130" r="3" fill="#FFFFFF" opacity="0.4" class="ps-sparkle"/>
+
+    <!-- Legs/stem -->
+    <ellipse cx="90" cy="145" rx="8" ry="18" fill="url(#ps-body)"/>
+    <ellipse cx="110" cy="145" rx="8" ry="18" fill="url(#ps-body)"/>
+
+    <!-- Feet -->
+    <circle cx="90" cy="160" r="6" fill="#FFD700" opacity="0.7"/>
+    <circle cx="110" cy="160" r="6" fill="#FFD700" opacity="0.7"/>
+
+    <!-- Golden glow effect around entire sprite -->
+    <circle cx="100" cy="100" r="70" fill="none" stroke="#FFD700" stroke-width="1" opacity="0.2"/>
+  </g>
+</svg>

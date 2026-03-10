@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="ss-body" cx="50%" cy="60%" r="50%">
+      <stop offset="0%" stop-color="#FFDAB9"/>
+      <stop offset="100%" stop-color="#F4A460"/>
+    </radialGradient>
+    <radialGradient id="ss-shell" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#FFE4C4"/>
+      <stop offset="50%" stop-color="#FFDAB9"/>
+      <stop offset="100%" stop-color="#D2B48C"/>
+    </radialGradient>
+    <filter id="ss-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="1" dy="2" result="offsetblur"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      @keyframes ss-creep {
+        0%, 100% { transform: translateX(0px); }
+        50% { transform: translateX(3px); }
+      }
+      @keyframes ss-sway {
+        0%, 100% { transform: rotateZ(-2deg); }
+        50% { transform: rotateZ(2deg); }
+      }
+      .ss-creature { animation: ss-creep 4s ease-in-out infinite; }
+      .ss-antennae { animation: ss-sway 2s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <g class="ss-creature">
+    <!-- Shell (spiral) -->
+    <g>
+      <circle cx="85" cy="85" r="55" fill="url(#ss-shell)" filter="url(#ss-shadow)"/>
+      <!-- Spiral lines -->
+      <path d="M 85 30 Q 110 30 110 55 Q 110 80 85 85" stroke="#D2B48C" stroke-width="3" fill="none" opacity="0.6"/>
+      <path d="M 85 30 Q 110 30 110 55 Q 110 80 85 85" stroke="#D2B48C" stroke-width="1.5" fill="none" opacity="0.4" transform="translate(0, -5)"/>
+      <path d="M 90 50 Q 105 50 105 65 Q 105 75 90 78" stroke="#D2B48C" stroke-width="2" fill="none" opacity="0.5"/>
+    </g>
+
+    <!-- Body -->
+    <ellipse cx="120" cy="130" rx="40" ry="45" fill="url(#ss-body)"/>
+
+    <!-- Head -->
+    <circle cx="130" cy="75" r="28" fill="url(#ss-body)"/>
+
+    <!-- Antennae -->
+    <g class="ss-antennae">
+      <path d="M 120 50 Q 115 30 118 15" stroke="#D2B48C" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M 140 50 Q 145 30 142 15" stroke="#D2B48C" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <!-- Antenna tips -->
+      <circle cx="118" cy="12" r="4" fill="#FFDAB9"/>
+      <circle cx="142" cy="12" r="4" fill="#FFDAB9"/>
+    </g>
+
+    <!-- Eyes -->
+    <circle cx="120" cy="70" r="6" fill="#FFFFFF"/>
+    <circle cx="140" cy="70" r="6" fill="#FFFFFF"/>
+    <circle cx="119" cy="69" r="3" fill="#2D5016"/>
+    <circle cx="139" cy="69" r="3" fill="#2D5016"/>
+    <circle cx="121" cy="67" r="1.5" fill="#FFFFFF"/>
+    <circle cx="141" cy="67" r="1.5" fill="#FFFFFF"/>
+
+    <!-- Blush -->
+    <ellipse cx="110" cy="80" rx="6" ry="5" fill="#FF69B4" opacity="0.3"/>
+    <ellipse cx="150" cy="80" rx="6" ry="5" fill="#FF69B4" opacity="0.3"/>
+
+    <!-- Mouth -->
+    <path d="M 128 85 Q 130 90 132 85" stroke="#8B6914" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+    <!-- Front foot/mouth area -->
+    <ellipse cx="130" cy="100" rx="10" ry="12" fill="url(#ss-body)"/>
+
+    <!-- Bottom left foot -->
+    <ellipse cx="95" cy="165" rx="12" ry="15" fill="url(#ss-body)"/>
+
+    <!-- Bottom right foot -->
+    <ellipse cx="145" cy="165" rx="12" ry="15" fill="url(#ss-body)"/>
+
+    <!-- Shell shine -->
+    <ellipse cx="70" cy="60" rx="18" ry="22" fill="#FFFFFF" opacity="0.3"/>
+  </g>
+</svg>

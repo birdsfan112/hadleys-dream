@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="bb-body" cx="50%" cy="60%" r="50%">
+      <stop offset="0%" stop-color="#F0E6FA"/>
+      <stop offset="100%" stop-color="#E6E6FA"/>
+    </radialGradient>
+    <linearGradient id="bb-wing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E6E6FA"/>
+      <stop offset="50%" stop-color="#DDA0DD"/>
+      <stop offset="100%" stop-color="#DA70D6"/>
+    </linearGradient>
+    <filter id="bb-glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      @keyframes bb-float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-6px); }
+      }
+      @keyframes bb-flutter {
+        0%, 100% { transform: scaleY(1); }
+        25% { transform: scaleY(0.8); }
+        75% { transform: scaleY(0.8); }
+      }
+      @keyframes bb-sparkle {
+        0%, 100% { opacity: 0.4; }
+        50% { opacity: 1; }
+      }
+      .bb-creature { animation: bb-float 2.5s ease-in-out infinite; }
+      .bb-wing { animation: bb-flutter 1.2s ease-in-out infinite; }
+      .bb-sparkle { animation: bb-sparkle 1.5s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <g class="bb-creature">
+    <!-- Upper wings -->
+    <g class="bb-wing">
+      <ellipse cx="65" cy="70" rx="35" ry="45" fill="url(#bb-wing)" filter="url(#bb-glow)"/>
+      <ellipse cx="135" cy="70" rx="35" ry="45" fill="url(#bb-wing)" filter="url(#bb-glow)"/>
+    </g>
+
+    <!-- Lower wings -->
+    <g class="bb-wing">
+      <ellipse cx="75" cy="130" rx="28" ry="40" fill="url(#bb-wing)" opacity="0.9" filter="url(#bb-glow)"/>
+      <ellipse cx="125" cy="130" rx="28" ry="40" fill="url(#bb-wing)" opacity="0.9" filter="url(#bb-glow)"/>
+    </g>
+
+    <!-- Wing patterns -->
+    <circle cx="50" cy="50" r="8" fill="#FFFFFF" opacity="0.5" class="bb-sparkle"/>
+    <circle cx="150" cy="50" r="8" fill="#FFFFFF" opacity="0.5" class="bb-sparkle"/>
+    <circle cx="60" cy="120" r="6" fill="#FFFFFF" opacity="0.4" class="bb-sparkle"/>
+    <circle cx="140" cy="120" r="6" fill="#FFFFFF" opacity="0.4" class="bb-sparkle"/>
+
+    <!-- Body -->
+    <ellipse cx="100" cy="100" rx="18" ry="35" fill="url(#bb-body)"/>
+
+    <!-- Head -->
+    <circle cx="100" cy="70" r="20" fill="url(#bb-body)"/>
+
+    <!-- Antennae -->
+    <path d="M 95 52 Q 90 30 88 15" stroke="#E6E6FA" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M 105 52 Q 110 30 112 15" stroke="#E6E6FA" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- Antenna tips -->
+    <circle cx="88" cy="12" r="4" fill="#DDA0DD"/>
+    <circle cx="112" cy="12" r="4" fill="#DDA0DD"/>
+
+    <!-- Eyes -->
+    <circle cx="92" cy="65" r="6" fill="#FFFFFF"/>
+    <circle cx="108" cy="65" r="6" fill="#FFFFFF"/>
+    <circle cx="92" cy="65" r="3" fill="#6A5ACD"/>
+    <circle cx="108" cy="65" r="3" fill="#6A5ACD"/>
+    <circle cx="93" cy="63" r="1.5" fill="#FFFFFF"/>
+    <circle cx="109" cy="63" r="1.5" fill="#FFFFFF"/>
+
+    <!-- Blush -->
+    <ellipse cx="82" cy="73" rx="6" ry="5" fill="#FF69B4" opacity="0.3"/>
+    <ellipse cx="118" cy="73" rx="6" ry="5" fill="#FF69B4" opacity="0.3"/>
+
+    <!-- Mouth -->
+    <path d="M 96 80 Q 100 84 104 80" stroke="#6A5ACD" stroke-width="1" fill="none" stroke-linecap="round"/>
+
+    <!-- Extra sparkle spots on body -->
+    <circle cx="95" cy="85" r="2" fill="#FFFFFF" opacity="0.5" class="bb-sparkle"/>
+    <circle cx="105" cy="85" r="2" fill="#FFFFFF" opacity="0.5" class="bb-sparkle"/>
+    <circle cx="100" cy="115" r="1.5" fill="#FFFFFF" opacity="0.4" class="bb-sparkle"/>
+  </g>
+</svg>

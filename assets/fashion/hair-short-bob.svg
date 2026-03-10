@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="sb-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#A00000"/>
+      <stop offset="100%" stop-color="#6B0000"/>
+    </linearGradient>
+    <filter id="sb-shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <g id="back-layer">
+    <path d="M65,45 Q65,25 100,20 Q135,25 135,45 Q135,70 100,85 Q65,70 65,45" fill="url(#sb-grad)" filter="url(#sb-shadow)"/>
+  </g>
+  <g id="clothing">
+    <ellipse cx="65" cy="50" rx="18" ry="22" fill="url(#sb-grad)"/>
+    <ellipse cx="135" cy="50" rx="18" ry="22" fill="url(#sb-grad)"/>
+    <path d="M70,80 Q100,92 130,80" stroke="url(#sb-grad)" stroke-width="2" fill="none" opacity="0.6"/>
+  </g>
+</svg>

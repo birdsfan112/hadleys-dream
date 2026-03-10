@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="gt-body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8B3A1A"/>
+      <stop offset="100%" stop-color="#5C2410"/>
+    </linearGradient>
+    <radialGradient id="gt-sound" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFB347"/>
+      <stop offset="100%" stop-color="#8B4513"/>
+    </radialGradient>
+  </defs>
+  <g id="clothing">
+    <ellipse cx="115" cy="160" rx="18" ry="28" fill="url(#gt-body)"/>
+    <circle cx="115" cy="155" r="8" fill="url(#gt-sound)"/>
+    <path d="M115,125 L115,100" stroke="#DAA520" stroke-width="2" stroke-linecap="round"/>
+    <line x1="112" y1="105" x2="118" y2="105" stroke="#DAA520" stroke-width="1.5"/>
+    <line x1="111" y1="110" x2="119" y2="110" stroke="#DAA520" stroke-width="1.5"/>
+    <line x1="110" y1="115" x2="120" y2="115" stroke="#DAA520" stroke-width="1.5"/>
+  </g>
+</svg>

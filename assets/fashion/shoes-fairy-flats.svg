@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="ff-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFB6D9"/>
+      <stop offset="100%" stop-color="#FF69B4"/>
+    </linearGradient>
+    <radialGradient id="ff-bow" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#FF69B4"/>
+    </radialGradient>
+  </defs>
+  <g id="clothing">
+    <ellipse cx="80" cy="318" rx="13" ry="11" fill="url(#ff-grad)"/>
+    <ellipse cx="120" cy="318" rx="13" ry="11" fill="url(#ff-grad)"/>
+    <path d="M75,305 Q80,300 85,305" fill="url(#ff-bow)"/>
+    <path d="M115,305 Q120,300 125,305" fill="url(#ff-bow)"/>
+    <circle cx="77" cy="305" r="2" fill="#FFD700" opacity="0.8"/>
+    <circle cx="83" cy="305" r="2" fill="#FFD700" opacity="0.8"/>
+    <circle cx="117" cy="305" r="2" fill="#FFD700" opacity="0.8"/>
+    <circle cx="123" cy="305" r="2" fill="#FFD700" opacity="0.8"/>
+  </g>
+</svg>

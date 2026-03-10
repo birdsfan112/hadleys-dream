@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <pattern id="ts-stripes" patternUnits="userSpaceOnUse" width="8" height="0" x="0" y="115">
+      <rect width="4" height="85" fill="#FF4444"/>
+      <rect x="4" width="4" height="85" fill="#FFFFFF"/>
+    </pattern>
+    <linearGradient id="ts-edge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#CC0000"/>
+      <stop offset="100%" stop-color="#CC0000"/>
+    </linearGradient>
+  </defs>
+  <g id="clothing">
+    <path d="M65,115 Q100,108 135,115 L140,190 Q100,195 60,190 Z" fill="url(#ts-stripes)"/>
+    <path d="M65,115 Q100,108 135,115 L140,190 Q100,195 60,190 Z" fill="none" stroke="url(#ts-edge)" stroke-width="1.5"/>
+    <circle cx="85" cy="145" r="3" fill="#FFFF00" opacity="0.7"/>
+    <circle cx="115" cy="155" r="3" fill="#FFFF00" opacity="0.7"/>
+  </g>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="fs-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E6D5F5"/>
+      <stop offset="100%" stop-color="#B8A0D9"/>
+    </linearGradient>
+    <radialGradient id="fs-light" cx="50%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="#F5E8FF"/>
+      <stop offset="100%" stop-color="#D5C0E8"/>
+    </radialGradient>
+  </defs>
+  <g id="clothing">
+    <path d="M78,190 Q60,220 65,270 Q70,290 75,305 L125,305 Q130,290 135,270 Q140,220 122,190" fill="url(#fs-grad)"/>
+    <path d="M80,210 Q70,240 75,280" fill="none" stroke="url(#fs-light)" stroke-width="4" opacity="0.5"/>
+    <path d="M120,210 Q130,240 125,280" fill="none" stroke="url(#fs-light)" stroke-width="4" opacity="0.5"/>
+    <circle cx="85" cy="250" r="2" fill="#FFB6D9" opacity="0.8"/>
+    <circle cx="115" cy="260" r="2" fill="#FFB6D9" opacity="0.8"/>
+  </g>
+</svg>

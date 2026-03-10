@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="gs-body" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6A0DAD"/>
+      <stop offset="50%" stop-color="#4B0082"/>
+      <stop offset="100%" stop-color="#2D0052"/>
+    </linearGradient>
+    <radialGradient id="gs-gem" cx="40%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#FFE6FF"/>
+      <stop offset="100%" stop-color="#9400D3"/>
+    </radialGradient>
+    <filter id="gs-glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      @keyframes gs-slither {
+        0% { transform: translateX(-5px); }
+        25% { transform: translateX(3px); }
+        50% { transform: translateX(0px); }
+        75% { transform: translateX(-3px); }
+        100% { transform: translateX(-5px); }
+      }
+      @keyframes gs-gem-sparkle {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+      }
+      .gs-creature { animation: gs-slither 3s ease-in-out infinite; }
+      .gs-gem { animation: gs-gem-sparkle 1.5s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <g class="gs-creature">
+    <!-- Main coiled body -->
+    <ellipse cx="100" cy="120" rx="45" ry="50" fill="url(#gs-body)" transform="rotate(-15 100 120)"/>
+    <ellipse cx="80" cy="85" rx="35" ry="40" fill="url(#gs-body)" transform="rotate(-25 80 85)"/>
+    <ellipse cx="120" cy="95" rx="30" ry="35" fill="url(#gs-body)" transform="rotate(20 120 95)"/>
+
+    <!-- Neck/head area -->
+    <ellipse cx="100" cy="50" rx="26" ry="32" fill="url(#gs-body)"/>
+
+    <!-- Head -->
+    <circle cx="100" cy="30" r="22" fill="url(#gs-body)"/>
+
+    <!-- Gem scales on body -->
+    <ellipse cx="95" cy="110" r="8" fill="url(#gs-gem)" class="gs-gem" filter="url(#gs-glow)"/>
+    <ellipse cx="105" cy="115" r="7" fill="url(#gs-gem)" class="gs-gem" filter="url(#gs-glow)"/>
+    <ellipse cx="75" cy="85" r="6" fill="url(#gs-gem)" class="gs-gem" filter="url(#gs-glow)"/>
+    <ellipse cx="120" cy="100" r="7" fill="url(#gs-gem)" class="gs-gem" filter="url(#gs-glow)"/>
+    <ellipse cx="88" cy="60" r="5" fill="url(#gs-gem)" class="gs-gem" filter="url(#gs-glow)"/>
+    <ellipse cx="112" cy="55" r="5" fill="url(#gs-gem)" class="gs-gem" filter="url(#gs-glow)"/>
+
+    <!-- Eyes (big, mystical) -->
+    <circle cx="90" cy="25" r="7" fill="#FFFFFF"/>
+    <circle cx="110" cy="25" r="7" fill="#FFFFFF"/>
+    <circle cx="90" cy="25" r="4" fill="#9400D3"/>
+    <circle cx="110" cy="25" r="4" fill="#9400D3"/>
+    <circle cx="92" cy="22" r="2" fill="#FFFFFF"/>
+    <circle cx="112" cy="22" r="2" fill="#FFFFFF"/>
+
+    <!-- Blush -->
+    <ellipse cx="78" cy="33" rx="6" ry="5" fill="#FFB6FF" opacity="0.3"/>
+    <ellipse cx="122" cy="33" rx="6" ry="5" fill="#FFB6FF" opacity="0.3"/>
+
+    <!-- Mouth (serpent smile) -->
+    <path d="M 96 40 Q 100 44 104 40" stroke="#9400D3" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+    <!-- Forked tongue hint -->
+    <path d="M 100 45 L 98 50" stroke="#FFB6FF" stroke-width="1" fill="none" opacity="0.6"/>
+    <path d="M 100 45 L 102 50" stroke="#FFB6FF" stroke-width="1" fill="none" opacity="0.6"/>
+
+    <!-- Tail curls -->
+    <path d="M 55 95 Q 40 90 35 110" stroke="url(#gs-body)" stroke-width="14" fill="none" stroke-linecap="round" opacity="0.9"/>
+    <path d="M 145 100 Q 160 105 165 125" stroke="url(#gs-body)" stroke-width="14" fill="none" stroke-linecap="round" opacity="0.9"/>
+
+    <!-- Gem on tail -->
+    <circle cx="35" cy="110" r="5" fill="url(#gs-gem)" class="gs-gem" filter="url(#gs-glow)"/>
+    <circle cx="165" cy="125" r="5" fill="url(#gs-gem)" class="gs-gem" filter="url(#gs-glow)"/>
+
+    <!-- Body pattern lines -->
+    <path d="M 75 85 Q 90 95 100 100" stroke="#FFE6FF" stroke-width="1" fill="none" opacity="0.3"/>
+    <path d="M 125 95 Q 115 105 105 115" stroke="#FFE6FF" stroke-width="1" fill="none" opacity="0.3"/>
+  </g>
+</svg>

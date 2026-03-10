@@ -66,8 +66,15 @@
   background-position: center bottom;
   background-repeat: no-repeat;
 }
+.location-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 6px 12px;
+  z-index: 3;
+}
 .location-name {
-  text-align: center;
   font-weight: 700;
   font-size: 1.1em;
   padding: 6px 18px;
@@ -78,8 +85,16 @@
     0 0 16px rgba(0,0,0,0.25);
   background: rgba(0,0,0,0.3);
   border-radius: 20px;
-  align-self: center;
-  z-index: 3;
+}
+.catch-progress {
+  padding: 4px 14px;
+  background: rgba(0,0,0,0.35);
+  border-radius: 20px;
+  color: #FFF;
+  font-size: 0.8em;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  white-space: nowrap;
 }
 .back-location-btn {
   position: absolute;
@@ -104,40 +119,68 @@
   position: relative;
   z-index: 2;
 }
+/* Camouflaged explore spots — blend into scenes */
 .explore-spot {
   position: absolute;
-  width: 60px;
-  height: 60px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8em;
-  animation: float 2s ease-in-out infinite;
-  transition: transform 0.1s;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.2));
+  font-size: 1.5em;
+  transition: transform 0.15s, opacity 0.3s;
+  opacity: 0.55;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
 }
-.explore-spot:active { transform: scale(0.85); }
+.explore-spot:hover,
+.explore-spot:active {
+  opacity: 1;
+  transform: scale(1.1);
+  filter: drop-shadow(0 2px 8px rgba(255,255,255,0.4));
+}
 .explore-spot.on-cooldown {
-  opacity: 0.3;
+  opacity: 0.15;
   pointer-events: none;
-  animation: none;
 }
+/* Subtle rustling animation instead of obvious floating */
 .explore-spot .spot-glow {
+  display: none;
+}
+.explore-spot .spot-hint {
   position: absolute;
-  inset: -6px;
+  inset: 0;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, transparent 70%);
-  animation: pulse 1.5s ease-in-out infinite;
+  animation: rustle 3s ease-in-out infinite;
 }
 
-/* Stagger float animation */
-.explore-spot:nth-child(2) { animation-delay: 0.3s; }
-.explore-spot:nth-child(3) { animation-delay: 0.6s; }
-.explore-spot:nth-child(4) { animation-delay: 0.9s; }
-.explore-spot:nth-child(5) { animation-delay: 1.2s; }
-.explore-spot:nth-child(6) { animation-delay: 1.5s; }
+@keyframes rustle {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(1px, -1px) rotate(2deg); }
+  50% { transform: translate(-1px, 0) rotate(-1deg); }
+  75% { transform: translate(1px, 1px) rotate(1deg); }
+}
+
+/* Delayed reveal spots — fade in after a few seconds */
+.explore-spot.delayed {
+  opacity: 0;
+  animation: spotReveal 0.6s ease-out forwards;
+}
+
+@keyframes spotReveal {
+  from { opacity: 0; transform: scale(0.7); }
+  to { opacity: 0.5; transform: scale(1); }
+}
+
+/* Stagger delayed spots */
+.explore-spot:nth-child(2) .spot-hint { animation-delay: 0.4s; }
+.explore-spot:nth-child(3) .spot-hint { animation-delay: 0.8s; }
+.explore-spot:nth-child(4) .spot-hint { animation-delay: 1.2s; }
+.explore-spot:nth-child(5) .spot-hint { animation-delay: 0.2s; }
+.explore-spot:nth-child(6) .spot-hint { animation-delay: 0.6s; }
+.explore-spot:nth-child(7) .spot-hint { animation-delay: 1.0s; }
+.explore-spot:nth-child(8) .spot-hint { animation-delay: 0.3s; }
 
 /* --- Catch Overlay --- */
 #catch-overlay {

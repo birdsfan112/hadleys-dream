@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="sand-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D2691E"/>
+      <stop offset="100%" stop-color="#8B4513"/>
+    </linearGradient>
+    <linearGradient id="sand-strap" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#CD853F"/>
+      <stop offset="100%" stop-color="#8B4513"/>
+    </linearGradient>
+  </defs>
+  <g id="clothing">
+    <ellipse cx="80" cy="315" rx="12" ry="10" fill="url(#sand-grad)"/>
+    <ellipse cx="120" cy="315" rx="12" ry="10" fill="url(#sand-grad)"/>
+    <path d="M80,310 Q80,305 80,300" stroke="url(#sand-strap)" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M120,310 Q120,305 120,300" stroke="url(#sand-strap)" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M75,312 Q80,308 85,312" stroke="url(#sand-strap)" stroke-width="1.5" opacity="0.7"/>
+    <path d="M115,312 Q120,308 125,312" stroke="url(#sand-strap)" stroke-width="1.5" opacity="0.7"/>
+  </g>
+</svg>

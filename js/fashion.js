@@ -105,17 +105,6 @@ const Fashion = (() => {
     document.getElementById('fashion-album').classList.add('hidden');
     document.getElementById('challenge-result').classList.add('hidden');
     renderScores();
-    // DEBUG: show SVG cache status on enter (remove after debugging)
-    const loaded = Object.keys(svgCache).filter(k => svgCache[k]);
-    const failed = Object.keys(svgCache).filter(k => !svgCache[k]);
-    const notFetched = FASHION_ITEMS.filter(i => i.svg && !(i.id in svgCache)).map(i => i.id);
-    if (failed.length > 0 || notFetched.length > 0) {
-      Game.showToast(`SVG: ${loaded.length} ok, ${failed.length} failed, ${notFetched.length} pending`);
-      setTimeout(() => {
-        if (failed.length > 0) Game.showToast('Failed: ' + failed.join(', '));
-        else if (notFetched.length > 0) Game.showToast('Pending: ' + notFetched.join(', '));
-      }, 3000);
-    }
   }
 
   function renderScores() {
@@ -194,6 +183,8 @@ const Fashion = (() => {
   function showDressup() {
     document.getElementById('fashion-main').classList.add('hidden');
     document.getElementById('fashion-dressup').classList.remove('hidden');
+    // Reset wardrobe tab to first category each time
+    activeTab = 'hair';
     renderAvatar();
     renderWardrobeTabs();
     renderWardrobeItems();

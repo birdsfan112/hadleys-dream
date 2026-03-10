@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="ov-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4A90E2"/>
+      <stop offset="100%" stop-color="#1E4C9A"/>
+    </linearGradient>
+    <linearGradient id="ov-button" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#DAA520"/>
+    </linearGradient>
+  </defs>
+  <g id="clothing">
+    <path d="M70,115 L68,280 Q70,290 75,300 L75,310" fill="url(#ov-grad)"/>
+    <path d="M130,115 L132,280 Q130,290 125,300 L125,310" fill="url(#ov-grad)"/>
+    <rect x="75" y="115" width="50" height="65" fill="url(#ov-grad)"/>
+    <circle cx="85" cy="135" r="3.5" fill="url(#ov-button)"/>
+    <circle cx="100" cy="140" r="3.5" fill="url(#ov-button)"/>
+    <circle cx="115" cy="135" r="3.5" fill="url(#ov-button)"/>
+    <line x1="68" y1="180" x2="70" y2="280" stroke="url(#ov-grad)" stroke-width="1" opacity="0.5"/>
+    <line x1="132" y1="180" x2="130" y2="280" stroke="url(#ov-grad)" stroke-width="1" opacity="0.5"/>
+  </g>
+</svg>

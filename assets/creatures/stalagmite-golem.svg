@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="sg-body" cx="50%" cy="55%" r="50%">
+      <stop offset="0%" stop-color="#808080"/>
+      <stop offset="100%" stop-color="#696969"/>
+    </radialGradient>
+    <radialGradient id="sg-crystal" cx="40%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#FFFF99"/>
+      <stop offset="100%" stop-color="#FFD700"/>
+    </radialGradient>
+    <filter id="sg-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="1" dy="2" result="offsetblur"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="sg-glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      @keyframes sg-steady {
+        0%, 100% { transform: scaleY(1); }
+        50% { transform: scaleY(0.98); }
+      }
+      @keyframes sg-glow-pulse {
+        0%, 100% { filter: drop-shadow(0 0 3px #FFD700); }
+        50% { filter: drop-shadow(0 0 8px #FFD700); }
+      }
+      .sg-creature { animation: sg-steady 4s ease-in-out infinite; }
+      .sg-crown { animation: sg-glow-pulse 2.5s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <g class="sg-creature">
+    <!-- Rocky body (irregular/rough) -->
+    <ellipse cx="100" cy="130" rx="48" ry="55" fill="url(#sg-body)" filter="url(#sg-shadow)"/>
+
+    <!-- Rock texture bumps -->
+    <circle cx="70" cy="110" r="12" fill="#A9A9A9" opacity="0.6"/>
+    <circle cx="75" cy="150" r="10" fill="#808080" opacity="0.5"/>
+    <circle cx="130" cy="105" r="11" fill="#A9A9A9" opacity="0.6"/>
+    <circle cx="125" cy="155" r="10" fill="#808080" opacity="0.5"/>
+    <circle cx="100" cy="165" r="9" fill="#696969" opacity="0.4"/>
+
+    <!-- Cracks in body -->
+    <path d="M 80 120 L 95 145" stroke="#696969" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M 120 115 L 105 150" stroke="#696969" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M 70 130 L 85 155" stroke="#696969" stroke-width="1.5" fill="none" opacity="0.4"/>
+
+    <!-- Head/upper body -->
+    <ellipse cx="100" cy="60" r="40" ry="45" fill="url(#sg-body)"/>
+
+    <!-- Crystal crown (on top) -->
+    <g class="sg-crown">
+      <polygon points="100,15 85,35 95,35" fill="url(#sg-crystal)" filter="url(#sg-glow)"/>
+      <polygon points="100,15 115,35 105,35" fill="url(#sg-crystal)" filter="url(#sg-glow)"/>
+      <polygon points="100,18 88,38 92,38" fill="url(#sg-crystal)" opacity="0.8" filter="url(#sg-glow)"/>
+      <polygon points="100,18 112,38 108,38" fill="url(#sg-crystal)" opacity="0.8" filter="url(#sg-glow)"/>
+      <!-- Center crown gem -->
+      <circle cx="100" cy="20" r="8" fill="url(#sg-crystal)" filter="url(#sg-glow)"/>
+    </g>
+
+    <!-- Eyes (glowing) -->
+    <circle cx="87" cy="55" r="7" fill="#FFFF99" opacity="0.8"/>
+    <circle cx="113" cy="55" r="7" fill="#FFFF99" opacity="0.8"/>
+    <circle cx="87" cy="55" r="4" fill="#FFD700"/>
+    <circle cx="113" cy="55" r="4" fill="#FFD700"/>
+    <circle cx="89" cy="52" r="2" fill="#FFFF99"/>
+    <circle cx="115" cy="52" r="2" fill="#FFFF99"/>
+
+    <!-- Serious/stoic expression - no blush -->
+    <!-- Mouth (straight/serious line) -->
+    <path d="M 92 70 Q 100 73 108 70" stroke="#696969" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+    <!-- Nose/mark -->
+    <circle cx="100" cy="62" r="3" fill="#A9A9A9" opacity="0.7"/>
+
+    <!-- Stalagmite spikes on shoulders -->
+    <polygon points="65,90 60,70 70,90" fill="url(#sg-body)"/>
+    <polygon points="135,90 140,70 130,90" fill="url(#sg-body)"/>
+    <polygon points="60,100 55,80 65,100" fill="#696969" opacity="0.7"/>
+    <polygon points="140,100 145,80 135,100" fill="#696969" opacity="0.7"/>
+
+    <!-- Arms (rocky columns) -->
+    <rect x="45" y="100" width="18" height="50" rx="5" fill="url(#sg-body)"/>
+    <rect x="137" y="100" width="18" height="50" rx="5" fill="url(#sg-body)"/>
+    <!-- Fists -->
+    <circle cx="54" cy="160" r="12" fill="#696969" opacity="0.8"/>
+    <circle cx="146" cy="160" r="12" fill="#696969" opacity="0.8"/>
+
+    <!-- Legs (shorter, rocky) -->
+    <rect x="80" y="175" width="15" height="20" rx="4" fill="url(#sg-body)"/>
+    <rect x="105" y="175" width="15" height="20" rx="4" fill="url(#sg-body)"/>
+    <!-- Feet -->
+    <ellipse cx="87" cy="197" rx="10" ry="6" fill="#696969"/>
+    <ellipse cx="112" cy="197" rx="10" ry="6" fill="#696969"/>
+
+    <!-- Embedded crystals -->
+    <polygon points="100,100 95,115 105,115" fill="url(#sg-crystal)" opacity="0.6" class="sg-crown"/>
+    <polygon points="75,130 72,140 82,135" fill="url(#sg-crystal)" opacity="0.5" class="sg-crown"/>
+  </g>
+</svg>

@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="wd-body" cx="50%" cy="55%" r="50%">
+      <stop offset="0%" stop-color="#6DB3D5"/>
+      <stop offset="100%" stop-color="#4682B4"/>
+    </radialGradient>
+    <linearGradient id="wd-fin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#87CEEB"/>
+      <stop offset="100%" stop-color="#4682B4"/>
+    </linearGradient>
+    <filter id="wd-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="1" dy="2" result="offsetblur"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      @keyframes wd-leap {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-8px); }
+      }
+      @keyframes wd-wiggle {
+        0%, 100% { transform: rotateZ(-3deg); }
+        50% { transform: rotateZ(3deg); }
+      }
+      .wd-creature { animation: wd-leap 2.8s ease-in-out infinite; }
+      .wd-tail { animation: wd-wiggle 1.5s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <g class="wd-creature">
+    <!-- Body -->
+    <ellipse cx="85" cy="110" rx="50" ry="45" fill="url(#wd-body)" filter="url(#wd-shadow)"/>
+
+    <!-- Head -->
+    <circle cx="50" cy="75" r="30" fill="url(#wd-body)"/>
+
+    <!-- Snout -->
+    <ellipse cx="25" cy="80" rx="18" ry="15" fill="url(#wd-body)"/>
+    <ellipse cx="20" cy="80" rx="8" ry="6" fill="#87CEEB"/>
+
+    <!-- Dorsal fin -->
+    <path d="M 85 60 L 80 35 L 90 60" fill="url(#wd-fin)"/>
+
+    <!-- Side fins -->
+    <ellipse cx="55" cy="125" rx="12" ry="28" fill="url(#wd-fin)" transform="rotate(-25 55 125)"/>
+    <ellipse cx="115" cy="125" rx="12" ry="28" fill="url(#wd-fin)" transform="rotate(25 115 125)"/>
+
+    <!-- Tail flukes -->
+    <g class="wd-tail">
+      <path d="M 140 105 L 160 85 L 165 105 L 160 125 Z" fill="url(#wd-fin)"/>
+      <path d="M 142 107 L 158 90 L 163 107 L 158 123 Z" fill="url(#wd-fin)" opacity="0.7"/>
+    </g>
+
+    <!-- Eyes -->
+    <circle cx="40" cy="65" r="7" fill="#FFFFFF"/>
+    <circle cx="60" cy="65" r="7" fill="#FFFFFF"/>
+    <circle cx="40" cy="65" r="4" fill="#000080"/>
+    <circle cx="60" cy="65" r="4" fill="#000080"/>
+    <circle cx="42" cy="62" r="2" fill="#FFFFFF"/>
+    <circle cx="62" cy="62" r="2" fill="#FFFFFF"/>
+
+    <!-- Blush -->
+    <ellipse cx="35" cy="75" rx="6" ry="5" fill="#FF69B4" opacity="0.3"/>
+    <ellipse cx="65" cy="75" rx="6" ry="5" fill="#FF69B4" opacity="0.3"/>
+
+    <!-- Smile -->
+    <path d="M 45 85 Q 50 90 55 87" stroke="#000080" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+    <!-- Wave crown (water effect) -->
+    <g>
+      <path d="M 30 50 Q 35 40 40 50" stroke="#87CEEB" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <path d="M 45 48 Q 50 38 55 48" stroke="#87CEEB" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <path d="M 60 50 Q 65 40 70 50" stroke="#87CEEB" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+    </g>
+
+    <!-- Belly marking -->
+    <ellipse cx="85" cy="120" rx="25" ry="20" fill="#87CEEB" opacity="0.4"/>
+
+    <!-- Shine spots -->
+    <ellipse cx="65" cy="95" rx="12" ry="15" fill="#FFFFFF" opacity="0.2"/>
+  </g>
+</svg>

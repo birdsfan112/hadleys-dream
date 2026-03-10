@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <defs>
+    <linearGradient id="dj-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4A90E2"/>
+      <stop offset="100%" stop-color="#1E4C9A"/>
+    </linearGradient>
+    <linearGradient id="dj-button" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#AA8c2c"/>
+    </linearGradient>
+  </defs>
+  <g id="clothing">
+    <path d="M60,115 L70,120 L75,190 Q100,195 125,190 L130,120 L140,115 Q100,110 60,115" fill="url(#dj-grad)"/>
+    <line x1="100" y1="120" x2="100" y2="185" stroke="#2E5C8A" stroke-width="1.5" opacity="0.6"/>
+    <circle cx="90" cy="140" r="3" fill="url(#dj-button)"/>
+    <circle cx="100" cy="160" r="3" fill="url(#dj-button)"/>
+    <circle cx="110" cy="140" r="3" fill="url(#dj-button)"/>
+    <rect x="65" y="120" width="10" height="15" fill="#2E5C8A" opacity="0.5" rx="1"/>
+    <rect x="125" y="120" width="10" height="15" fill="#2E5C8A" opacity="0.5" rx="1"/>
+  </g>
+</svg>
