@@ -78,6 +78,28 @@
     <!-- Flowing ethereal mane/ruff (silver-blue) -->
     <path d="M68 65 Q62 75 68 90 Q65 105 75 115" fill="none" stroke="url(#mw-mane-grad)" stroke-width="5" stroke-linecap="round" filter="url(#mw-shadow)"/>
     <path d="M108 62 Q115 75 110 92 Q115 107 105 118" fill="none" stroke="url(#mw-mane-grad)" stroke-width="5" stroke-linecap="round" filter="url(#mw-shadow)"/>
+
+    <!-- Piercing ice-blue eyes (inside head group so they move with head) -->
+    <g class="mw-eyes">
+      <circle cx="78" cy="80" r="9" fill="url(#mw-eye-glow)" filter="url(#mw-glow)"/>
+      <circle cx="102" cy="83" r="9" fill="url(#mw-eye-glow)" filter="url(#mw-glow)"/>
+      <!-- Pupils -->
+      <circle cx="78" cy="82" r="3.5" fill="#1A2A40"/>
+      <circle cx="102" cy="84" r="3.5" fill="#1A2A40"/>
+      <!-- Eye shine -->
+      <circle cx="76" cy="78" r="2.5" fill="#FFFFFF" opacity="0.95"/>
+      <circle cx="100" cy="81" r="2.5" fill="#FFFFFF" opacity="0.95"/>
+    </g>
+
+    <!-- Blush (soft) -->
+    <ellipse cx="65" cy="95" rx="12" ry="6" fill="#87CEFA" opacity="0.2"/>
+
+    <!-- Nose (delicate) -->
+    <ellipse cx="60" cy="75" rx="4" ry="3.5" fill="#1A2A40"/>
+    <circle cx="59" cy="74" r="1.5" fill="#FFFFFF" opacity="0.7"/>
+
+    <!-- Mouth (howling expression) -->
+    <path d="M63 81 Q70 88 80 84" stroke="#2E5DB8" stroke-width="2" fill="none" stroke-linecap="round"/>
   </g>
 
   <!-- Body (noble, upright posture) -->
@@ -91,28 +113,6 @@
   <!-- Fur texture details -->
   <path d="M82 125 Q87 118 85 110" stroke="#7BA8E8" stroke-width="1.2" fill="none" opacity="0.5"/>
   <path d="M112 120 Q118 114 115 108" stroke="#7BA8E8" stroke-width="1.2" fill="none" opacity="0.5"/>
-
-  <!-- Piercing ice-blue eyes (fierce yet noble) -->
-  <g class="mw-eyes">
-    <circle cx="78" cy="80" r="9" fill="url(#mw-eye-glow)" filter="url(#mw-glow)"/>
-    <circle cx="102" cy="83" r="9" fill="url(#mw-eye-glow)" filter="url(#mw-glow)"/>
-    <!-- Pupils -->
-    <circle cx="78" cy="82" r="3.5" fill="#1A2A40"/>
-    <circle cx="102" cy="84" r="3.5" fill="#1A2A40"/>
-    <!-- Eye shine -->
-    <circle cx="76" cy="78" r="2.5" fill="#FFFFFF" opacity="0.95"/>
-    <circle cx="100" cy="81" r="2.5" fill="#FFFFFF" opacity="0.95"/>
-  </g>
-
-  <!-- Blush (soft) -->
-  <ellipse cx="65" cy="95" rx="12" ry="6" fill="#87CEFA" opacity="0.2"/>
-
-  <!-- Nose (delicate) -->
-  <ellipse cx="60" cy="75" rx="4" ry="3.5" fill="#1A2A40"/>
-  <circle cx="59" cy="74" r="1.5" fill="#FFFFFF" opacity="0.7"/>
-
-  <!-- Mouth (howling expression) -->
-  <path d="M63 81 Q70 88 80 84" stroke="#2E5DB8" stroke-width="2" fill="none" stroke-linecap="round"/>
 
   <!-- Tail (flowing with energy) -->
   <path d="M142 138 Q170 120 180 95 Q185 78 170 82 Q160 100 150 118" fill="url(#mw-body-grad)" stroke="#2E5DB8" stroke-width="1.5" filter="url(#mw-shadow)"/>
