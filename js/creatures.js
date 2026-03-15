@@ -8,6 +8,7 @@ const CreatureWorld = (() => {
   let catchState = null;
   let catchActive = false;
   let legendaryEscapeUsed = false; // tracks whether the legendary has already used its escape power this encounter
+  let legendaryEscapeTimeout = null;
   let practiceTimeout = null;
   let cooldowns = {}; // spotKey -> timestamp when available
   let parallaxMoveHandler = null;
@@ -478,8 +479,11 @@ const CreatureWorld = (() => {
     // Show creature SVG image if available
     const svgContainer = document.getElementById('catch-creature-svg');
     if (svgContainer) {
-      // Reset all animation classes before adding new content
+      // Reset all animation classes and inline styles before adding new content
       svgContainer.classList.remove('catch-creature-entrance', 'catch-celebrate', 'catch-dodge');
+      svgContainer.style.transition = '';
+      svgContainer.style.opacity = '';
+      svgContainer.style.transform = '';
       if (svgCache.has(creature.id)) {
         svgContainer.innerHTML = sanitizeSVG(svgCache.get(creature.id));
         svgContainer.classList.remove('hidden');
@@ -710,7 +714,8 @@ const CreatureWorld = (() => {
       document.getElementById('catch-instruction').textContent = '';
 
       // After a dramatic pause, restart the catch minigame for a second attempt
-      setTimeout(() => {
+      legendaryEscapeTimeout = setTimeout(() => {
+        legendaryEscapeTimeout = null;
         const creaturesScreen = document.getElementById('creatures-screen');
         if (!creaturesScreen || !creaturesScreen.classList.contains('active')) return;
         const overlay = document.getElementById('catch-overlay');
@@ -763,17 +768,21 @@ const CreatureWorld = (() => {
   function closeCatch() {
     catchActive = false;
     legendaryEscapeUsed = false;
+    if (legendaryEscapeTimeout) { clearTimeout(legendaryEscapeTimeout); legendaryEscapeTimeout = null; }
     if (practiceTimeout) { clearTimeout(practiceTimeout); practiceTimeout = null; }
     Audio.sfx.click();
     const overlayEl = document.getElementById('catch-overlay');
     overlayEl.classList.add('hidden');
     overlayEl.classList.remove('practice-mode');
-    // Hide creature SVG and reset all animation classes
+    // Hide creature SVG and reset all animation classes + inline styles
     const svgContainer = document.getElementById('catch-creature-svg');
     if (svgContainer) {
       svgContainer.innerHTML = '';
       svgContainer.classList.add('hidden');
       svgContainer.classList.remove('catch-creature-entrance', 'catch-celebrate', 'catch-dodge');
+      svgContainer.style.transition = '';
+      svgContainer.style.opacity = '';
+      svgContainer.style.transform = '';
     }
     cancelAnimationFrame(catchAnimFrame);
     renderSpots(); // Refresh cooldown states
