@@ -7,8 +7,12 @@ const CreatureWorld = (() => {
   let catchAnimFrame = null;
   let catchState = null;
   let catchActive = false;
+  let legendaryEscapeUsed = false; // tracks whether the legendary has already used its escape power this encounter
+  let legendaryEscapeTimeout = null;
   let practiceTimeout = null;
   let cooldowns = {}; // spotKey -> timestamp when available
+  let spotCreatures = []; // pre-assigned creature per spot index
+  let spotCooldownTimeouts = []; // timeout IDs for cooldown-expiry re-rolls
   let parallaxMoveHandler = null;
   let parallaxTouchHandler = null;
   try {
@@ -120,11 +124,78 @@ const CreatureWorld = (() => {
     renderSpots();
   }
 
+  // Pick a creature for a spot, avoiding duplicates already assigned to other spots
+  function pickCreatureForSpot(usedIds) {
+    const locCreatures = CREATURES.filter(c => c.location === currentLocation.id);
+    const caught = Game.state.creatures || [];
+
+    // Weighted random by rarity
+    const roll = Math.random();
+    let cumulative = 0;
+    let selectedRarity;
+    for (const [r, cfg] of Object.entries(RARITY)) {
+      cumulative += cfg.chance;
+      if (roll <= cumulative) { selectedRarity = r; break; }
+    }
+
+    // Filter by rarity, then remove already-used creatures
+    let pool = locCreatures.filter(c => c.rarity === selectedRarity && !usedIds.has(c.id));
+    if (pool.length === 0) {
+      // Fallback: try same rarity but allow duplicates
+      pool = locCreatures.filter(c => c.rarity === selectedRarity);
+    }
+    if (pool.length === 0) {
+      // Fallback: any common creature
+      pool = locCreatures.filter(c => c.rarity === 'common');
+    }
+
+    // Smart weighting: uncaught creatures get 4x the weight
+    const weighted = [];
+    pool.forEach(c => {
+      const weight = caught.includes(c.id) ? 1 : 4;
+      for (let i = 0; i < weight; i++) weighted.push(c);
+    });
+
+    return weighted[Math.floor(Math.random() * weighted.length)];
+  }
+
+  // Inject a silhouette SVG thumbnail into a spot element
+  function setSpotSilhouette(spot, creature) {
+    const rarityColor = RARITY[creature.rarity].color;
+    spot.dataset.rarity = creature.rarity;
+    spot.style.setProperty('--rarity-color', rarityColor);
+
+    let silhouetteHTML = '';
+    if (svgCache.has(creature.id)) {
+      silhouetteHTML = `<div class="spot-silhouette">${sanitizeSVG(svgCache.get(creature.id))}</div>`;
+    } else if (creature.svg) {
+      silhouetteHTML = `<div class="spot-silhouette"><img src="${creature.svg}" alt="" style="width:100%;height:100%;" onerror="this.parentElement.innerHTML='?'"></div>`;
+    } else {
+      // Fallback: use the location emoji icon
+      const icons = SPOT_ICONS[currentLocation.id] || ['✨'];
+      silhouetteHTML = icons[0];
+    }
+
+    spot.innerHTML = `<div class="spot-hint"></div>${silhouetteHTML}`;
+  }
+
   function renderSpots() {
     const container = document.getElementById('explore-spots');
     container.innerHTML = '';
-    const icons = SPOT_ICONS[currentLocation.id] || ['✨'];
     const spotCount = currentLocation.spots;
+
+    // Clear any pending cooldown re-roll timeouts from a previous render
+    spotCooldownTimeouts.forEach(id => clearTimeout(id));
+    spotCooldownTimeouts = [];
+
+    // Pre-assign a creature to each spot
+    spotCreatures = [];
+    const usedIds = new Set();
+    for (let i = 0; i < spotCount; i++) {
+      const creature = pickCreatureForSpot(usedIds);
+      spotCreatures.push(creature);
+      if (creature) usedIds.add(creature.id);
+    }
 
     for (let i = 0; i < spotCount; i++) {
       const spot = document.createElement('div');
@@ -133,9 +204,19 @@ const CreatureWorld = (() => {
       const now = Date.now();
       if (cooldowns[key] && cooldowns[key] > now) {
         spot.classList.add('on-cooldown');
-        setTimeout(() => {
-          spot.classList.remove('on-cooldown');
-        }, cooldowns[key] - now);
+        // When cooldown expires, re-roll and refresh this spot's creature
+        const cooldownRemaining = cooldowns[key] - now;
+        ((spotIndex, spotEl) => {
+          const tid = setTimeout(() => {
+            spotEl.classList.remove('on-cooldown');
+            // Re-roll creature for this spot
+            const currentUsed = new Set(spotCreatures.filter((c, j) => c && j !== spotIndex).map(c => c.id));
+            const newCreature = pickCreatureForSpot(currentUsed);
+            spotCreatures[spotIndex] = newCreature;
+            if (newCreature) setSpotSilhouette(spotEl, newCreature);
+          }, cooldownRemaining);
+          spotCooldownTimeouts.push(tid);
+        })(i, spot);
       }
 
       // Spread spots across the scene with more variety
@@ -152,10 +233,14 @@ const CreatureWorld = (() => {
         spot.style.animationDelay = `${2 + i * 0.5}s`;
       }
 
-      spot.innerHTML = `
-        <div class="spot-hint"></div>
-        ${icons[i % icons.length]}
-      `;
+      // Set silhouette content
+      if (spotCreatures[i]) {
+        setSpotSilhouette(spot, spotCreatures[i]);
+      } else {
+        const icons = SPOT_ICONS[currentLocation.id] || ['✨'];
+        spot.innerHTML = `<div class="spot-hint"></div>${icons[i % icons.length]}`;
+      }
+
       spot.onclick = () => discoverCreature(i, spot);
       container.appendChild(spot);
     }
@@ -195,8 +280,9 @@ const CreatureWorld = (() => {
     if (spotEl.classList.contains('on-cooldown')) return;
     Audio.sfx.discover();
 
-    const creature = pickCreature();
+    const creature = spotCreatures[spotIndex] || pickCreature();
     if (!creature) return;
+    legendaryEscapeUsed = false; // fresh encounter
     startCatchGame(creature, spotIndex);
   }
 
@@ -476,8 +562,11 @@ const CreatureWorld = (() => {
     // Show creature SVG image if available
     const svgContainer = document.getElementById('catch-creature-svg');
     if (svgContainer) {
-      // Reset all animation classes before adding new content
+      // Reset all animation classes and inline styles before adding new content
       svgContainer.classList.remove('catch-creature-entrance', 'catch-celebrate', 'catch-dodge');
+      svgContainer.style.transition = '';
+      svgContainer.style.opacity = '';
+      svgContainer.style.transform = '';
       if (svgCache.has(creature.id)) {
         svgContainer.innerHTML = sanitizeSVG(svgCache.get(creature.id));
         svgContainer.classList.remove('hidden');
@@ -694,6 +783,33 @@ const CreatureWorld = (() => {
       return;
     }
 
+    // Legendary escape: if creature has an escapePower and hasn't used it yet, escape and restart
+    if (creature.escapePower && !legendaryEscapeUsed) {
+      legendaryEscapeUsed = true;
+      Audio.sfx.catchMiss();
+      playLegendaryEscapeEffect(creature, document.getElementById('catch-creature-svg'), canvas, ctxC);
+      resultText.innerHTML = `
+        <span style="font-size:0.7em;color:${creature.escapePower.color}">${creature.escapePower.name}!</span><br>
+        <span style="font-size:0.6em">${creature.escapePower.message}</span><br>
+        <span style="font-size:0.6em;color:#FFF">Get ready to try again...</span>
+      `;
+      resultEl.classList.remove('hidden');
+      document.getElementById('catch-instruction').textContent = '';
+
+      // After a dramatic pause, restart the catch minigame for a second attempt
+      legendaryEscapeTimeout = setTimeout(() => {
+        legendaryEscapeTimeout = null;
+        const creaturesScreen = document.getElementById('creatures-screen');
+        if (!creaturesScreen || !creaturesScreen.classList.contains('active')) return;
+        const overlay = document.getElementById('catch-overlay');
+        if (overlay.classList.contains('hidden')) return;
+        resultEl.classList.add('hidden');
+        catchActive = false;
+        startCatchGame(creature, spotIndex);
+      }, 2500);
+      return;
+    }
+
     // Catch success!
     const isNew = !Game.state.creatures.includes(creature.id);
     let coins = creature.coins;
@@ -724,6 +840,9 @@ const CreatureWorld = (() => {
     cooldowns[key] = Date.now() + RARITY[creature.rarity].cooldown;
     saveCooldowns();
 
+    // Reset legendary escape state
+    legendaryEscapeUsed = false;
+
     SaveManager.autoSave(Game.state);
     updateCatchProgress();
     catchActive = false;
@@ -731,17 +850,22 @@ const CreatureWorld = (() => {
 
   function closeCatch() {
     catchActive = false;
+    legendaryEscapeUsed = false;
+    if (legendaryEscapeTimeout) { clearTimeout(legendaryEscapeTimeout); legendaryEscapeTimeout = null; }
     if (practiceTimeout) { clearTimeout(practiceTimeout); practiceTimeout = null; }
     Audio.sfx.click();
     const overlayEl = document.getElementById('catch-overlay');
     overlayEl.classList.add('hidden');
     overlayEl.classList.remove('practice-mode');
-    // Hide creature SVG and reset all animation classes
+    // Hide creature SVG and reset all animation classes + inline styles
     const svgContainer = document.getElementById('catch-creature-svg');
     if (svgContainer) {
       svgContainer.innerHTML = '';
       svgContainer.classList.add('hidden');
       svgContainer.classList.remove('catch-creature-entrance', 'catch-celebrate', 'catch-dodge');
+      svgContainer.style.transition = '';
+      svgContainer.style.opacity = '';
+      svgContainer.style.transform = '';
     }
     cancelAnimationFrame(catchAnimFrame);
     renderSpots(); // Refresh cooldown states
@@ -749,6 +873,9 @@ const CreatureWorld = (() => {
 
   function backToLocations() {
     Audio.sfx.click();
+    // Clear pending cooldown timeouts before leaving (prevents TypeError on null currentLocation)
+    spotCooldownTimeouts.forEach(id => clearTimeout(id));
+    spotCooldownTimeouts = [];
     currentLocation = null;
     Particles.stop();
     removeParallax();
@@ -817,6 +944,93 @@ const CreatureWorld = (() => {
 
     // Draw ring shatter
     drawRingShatter(canvas, ctxC);
+  }
+
+  function playLegendaryEscapeEffect(creature, svgContainer, canvas, ctxC) {
+    const power = creature.escapePower;
+    const cx = 130, cy = 130;
+
+    // SVG creature does a dramatic shake then fades
+    if (svgContainer && !svgContainer.classList.contains('hidden')) {
+      svgContainer.classList.add('catch-dodge');
+      setTimeout(() => {
+        svgContainer.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        svgContainer.style.opacity = '0';
+        svgContainer.style.transform = 'scale(1.5)';
+      }, 400);
+      setTimeout(() => {
+        svgContainer.style.transition = '';
+        svgContainer.style.opacity = '';
+        svgContainer.style.transform = '';
+        svgContainer.classList.remove('catch-dodge');
+      }, 1800);
+    }
+
+    // Flash overlay with the power's color
+    const overlay = document.getElementById('catch-overlay');
+    overlay.classList.add('catch-overlay-flash');
+    setTimeout(() => overlay.classList.remove('catch-overlay-flash'), 400);
+
+    // Draw expanding energy ring in the power's color
+    const powerColor = power.color;
+    let startTime = performance.now();
+
+    function animateEscape(now) {
+      const elapsed = (now - startTime) / 1000;
+      if (elapsed > 1.2) return;
+
+      ctxC.clearRect(0, 0, 260, 260);
+      const progress = elapsed / 1.2;
+
+      // Expanding shockwave ring
+      const ringR = 20 + progress * 120;
+      const alpha = Math.max(0, 1 - progress);
+      ctxC.save();
+      ctxC.globalAlpha = alpha;
+      ctxC.shadowBlur = 25;
+      ctxC.shadowColor = powerColor;
+      ctxC.strokeStyle = powerColor;
+      ctxC.lineWidth = 6 * (1 - progress);
+      ctxC.beginPath();
+      ctxC.arc(cx, cy, ringR, 0, Math.PI * 2);
+      ctxC.stroke();
+      ctxC.restore();
+
+      // Energy particles spiraling outward
+      const particleCount = 16;
+      for (let i = 0; i < particleCount; i++) {
+        const angle = (Math.PI * 2 * i) / particleCount + elapsed * 4;
+        const dist = 20 + progress * 100 + Math.sin(i * 1.7) * 15;
+        const px = cx + Math.cos(angle) * dist;
+        const py = cy + Math.sin(angle) * dist;
+        const size = 3 * (1 - progress * 0.7);
+
+        ctxC.save();
+        ctxC.globalAlpha = alpha * 0.8;
+        ctxC.fillStyle = powerColor;
+        ctxC.shadowBlur = 10;
+        ctxC.shadowColor = powerColor;
+        ctxC.beginPath();
+        ctxC.arc(px, py, size, 0, Math.PI * 2);
+        ctxC.fill();
+        ctxC.restore();
+      }
+
+      // Inner flash that fades
+      if (elapsed < 0.3) {
+        const flashAlpha = (1 - elapsed / 0.3) * 0.4;
+        ctxC.save();
+        ctxC.globalAlpha = flashAlpha;
+        ctxC.fillStyle = powerColor;
+        ctxC.beginPath();
+        ctxC.arc(cx, cy, 60, 0, Math.PI * 2);
+        ctxC.fill();
+        ctxC.restore();
+      }
+
+      requestAnimationFrame(animateEscape);
+    }
+    requestAnimationFrame(animateEscape);
   }
 
   function drawConfettiBurst(canvas, ctxC) {
