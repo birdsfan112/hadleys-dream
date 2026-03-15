@@ -182,6 +182,45 @@
 .explore-spot:nth-child(7) .spot-hint { animation-delay: 1.0s; }
 .explore-spot:nth-child(8) .spot-hint { animation-delay: 0.3s; }
 
+/* --- Creature Silhouette in Spots --- */
+.spot-silhouette {
+  width: 36px;
+  height: 36px;
+  filter: brightness(0) opacity(0.6);
+  pointer-events: none;
+  transition: filter 0.3s;
+}
+.spot-silhouette svg,
+.spot-silhouette img {
+  width: 100%;
+  height: 100%;
+}
+/* On hover, silhouette gets slightly brighter */
+.explore-spot:hover .spot-silhouette,
+.explore-spot:active .spot-silhouette {
+  filter: brightness(0) opacity(0.85);
+}
+/* Rarity glow ring on spots that have a creature */
+.explore-spot[data-rarity] {
+  box-shadow: 0 0 8px 2px var(--rarity-color, transparent);
+  background: radial-gradient(circle, rgba(0,0,0,0.15) 0%, transparent 70%);
+}
+.explore-spot[data-rarity]:hover,
+.explore-spot[data-rarity]:active {
+  box-shadow: 0 0 14px 4px var(--rarity-color, transparent);
+}
+/* Legendary spots get a subtle pulse */
+.explore-spot[data-rarity="legendary"] {
+  animation: legendarySpotPulse 2s ease-in-out infinite;
+}
+.explore-spot[data-rarity="legendary"].delayed {
+  animation: spotReveal 0.6s ease-out forwards, legendarySpotPulse 2s ease-in-out infinite;
+}
+@keyframes legendarySpotPulse {
+  0%, 100% { box-shadow: 0 0 8px 2px var(--rarity-color); }
+  50% { box-shadow: 0 0 18px 6px var(--rarity-color); }
+}
+
 /* --- Catch Overlay --- */
 #catch-overlay {
   position: absolute;

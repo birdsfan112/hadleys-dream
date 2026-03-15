@@ -11,6 +11,8 @@ const CreatureWorld = (() => {
   let legendaryEscapeTimeout = null;
   let practiceTimeout = null;
   let cooldowns = {}; // spotKey -> timestamp when available
+  let spotCreatures = []; // pre-assigned creature per spot index
+  let spotCooldownTimeouts = []; // timeout IDs for cooldown-expiry re-rolls
   let parallaxMoveHandler = null;
   let parallaxTouchHandler = null;
   try {
@@ -122,11 +124,78 @@ const CreatureWorld = (() => {
     renderSpots();
   }
 
+  // Pick a creature for a spot, avoiding duplicates already assigned to other spots
+  function pickCreatureForSpot(usedIds) {
+    const locCreatures = CREATURES.filter(c => c.location === currentLocation.id);
+    const caught = Game.state.creatures || [];
+
+    // Weighted random by rarity
+    const roll = Math.random();
+    let cumulative = 0;
+    let selectedRarity;
+    for (const [r, cfg] of Object.entries(RARITY)) {
+      cumulative += cfg.chance;
+      if (roll <= cumulative) { selectedRarity = r; break; }
+    }
+
+    // Filter by rarity, then remove already-used creatures
+    let pool = locCreatures.filter(c => c.rarity === selectedRarity && !usedIds.has(c.id));
+    if (pool.length === 0) {
+      // Fallback: try same rarity but allow duplicates
+      pool = locCreatures.filter(c => c.rarity === selectedRarity);
+    }
+    if (pool.length === 0) {
+      // Fallback: any common creature
+      pool = locCreatures.filter(c => c.rarity === 'common');
+    }
+
+    // Smart weighting: uncaught creatures get 4x the weight
+    const weighted = [];
+    pool.forEach(c => {
+      const weight = caught.includes(c.id) ? 1 : 4;
+      for (let i = 0; i < weight; i++) weighted.push(c);
+    });
+
+    return weighted[Math.floor(Math.random() * weighted.length)];
+  }
+
+  // Inject a silhouette SVG thumbnail into a spot element
+  function setSpotSilhouette(spot, creature) {
+    const rarityColor = RARITY[creature.rarity].color;
+    spot.dataset.rarity = creature.rarity;
+    spot.style.setProperty('--rarity-color', rarityColor);
+
+    let silhouetteHTML = '';
+    if (svgCache.has(creature.id)) {
+      silhouetteHTML = `<div class="spot-silhouette">${sanitizeSVG(svgCache.get(creature.id))}</div>`;
+    } else if (creature.svg) {
+      silhouetteHTML = `<div class="spot-silhouette"><img src="${creature.svg}" alt="" style="width:100%;height:100%;" onerror="this.parentElement.innerHTML='?'"></div>`;
+    } else {
+      // Fallback: use the location emoji icon
+      const icons = SPOT_ICONS[currentLocation.id] || ['✨'];
+      silhouetteHTML = icons[0];
+    }
+
+    spot.innerHTML = `<div class="spot-hint"></div>${silhouetteHTML}`;
+  }
+
   function renderSpots() {
     const container = document.getElementById('explore-spots');
     container.innerHTML = '';
-    const icons = SPOT_ICONS[currentLocation.id] || ['✨'];
     const spotCount = currentLocation.spots;
+
+    // Clear any pending cooldown re-roll timeouts from a previous render
+    spotCooldownTimeouts.forEach(id => clearTimeout(id));
+    spotCooldownTimeouts = [];
+
+    // Pre-assign a creature to each spot
+    spotCreatures = [];
+    const usedIds = new Set();
+    for (let i = 0; i < spotCount; i++) {
+      const creature = pickCreatureForSpot(usedIds);
+      spotCreatures.push(creature);
+      if (creature) usedIds.add(creature.id);
+    }
 
     for (let i = 0; i < spotCount; i++) {
       const spot = document.createElement('div');
@@ -135,9 +204,19 @@ const CreatureWorld = (() => {
       const now = Date.now();
       if (cooldowns[key] && cooldowns[key] > now) {
         spot.classList.add('on-cooldown');
-        setTimeout(() => {
-          spot.classList.remove('on-cooldown');
-        }, cooldowns[key] - now);
+        // When cooldown expires, re-roll and refresh this spot's creature
+        const cooldownRemaining = cooldowns[key] - now;
+        ((spotIndex, spotEl) => {
+          const tid = setTimeout(() => {
+            spotEl.classList.remove('on-cooldown');
+            // Re-roll creature for this spot
+            const currentUsed = new Set(spotCreatures.filter((c, j) => c && j !== spotIndex).map(c => c.id));
+            const newCreature = pickCreatureForSpot(currentUsed);
+            spotCreatures[spotIndex] = newCreature;
+            if (newCreature) setSpotSilhouette(spotEl, newCreature);
+          }, cooldownRemaining);
+          spotCooldownTimeouts.push(tid);
+        })(i, spot);
       }
 
       // Spread spots across the scene with more variety
@@ -154,10 +233,14 @@ const CreatureWorld = (() => {
         spot.style.animationDelay = `${2 + i * 0.5}s`;
       }
 
-      spot.innerHTML = `
-        <div class="spot-hint"></div>
-        ${icons[i % icons.length]}
-      `;
+      // Set silhouette content
+      if (spotCreatures[i]) {
+        setSpotSilhouette(spot, spotCreatures[i]);
+      } else {
+        const icons = SPOT_ICONS[currentLocation.id] || ['✨'];
+        spot.innerHTML = `<div class="spot-hint"></div>${icons[i % icons.length]}`;
+      }
+
       spot.onclick = () => discoverCreature(i, spot);
       container.appendChild(spot);
     }
@@ -197,7 +280,7 @@ const CreatureWorld = (() => {
     if (spotEl.classList.contains('on-cooldown')) return;
     Audio.sfx.discover();
 
-    const creature = pickCreature();
+    const creature = spotCreatures[spotIndex] || pickCreature();
     if (!creature) return;
     legendaryEscapeUsed = false; // fresh encounter
     startCatchGame(creature, spotIndex);
