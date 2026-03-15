@@ -873,6 +873,9 @@ const CreatureWorld = (() => {
 
   function backToLocations() {
     Audio.sfx.click();
+    // Clear pending cooldown timeouts before leaving (prevents TypeError on null currentLocation)
+    spotCooldownTimeouts.forEach(id => clearTimeout(id));
+    spotCooldownTimeouts = [];
     currentLocation = null;
     Particles.stop();
     removeParallax();
