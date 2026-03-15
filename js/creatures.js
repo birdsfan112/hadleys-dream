@@ -7,6 +7,7 @@ const CreatureWorld = (() => {
   let catchAnimFrame = null;
   let catchState = null;
   let catchActive = false;
+  let legendaryEscapeUsed = false; // tracks whether the legendary has already used its escape power this encounter
   let practiceTimeout = null;
   let cooldowns = {}; // spotKey -> timestamp when available
   let parallaxMoveHandler = null;
@@ -197,6 +198,7 @@ const CreatureWorld = (() => {
 
     const creature = pickCreature();
     if (!creature) return;
+    legendaryEscapeUsed = false; // fresh encounter
     startCatchGame(creature, spotIndex);
   }
 
@@ -694,6 +696,32 @@ const CreatureWorld = (() => {
       return;
     }
 
+    // Legendary escape: if creature has an escapePower and hasn't used it yet, escape and restart
+    if (creature.escapePower && !legendaryEscapeUsed) {
+      legendaryEscapeUsed = true;
+      Audio.sfx.catchMiss();
+      playLegendaryEscapeEffect(creature, document.getElementById('catch-creature-svg'), canvas, ctxC);
+      resultText.innerHTML = `
+        <span style="font-size:0.7em;color:${creature.escapePower.color}">${creature.escapePower.name}!</span><br>
+        <span style="font-size:0.6em">${creature.escapePower.message}</span><br>
+        <span style="font-size:0.6em;color:#FFF">Get ready to try again...</span>
+      `;
+      resultEl.classList.remove('hidden');
+      document.getElementById('catch-instruction').textContent = '';
+
+      // After a dramatic pause, restart the catch minigame for a second attempt
+      setTimeout(() => {
+        const creaturesScreen = document.getElementById('creatures-screen');
+        if (!creaturesScreen || !creaturesScreen.classList.contains('active')) return;
+        const overlay = document.getElementById('catch-overlay');
+        if (overlay.classList.contains('hidden')) return;
+        resultEl.classList.add('hidden');
+        catchActive = false;
+        startCatchGame(creature, spotIndex);
+      }, 2500);
+      return;
+    }
+
     // Catch success!
     const isNew = !Game.state.creatures.includes(creature.id);
     let coins = creature.coins;
@@ -724,6 +752,9 @@ const CreatureWorld = (() => {
     cooldowns[key] = Date.now() + RARITY[creature.rarity].cooldown;
     saveCooldowns();
 
+    // Reset legendary escape state
+    legendaryEscapeUsed = false;
+
     SaveManager.autoSave(Game.state);
     updateCatchProgress();
     catchActive = false;
@@ -731,6 +762,7 @@ const CreatureWorld = (() => {
 
   function closeCatch() {
     catchActive = false;
+    legendaryEscapeUsed = false;
     if (practiceTimeout) { clearTimeout(practiceTimeout); practiceTimeout = null; }
     Audio.sfx.click();
     const overlayEl = document.getElementById('catch-overlay');
@@ -817,6 +849,93 @@ const CreatureWorld = (() => {
 
     // Draw ring shatter
     drawRingShatter(canvas, ctxC);
+  }
+
+  function playLegendaryEscapeEffect(creature, svgContainer, canvas, ctxC) {
+    const power = creature.escapePower;
+    const cx = 130, cy = 130;
+
+    // SVG creature does a dramatic shake then fades
+    if (svgContainer && !svgContainer.classList.contains('hidden')) {
+      svgContainer.classList.add('catch-dodge');
+      setTimeout(() => {
+        svgContainer.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        svgContainer.style.opacity = '0';
+        svgContainer.style.transform = 'scale(1.5)';
+      }, 400);
+      setTimeout(() => {
+        svgContainer.style.transition = '';
+        svgContainer.style.opacity = '';
+        svgContainer.style.transform = '';
+        svgContainer.classList.remove('catch-dodge');
+      }, 1800);
+    }
+
+    // Flash overlay with the power's color
+    const overlay = document.getElementById('catch-overlay');
+    overlay.classList.add('catch-overlay-flash');
+    setTimeout(() => overlay.classList.remove('catch-overlay-flash'), 400);
+
+    // Draw expanding energy ring in the power's color
+    const powerColor = power.color;
+    let startTime = performance.now();
+
+    function animateEscape(now) {
+      const elapsed = (now - startTime) / 1000;
+      if (elapsed > 1.2) return;
+
+      ctxC.clearRect(0, 0, 260, 260);
+      const progress = elapsed / 1.2;
+
+      // Expanding shockwave ring
+      const ringR = 20 + progress * 120;
+      const alpha = Math.max(0, 1 - progress);
+      ctxC.save();
+      ctxC.globalAlpha = alpha;
+      ctxC.shadowBlur = 25;
+      ctxC.shadowColor = powerColor;
+      ctxC.strokeStyle = powerColor;
+      ctxC.lineWidth = 6 * (1 - progress);
+      ctxC.beginPath();
+      ctxC.arc(cx, cy, ringR, 0, Math.PI * 2);
+      ctxC.stroke();
+      ctxC.restore();
+
+      // Energy particles spiraling outward
+      const particleCount = 16;
+      for (let i = 0; i < particleCount; i++) {
+        const angle = (Math.PI * 2 * i) / particleCount + elapsed * 4;
+        const dist = 20 + progress * 100 + Math.sin(i * 1.7) * 15;
+        const px = cx + Math.cos(angle) * dist;
+        const py = cy + Math.sin(angle) * dist;
+        const size = 3 * (1 - progress * 0.7);
+
+        ctxC.save();
+        ctxC.globalAlpha = alpha * 0.8;
+        ctxC.fillStyle = powerColor;
+        ctxC.shadowBlur = 10;
+        ctxC.shadowColor = powerColor;
+        ctxC.beginPath();
+        ctxC.arc(px, py, size, 0, Math.PI * 2);
+        ctxC.fill();
+        ctxC.restore();
+      }
+
+      // Inner flash that fades
+      if (elapsed < 0.3) {
+        const flashAlpha = (1 - elapsed / 0.3) * 0.4;
+        ctxC.save();
+        ctxC.globalAlpha = flashAlpha;
+        ctxC.fillStyle = powerColor;
+        ctxC.beginPath();
+        ctxC.arc(cx, cy, 60, 0, Math.PI * 2);
+        ctxC.fill();
+        ctxC.restore();
+      }
+
+      requestAnimationFrame(animateEscape);
+    }
+    requestAnimationFrame(animateEscape);
   }
 
   function drawConfettiBurst(canvas, ctxC) {

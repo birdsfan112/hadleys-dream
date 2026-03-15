@@ -84,7 +84,8 @@ const CREATURES = [
     svg: 'assets/creatures/fern-phoenix.svg' },
   { id: 'elder-owl', name: 'Elder Owl', location: 'sparkle-forest', rarity: 'legendary', coins: 100,
     colors: ['#8B6914', '#FFD700'], shape: 'owl', eyes: 'wise', accessory: 'golden-crown',
-    svg: 'assets/creatures/elder-owl.svg' },
+    svg: 'assets/creatures/elder-owl.svg',
+    escapePower: { name: 'Ancient Wisdom', message: 'Elder Owl uses Ancient Wisdom to vanish in a flash of golden light!', color: '#FFD700' } },
 
   // Crystal Beach (10)
   { id: 'bubble-seal', name: 'Bubble Seal', location: 'crystal-beach', rarity: 'common', coins: 10,
@@ -116,7 +117,8 @@ const CREATURES = [
     svg: 'assets/creatures/crystal-turtle.svg' },
   { id: 'tide-dragon', name: 'Tide Dragon', location: 'crystal-beach', rarity: 'legendary', coins: 100,
     colors: ['#00CED1', '#20B2AA'], shape: 'dragon', eyes: 'fierce', accessory: 'wave-wings',
-    svg: 'assets/creatures/tide-dragon.svg' },
+    svg: 'assets/creatures/tide-dragon.svg',
+    escapePower: { name: 'Tidal Surge', message: 'Tide Dragon summons a Tidal Surge and rides the waves to freedom!', color: '#00CED1' } },
 
   // Cloud Garden (10)
   { id: 'cloud-kitten', name: 'Cloud Kitten', location: 'cloud-garden', rarity: 'common', coins: 10,
@@ -148,7 +150,8 @@ const CREATURES = [
     svg: 'assets/creatures/nimbus-dragon.svg' },
   { id: 'aurora-unicorn', name: 'Aurora Unicorn', location: 'cloud-garden', rarity: 'legendary', coins: 100,
     colors: ['#FFD1DC', '#C8A2C8'], shape: 'unicorn', eyes: 'magical', accessory: 'aurora-mane',
-    svg: 'assets/creatures/aurora-unicorn.svg' },
+    svg: 'assets/creatures/aurora-unicorn.svg',
+    escapePower: { name: 'Aurora Veil', message: 'Aurora Unicorn casts Aurora Veil and disappears in a shimmer of rainbow light!', color: '#C8A2C8' } },
 
   // Moon Cave (10)
   { id: 'glow-bat', name: 'Glow Bat', location: 'moon-cave', rarity: 'common', coins: 10,
@@ -180,7 +183,8 @@ const CREATURES = [
     svg: 'assets/creatures/stalagmite-golem.svg' },
   { id: 'void-wyrm', name: 'Void Wyrm', location: 'moon-cave', rarity: 'legendary', coins: 100,
     colors: ['#191970', '#000080'], shape: 'wyrm', eyes: 'cosmic', accessory: 'star-dust',
-    svg: 'assets/creatures/void-wyrm.svg' },
+    svg: 'assets/creatures/void-wyrm.svg',
+    escapePower: { name: 'Void Shift', message: 'Void Wyrm uses Void Shift and phases through the fabric of space!', color: '#9370DB' } },
 
   // Rainbow Meadow (10)
   { id: 'flower-hamster', name: 'Flower Hamster', location: 'rainbow-meadow', rarity: 'common', coins: 10,
@@ -212,7 +216,8 @@ const CREATURES = [
     svg: 'assets/creatures/dream-dragon.svg' },
   { id: 'prism-pegasus', name: 'Prism Pegasus', location: 'rainbow-meadow', rarity: 'legendary', coins: 100,
     colors: ['#FF69B4', '#FFD700'], shape: 'pegasus', eyes: 'radiant', accessory: 'rainbow-wings',
-    svg: 'assets/creatures/prism-pegasus.svg' }
+    svg: 'assets/creatures/prism-pegasus.svg',
+    escapePower: { name: 'Prism Dash', message: 'Prism Pegasus uses Prism Dash and streaks away in a blaze of rainbow fire!', color: '#FF69B4' } }
 ];
 
 // Rarity config
