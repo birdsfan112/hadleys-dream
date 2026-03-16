@@ -121,7 +121,7 @@
 .explore-avatar {
   position: absolute;
   bottom: 8px;
-  right: 16px;
+  left: 90px;
   width: 64px;
   height: 108px;
   z-index: 4;
@@ -201,7 +201,11 @@
 /* Delayed reveal spots — fade in after a few seconds */
 .explore-spot.delayed {
   opacity: 0;
+  pointer-events: none;
   animation: spotReveal 0.6s ease-out forwards;
+}
+.explore-spot.delayed.revealed {
+  pointer-events: auto;
 }
 
 @keyframes spotReveal {

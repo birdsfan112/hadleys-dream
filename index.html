@@ -227,8 +227,16 @@
   <!-- ========== Collection Screen (Modal) ========== -->
   <div id="collection-overlay" class="hidden modal-overlay" onclick="Game.closeCollection(event)">
     <div class="modal" style="max-width:460px;max-height:85vh;" onclick="event.stopPropagation()">
-      <h2>Creature Collection</h2>
-      <div class="card-grid" id="collection-grid" style="grid-template-columns:repeat(auto-fill,minmax(80px,1fr));"></div>
+      <div class="collection-tabs">
+        <button class="collection-tab active" id="tab-collection" onclick="Game.showCollectionTab('collection')">Collection</button>
+        <button class="collection-tab" id="tab-legendary-shop" onclick="Game.showCollectionTab('legendary-shop')">Legendary Shop</button>
+      </div>
+      <div id="collection-view">
+        <div class="card-grid" id="collection-grid" style="grid-template-columns:repeat(auto-fill,minmax(80px,1fr));"></div>
+      </div>
+      <div id="legendary-shop-view" class="hidden">
+        <div class="legendary-shop-grid" id="legendary-shop-grid"></div>
+      </div>
       <button class="btn small" style="margin-top:16px;width:100%;" onclick="Game.closeCollection()">Close</button>
     </div>
   </div>
