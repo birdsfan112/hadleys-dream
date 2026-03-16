@@ -254,9 +254,9 @@ const Particles = (() => {
       // Size variation based on opacity for depth effect
       const sizeVariation = p.baseSize * (opacityWave * 0.3 + 0.7);
 
-      // Draw glow if enabled
-      if (p.glow && alpha > 0.1) {
-        ctx.shadowBlur = sizeVariation * 2.5;
+      // Draw glow if enabled (reduced intensity for mobile performance)
+      if (p.glow && alpha > 0.2) {
+        ctx.shadowBlur = sizeVariation * 1.5;
         ctx.shadowColor = p.glowColor;
       } else {
         ctx.shadowBlur = 0;
@@ -284,6 +284,21 @@ const Particles = (() => {
     animationFrameId = requestAnimationFrame(animate);
   }
 
+  function pause() {
+    if (!isRunning) return;
+    isRunning = false;
+    if (animationFrameId) {
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = null;
+    }
+  }
+
+  function resume() {
+    if (isRunning || !canvas || !ctx || particles.length === 0) return;
+    isRunning = true;
+    animate();
+  }
+
   function stop() {
     isRunning = false;
     if (animationFrameId) {
@@ -301,5 +316,5 @@ const Particles = (() => {
     currentLocationId = null;
   }
 
-  return { init, stop };
+  return { init, stop, pause, resume };
 })();

@@ -75,10 +75,12 @@ const CreatureWorld = (() => {
       card.className = 'location-card';
       card.dataset.loc = loc.id;
       card.style.background = loc.bg;
+      const unlocked = legendariesUnlocked(loc.id);
       card.innerHTML = `
         <div class="loc-icon">${loc.icon}</div>
         <div class="loc-name">${loc.name}</div>
         <div class="loc-count">${caught}/${total} caught</div>
+        ${unlocked ? '<div class="loc-legendary-badge">Legendary unlocked</div>' : ''}
       `;
       card.onclick = () => enterLocation(loc);
       grid.appendChild(card);
@@ -121,7 +123,18 @@ const CreatureWorld = (() => {
     // Update catch progress counter
     updateCatchProgress();
 
+    // Show fashion avatar in the scene
+    renderExploreAvatar();
+
     renderSpots();
+  }
+
+  // Check whether legendary creatures are unlocked for a location
+  // Requires all common creatures in that location to be caught first
+  function legendariesUnlocked(locationId) {
+    const caught = Game.state.creatures || [];
+    const commons = CREATURES.filter(c => c.location === locationId && c.rarity === 'common');
+    return commons.every(c => caught.includes(c.id));
   }
 
   // Pick a creature for a spot, avoiding duplicates already assigned to other spots
@@ -136,6 +149,11 @@ const CreatureWorld = (() => {
     for (const [r, cfg] of Object.entries(RARITY)) {
       cumulative += cfg.chance;
       if (roll <= cumulative) { selectedRarity = r; break; }
+    }
+
+    // Legendaries only appear once all commons in this area are caught
+    if (selectedRarity === 'legendary' && !legendariesUnlocked(currentLocation.id)) {
+      selectedRarity = 'common';
     }
 
     // Filter by rarity, then remove already-used creatures
@@ -260,6 +278,11 @@ const CreatureWorld = (() => {
       if (roll <= cumulative) { selectedRarity = r; break; }
     }
 
+    // Legendaries only appear once all commons in this area are caught
+    if (selectedRarity === 'legendary' && !legendariesUnlocked(currentLocation.id)) {
+      selectedRarity = 'common';
+    }
+
     // Filter by rarity
     let pool = locCreatures.filter(c => c.rarity === selectedRarity);
     if (pool.length === 0) {
@@ -290,6 +313,7 @@ const CreatureWorld = (() => {
   function startPracticeRound(creature, spotIndex) {
     if (catchActive) return;
     catchActive = true;
+    try { Particles.pause(); } catch (e) {}
 
     const overlay = document.getElementById('catch-overlay');
     overlay.classList.remove('hidden');
@@ -543,6 +567,9 @@ const CreatureWorld = (() => {
 
     if (catchActive) return;
     catchActive = true;
+
+    // Pause particles while catch overlay is active to save CPU
+    try { Particles.pause(); } catch (e) {}
 
     const overlay = document.getElementById('catch-overlay');
     overlay.classList.remove('hidden');
@@ -843,6 +870,11 @@ const CreatureWorld = (() => {
     // Reset legendary escape state
     legendaryEscapeUsed = false;
 
+    // Check if this catch just unlocked legendaries for this location
+    if (isNew && creature.rarity === 'common' && legendariesUnlocked(currentLocation.id)) {
+      setTimeout(() => Game.showToast('Legendary creature unlocked in ' + currentLocation.name + '!'), 1500);
+    }
+
     SaveManager.autoSave(Game.state);
     updateCatchProgress();
     catchActive = false;
@@ -868,6 +900,8 @@ const CreatureWorld = (() => {
       svgContainer.style.transform = '';
     }
     cancelAnimationFrame(catchAnimFrame);
+    // Resume particles now that the catch overlay is closed
+    try { if (currentLocation) Particles.resume(); } catch (e) {}
     renderSpots(); // Refresh cooldown states
   }
 
@@ -1200,18 +1234,23 @@ const CreatureWorld = (() => {
     requestAnimationFrame(animate);
   }
 
-  // --- Parallax Touch Interaction ---
+  // --- Parallax Touch Interaction (throttled for performance) ---
   function setupParallax() {
     removeParallax(); // Clean up any existing listeners
     const sceneEl = document.getElementById('location-scene');
     if (!sceneEl) return;
 
+    let parallaxRAF = null;
     parallaxMoveHandler = function(e) {
-      const touch = e.touches ? e.touches[0] : e;
-      const rect = sceneEl.getBoundingClientRect();
-      const x = (touch.clientX - rect.left) / rect.width - 0.5; // -0.5 to 0.5
-      const y = (touch.clientY - rect.top) / rect.height - 0.5;
-      sceneEl.style.backgroundPosition = `calc(50% + ${x * 20}px) calc(100% + ${y * 10}px)`;
+      if (parallaxRAF) return; // throttle to animation frame rate
+      parallaxRAF = requestAnimationFrame(() => {
+        parallaxRAF = null;
+        const touch = e.touches ? e.touches[0] : e;
+        const rect = sceneEl.getBoundingClientRect();
+        const x = (touch.clientX - rect.left) / rect.width - 0.5;
+        const y = (touch.clientY - rect.top) / rect.height - 0.5;
+        sceneEl.style.backgroundPosition = `calc(50% + ${x * 20}px) calc(100% + ${y * 10}px)`;
+      });
     };
 
     sceneEl.addEventListener('mousemove', parallaxMoveHandler);
@@ -1225,6 +1264,23 @@ const CreatureWorld = (() => {
       sceneEl.removeEventListener('mousemove', parallaxMoveHandler);
       sceneEl.removeEventListener('touchmove', parallaxMoveHandler);
       parallaxMoveHandler = null;
+    }
+  }
+
+  // --- Fashion Avatar in Explore Scene ---
+  function renderExploreAvatar() {
+    const el = document.getElementById('explore-avatar');
+    if (!el) return;
+    try {
+      // Use the most recently saved outfit, if any
+      const outfits = Game.state.saved_outfits;
+      const outfit = outfits && outfits.length > 0
+        ? outfits[outfits.length - 1].items
+        : null;
+      const svg = outfit ? Fashion.getAvatarSVG(outfit) : '';
+      el.innerHTML = svg;
+    } catch (e) {
+      el.innerHTML = '';
     }
   }
 
