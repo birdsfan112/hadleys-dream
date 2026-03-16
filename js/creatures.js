@@ -1039,7 +1039,7 @@ const CreatureWorld = (() => {
     const anim = power.animation || 'flash';
     const DURATION = 2.0; // seconds (longer for dramatic fullscreen effect)
 
-    // SVG creature does a dramatic exit
+    // SVG creature does a dramatic exit — hide after fade so it doesn't flash back
     if (svgContainer && !svgContainer.classList.contains('hidden')) {
       svgContainer.classList.add('catch-dodge');
       setTimeout(() => {
@@ -1048,11 +1048,12 @@ const CreatureWorld = (() => {
         svgContainer.style.transform = 'scale(1.5)';
       }, 400);
       setTimeout(() => {
+        svgContainer.classList.add('hidden');
         svgContainer.style.transition = '';
         svgContainer.style.opacity = '';
         svgContainer.style.transform = '';
         svgContainer.classList.remove('catch-dodge');
-      }, 2200);
+      }, 1100);
     }
 
     // Flash overlay with the power's color
