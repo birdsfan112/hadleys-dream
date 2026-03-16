@@ -2584,5 +2584,326 @@ class TestServiceWorkerCache(unittest.TestCase):
         self.assertIn('assets/img/icon-192.svg', match.group(1))
 
 
+# ===========================================================================
+# Test Suite 31: Escape animation TDZ fix (creatures.js)
+# ===========================================================================
+class TestEscapeAnimationScoping(unittest.TestCase):
+    """
+    Validates the fix for the Temporal Dead Zone bug in animateEscape().
+    The inner drawing context must use a different name ('ctx') than the
+    outer parameter ('ctxC') so the completion path can access ctxC.
+    """
+
+    def setUp(self):
+        self.src = read_js('creatures.js')
+        # Extract the playLegendaryEscapeEffect function body
+        idx = self.src.find('function playLegendaryEscapeEffect')
+        self.assertGreater(idx, 0)
+        self.fn_body = self.src[idx:idx + 17000]
+
+    def test_no_const_ctxC_inside_animateEscape(self):
+        """creatures.js: animateEscape must NOT shadow ctxC with const/let/var"""
+        # Find the animateEscape inner function
+        idx = self.fn_body.find('function animateEscape')
+        self.assertGreater(idx, 0)
+        anim_body = self.fn_body[idx:]
+        # Should not have 'const ctxC' or 'let ctxC' which would cause TDZ
+        self.assertNotIn('const ctxC', anim_body,
+                         "animateEscape must not shadow ctxC with const (causes TDZ)")
+        self.assertNotIn('let ctxC', anim_body,
+                         "animateEscape must not shadow ctxC with let (causes TDZ)")
+
+    def test_escape_drawing_uses_ctx_alias(self):
+        """creatures.js: escape drawing code should use 'ctx' alias for escCtx"""
+        idx = self.fn_body.find('function animateEscape')
+        anim_body = self.fn_body[idx:]
+        self.assertIn('const ctx = escCtx', anim_body,
+                      "animateEscape should alias escCtx as 'ctx'")
+
+    def test_completion_path_uses_ctxC(self):
+        """creatures.js: completion path must use outer ctxC (catch canvas context)"""
+        idx = self.fn_body.find('function animateEscape')
+        anim_body = self.fn_body[idx:]
+        # The clearRect in the completion path should reference the outer ctxC
+        self.assertIn('ctxC.clearRect', anim_body,
+                      "Completion path must use outer ctxC to clear catch canvas")
+
+    def test_oncomplete_called_after_duration(self):
+        """creatures.js: onComplete callback must be invoked after DURATION"""
+        idx = self.fn_body.find('function animateEscape')
+        anim_body = self.fn_body[idx:]
+        # The completion block (elapsed > DURATION) should call onComplete
+        completion_match = re.search(
+            r'if\s*\(elapsed\s*>\s*DURATION\)\s*\{(.*?)\n      \}',
+            anim_body, re.DOTALL)
+        self.assertIsNotNone(completion_match,
+                             "Must have elapsed > DURATION completion block")
+        completion_block = completion_match.group(1)
+        self.assertIn('onComplete()', completion_block,
+                      "Completion block must call onComplete()")
+        self.assertIn('ctxC.clearRect', completion_block,
+                      "Completion block must clear catch canvas before calling onComplete")
+
+
+# ===========================================================================
+# Test Suite 32: Dream Nexus creature idle animations (creatures.css + creatures.js)
+# ===========================================================================
+class TestCreatureIdleAnimations(unittest.TestCase):
+    """Validates per-creature idle animations via data-idle attribute."""
+
+    def setUp(self):
+        self.css_src = read_css('creatures.css')
+        self.js_src = read_js('creatures.js')
+        self.data_src = read_js('data.js')
+
+    def test_css_has_idle_keyframes_for_each_creature(self):
+        """creatures.css: must have a unique @keyframes for each Dream Nexus creature"""
+        expected_keyframes = [
+            'idleWiggle',    # sparkle-bud
+            'idleBounce',    # micro-pennx
+            'idleSway',      # giant-pennx
+            'idlePulse',     # charlie-the-hug
+            'idleFloat',     # charlie-the-great
+            'idleTumble',    # happy-lolly
+        ]
+        for kf in expected_keyframes:
+            self.assertIn(f'@keyframes {kf}', self.css_src,
+                          f"Missing idle animation keyframes: {kf}")
+
+    def test_css_has_data_idle_selectors_for_catch_overlay(self):
+        """creatures.css: #catch-creature-svg[data-idle=...] selectors for each creature"""
+        creature_ids = [
+            'sparkle-bud', 'micro-pennx', 'giant-pennx',
+            'charlie-the-hug', 'charlie-the-great', 'happy-lolly'
+        ]
+        for cid in creature_ids:
+            selector = f'#catch-creature-svg[data-idle="{cid}"]'
+            self.assertIn(selector, self.css_src,
+                          f"Missing catch overlay idle selector for {cid}")
+
+    def test_css_has_data_idle_selectors_for_spot_silhouettes(self):
+        """creatures.css: .spot-silhouette[data-idle=...] selectors for exploration spots"""
+        creature_ids = [
+            'sparkle-bud', 'micro-pennx', 'giant-pennx',
+            'charlie-the-hug', 'charlie-the-great', 'happy-lolly'
+        ]
+        for cid in creature_ids:
+            selector = f'.spot-silhouette[data-idle="{cid}"]'
+            self.assertIn(selector, self.css_src,
+                          f"Missing spot silhouette idle selector for {cid}")
+
+    def test_js_sets_data_idle_for_escape_power_creatures(self):
+        """creatures.js: startCatchGame must set data-idle for creatures with escapePower"""
+        self.assertIn("svgContainer.dataset.idle = creature.id", self.js_src,
+                      "Must set dataset.idle for creatures with escapePower")
+
+    def test_js_clears_data_idle_on_miss(self):
+        """creatures.js: playMissEffect must clear data-idle to prevent animation conflict"""
+        # Find the playMissEffect function
+        idx = self.js_src.find('function playMissEffect')
+        self.assertGreater(idx, 0)
+        fn_body = self.js_src[idx:idx + 500]
+        self.assertIn('delete svgContainer.dataset.idle', fn_body,
+                      "playMissEffect must clear data-idle")
+
+    def test_js_clears_data_idle_on_success(self):
+        """creatures.js: playCatchSuccess must clear data-idle"""
+        idx = self.js_src.find('function playCatchSuccess')
+        self.assertGreater(idx, 0)
+        fn_body = self.js_src[idx:idx + 500]
+        self.assertIn('delete svgContainer.dataset.idle', fn_body,
+                      "playCatchSuccess must clear data-idle")
+
+    def test_js_clears_data_idle_on_escape(self):
+        """creatures.js: playLegendaryEscapeEffect must clear data-idle"""
+        idx = self.js_src.find('function playLegendaryEscapeEffect')
+        self.assertGreater(idx, 0)
+        fn_body = self.js_src[idx:idx + 1000]
+        self.assertIn('delete svgContainer.dataset.idle', fn_body,
+                      "playLegendaryEscapeEffect must clear data-idle")
+
+    def test_js_clears_data_idle_in_close_catch(self):
+        """creatures.js: closeCatch must clean up data-idle attribute"""
+        idx = self.js_src.find('function closeCatch')
+        self.assertGreater(idx, 0)
+        fn_body = self.js_src[idx:idx + 1000]
+        self.assertIn('delete svgContainer.dataset.idle', fn_body,
+                      "closeCatch must clean up data-idle attribute")
+
+    def test_spot_silhouette_gets_data_idle_attr(self):
+        """creatures.js: setSpotSilhouette must add data-idle for escapePower creatures"""
+        idx = self.js_src.find('function setSpotSilhouette')
+        self.assertGreater(idx, 0)
+        fn_body = self.js_src[idx:idx + 1000]
+        self.assertIn('data-idle=', fn_body,
+                      "setSpotSilhouette must include data-idle attribute for silhouettes")
+
+
+# ===========================================================================
+# Test Suite 33: CSS positioning for catch creature SVG (creatures.css)
+# ===========================================================================
+class TestCatchCreaturePositioning(unittest.TestCase):
+    """
+    Validates that #catch-creature-svg uses calc() positioning instead of
+    transform-based centering, so CSS idle/dodge/celebrate animations can
+    freely use the transform property.
+    """
+
+    def setUp(self):
+        self.css_src = read_css('creatures.css')
+
+    def test_no_translate_centering_on_catch_creature_svg(self):
+        """creatures.css: #catch-creature-svg must NOT use translate for centering"""
+        # Find the #catch-creature-svg base rule
+        match = re.search(
+            r'#catch-creature-svg\s*\{([^}]+)\}', self.css_src)
+        self.assertIsNotNone(match)
+        rule = match.group(1)
+        self.assertNotIn('translate(-50%', rule,
+                         "#catch-creature-svg should not use translate for centering")
+
+    def test_uses_calc_for_positioning(self):
+        """creatures.css: #catch-creature-svg must use calc() for top/left"""
+        match = re.search(
+            r'#catch-creature-svg\s*\{([^}]+)\}', self.css_src)
+        rule = match.group(1)
+        self.assertIn('calc(', rule,
+                      "#catch-creature-svg must use calc() for positioning")
+
+    def test_animation_keyframes_no_translate_centering(self):
+        """creatures.css: creatureEntrance/catchBounce/creatureDodge must not include translate(-50%)"""
+        for kf_name in ['creatureEntrance', 'catchBounce', 'creatureDodge']:
+            match = re.search(
+                rf'@keyframes {kf_name}\s*\{{(.*?)\n\}}', self.css_src, re.DOTALL)
+            self.assertIsNotNone(match, f"Must have @keyframes {kf_name}")
+            kf_body = match.group(1)
+            self.assertNotIn('translate(-50%', kf_body,
+                             f"@keyframes {kf_name} should not include translate centering offset")
+
+
+# ===========================================================================
+# Test Suite 34: Dream Nexus creature PNG transparency (assets)
+# ===========================================================================
+class TestCreaturePNGTransparency(unittest.TestCase):
+    """Validates that Dream Nexus creature PNGs have transparent backgrounds."""
+
+    def setUp(self):
+        self.data_src = read_js('data.js')
+
+    def test_all_dream_nexus_creatures_use_png(self):
+        """data.js: all Dream Nexus creature svg fields should reference .png files"""
+        # Extract Dream Nexus creatures (location: 'dream-nexus')
+        creatures = re.findall(
+            r"\{[^}]*location:\s*'dream-nexus'[^}]*svg:\s*'([^']+)'[^}]*\}",
+            self.data_src)
+        self.assertEqual(len(creatures), 6, "Should have 6 Dream Nexus creatures")
+        for svg_path in creatures:
+            self.assertTrue(svg_path.endswith('.png'),
+                            f"Dream Nexus creature should use .png: {svg_path}")
+
+    def test_all_dream_nexus_png_files_exist(self):
+        """assets: all Dream Nexus creature PNG files must exist on disk"""
+        creatures = re.findall(
+            r"\{[^}]*location:\s*'dream-nexus'[^}]*svg:\s*'([^']+)'[^}]*\}",
+            self.data_src)
+        for png_path in creatures:
+            full_path = os.path.join(PROJECT_ROOT, png_path)
+            self.assertTrue(os.path.isfile(full_path),
+                            f"PNG file missing: {png_path}")
+
+    def test_dream_nexus_pngs_are_rgba(self):
+        """assets: Dream Nexus PNGs must be RGBA (have alpha channel for transparency)"""
+        try:
+            from PIL import Image
+        except ImportError:
+            self.skipTest("Pillow not installed")
+
+        creatures = re.findall(
+            r"\{[^}]*location:\s*'dream-nexus'[^}]*svg:\s*'([^']+)'[^}]*\}",
+            self.data_src)
+        for png_path in creatures:
+            full_path = os.path.join(PROJECT_ROOT, png_path)
+            img = Image.open(full_path)
+            self.assertEqual(img.mode, 'RGBA',
+                             f"{png_path} must be RGBA (have alpha channel)")
+
+    def test_dream_nexus_pngs_have_transparent_corners(self):
+        """assets: Dream Nexus PNGs should have transparent corners (no white bg)"""
+        try:
+            from PIL import Image
+        except ImportError:
+            self.skipTest("Pillow not installed")
+
+        creatures = re.findall(
+            r"\{[^}]*location:\s*'dream-nexus'[^}]*svg:\s*'([^']+)'[^}]*\}",
+            self.data_src)
+        for png_path in creatures:
+            full_path = os.path.join(PROJECT_ROOT, png_path)
+            img = Image.open(full_path).convert('RGBA')
+            # Check corner pixels — they should be transparent (alpha < 50)
+            w, h = img.size
+            corners = [
+                img.getpixel((0, 0)),
+                img.getpixel((w - 1, 0)),
+                img.getpixel((0, h - 1)),
+                img.getpixel((w - 1, h - 1)),
+            ]
+            transparent_corners = sum(1 for r, g, b, a in corners if a < 50)
+            self.assertGreaterEqual(transparent_corners, 3,
+                                    f"{png_path}: at least 3 of 4 corners should be transparent "
+                                    f"(got {transparent_corners}). Corner alphas: {[c[3] for c in corners]}")
+
+
+# ===========================================================================
+# Test Suite 35: Escape animation SVG container cleanup (creatures.js)
+# ===========================================================================
+class TestEscapeSVGContainerCleanup(unittest.TestCase):
+    """
+    Validates that the SVG creature container is properly hidden during escape
+    and data-idle is cleared to prevent CSS animation conflicts.
+    """
+
+    def setUp(self):
+        self.src = read_js('creatures.js')
+        idx = self.src.find('function playLegendaryEscapeEffect')
+        self.assertGreater(idx, 0)
+        self.fn_body = self.src[idx:idx + 2000]
+
+    def test_escape_hides_svg_container(self):
+        """creatures.js: escape effect must hide SVG container (add 'hidden' class)"""
+        self.assertIn("svgContainer.classList.add('hidden')", self.fn_body,
+                      "Escape effect must hide SVG container after fade-out")
+
+    def test_escape_clears_data_idle_before_dodge(self):
+        """creatures.js: data-idle must be cleared before adding catch-dodge"""
+        # data-idle deletion should appear before catch-dodge addition
+        idle_idx = self.fn_body.find('delete svgContainer.dataset.idle')
+        dodge_idx = self.fn_body.find("svgContainer.classList.add('catch-dodge')")
+        self.assertGreater(idle_idx, 0, "Must delete dataset.idle")
+        self.assertGreater(dodge_idx, 0, "Must add catch-dodge class")
+        self.assertLess(idle_idx, dodge_idx,
+                        "data-idle must be cleared BEFORE adding catch-dodge class")
+
+    def test_escape_fade_timeout_before_animation_end(self):
+        """creatures.js: SVG hide timeout must fire before DURATION ends"""
+        # The hide timeout should be <= DURATION * 1000
+        # DURATION is 2.0 seconds (2000ms)
+        # The svgContainer.classList.add('hidden') should be in a setTimeout
+        # with a delay less than 2000ms
+        duration_match = re.search(r'const DURATION\s*=\s*([\d.]+)', self.fn_body)
+        self.assertIsNotNone(duration_match)
+        duration_ms = float(duration_match.group(1)) * 1000  # e.g. 2000
+
+        # Find setTimeout that hides the container
+        hide_timeouts = re.findall(
+            r"setTimeout\(\(\)\s*=>\s*\{[^}]*classList\.add\('hidden'\)[^}]*\},\s*(\d+)\)",
+            self.fn_body, re.DOTALL)
+        self.assertGreater(len(hide_timeouts), 0,
+                           "Must have a setTimeout that hides the container")
+        hide_delay = int(hide_timeouts[0])
+        self.assertLess(hide_delay, duration_ms,
+                        f"Hide timeout ({hide_delay}ms) must fire before animation ends ({duration_ms}ms)")
+
+
 if __name__ == '__main__':
     unittest.main(verbosity=2)
