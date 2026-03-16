@@ -392,7 +392,7 @@ const CreatureWorld = (() => {
 
       // Draw radial gradient background
       const gradient = ctxC.createRadialGradient(cx, cy, 0, cx, cy, 130);
-      const baseColor = rarityColor.replace(')', ', 0.15)').replace('rgb', 'rgba');
+      const baseColor = rarityColor + '26'; // hex with ~15% alpha
       gradient.addColorStop(0, baseColor);
       gradient.addColorStop(1, 'rgba(0, 0, 0, 0.4)');
       ctxC.fillStyle = gradient;
@@ -692,7 +692,7 @@ const CreatureWorld = (() => {
 
       // Draw radial gradient background
       const gradient = ctxC.createRadialGradient(cx, cy, 0, cx, cy, 130);
-      const baseColor = rarityColor.replace(')', ', 0.15)').replace('rgb', 'rgba');
+      const baseColor = rarityColor + '26'; // hex with ~15% alpha
       gradient.addColorStop(0, baseColor);
       gradient.addColorStop(1, 'rgba(0, 0, 0, 0.4)');
       ctxC.fillStyle = gradient;
