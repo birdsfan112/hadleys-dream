@@ -252,7 +252,7 @@ const CREATURES = [
     escapePower: { name: 'Cloud Drift', message: 'Charlie the Great uses Cloud Drift and floats away on a rainbow breeze!', color: '#FFD700' } },
   { id: 'happy-lolly', name: 'Happy Lolly', location: 'dream-nexus', rarity: 'legendary', coins: 100,
     colors: ['#8B4513', '#CD853F'], shape: 'hedgehog', eyes: 'cute', accessory: 'berries',
-    svg: 'assets/creatures/happy-lolly.png',
+    svg: 'assets/creatures/IMG_8343.png',
     escapePower: { name: 'Berry Tumble', message: 'Happy Lolly uses Berry Tumble and rolls away into the bushes with a giggle!', color: '#CD853F' } }
 ];
 

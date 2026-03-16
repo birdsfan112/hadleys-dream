@@ -83,7 +83,7 @@ const ASSETS = [
   '/assets/creatures/165C9F33-D8F5-4A63-8987-BB9B2E35B404.png',
   '/assets/creatures/388189EF-BAA1-4FEA-85DA-CF5B9779E181.png',
   '/assets/creatures/IMG_8342.png',
-  '/assets/creatures/happy-lolly.png',
+  '/assets/creatures/IMG_8343.png',
   // Dream Nexus scene
   '/assets/scenes/dream-nexus.svg',
   // Fashion Studio SVGs (original)
