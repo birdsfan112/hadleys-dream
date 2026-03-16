@@ -78,10 +78,10 @@ const ASSETS = [
   '/assets/creatures/dream-dragon.svg',
   '/assets/creatures/prism-pegasus.svg',
   // Dream Nexus creatures (6 of 10)
-  '/assets/creatures/sparkle-bud.png',
-  '/assets/creatures/micro-pennx.png',
-  '/assets/creatures/giant-pennx.png',
-  '/assets/creatures/charlie-the-hug.png',
+  '/assets/creatures/292B2E44-E8C7-4D85-AC85-D490B9733D38.png',
+  '/assets/creatures/390F02B2-AEDF-4513-ADDC-F15AE3D5386A.png',
+  '/assets/creatures/165C9F33-D8F5-4A63-8987-BB9B2E35B404.png',
+  '/assets/creatures/388189EF-BAA1-4FEA-85DA-CF5B9779E181.png',
   '/assets/creatures/charlie-the-great.png',
   '/assets/creatures/happy-lolly.png',
   // Dream Nexus scene
