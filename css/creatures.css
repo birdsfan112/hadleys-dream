@@ -408,6 +408,15 @@
   z-index: 22;
 }
 
+/* Fullscreen canvas for legendary escape animations */
+.legendary-escape-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 28;
+  pointer-events: none;
+  border-radius: 0;
+}
+
 #catch-info {
   text-align: center;
   color: #FFF;
@@ -436,12 +445,44 @@
 #catch-result {
   text-align: center;
   color: #FFF;
+  position: relative;
+  z-index: 30;
+  padding: 0 20px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 #catch-result.hidden { display: none; }
 #catch-result-text {
   font-size: 1.5em;
   font-weight: 800;
   margin-bottom: 16px;
+}
+
+/* Legendary escape power text styling */
+.escape-power-name {
+  font-family: 'Fredoka', 'Bubblegum Sans', 'Comic Sans MS', 'Chalkboard SE', cursive, fantasy;
+  font-size: 1.6em;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 0 0 12px currentColor, 0 2px 6px rgba(0,0,0,0.5);
+  display: block;
+  margin-bottom: 8px;
+  line-height: 1.2;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+.escape-power-message {
+  font-family: 'Fredoka', 'Bubblegum Sans', 'Comic Sans MS', 'Chalkboard SE', cursive, fantasy;
+  font-size: 1.1em;
+  font-weight: 600;
+  line-height: 1.4;
+  display: block;
+  padding: 0 8px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  color: #FFF;
+  max-width: 90vw;
 }
 
 /* --- Collection Cards --- */
