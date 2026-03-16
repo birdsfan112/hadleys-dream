@@ -267,7 +267,11 @@ const CreatureWorld = (() => {
       // Some spots appear after a delay (harder to find)
       if (i >= spotCount - 2) {
         spot.classList.add('delayed');
-        spot.style.animationDelay = `${2 + i * 0.5}s`;
+        const delay = 2 + i * 0.5;
+        spot.style.animationDelay = `${delay}s`;
+        // Enable clicks only after spot finishes revealing (delay + 0.6s animation)
+        const tid = setTimeout(() => spot.classList.add('revealed'), (delay + 0.6) * 1000);
+        spotCooldownTimeouts.push(tid);
       }
 
       // Set silhouette content

@@ -201,7 +201,11 @@
 /* Delayed reveal spots — fade in after a few seconds */
 .explore-spot.delayed {
   opacity: 0;
+  pointer-events: none;
   animation: spotReveal 0.6s ease-out forwards;
+}
+.explore-spot.delayed.revealed {
+  pointer-events: auto;
 }
 
 @keyframes spotReveal {
