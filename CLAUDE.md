@@ -16,7 +16,15 @@ npx serve .
 python -m http.server 8000
 ```
 
-There are no tests, linter, or CI. Changes are verified by opening in a browser.
+There is no linter or CI. Changes are verified by opening in a browser.
+
+**Tests:** Python-based test suite in `tests/test_game_logic.py`. Since the JS is browser-only IIFEs (not Node-compatible), tests validate logic by parsing JS source and reimplementing core algorithms in Python. Run with:
+
+```
+python -m pytest tests/ -v
+```
+
+Requires `pytest` and `Pillow` (`pip install pytest Pillow`). Add new tests when changing game logic, CSS structure, or asset conventions.
 
 When updating cached assets, bump `CACHE_NAME` in `sw.js` (currently `'dream-world-v5'`) and update the version label in `index.html`.
 

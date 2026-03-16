@@ -1056,6 +1056,7 @@ const CreatureWorld = (() => {
 
     // SVG creature does a dramatic exit — hide after fade so it doesn't flash back
     if (svgContainer && !svgContainer.classList.contains('hidden')) {
+      delete svgContainer.dataset.idle;
       svgContainer.classList.add('catch-dodge');
       setTimeout(() => {
         svgContainer.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -1119,8 +1120,8 @@ const CreatureWorld = (() => {
       escCtx.scale(scale, scale);
       escCtx.translate(-130, -130);
 
-      // Shadow outer ctxC so all animation drawing code renders on the fullscreen canvas
-      const ctxC = escCtx;
+      // Alias so all animation drawing code renders on the fullscreen canvas
+      const ctx = escCtx;
       const p = elapsed / DURATION;
       const alpha = Math.max(0, 1 - p);
 
@@ -1130,30 +1131,30 @@ const CreatureWorld = (() => {
           const rp = Math.min(1, p + r * 0.15);
           const ringR = 15 + rp * 120;
           const a = Math.max(0, 1 - rp) * 0.8;
-          ctxC.save();
-          ctxC.globalAlpha = a;
-          ctxC.shadowBlur = 30;
-          ctxC.shadowColor = powerColor;
-          ctxC.strokeStyle = powerColor;
-          ctxC.lineWidth = 4 * (1 - rp);
-          ctxC.beginPath();
-          ctxC.arc(cx, cy, ringR, 0, Math.PI * 2);
-          ctxC.stroke();
-          ctxC.restore();
+          ctx.save();
+          ctx.globalAlpha = a;
+          ctx.shadowBlur = 30;
+          ctx.shadowColor = powerColor;
+          ctx.strokeStyle = powerColor;
+          ctx.lineWidth = 4 * (1 - rp);
+          ctx.beginPath();
+          ctx.arc(cx, cy, ringR, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.restore();
         }
         // Radial light rays
         for (let i = 0; i < 12; i++) {
           const angle = (Math.PI * 2 * i) / 12 + elapsed * 0.5;
           const len = 30 + p * 100;
-          ctxC.save();
-          ctxC.globalAlpha = alpha * 0.5;
-          ctxC.strokeStyle = powerColor;
-          ctxC.lineWidth = 2;
-          ctxC.beginPath();
-          ctxC.moveTo(cx + Math.cos(angle) * 20, cy + Math.sin(angle) * 20);
-          ctxC.lineTo(cx + Math.cos(angle) * len, cy + Math.sin(angle) * len);
-          ctxC.stroke();
-          ctxC.restore();
+          ctx.save();
+          ctx.globalAlpha = alpha * 0.5;
+          ctx.strokeStyle = powerColor;
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(cx + Math.cos(angle) * 20, cy + Math.sin(angle) * 20);
+          ctx.lineTo(cx + Math.cos(angle) * len, cy + Math.sin(angle) * len);
+          ctx.stroke();
+          ctx.restore();
         }
 
       } else if (anim === 'wave') {
@@ -1161,31 +1162,31 @@ const CreatureWorld = (() => {
         for (let w = 0; w < 6; w++) {
           const wy = 260 - (p * 300 + w * 40);
           const a = Math.max(0, alpha - w * 0.1);
-          ctxC.save();
-          ctxC.globalAlpha = a * 0.7;
-          ctxC.strokeStyle = powerColor;
-          ctxC.lineWidth = 3;
-          ctxC.shadowBlur = 15;
-          ctxC.shadowColor = powerColor;
-          ctxC.beginPath();
+          ctx.save();
+          ctx.globalAlpha = a * 0.7;
+          ctx.strokeStyle = powerColor;
+          ctx.lineWidth = 3;
+          ctx.shadowBlur = 15;
+          ctx.shadowColor = powerColor;
+          ctx.beginPath();
           for (let x = 0; x < 260; x += 5) {
             const y = wy + Math.sin((x + elapsed * 200) * 0.04) * 12;
-            x === 0 ? ctxC.moveTo(x, y) : ctxC.lineTo(x, y);
+            x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
           }
-          ctxC.stroke();
-          ctxC.restore();
+          ctx.stroke();
+          ctx.restore();
         }
         // Water droplets rising
         for (let i = 0; i < 10; i++) {
           const dx = 40 + (i * 20);
           const dy = 260 - p * 300 - Math.sin(i * 2.3 + elapsed * 3) * 30;
-          ctxC.save();
-          ctxC.globalAlpha = alpha * 0.6;
-          ctxC.fillStyle = '#E0FFFF';
-          ctxC.beginPath();
-          ctxC.arc(dx, dy, 2, 0, Math.PI * 2);
-          ctxC.fill();
-          ctxC.restore();
+          ctx.save();
+          ctx.globalAlpha = alpha * 0.6;
+          ctx.fillStyle = '#E0FFFF';
+          ctx.beginPath();
+          ctx.arc(dx, dy, 2, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
         }
 
       } else if (anim === 'rainbow') {
@@ -1194,16 +1195,16 @@ const CreatureWorld = (() => {
           const arcR = 30 + i * 18 + p * 40;
           const startAngle = -Math.PI * 0.8 + Math.sin(elapsed * 2 + i) * 0.3;
           const endAngle = Math.PI * 0.8 + Math.sin(elapsed * 2.5 + i) * 0.3;
-          ctxC.save();
-          ctxC.globalAlpha = alpha * 0.6;
-          ctxC.strokeStyle = rainbowColors[i];
-          ctxC.lineWidth = 4;
-          ctxC.shadowBlur = 12;
-          ctxC.shadowColor = rainbowColors[i];
-          ctxC.beginPath();
-          ctxC.arc(cx, cy + 20, arcR, startAngle, endAngle);
-          ctxC.stroke();
-          ctxC.restore();
+          ctx.save();
+          ctx.globalAlpha = alpha * 0.6;
+          ctx.strokeStyle = rainbowColors[i];
+          ctx.lineWidth = 4;
+          ctx.shadowBlur = 12;
+          ctx.shadowColor = rainbowColors[i];
+          ctx.beginPath();
+          ctx.arc(cx, cy + 20, arcR, startAngle, endAngle);
+          ctx.stroke();
+          ctx.restore();
         }
         // Shimmer sparkles
         for (let i = 0; i < 14; i++) {
@@ -1211,48 +1212,48 @@ const CreatureWorld = (() => {
           const dist = 30 + Math.sin(elapsed * 3 + i) * 40 + p * 50;
           const sx = cx + Math.cos(angle) * dist;
           const sy = cy + Math.sin(angle) * dist;
-          ctxC.save();
-          ctxC.globalAlpha = alpha * 0.8;
-          ctxC.fillStyle = rainbowColors[i % 6];
-          ctxC.beginPath();
-          ctxC.arc(sx, sy, 2, 0, Math.PI * 2);
-          ctxC.fill();
-          ctxC.restore();
+          ctx.save();
+          ctx.globalAlpha = alpha * 0.8;
+          ctx.fillStyle = rainbowColors[i % 6];
+          ctx.beginPath();
+          ctx.arc(sx, sy, 2, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
         }
 
       } else if (anim === 'vortex') {
         // Void Shift: dark spiraling portal
         for (let i = 0; i < 4; i++) {
           const spiralR = 20 + i * 30 - p * 15;
-          ctxC.save();
-          ctxC.globalAlpha = alpha * 0.4;
-          ctxC.strokeStyle = i % 2 === 0 ? powerColor : '#1A0033';
-          ctxC.lineWidth = 6 - i;
-          ctxC.shadowBlur = 20;
-          ctxC.shadowColor = powerColor;
-          ctxC.beginPath();
+          ctx.save();
+          ctx.globalAlpha = alpha * 0.4;
+          ctx.strokeStyle = i % 2 === 0 ? powerColor : '#1A0033';
+          ctx.lineWidth = 6 - i;
+          ctx.shadowBlur = 20;
+          ctx.shadowColor = powerColor;
+          ctx.beginPath();
           for (let a = 0; a < Math.PI * 4; a += 0.1) {
             const sr = spiralR + a * (8 - i * 1.5);
             const sa = a + elapsed * (3 + i) * (i % 2 ? -1 : 1);
             const x = cx + Math.cos(sa) * sr;
             const y = cy + Math.sin(sa) * sr;
-            a === 0 ? ctxC.moveTo(x, y) : ctxC.lineTo(x, y);
+            a === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
           }
-          ctxC.stroke();
-          ctxC.restore();
+          ctx.stroke();
+          ctx.restore();
         }
         // Dark center that grows
         const holeR = 10 + p * 30;
-        ctxC.save();
-        ctxC.globalAlpha = alpha * 0.6;
-        const grad = ctxC.createRadialGradient(cx, cy, 0, cx, cy, holeR);
+        ctx.save();
+        ctx.globalAlpha = alpha * 0.6;
+        const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, holeR);
         grad.addColorStop(0, '#000');
         grad.addColorStop(1, 'transparent');
-        ctxC.fillStyle = grad;
-        ctxC.beginPath();
-        ctxC.arc(cx, cy, holeR, 0, Math.PI * 2);
-        ctxC.fill();
-        ctxC.restore();
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(cx, cy, holeR, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
 
       } else if (anim === 'dash') {
         // Prism Dash: rainbow streaks zooming across
@@ -1260,32 +1261,32 @@ const CreatureWorld = (() => {
           const y = 60 + i * 30;
           const x = -40 + p * 340;
           const trailLen = 80;
-          ctxC.save();
-          ctxC.globalAlpha = alpha * 0.7;
-          const g = ctxC.createLinearGradient(x - trailLen, y, x, y);
+          ctx.save();
+          ctx.globalAlpha = alpha * 0.7;
+          const g = ctx.createLinearGradient(x - trailLen, y, x, y);
           g.addColorStop(0, 'transparent');
           g.addColorStop(1, rainbowColors[i]);
-          ctxC.strokeStyle = g;
-          ctxC.lineWidth = 3;
-          ctxC.shadowBlur = 10;
-          ctxC.shadowColor = rainbowColors[i];
-          ctxC.beginPath();
-          ctxC.moveTo(x - trailLen, y + Math.sin(elapsed * 6 + i * 2) * 8);
-          ctxC.lineTo(x, y + Math.sin(elapsed * 6 + i * 2 + 1) * 5);
-          ctxC.stroke();
-          ctxC.restore();
+          ctx.strokeStyle = g;
+          ctx.lineWidth = 3;
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = rainbowColors[i];
+          ctx.beginPath();
+          ctx.moveTo(x - trailLen, y + Math.sin(elapsed * 6 + i * 2) * 8);
+          ctx.lineTo(x, y + Math.sin(elapsed * 6 + i * 2 + 1) * 5);
+          ctx.stroke();
+          ctx.restore();
         }
         // Main streak with star
         const mx = -20 + p * 300;
-        ctxC.save();
-        ctxC.globalAlpha = alpha;
-        ctxC.fillStyle = powerColor;
-        ctxC.shadowBlur = 20;
-        ctxC.shadowColor = powerColor;
-        ctxC.beginPath();
-        ctxC.arc(mx, cy, 5, 0, Math.PI * 2);
-        ctxC.fill();
-        ctxC.restore();
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        ctx.fillStyle = powerColor;
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = powerColor;
+        ctx.beginPath();
+        ctx.arc(mx, cy, 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
 
       } else if (anim === 'burst') {
         // Prism Burst: explosion of colorful sparks
@@ -1297,25 +1298,25 @@ const CreatureWorld = (() => {
           const bx = cx + Math.cos(angle) * dist;
           const by = cy + Math.sin(angle) * dist;
           const size = 4 * (1 - p * 0.6);
-          ctxC.save();
-          ctxC.globalAlpha = alpha * 0.8;
-          ctxC.fillStyle = rainbowColors[i % 6];
-          ctxC.shadowBlur = 8;
-          ctxC.shadowColor = rainbowColors[i % 6];
-          ctxC.beginPath();
-          ctxC.arc(bx, by, size, 0, Math.PI * 2);
-          ctxC.fill();
-          ctxC.restore();
+          ctx.save();
+          ctx.globalAlpha = alpha * 0.8;
+          ctx.fillStyle = rainbowColors[i % 6];
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = rainbowColors[i % 6];
+          ctx.beginPath();
+          ctx.arc(bx, by, size, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
         }
         // Central flash
         if (p < 0.3) {
-          ctxC.save();
-          ctxC.globalAlpha = (1 - p / 0.3) * 0.5;
-          ctxC.fillStyle = '#FFF';
-          ctxC.beginPath();
-          ctxC.arc(cx, cy, 40 * (1 - p), 0, Math.PI * 2);
-          ctxC.fill();
-          ctxC.restore();
+          ctx.save();
+          ctx.globalAlpha = (1 - p / 0.3) * 0.5;
+          ctx.fillStyle = '#FFF';
+          ctx.beginPath();
+          ctx.arc(cx, cy, 40 * (1 - p), 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
         }
 
       } else if (anim === 'bounce') {
@@ -1326,28 +1327,28 @@ const CreatureWorld = (() => {
           const bx = 30 + (b * 45);
           const bounceY = cy + 50 - Math.abs(Math.sin(bt * Math.PI)) * 100;
           const size = 5 * (1 - p * 0.5);
-          ctxC.save();
-          ctxC.globalAlpha = alpha * 0.7;
-          ctxC.fillStyle = rainbowColors[b % 6];
-          ctxC.shadowBlur = 8;
-          ctxC.shadowColor = powerColor;
-          ctxC.beginPath();
-          ctxC.arc(bx, bounceY, size, 0, Math.PI * 2);
-          ctxC.fill();
-          ctxC.restore();
+          ctx.save();
+          ctx.globalAlpha = alpha * 0.7;
+          ctx.fillStyle = rainbowColors[b % 6];
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = powerColor;
+          ctx.beginPath();
+          ctx.arc(bx, bounceY, size, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
         }
         // Impact lines at bounce points
         for (let b = 0; b < bounces; b++) {
-          ctxC.save();
-          ctxC.globalAlpha = alpha * 0.3;
-          ctxC.strokeStyle = powerColor;
-          ctxC.lineWidth = 1;
+          ctx.save();
+          ctx.globalAlpha = alpha * 0.3;
+          ctx.strokeStyle = powerColor;
+          ctx.lineWidth = 1;
           const bx = 30 + (b * 45);
-          ctxC.beginPath();
-          ctxC.moveTo(bx - 8, cy + 50);
-          ctxC.lineTo(bx + 8, cy + 50);
-          ctxC.stroke();
-          ctxC.restore();
+          ctx.beginPath();
+          ctx.moveTo(bx - 8, cy + 50);
+          ctx.lineTo(bx + 8, cy + 50);
+          ctx.stroke();
+          ctx.restore();
         }
 
       } else if (anim === 'slam') {
@@ -1356,15 +1357,15 @@ const CreatureWorld = (() => {
         // Falling streak
         if (p < 0.35) {
           const fy = -20 + impactT * (cy + 50);
-          ctxC.save();
-          ctxC.globalAlpha = 0.8;
-          ctxC.fillStyle = powerColor;
-          ctxC.shadowBlur = 20;
-          ctxC.shadowColor = powerColor;
-          ctxC.beginPath();
-          ctxC.arc(cx, fy, 8, 0, Math.PI * 2);
-          ctxC.fill();
-          ctxC.restore();
+          ctx.save();
+          ctx.globalAlpha = 0.8;
+          ctx.fillStyle = powerColor;
+          ctx.shadowBlur = 20;
+          ctx.shadowColor = powerColor;
+          ctx.beginPath();
+          ctx.arc(cx, fy, 8, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
         }
         // Horizontal shockwave after impact
         if (p > 0.3) {
@@ -1372,28 +1373,28 @@ const CreatureWorld = (() => {
           const waveWidth = sp * 140;
           const waveAlpha = Math.max(0, 1 - sp);
           for (let i = 0; i < 6; i++) {
-            ctxC.save();
-            ctxC.globalAlpha = waveAlpha * 0.5;
-            ctxC.strokeStyle = rainbowColors[i];
-            ctxC.lineWidth = 3 - i * 0.3;
-            ctxC.beginPath();
+            ctx.save();
+            ctx.globalAlpha = waveAlpha * 0.5;
+            ctx.strokeStyle = rainbowColors[i];
+            ctx.lineWidth = 3 - i * 0.3;
+            ctx.beginPath();
             const wy = cy + 50 - i * 4;
-            ctxC.moveTo(cx - waveWidth, wy);
-            ctxC.quadraticCurveTo(cx, wy - 15 * (1 - sp), cx + waveWidth, wy);
-            ctxC.stroke();
-            ctxC.restore();
+            ctx.moveTo(cx - waveWidth, wy);
+            ctx.quadraticCurveTo(cx, wy - 15 * (1 - sp), cx + waveWidth, wy);
+            ctx.stroke();
+            ctx.restore();
           }
           // Ground debris particles
           for (let i = 0; i < 8; i++) {
             const dx = cx + (i - 4) * 20 * sp;
             const dy = cy + 50 - sp * 40 * Math.sin(i * 1.5);
-            ctxC.save();
-            ctxC.globalAlpha = waveAlpha * 0.6;
-            ctxC.fillStyle = powerColor;
-            ctxC.beginPath();
-            ctxC.arc(dx, dy, 2.5, 0, Math.PI * 2);
-            ctxC.fill();
-            ctxC.restore();
+            ctx.save();
+            ctx.globalAlpha = waveAlpha * 0.6;
+            ctx.fillStyle = powerColor;
+            ctx.beginPath();
+            ctx.arc(dx, dy, 2.5, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
           }
         }
 
@@ -1406,29 +1407,29 @@ const CreatureWorld = (() => {
           const hx = cx + Math.cos(angle) * dist;
           const hy = cy + Math.sin(angle) * dist - p * 30;
           const hs = 6 * (1 - p * 0.4);
-          ctxC.save();
-          ctxC.globalAlpha = alpha * 0.7;
-          ctxC.fillStyle = i % 2 === 0 ? powerColor : '#FF99C4';
-          ctxC.beginPath();
-          ctxC.moveTo(hx, hy + hs * 0.3);
-          ctxC.bezierCurveTo(hx - hs, hy - hs * 0.5, hx - hs, hy - hs, hx, hy - hs * 0.3);
-          ctxC.bezierCurveTo(hx + hs, hy - hs, hx + hs, hy - hs * 0.5, hx, hy + hs * 0.3);
-          ctxC.fill();
-          ctxC.restore();
+          ctx.save();
+          ctx.globalAlpha = alpha * 0.7;
+          ctx.fillStyle = i % 2 === 0 ? powerColor : '#FF99C4';
+          ctx.beginPath();
+          ctx.moveTo(hx, hy + hs * 0.3);
+          ctx.bezierCurveTo(hx - hs, hy - hs * 0.5, hx - hs, hy - hs, hx, hy - hs * 0.3);
+          ctx.bezierCurveTo(hx + hs, hy - hs, hx + hs, hy - hs * 0.5, hx, hy + hs * 0.3);
+          ctx.fill();
+          ctx.restore();
         }
         // Warm glow center
         if (p < 0.5) {
           const glowR = 40 + p * 30;
-          ctxC.save();
-          ctxC.globalAlpha = (1 - p * 2) * 0.3;
-          const g = ctxC.createRadialGradient(cx, cy, 0, cx, cy, glowR);
+          ctx.save();
+          ctx.globalAlpha = (1 - p * 2) * 0.3;
+          const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, glowR);
           g.addColorStop(0, powerColor);
           g.addColorStop(1, 'transparent');
-          ctxC.fillStyle = g;
-          ctxC.beginPath();
-          ctxC.arc(cx, cy, glowR, 0, Math.PI * 2);
-          ctxC.fill();
-          ctxC.restore();
+          ctx.fillStyle = g;
+          ctx.beginPath();
+          ctx.arc(cx, cy, glowR, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
         }
 
       } else if (anim === 'drift') {
@@ -1443,31 +1444,31 @@ const CreatureWorld = (() => {
         clouds.forEach((c, i) => {
           const dy = c.y - p * 120 - Math.sin(elapsed * 2 + i) * 15;
           const dx = c.x + Math.sin(elapsed * 1.5 + i * 2) * 20;
-          ctxC.save();
-          ctxC.globalAlpha = alpha * 0.6;
-          ctxC.fillStyle = '#FFF8DC';
-          ctxC.shadowBlur = 15;
-          ctxC.shadowColor = powerColor;
+          ctx.save();
+          ctx.globalAlpha = alpha * 0.6;
+          ctx.fillStyle = '#FFF8DC';
+          ctx.shadowBlur = 15;
+          ctx.shadowColor = powerColor;
           // Draw a cloud shape with overlapping circles
-          ctxC.beginPath();
-          ctxC.arc(dx, dy, c.r, 0, Math.PI * 2);
-          ctxC.arc(dx - c.r * 0.6, dy + 4, c.r * 0.7, 0, Math.PI * 2);
-          ctxC.arc(dx + c.r * 0.6, dy + 4, c.r * 0.7, 0, Math.PI * 2);
-          ctxC.fill();
-          ctxC.restore();
+          ctx.beginPath();
+          ctx.arc(dx, dy, c.r, 0, Math.PI * 2);
+          ctx.arc(dx - c.r * 0.6, dy + 4, c.r * 0.7, 0, Math.PI * 2);
+          ctx.arc(dx + c.r * 0.6, dy + 4, c.r * 0.7, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
         });
         // Rainbow trail
         for (let i = 0; i < 6; i++) {
           const ry = cy + 60 - p * 80 - i * 3;
-          ctxC.save();
-          ctxC.globalAlpha = alpha * 0.3;
-          ctxC.strokeStyle = rainbowColors[i];
-          ctxC.lineWidth = 2;
-          ctxC.beginPath();
-          ctxC.moveTo(40, ry + Math.sin(elapsed * 3 + i) * 5);
-          ctxC.quadraticCurveTo(cx, ry - 10, 220, ry + Math.sin(elapsed * 3 + i + 1) * 5);
-          ctxC.stroke();
-          ctxC.restore();
+          ctx.save();
+          ctx.globalAlpha = alpha * 0.3;
+          ctx.strokeStyle = rainbowColors[i];
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(40, ry + Math.sin(elapsed * 3 + i) * 5);
+          ctx.quadraticCurveTo(cx, ry - 10, 220, ry + Math.sin(elapsed * 3 + i + 1) * 5);
+          ctx.stroke();
+          ctx.restore();
         }
 
       } else if (anim === 'tumble') {
@@ -1476,46 +1477,46 @@ const CreatureWorld = (() => {
         const rollY = cy + 30 + Math.sin(elapsed * 8) * 15;
         const rollAngle = elapsed * 10;
         // Rolling dust cloud
-        ctxC.save();
-        ctxC.globalAlpha = alpha * 0.3;
-        ctxC.fillStyle = '#DEB887';
-        ctxC.beginPath();
-        ctxC.arc(rollX - 15, rollY + 10, 12 * (1 - p * 0.3), 0, Math.PI * 2);
-        ctxC.fill();
-        ctxC.restore();
+        ctx.save();
+        ctx.globalAlpha = alpha * 0.3;
+        ctx.fillStyle = '#DEB887';
+        ctx.beginPath();
+        ctx.arc(rollX - 15, rollY + 10, 12 * (1 - p * 0.3), 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
         // Rolling ball
-        ctxC.save();
-        ctxC.translate(rollX, rollY);
-        ctxC.rotate(rollAngle);
-        ctxC.globalAlpha = alpha * 0.8;
-        ctxC.fillStyle = powerColor;
-        ctxC.shadowBlur = 10;
-        ctxC.shadowColor = powerColor;
-        ctxC.beginPath();
-        ctxC.arc(0, 0, 10, 0, Math.PI * 2);
-        ctxC.fill();
+        ctx.save();
+        ctx.translate(rollX, rollY);
+        ctx.rotate(rollAngle);
+        ctx.globalAlpha = alpha * 0.8;
+        ctx.fillStyle = powerColor;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = powerColor;
+        ctx.beginPath();
+        ctx.arc(0, 0, 10, 0, Math.PI * 2);
+        ctx.fill();
         // Spike marks on the ball
         for (let s = 0; s < 5; s++) {
           const sa = (Math.PI * 2 * s) / 5;
-          ctxC.fillStyle = '#6B3410';
-          ctxC.beginPath();
-          ctxC.arc(Math.cos(sa) * 6, Math.sin(sa) * 6, 2, 0, Math.PI * 2);
-          ctxC.fill();
+          ctx.fillStyle = '#6B3410';
+          ctx.beginPath();
+          ctx.arc(Math.cos(sa) * 6, Math.sin(sa) * 6, 2, 0, Math.PI * 2);
+          ctx.fill();
         }
-        ctxC.restore();
+        ctx.restore();
         // Scattered berries behind
         const berryColors = ['#DC143C', '#FF4500', '#FF6347', '#8B0000'];
         for (let i = 0; i < 6; i++) {
           const bx = rollX - 20 - i * 15 - Math.sin(i * 3) * 10;
           const by = cy + 20 + Math.cos(i * 2.7 + elapsed) * 15;
           if (bx > 0) {
-            ctxC.save();
-            ctxC.globalAlpha = alpha * 0.6;
-            ctxC.fillStyle = berryColors[i % 4];
-            ctxC.beginPath();
-            ctxC.arc(bx, by, 3.5, 0, Math.PI * 2);
-            ctxC.fill();
-            ctxC.restore();
+            ctx.save();
+            ctx.globalAlpha = alpha * 0.6;
+            ctx.fillStyle = berryColors[i % 4];
+            ctx.beginPath();
+            ctx.arc(bx, by, 3.5, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
           }
         }
       }
