@@ -852,8 +852,8 @@ const CreatureWorld = (() => {
       playLegendaryEscapeEffect(creature, svgEl, canvas, ctxC, () => {
         // Callback fires after the animation finishes — show message + retry button
         resultText.innerHTML = `
-          <span style="font-size:0.7em;color:${creature.escapePower.color}">${creature.escapePower.name}!</span><br>
-          <span style="font-size:0.6em">${creature.escapePower.message}</span>
+          <span class="escape-power-name" style="color:${creature.escapePower.color}">${creature.escapePower.name}!</span>
+          <span class="escape-power-message">${creature.escapePower.message}</span>
         `;
         resultEl.classList.remove('hidden');
         // Swap the OK button for a Retry button
@@ -946,6 +946,12 @@ const CreatureWorld = (() => {
     cancelAnimationFrame(catchAnimFrame);
     effectAnimFrames.forEach(id => cancelAnimationFrame(id));
     effectAnimFrames = [];
+    // Clean up any leftover fullscreen escape canvas
+    const escapeCanvas = overlayEl.querySelector('.legendary-escape-canvas');
+    if (escapeCanvas) escapeCanvas.remove();
+    // Restore catch canvas visibility
+    const catchCanvas = document.getElementById('catch-canvas');
+    if (catchCanvas) catchCanvas.style.opacity = '';
     // Resume particles now that the catch overlay is closed
     try { if (currentLocation) Particles.resume(); } catch (e) {}
     renderSpots(); // Refresh cooldown states
@@ -1031,7 +1037,7 @@ const CreatureWorld = (() => {
     const cx = 130, cy = 130;
     const powerColor = power.color;
     const anim = power.animation || 'flash';
-    const DURATION = 1.5; // seconds
+    const DURATION = 2.0; // seconds (longer for dramatic fullscreen effect)
 
     // SVG creature does a dramatic exit
     if (svgContainer && !svgContainer.classList.contains('hidden')) {
@@ -1046,7 +1052,7 @@ const CreatureWorld = (() => {
         svgContainer.style.opacity = '';
         svgContainer.style.transform = '';
         svgContainer.classList.remove('catch-dodge');
-      }, 1800);
+      }, 2200);
     }
 
     // Flash overlay with the power's color
@@ -1054,18 +1060,48 @@ const CreatureWorld = (() => {
     overlay.classList.add('catch-overlay-flash');
     setTimeout(() => overlay.classList.remove('catch-overlay-flash'), 400);
 
+    // Create a fullscreen canvas for the escape effect
+    const escapeCanvas = document.createElement('canvas');
+    escapeCanvas.className = 'legendary-escape-canvas';
+    const rect = overlay.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    escapeCanvas.width = rect.width * dpr;
+    escapeCanvas.height = rect.height * dpr;
+    escapeCanvas.style.width = rect.width + 'px';
+    escapeCanvas.style.height = rect.height + 'px';
+    overlay.appendChild(escapeCanvas);
+    const escCtx = escapeCanvas.getContext('2d');
+    // Scale so the 260×260 coordinate system fills the screen
+    const scale = Math.min(rect.width, rect.height) / 260;
+    const rawW = rect.width;
+    const rawH = rect.height;
+
+    // Hide the small catch canvas during the escape
+    canvas.style.opacity = '0';
+
     let startTime = performance.now();
     const rainbowColors = ['#FF6B6B','#FFB347','#FFFF6B','#6BCB77','#6B9FFF','#BA68C8'];
 
     function animateEscape(now) {
       const elapsed = (now - startTime) / 1000;
       if (elapsed > DURATION) {
+        // Clean up fullscreen canvas
+        escapeCanvas.remove();
+        canvas.style.opacity = '';
         ctxC.clearRect(0, 0, 260, 260);
         if (onComplete) onComplete();
         return;
       }
 
-      ctxC.clearRect(0, 0, 260, 260);
+      // Clear raw canvas, then apply transform for 260×260 → fullscreen mapping
+      escCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      escCtx.clearRect(0, 0, rawW, rawH);
+      escCtx.translate(rawW / 2, rawH / 2);
+      escCtx.scale(scale, scale);
+      escCtx.translate(-130, -130);
+
+      // Shadow outer ctxC so all animation drawing code renders on the fullscreen canvas
+      const ctxC = escCtx;
       const p = elapsed / DURATION;
       const alpha = Math.max(0, 1 - p);
 

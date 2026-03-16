@@ -1,5 +1,5 @@
 // Hadley's Dream — Service Worker
-const CACHE_NAME = 'dream-world-v20';
+const CACHE_NAME = 'dream-world-v21';
 const ASSETS = [
   './',
   'index.html',
