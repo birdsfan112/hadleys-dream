@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <style>
+    .ch-main{fill:#90EE90;stroke:#3CB371;stroke-width:2;stroke-linejoin:round}
+    .ch-heart{fill:#FF69B4;stroke:#DB3E8C;stroke-width:1}
+    .ch-glow{fill:#FFD700;stroke:none;opacity:0.4}
+    .ch-soft{fill:#B8F5B8;stroke:none;opacity:0.5}
+  </style>
+  <g id="clothing">
+    <!-- Soft rounded bodice -->
+    <path d="M70 134 Q66 138 66 142 L66 196 Q66 200 70 200 L130 200 Q134 200 134 196 L134 142 Q134 138 130 134 Z" class="ch-main"/>
+    <!-- Heart accent patterns on bodice -->
+    <path d="M94 148 Q90 142 86 148 Q86 154 94 160 Q102 154 102 148 Q98 142 94 148 Z" class="ch-heart"/>
+    <path d="M114 152 Q111 148 108 152 Q108 156 114 160 Q120 156 120 152 Q117 148 114 152 Z" class="ch-heart" opacity="0.7"/>
+    <!-- Happy face -->
+    <circle cx="88" cy="170" r="4" fill="#FFF" stroke="#3CB371" stroke-width="1"/>
+    <circle cx="112" cy="170" r="4" fill="#FFF" stroke="#3CB371" stroke-width="1"/>
+    <circle cx="88" cy="170" r="2" fill="#333"/>
+    <circle cx="112" cy="170" r="2" fill="#333"/>
+    <path d="M92 182 Q100 190 108 182" stroke="#3CB371" stroke-width="2" fill="none"/>
+    <!-- Puffy hug-arms at sides -->
+    <path d="M66 150 Q52 155 46 168 Q50 175 58 178 Q60 165 66 158 Z" class="ch-main"/>
+    <path d="M134 150 Q148 155 154 168 Q150 175 142 178 Q140 165 134 158 Z" class="ch-main"/>
+    <!-- Soft round skirt -->
+    <path d="M66 200 Q52 225 48 260 Q52 282 70 292 Q84 298 100 298 Q116 298 130 292 Q148 282 152 260 Q148 225 134 200 Z" class="ch-main"/>
+    <!-- Heart pattern on skirt -->
+    <path d="M82 230 Q78 224 74 230 Q74 236 82 242 Q90 236 90 230 Q86 224 82 230 Z" class="ch-heart" opacity="0.5"/>
+    <path d="M118 240 Q114 234 110 240 Q110 246 118 252 Q126 246 126 240 Q122 234 118 240 Z" class="ch-heart" opacity="0.5"/>
+    <path d="M100 260 Q96 254 92 260 Q92 266 100 272 Q108 266 108 260 Q104 254 100 260 Z" class="ch-heart" opacity="0.5"/>
+    <!-- Warm glow accents -->
+    <ellipse cx="80" cy="255" rx="8" ry="6" class="ch-glow"/>
+    <ellipse cx="120" cy="250" rx="8" ry="6" class="ch-glow"/>
+    <!-- Soft highlights -->
+    <ellipse cx="90" cy="215" rx="10" ry="6" class="ch-soft"/>
+    <ellipse cx="110" cy="220" rx="10" ry="6" class="ch-soft"/>
+  </g>
+</svg>

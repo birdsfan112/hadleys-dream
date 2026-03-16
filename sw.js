@@ -1,5 +1,5 @@
 // Hadley's Dream — Service Worker
-const CACHE_NAME = 'dream-world-v17';
+const CACHE_NAME = 'dream-world-v18';
 const ASSETS = [
   './',
   'index.html',
@@ -131,6 +131,17 @@ const ASSETS = [
   'assets/fashion/dress-rock-star.svg',
   'assets/fashion/dress-winter-coat.svg',
   'assets/fashion/dress-fairy.svg',
+  'assets/fashion/dress-elder-owl.svg',
+  'assets/fashion/dress-tide-dragon.svg',
+  'assets/fashion/dress-aurora-unicorn.svg',
+  'assets/fashion/dress-void-wyrm.svg',
+  'assets/fashion/dress-prism-pegasus.svg',
+  'assets/fashion/dress-sparkle-bud.svg',
+  'assets/fashion/dress-micro-pennx.svg',
+  'assets/fashion/dress-giant-pennx.svg',
+  'assets/fashion/dress-charlie-hug.svg',
+  'assets/fashion/dress-charlie-great.svg',
+  'assets/fashion/dress-happy-lolly.svg',
   'assets/fashion/shoes-sandals.svg',
   'assets/fashion/shoes-platform-stars.svg',
   'assets/fashion/shoes-fairy-flats.svg',

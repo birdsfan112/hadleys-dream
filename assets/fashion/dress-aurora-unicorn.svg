@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <style>
+    .au-main{fill:#E6E6FA;stroke:#BA55D3;stroke-width:2;stroke-linejoin:round}
+    .au-rainbow{stroke-width:2;fill:none;opacity:0.6}
+    .au-sparkle{fill:#FFD700;stroke:none}
+    .au-shimmer{fill:#FFFFFF;stroke:none;opacity:0.6}
+  </style>
+  <defs>
+    <linearGradient id="au-grad" x1="0" y1="134" x2="0" y2="290">
+      <stop offset="0%" stop-color="#E6E6FA"/>
+      <stop offset="50%" stop-color="#D8BFD8"/>
+      <stop offset="100%" stop-color="#E6E6FA"/>
+    </linearGradient>
+  </defs>
+  <g id="clothing">
+    <!-- Flowing unicorn bodice -->
+    <path d="M72 134 L128 134 L130 198 L70 198 Z" fill="url(#au-grad)" stroke="#BA55D3" stroke-width="2"/>
+    <!-- Horn accent at neckline -->
+    <path d="M96 134 L100 116 L104 134" fill="#FFD700" stroke="#DAA520" stroke-width="1.5"/>
+    <!-- Spiral on horn -->
+    <path d="M99 130 Q100 126 101 122 Q100 118 100 116" fill="none" stroke="#DAA520" stroke-width="0.8"/>
+    <!-- Mane ruffles at shoulders -->
+    <path d="M72 134 Q64 140 60 150 Q66 145 72 140 Z" fill="#FF69B4" stroke="#BA55D3" stroke-width="1" opacity="0.7"/>
+    <path d="M128 134 Q136 140 140 150 Q134 145 128 140 Z" fill="#9370DB" stroke="#BA55D3" stroke-width="1" opacity="0.7"/>
+    <!-- Flowing skirt -->
+    <path d="M70 198 Q56 230 52 270 Q58 288 74 295 L100 292 L126 295 Q142 288 148 270 Q144 230 130 198 Z" class="au-main"/>
+    <!-- Rainbow stripes on skirt -->
+    <path d="M64 230 Q80 225 100 228 Q120 225 136 230" stroke="#FF6B6B" class="au-rainbow"/>
+    <path d="M62 242 Q80 237 100 240 Q120 237 138 242" stroke="#FFB347" class="au-rainbow"/>
+    <path d="M60 254 Q80 249 100 252 Q120 249 140 254" stroke="#FFFF6B" class="au-rainbow"/>
+    <path d="M58 266 Q80 261 100 264 Q120 261 142 266" stroke="#6BCB77" class="au-rainbow"/>
+    <path d="M56 278 Q80 273 100 276 Q120 273 144 278" stroke="#6B9FFF" class="au-rainbow"/>
+    <!-- Star sparkles -->
+    <circle cx="80" cy="155" r="2" class="au-sparkle"/>
+    <circle cx="120" cy="165" r="1.5" class="au-sparkle"/>
+    <circle cx="95" cy="180" r="1.8" class="au-sparkle"/>
+    <circle cx="75" cy="250" r="1.5" class="au-sparkle"/>
+    <circle cx="125" cy="260" r="1.8" class="au-sparkle"/>
+    <circle cx="100" cy="285" r="1.2" class="au-sparkle"/>
+    <!-- Shimmer highlights -->
+    <circle cx="85" cy="210" r="2.5" class="au-shimmer"/>
+    <circle cx="115" cy="240" r="2" class="au-shimmer"/>
+  </g>
+</svg>

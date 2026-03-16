@@ -722,13 +722,13 @@ class TestDataIntegrity(unittest.TestCase):
                          f"Location dream-nexus should have 6 creatures, has {counts.get('dream-nexus', 0)}")
 
     def test_free_wardrobe_items_match_default_state(self):
-        """data.js: DEFAULT_STATE wardrobe_unlocked should include all cost:0 items"""
+        """data.js: DEFAULT_STATE wardrobe_unlocked should include all cost:0 non-legendary items"""
         source = read_js('data.js')
-        # The DEFAULT_STATE computes wardrobe_unlocked dynamically:
-        # FASHION_ITEMS.filter(i => i.cost === 0).map(i => i.id)
-        self.assertIn("FASHION_ITEMS.filter(i => i.cost === 0).map(i => i.id)",
+        # The DEFAULT_STATE computes wardrobe_unlocked dynamically, excluding legendary gated items:
+        # FASHION_ITEMS.filter(i => i.cost === 0 && !i.legendary).map(i => i.id)
+        self.assertIn("FASHION_ITEMS.filter(i => i.cost === 0 && !i.legendary).map(i => i.id)",
                        source,
-                       "DEFAULT_STATE should derive wardrobe_unlocked from cost===0 items")
+                       "DEFAULT_STATE should derive wardrobe_unlocked from cost===0 non-legendary items")
 
 
 # ===========================================================================
@@ -2345,14 +2345,65 @@ class TestLegendaryShop(unittest.TestCase):
         self.assertIn('.legendary-shop-card.locked', self.css_src)
         self.assertIn('.legendary-shop-card.owned', self.css_src)
 
-    # Reimplementation: buyLegendary logic
+    # buyLegendary unlocks costume in wardrobe
+    def test_buy_legendary_unlocks_costume(self):
+        """game.js: buyLegendary must add costume to wardrobe_unlocked"""
+        match = re.search(r'function buyLegendary\(creature\)\s*\{(.*?)\n  \}', self.game_src, re.DOTALL)
+        self.assertIsNotNone(match)
+        body = match.group(1)
+        self.assertIn('wardrobe_unlocked', body,
+                       "buyLegendary must unlock the costume in the wardrobe")
+        self.assertIn("FASHION_ITEMS.find(i => i.legendary === creature.id)", body,
+                       "buyLegendary must find the matching costume by legendary field")
+
+    # All legendary creatures have a matching costume
+    def test_all_legendaries_have_costumes(self):
+        """data.js: every legendary creature must have a corresponding costume in FASHION_ITEMS"""
+        # Extract legendary creature ids
+        legendaries = re.findall(r"id:\s*'([^']+)'.*?rarity:\s*'legendary'", self.data_src)
+        # Extract costume legendary fields
+        costumes = re.findall(r"legendary:\s*'([^']+)'", self.data_src)
+        for lid in legendaries:
+            self.assertIn(lid, costumes,
+                          f"Legendary creature '{lid}' has no matching costume item")
+
+    # Legendary costumes are excluded from default wardrobe
+    def test_legendary_costumes_excluded_from_default_wardrobe(self):
+        """data.js: wardrobe_unlocked must exclude legendary items (cost 0 but gated)"""
+        match = re.search(r'wardrobe_unlocked:\s*FASHION_ITEMS\.filter\(([^)]+)\)', self.data_src)
+        self.assertIsNotNone(match)
+        filter_body = match.group(1)
+        self.assertIn('!i.legendary', filter_body,
+                       "wardrobe_unlocked filter must exclude legendary items")
+
+    # Legendary costume SVGs exist on disk
+    def test_legendary_costume_svgs_exist(self):
+        """assets: each legendary costume SVG file must exist"""
+        costume_svgs = re.findall(r"legendary:\s*'[^']+',\s*svg:\s*'([^']+)'", self.data_src)
+        self.assertGreater(len(costume_svgs), 0, "Must find costume SVG paths")
+        for svg_path in costume_svgs:
+            full_path = os.path.join(PROJECT_ROOT, svg_path)
+            self.assertTrue(os.path.isfile(full_path),
+                            f"Costume SVG missing: {svg_path}")
+
+    # Legendary costume SVGs are in SW cache
+    def test_legendary_costumes_in_sw_cache(self):
+        """sw.js: all legendary costume SVGs must be in ASSETS for offline support"""
+        sw_src = read_asset('sw.js')
+        costume_svgs = re.findall(r"legendary:\s*'[^']+',\s*svg:\s*'([^']+)'", self.data_src)
+        for svg_path in costume_svgs:
+            self.assertIn(svg_path, sw_src,
+                          f"Costume SVG not in SW ASSETS: {svg_path}")
+
+    # Reimplementation: buyLegendary logic with costume unlock
     def test_buy_legendary_logic_sufficient_coins(self):
-        """Logic test: buying a legendary with enough coins succeeds"""
+        """Logic test: buying a legendary with enough coins succeeds and unlocks costume"""
         coins = 200
         cost = 100
         legendary_bought = []
+        wardrobe = ['hair-1']
         creature_id = 'elder-owl'
-        caught = ['elder-owl']
+        costume_id = 'dress-owl'
 
         # Simulate buyLegendary
         if coins < cost:
@@ -2362,11 +2413,14 @@ class TestLegendaryShop(unittest.TestCase):
         else:
             coins -= cost
             legendary_bought.append(creature_id)
+            if costume_id not in wardrobe:
+                wardrobe.append(costume_id)
             success = True
 
         self.assertTrue(success)
         self.assertEqual(coins, 100)
         self.assertIn('elder-owl', legendary_bought)
+        self.assertIn('dress-owl', wardrobe)
 
     def test_buy_legendary_logic_insufficient_coins(self):
         """Logic test: buying a legendary without enough coins fails"""

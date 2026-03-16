@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <style>
+    .gp-main{fill:#9C27B0;stroke:#7B1FA2;stroke-width:2;stroke-linejoin:round}
+    .gp-accent{fill:#FF0000;stroke:#CC0000;stroke-width:1.5}
+    .gp-grad-cap{fill:#2F2F2F;stroke:#1A1A1A;stroke-width:1.5}
+    .gp-rainbow{stroke-width:2;fill:none;opacity:0.5}
+  </style>
+  <defs>
+    <linearGradient id="gp-grad" x1="0" y1="134" x2="0" y2="290">
+      <stop offset="0%" stop-color="#9C27B0"/>
+      <stop offset="100%" stop-color="#CE93D8"/>
+    </linearGradient>
+  </defs>
+  <g id="clothing">
+    <!-- Cylindrical bodice -->
+    <rect x="70" y="134" width="60" height="64" rx="4" fill="url(#gp-grad)" stroke="#7B1FA2" stroke-width="2"/>
+    <!-- Grad cap accent on chest -->
+    <rect x="86" y="144" width="28" height="4" class="gp-grad-cap"/>
+    <rect x="90" y="140" width="20" height="8" rx="1" class="gp-grad-cap"/>
+    <line x1="100" y1="140" x2="100" y2="134" stroke="#FFD700" stroke-width="1.5"/>
+    <circle cx="100" cy="133" r="2.5" fill="#FFD700"/>
+    <!-- Happy face design -->
+    <circle cx="90" cy="165" r="4" fill="#FFF" stroke="#7B1FA2" stroke-width="1"/>
+    <circle cx="110" cy="165" r="4" fill="#FFF" stroke="#7B1FA2" stroke-width="1"/>
+    <circle cx="90" cy="165" r="2" fill="#333"/>
+    <circle cx="110" cy="165" r="2" fill="#333"/>
+    <path d="M92 176 Q100 183 108 176" stroke="#FF0000" stroke-width="2" fill="none"/>
+    <!-- A-line skirt -->
+    <path d="M70 198 L54 290 L146 290 L130 198 Z" class="gp-main"/>
+    <!-- Rainbow shockwave pattern -->
+    <path d="M66 230 Q100 220 134 230" stroke="#FF6B6B" class="gp-rainbow"/>
+    <path d="M62 248 Q100 238 138 248" stroke="#FFB347" class="gp-rainbow"/>
+    <path d="M58 266 Q100 256 142 266" stroke="#FFFF6B" class="gp-rainbow"/>
+    <path d="M56 282 Q100 272 144 282" stroke="#6BCB77" class="gp-rainbow"/>
+    <!-- Red accent patches -->
+    <circle cx="78" cy="240" r="8" class="gp-accent" opacity="0.3"/>
+    <circle cx="122" cy="255" r="7" class="gp-accent" opacity="0.3"/>
+  </g>
+</svg>

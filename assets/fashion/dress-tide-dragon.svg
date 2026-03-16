@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <style>
+    .td-main{fill:#00CED1;stroke:#008B8B;stroke-width:2;stroke-linejoin:round}
+    .td-scale{fill:#20B2AA;stroke:#008B8B;stroke-width:1}
+    .td-fin{fill:#00CED1;stroke:#008B8B;stroke-width:1.5;opacity:0.8}
+    .td-shimmer{fill:#FFFFFF;stroke:none;opacity:0.5}
+  </style>
+  <g id="clothing">
+    <!-- Scale-textured bodice -->
+    <path d="M72 134 L128 134 L130 198 L70 198 Z" class="td-main"/>
+    <!-- Scale pattern rows -->
+    <path d="M76 145 Q82 140 88 145 Q94 140 100 145 Q106 140 112 145 Q118 140 124 145" fill="none" stroke="#008B8B" stroke-width="1" opacity="0.5"/>
+    <path d="M74 158 Q80 153 86 158 Q92 153 98 158 Q104 153 110 158 Q116 153 122 158 Q128 153 128 158" fill="none" stroke="#008B8B" stroke-width="1" opacity="0.5"/>
+    <path d="M72 171 Q78 166 84 171 Q90 166 96 171 Q102 166 108 171 Q114 166 120 171 Q126 166 130 171" fill="none" stroke="#008B8B" stroke-width="1" opacity="0.5"/>
+    <path d="M72 184 Q78 179 84 184 Q90 179 96 184 Q102 179 108 184 Q114 179 120 184 Q126 179 130 184" fill="none" stroke="#008B8B" stroke-width="1" opacity="0.5"/>
+    <!-- Flowing dragon tail skirt -->
+    <path d="M70 198 Q58 230 56 270 Q60 285 72 292 L100 290 L128 292 Q140 285 144 270 Q142 230 130 198 Z" class="td-main"/>
+    <!-- Tail fin at hem -->
+    <path d="M88 288 Q82 300 76 310 Q80 305 88 296 Z" class="td-fin"/>
+    <path d="M100 290 Q100 302 100 312 Q104 305 104 296 Z" class="td-fin"/>
+    <path d="M112 288 Q118 300 124 310 Q120 305 112 296 Z" class="td-fin"/>
+    <!-- Dorsal fin cape -->
+    <path d="M98 134 Q96 120 100 110 Q104 120 102 134" class="td-fin"/>
+    <!-- Side fin accents -->
+    <path d="M70 165 Q56 170 50 185 Q58 175 68 168 Z" class="td-fin"/>
+    <path d="M130 165 Q144 170 150 185 Q142 175 132 168 Z" class="td-fin"/>
+    <!-- Scale shimmer -->
+    <circle cx="90" cy="150" r="2" class="td-shimmer"/>
+    <circle cx="110" cy="165" r="1.8" class="td-shimmer"/>
+    <circle cx="85" cy="240" r="2" class="td-shimmer"/>
+    <circle cx="115" cy="250" r="1.5" class="td-shimmer"/>
+    <!-- Wave pattern on skirt -->
+    <path d="M65 230 Q75 225 85 230 Q95 235 105 230 Q115 225 125 230 Q135 235 140 230" fill="none" stroke="#008B8B" stroke-width="1" opacity="0.4"/>
+    <path d="M62 255 Q72 250 82 255 Q92 260 102 255 Q112 250 122 255 Q132 260 142 255" fill="none" stroke="#008B8B" stroke-width="1" opacity="0.4"/>
+  </g>
+</svg>

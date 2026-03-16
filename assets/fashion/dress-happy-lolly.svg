@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <style>
+    .hl-main{fill:#8B4513;stroke:#6B3410;stroke-width:2;stroke-linejoin:round}
+    .hl-belly{fill:#CD853F;stroke:#8B4513;stroke-width:1.5}
+    .hl-berry{stroke-width:1}
+    .hl-spike{fill:#A0522D;stroke:#6B3410;stroke-width:1}
+  </style>
+  <g id="clothing">
+    <!-- Hedgehog-shaped bodice -->
+    <path d="M72 134 L128 134 L132 198 L68 198 Z" class="hl-main"/>
+    <!-- Soft belly patch on front -->
+    <ellipse cx="100" cy="168" rx="22" ry="26" class="hl-belly"/>
+    <!-- Cute face -->
+    <circle cx="90" cy="158" r="3.5" fill="#333"/>
+    <circle cx="110" cy="158" r="3.5" fill="#333"/>
+    <circle cx="91" cy="157" r="1.2" fill="#FFF"/>
+    <circle cx="111" cy="157" r="1.2" fill="#FFF"/>
+    <circle cx="100" cy="168" r="3" fill="#8B4513" stroke="#6B3410" stroke-width="1"/>
+    <path d="M94 175 Q100 180 106 175" stroke="#CD853F" stroke-width="1.5" fill="none"/>
+    <!-- Spike-textured shoulders -->
+    <path d="M72 134 L64 126 L70 132 L62 130 L68 136 Z" class="hl-spike"/>
+    <path d="M80 134 L76 122 L82 130 Z" class="hl-spike"/>
+    <path d="M128 134 L136 126 L130 132 L138 130 L132 136 Z" class="hl-spike"/>
+    <path d="M120 134 L124 122 L118 130 Z" class="hl-spike"/>
+    <!-- Rounded hedgehog skirt -->
+    <path d="M68 198 Q54 225 50 260 Q54 280 72 290 Q86 296 100 296 Q114 296 128 290 Q146 280 150 260 Q146 225 132 198 Z" class="hl-main"/>
+    <!-- Belly patch continues on skirt -->
+    <ellipse cx="100" cy="240" rx="24" ry="30" class="hl-belly"/>
+    <!-- Spike texture on skirt edges -->
+    <path d="M58 230 L52 224 L56 228 L50 228 L56 232 Z" class="hl-spike"/>
+    <path d="M54 255 L48 250 L52 253 L46 254 L52 257 Z" class="hl-spike"/>
+    <path d="M142 230 L148 224 L144 228 L150 228 L144 232 Z" class="hl-spike"/>
+    <path d="M146 255 L152 250 L148 253 L154 254 L148 257 Z" class="hl-spike"/>
+    <!-- Berry accents -->
+    <circle cx="78" cy="220" r="4" fill="#DC143C" class="hl-berry" stroke="#8B0000"/>
+    <circle cx="122" cy="230" r="3.5" fill="#FF4500" class="hl-berry" stroke="#CC3700"/>
+    <circle cx="85" cy="270" r="3" fill="#DC143C" class="hl-berry" stroke="#8B0000"/>
+    <circle cx="115" cy="268" r="3.5" fill="#FF6347" class="hl-berry" stroke="#CC4F39"/>
+    <!-- Berry leaf details -->
+    <path d="M78 216 Q80 213 83 214" fill="#228B22" stroke="none"/>
+    <path d="M122 226 Q124 223 127 224" fill="#228B22" stroke="none"/>
+  </g>
+</svg>

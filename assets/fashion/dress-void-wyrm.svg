@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <style>
+    .vw-main{fill:#4B0082;stroke:#2E0854;stroke-width:2;stroke-linejoin:round}
+    .vw-glow{fill:#8A2BE2;stroke:none;opacity:0.5}
+    .vw-star{fill:#E0E0FF;stroke:none}
+    .vw-void{fill:#1A0033;stroke:none;opacity:0.4}
+  </style>
+  <defs>
+    <radialGradient id="vw-eye" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF00FF"/>
+      <stop offset="100%" stop-color="#4B0082"/>
+    </radialGradient>
+  </defs>
+  <g id="clothing">
+    <!-- Dark bodice -->
+    <path d="M72 134 L128 134 L130 198 L70 198 Z" class="vw-main"/>
+    <!-- Void eye on chest -->
+    <ellipse cx="100" cy="162" rx="14" ry="10" fill="url(#vw-eye)" stroke="#8A2BE2" stroke-width="1.5"/>
+    <ellipse cx="100" cy="162" rx="5" ry="7" fill="#1A0033"/>
+    <circle cx="98" cy="160" r="1.5" fill="#E0E0FF"/>
+    <!-- Spiky shoulder pads -->
+    <path d="M72 134 Q62 128 56 118 Q62 130 72 138 Z" class="vw-main"/>
+    <path d="M128 134 Q138 128 144 118 Q138 130 128 138 Z" class="vw-main"/>
+    <!-- Tattered skirt -->
+    <path d="M70 198 Q58 230 54 265 L62 290 L74 310 L80 285 Z" class="vw-main"/>
+    <path d="M80 198 Q82 240 86 285 L94 308 L100 280 Z" class="vw-main"/>
+    <path d="M100 198 Q100 245 100 280 L106 308 L114 285 Q118 240 120 198 Z" class="vw-main"/>
+    <path d="M120 198 Q122 240 126 285 L138 310 L146 265 Q142 230 130 198 Z" class="vw-main"/>
+    <!-- Void glow effects -->
+    <ellipse cx="76" cy="240" rx="6" ry="8" class="vw-glow"/>
+    <ellipse cx="124" cy="250" rx="5" ry="7" class="vw-glow"/>
+    <ellipse cx="100" cy="230" rx="8" ry="5" class="vw-glow"/>
+    <!-- Star speckles (cosmos) -->
+    <circle cx="78" cy="220" r="1" class="vw-star"/>
+    <circle cx="90" cy="250" r="0.8" class="vw-star"/>
+    <circle cx="110" cy="235" r="1.2" class="vw-star"/>
+    <circle cx="122" cy="270" r="0.8" class="vw-star"/>
+    <circle cx="85" cy="270" r="1" class="vw-star"/>
+    <circle cx="115" cy="215" r="0.8" class="vw-star"/>
+    <circle cx="100" cy="260" r="1.2" class="vw-star"/>
+    <!-- Purple energy lines -->
+    <path d="M76 200 Q80 210 74 225" stroke="#8A2BE2" stroke-width="1" fill="none" opacity="0.6"/>
+    <path d="M124 200 Q120 210 126 225" stroke="#8A2BE2" stroke-width="1" fill="none" opacity="0.6"/>
+  </g>
+</svg>

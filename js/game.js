@@ -270,10 +270,10 @@ const Game = (() => {
       }
 
       const statusHTML = bought
-        ? '<div class="legendary-status owned-label">Owned</div>'
+        ? '<div class="legendary-status owned-label">Costume Owned</div>'
         : caught
-          ? `<button class="btn small legendary-buy-btn${canAfford ? '' : ' disabled'}">\uD83E\uDE99 ${creature.coins}</button>`
-          : `<div class="legendary-status locked-label">Catch ${creature.name} to unlock</div>`;
+          ? `<button class="btn small legendary-buy-btn${canAfford ? '' : ' disabled'}">Buy Costume \uD83E\uDE99 ${creature.coins}</button>`
+          : `<div class="legendary-status locked-label">Catch ${creature.name} to unlock costume</div>`;
 
       card.innerHTML = `
         <div class="legendary-thumb">${thumbHTML}</div>
@@ -307,9 +307,14 @@ const Game = (() => {
     GameAudio.sfx.buy();
     addCoins(-creature.coins);
     state.legendary_bought.push(creature.id);
+    // Unlock the matching costume in the wardrobe
+    const costume = FASHION_ITEMS.find(i => i.legendary === creature.id);
+    if (costume && !state.wardrobe_unlocked.includes(costume.id)) {
+      state.wardrobe_unlocked.push(costume.id);
+    }
     SaveManager.autoSave(state);
     renderLegendaryShop();
-    showToast(`Bought ${creature.name}!`);
+    showToast(`Bought ${creature.name} costume!`);
   }
 
   // --- Stats ---

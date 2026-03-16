@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <style>
+    .eo-main{fill:#8B6914;stroke:#6B4F10;stroke-width:2;stroke-linejoin:round}
+    .eo-feather{fill:#FFD700;stroke:#D4A800;stroke-width:1.5}
+    .eo-accent{fill:#FFD700;stroke:none;opacity:0.7}
+    .eo-shade{fill:#6B4F10;stroke:none;opacity:0.3}
+  </style>
+  <g id="clothing">
+    <!-- Feathered bodice -->
+    <path d="M72 134 L128 134 L130 198 L70 198 Z" class="eo-main"/>
+    <!-- Owl eye markings on bodice -->
+    <ellipse cx="88" cy="160" rx="10" ry="12" fill="#FFD700" stroke="#6B4F10" stroke-width="1.5"/>
+    <ellipse cx="112" cy="160" rx="10" ry="12" fill="#FFD700" stroke="#6B4F10" stroke-width="1.5"/>
+    <circle cx="88" cy="160" r="4" fill="#6B4F10"/>
+    <circle cx="112" cy="160" r="4" fill="#6B4F10"/>
+    <!-- Beak accent -->
+    <path d="M96 172 L100 180 L104 172" fill="#D4A800" stroke="#6B4F10" stroke-width="1"/>
+    <!-- Feathered skirt -->
+    <path d="M70 198 Q60 220 54 260 Q58 280 68 290 L82 288 Q86 250 90 210 Z" class="eo-feather"/>
+    <path d="M82 210 Q86 250 88 290 L100 292 L112 290 Q114 250 118 210 Z" class="eo-main"/>
+    <path d="M118 210 Q114 250 118 288 L132 290 Q142 280 146 260 Q140 220 130 198 Z" class="eo-feather"/>
+    <!-- Wing cape accents -->
+    <path d="M70 150 Q58 160 52 180 Q56 170 68 155 Z" class="eo-feather"/>
+    <path d="M130 150 Q142 160 148 180 Q144 170 132 155 Z" class="eo-feather"/>
+    <!-- Golden crown headpiece detail on chest -->
+    <path d="M90 134 L95 126 L100 134 L105 126 L110 134" fill="none" stroke="#FFD700" stroke-width="2"/>
+    <!-- Feather texture lines -->
+    <path d="M78 220 Q80 240 76 270" stroke="#6B4F10" stroke-width="0.8" fill="none" opacity="0.4"/>
+    <path d="M122 220 Q120 240 124 270" stroke="#6B4F10" stroke-width="0.8" fill="none" opacity="0.4"/>
+    <!-- Sparkle accents -->
+    <circle cx="76" cy="250" r="1.5" class="eo-accent"/>
+    <circle cx="124" cy="245" r="1.5" class="eo-accent"/>
+    <circle cx="100" cy="270" r="1.2" class="eo-accent"/>
+  </g>
+</svg>

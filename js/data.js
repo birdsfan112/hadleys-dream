@@ -338,7 +338,20 @@ const FASHION_ITEMS = [
   { id: 'hat-5', cat: 'hat', name: 'Witch Hat', cost: 45, tags: ['fantasy','edgy'], color: '#4B0082', svg: 'assets/fashion/hat-witch-hat.svg' },
   { id: 'hat-6', cat: 'hat', name: 'Sun Hat', cost: 30, tags: ['beach','summer','elegant'], color: '#F5DEB3', svg: 'assets/fashion/hat-sun-hat.svg' },
   { id: 'hat-7', cat: 'hat', name: 'Space Helmet', cost: 65, tags: ['space','adventure'], color: '#E0E0E0', svg: 'assets/fashion/hat-space-helmet.svg' },
-  { id: 'hat-8', cat: 'hat', name: 'Cat Ears', cost: 35, tags: ['cute','pop','party'], color: '#FFB6C1', svg: 'assets/fashion/hat-cat-ears.svg' }
+  { id: 'hat-8', cat: 'hat', name: 'Cat Ears', cost: 35, tags: ['cute','pop','party'], color: '#FFB6C1', svg: 'assets/fashion/hat-cat-ears.svg' },
+
+  // --- Legendary Creature Costumes (unlocked via Legendary Shop) ---
+  { id: 'dress-owl', cat: 'dress', name: 'Elder Owl Costume', cost: 0, tags: ['fantasy','elegant'], color: '#8B6914', legendary: 'elder-owl', svg: 'assets/fashion/dress-elder-owl.svg' },
+  { id: 'dress-dragon', cat: 'dress', name: 'Tide Dragon Costume', cost: 0, tags: ['fantasy','adventure','beach'], color: '#00CED1', legendary: 'tide-dragon', svg: 'assets/fashion/dress-tide-dragon.svg' },
+  { id: 'dress-unicorn', cat: 'dress', name: 'Aurora Unicorn Costume', cost: 0, tags: ['fantasy','princess','elegant'], color: '#E6E6FA', legendary: 'aurora-unicorn', svg: 'assets/fashion/dress-aurora-unicorn.svg' },
+  { id: 'dress-wyrm', cat: 'dress', name: 'Void Wyrm Costume', cost: 0, tags: ['fantasy','edgy','space'], color: '#4B0082', legendary: 'void-wyrm', svg: 'assets/fashion/dress-void-wyrm.svg' },
+  { id: 'dress-pegasus', cat: 'dress', name: 'Prism Pegasus Costume', cost: 0, tags: ['fantasy','party','pop'], color: '#FF69B4', legendary: 'prism-pegasus', svg: 'assets/fashion/dress-prism-pegasus.svg' },
+  { id: 'dress-sparkle-bud', cat: 'dress', name: 'Sparkle Bud Costume', cost: 0, tags: ['cute','party','pop'], color: '#FF6B8A', legendary: 'sparkle-bud', svg: 'assets/fashion/dress-sparkle-bud.svg' },
+  { id: 'dress-micro-pennx', cat: 'dress', name: 'Micro Pennx Costume', cost: 0, tags: ['cute','space'], color: '#87CEEB', legendary: 'micro-pennx', svg: 'assets/fashion/dress-micro-pennx.svg' },
+  { id: 'dress-giant-pennx', cat: 'dress', name: 'Giant Pennx Costume', cost: 0, tags: ['rock','edgy'], color: '#9C27B0', legendary: 'giant-pennx', svg: 'assets/fashion/dress-giant-pennx.svg' },
+  { id: 'dress-charlie-hug', cat: 'dress', name: 'Charlie the Hug Costume', cost: 0, tags: ['cute','cozy'], color: '#90EE90', legendary: 'charlie-the-hug', svg: 'assets/fashion/dress-charlie-hug.svg' },
+  { id: 'dress-charlie-great', cat: 'dress', name: 'Charlie the Great Costume', cost: 0, tags: ['elegant','fantasy'], color: '#FF6347', legendary: 'charlie-the-great', svg: 'assets/fashion/dress-charlie-great.svg' },
+  { id: 'dress-happy-lolly', cat: 'dress', name: 'Happy Lolly Costume', cost: 0, tags: ['cute','adventure'], color: '#8B4513', legendary: 'happy-lolly', svg: 'assets/fashion/dress-happy-lolly.svg' }
 ];
 
 // --- Fashion Challenges ---
@@ -432,7 +445,7 @@ const DAILY_BONUS = 25;
 const DEFAULT_STATE = {
   coins: 100,
   creatures: [],
-  wardrobe_unlocked: FASHION_ITEMS.filter(i => i.cost === 0).map(i => i.id),
+  wardrobe_unlocked: FASHION_ITEMS.filter(i => i.cost === 0 && !i.legendary).map(i => i.id),
   furniture_unlocked: FURNITURE_ITEMS.filter(i => i.cost === 0).map(i => i.id),
   fashion_scores: {},
   saved_outfits: [],
