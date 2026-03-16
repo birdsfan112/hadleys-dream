@@ -1093,6 +1093,9 @@ const CreatureWorld = (() => {
         return;
       }
 
+      // Guard: if closeCatch removed the canvas, stop the animation loop
+      if (!escapeCanvas.parentNode) return;
+
       // Clear raw canvas, then apply transform for 260×260 → fullscreen mapping
       escCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
       escCtx.clearRect(0, 0, rawW, rawH);
