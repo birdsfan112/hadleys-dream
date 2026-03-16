@@ -26,6 +26,8 @@ const Game = (() => {
         if (state.tutorial_completed === undefined) state.tutorial_completed = false;
         // Migration: ensure last_location exists
         if (!state.last_location) state.last_location = 'sparkle-forest';
+        // Migration: ensure legendary_bought array exists
+        if (!Array.isArray(state.legendary_bought)) state.legendary_bought = [];
         // Migration: ensure all free fashion items are in wardrobe_unlocked
         const freeItems = FASHION_ITEMS.filter(i => i.cost === 0).map(i => i.id);
         if (!Array.isArray(state.wardrobe_unlocked)) state.wardrobe_unlocked = [];
@@ -181,6 +183,7 @@ const Game = (() => {
     try { GameAudio.sfx.click(); } catch (e) {}
     const overlay = document.getElementById('collection-overlay');
     overlay.classList.remove('hidden');
+    showCollectionTab('collection');
     const grid = document.getElementById('collection-grid');
     grid.innerHTML = '';
 
@@ -225,6 +228,88 @@ const Game = (() => {
   function closeCollection(e) {
     if (e && e.target !== e.currentTarget) return;
     document.getElementById('collection-overlay').classList.add('hidden');
+  }
+
+  function showCollectionTab(tab) {
+    try { GameAudio.sfx.click(); } catch (e) {}
+    document.getElementById('tab-collection').classList.toggle('active', tab === 'collection');
+    document.getElementById('tab-legendary-shop').classList.toggle('active', tab === 'legendary-shop');
+    document.getElementById('collection-view').classList.toggle('hidden', tab !== 'collection');
+    document.getElementById('legendary-shop-view').classList.toggle('hidden', tab !== 'legendary-shop');
+    if (tab === 'legendary-shop') renderLegendaryShop();
+  }
+
+  function renderLegendaryShop() {
+    const grid = document.getElementById('legendary-shop-grid');
+    grid.innerHTML = '';
+    const svgCache = typeof CreatureWorld !== 'undefined' ? CreatureWorld.getSvgCache() : new Map();
+    const legendaries = CREATURES.filter(c => c.rarity === 'legendary');
+
+    legendaries.forEach(creature => {
+      const caught = state.creatures.includes(creature.id);
+      const bought = state.legendary_bought.includes(creature.id);
+      const canAfford = state.coins >= creature.coins;
+      const location = LOCATIONS.find(l => l.id === creature.location);
+
+      const card = document.createElement('div');
+      card.className = `legendary-shop-card${bought ? ' owned' : ''}${!caught ? ' locked' : ''}`;
+
+      let thumbHTML;
+      if (creature.svg && svgCache.has(creature.id)) {
+        thumbHTML = typeof CreatureWorld !== 'undefined' && CreatureWorld.sanitizeSVG
+          ? CreatureWorld.sanitizeSVG(svgCache.get(creature.id))
+          : svgCache.get(creature.id);
+      } else if (creature.svg) {
+        thumbHTML = `<img src="${creature.svg}" alt="${creature.name}" style="width:100%;height:100%;">`;
+      } else {
+        thumbHTML = `<svg viewBox="0 0 40 40" width="40" height="40">
+          <circle cx="20" cy="20" r="16" fill="${creature.colors[0]}" stroke="${creature.colors[1]}" stroke-width="2"/>
+          <circle cx="15" cy="17" r="2.5" fill="#333"/><circle cx="25" cy="17" r="2.5" fill="#333"/>
+          <path d="M16 24 Q20 28 24 24" stroke="#FF69B4" stroke-width="1.5" fill="none"/>
+        </svg>`;
+      }
+
+      const statusHTML = bought
+        ? '<div class="legendary-status owned-label">Owned</div>'
+        : caught
+          ? `<button class="btn small legendary-buy-btn${canAfford ? '' : ' disabled'}">\uD83E\uDE99 ${creature.coins}</button>`
+          : `<div class="legendary-status locked-label">Catch ${creature.name} to unlock</div>`;
+
+      card.innerHTML = `
+        <div class="legendary-thumb">${thumbHTML}</div>
+        <div class="legendary-info">
+          <div class="legendary-name" style="color:${RARITY.legendary.color}">${creature.name}</div>
+          <div class="legendary-location">${location ? location.name : creature.location}</div>
+          ${statusHTML}
+        </div>
+      `;
+
+      if (caught && !bought) {
+        const buyBtn = card.querySelector('.legendary-buy-btn');
+        if (buyBtn) {
+          buyBtn.onclick = (e) => {
+            e.stopPropagation();
+            buyLegendary(creature);
+          };
+        }
+      }
+
+      grid.appendChild(card);
+    });
+  }
+
+  function buyLegendary(creature) {
+    if (state.coins < creature.coins) {
+      showToast('Not enough coins!');
+      return;
+    }
+    if (state.legendary_bought.includes(creature.id)) return;
+    GameAudio.sfx.buy();
+    addCoins(-creature.coins);
+    state.legendary_bought.push(creature.id);
+    SaveManager.autoSave(state);
+    renderLegendaryShop();
+    showToast(`Bought ${creature.name}!`);
   }
 
   // --- Stats ---
@@ -319,7 +404,7 @@ const Game = (() => {
   return {
     get state() { return state; },
     init, switchMode, addCoins, showToast, updateCoinsDisplay,
-    openCollection, closeCollection, openStats, closeStats,
+    openCollection, closeCollection, showCollectionTab, openStats, closeStats,
     openSaveMenu, closeSaveMenu,
     getCurrentMode, openQuickMenu, closeQuickMenu
   };
