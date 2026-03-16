@@ -5,6 +5,7 @@
 const CreatureWorld = (() => {
   let currentLocation = null;
   let catchAnimFrame = null;
+  let effectAnimFrames = [];
   let catchState = null;
   let catchActive = false;
   let legendaryEscapeUsed = false; // tracks whether the legendary has already used its escape power this encounter
@@ -922,6 +923,8 @@ const CreatureWorld = (() => {
       svgContainer.style.transform = '';
     }
     cancelAnimationFrame(catchAnimFrame);
+    effectAnimFrames.forEach(id => cancelAnimationFrame(id));
+    effectAnimFrames = [];
     // Resume particles now that the catch overlay is closed
     try { if (currentLocation) Particles.resume(); } catch (e) {}
     renderSpots(); // Refresh cooldown states
@@ -1084,9 +1087,9 @@ const CreatureWorld = (() => {
         ctxC.restore();
       }
 
-      requestAnimationFrame(animateEscape);
+      effectAnimFrames.push(requestAnimationFrame(animateEscape));
     }
-    requestAnimationFrame(animateEscape);
+    effectAnimFrames.push(requestAnimationFrame(animateEscape));
   }
 
   function drawConfettiBurst(canvas, ctxC) {
@@ -1143,9 +1146,9 @@ const CreatureWorld = (() => {
         ctxC.restore();
       });
 
-      requestAnimationFrame(animateConfetti);
+      effectAnimFrames.push(requestAnimationFrame(animateConfetti));
     }
-    requestAnimationFrame(animateConfetti);
+    effectAnimFrames.push(requestAnimationFrame(animateConfetti));
   }
 
   function drawGoldenStarburst(canvas, ctxC) {
@@ -1180,9 +1183,9 @@ const CreatureWorld = (() => {
       }
 
       ctxC.restore();
-      requestAnimationFrame(animate);
+      effectAnimFrames.push(requestAnimationFrame(animate));
     }
-    requestAnimationFrame(animate);
+    effectAnimFrames.push(requestAnimationFrame(animate));
   }
 
   function drawWhoosh(canvas, ctxC) {
@@ -1211,9 +1214,9 @@ const CreatureWorld = (() => {
       }
 
       ctxC.restore();
-      requestAnimationFrame(animate);
+      effectAnimFrames.push(requestAnimationFrame(animate));
     }
-    requestAnimationFrame(animate);
+    effectAnimFrames.push(requestAnimationFrame(animate));
   }
 
   function drawRingShatter(canvas, ctxC) {
@@ -1251,9 +1254,9 @@ const CreatureWorld = (() => {
         ctxC.fill();
       });
       ctxC.restore();
-      requestAnimationFrame(animate);
+      effectAnimFrames.push(requestAnimationFrame(animate));
     }
-    requestAnimationFrame(animate);
+    effectAnimFrames.push(requestAnimationFrame(animate));
   }
 
   // --- Parallax Touch Interaction (throttled for performance) ---
