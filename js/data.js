@@ -248,7 +248,7 @@ const CREATURES = [
     escapePower: { name: 'Love Shield', message: 'Charlie the Hug uses Love Shield and wraps itself in a warm glow of hearts!', color: '#FF69B4' } },
   { id: 'charlie-the-great', name: 'Charlie the Great', location: 'dream-nexus', rarity: 'legendary', coins: 100,
     colors: ['#FF6347', '#FFD700'], shape: 'cloud', eyes: 'gentle', accessory: 'rainbow-swirl',
-    svg: 'assets/creatures/charlie-the-great.png',
+    svg: 'assets/creatures/IMG_8342.png',
     escapePower: { name: 'Cloud Drift', message: 'Charlie the Great uses Cloud Drift and floats away on a rainbow breeze!', color: '#FFD700' } },
   { id: 'happy-lolly', name: 'Happy Lolly', location: 'dream-nexus', rarity: 'legendary', coins: 100,
     colors: ['#8B4513', '#CD853F'], shape: 'hedgehog', eyes: 'cute', accessory: 'berries',
