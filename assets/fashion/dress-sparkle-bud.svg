@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <style>
+    .sb-main{fill:#FF6B8A;stroke:#E0456A;stroke-width:2;stroke-linejoin:round}
+    .sb-horn{fill:#FFD700;stroke:#DAA520;stroke-width:1.5}
+    .sb-sparkle{fill:#FFD700;stroke:none}
+    .sb-glow{fill:#FF6B8A;stroke:none;opacity:0.4}
+  </style>
+  <g id="clothing">
+    <!-- Puffy round bodice (blob-shaped) -->
+    <path d="M72 134 Q68 136 68 140 L68 194 Q68 200 72 200 L128 200 Q132 200 132 194 L132 140 Q132 136 128 134 Z" class="sb-main"/>
+    <!-- Color horn accents at neckline -->
+    <path d="M88 134 L84 118 L90 126 Z" class="sb-horn"/>
+    <path d="M112 134 L116 118 L110 126 Z" class="sb-horn"/>
+    <!-- Big round eyes design -->
+    <circle cx="88" cy="160" r="8" fill="#FFF" stroke="#E0456A" stroke-width="1.5"/>
+    <circle cx="112" cy="160" r="8" fill="#FFF" stroke="#E0456A" stroke-width="1.5"/>
+    <circle cx="88" cy="160" r="4" fill="#333"/>
+    <circle cx="112" cy="160" r="4" fill="#333"/>
+    <circle cx="90" cy="158" r="1.5" fill="#FFF"/>
+    <circle cx="114" cy="158" r="1.5" fill="#FFF"/>
+    <!-- Happy mouth -->
+    <path d="M94 172 Q100 178 106 172" stroke="#E0456A" stroke-width="1.5" fill="none"/>
+    <!-- Puffy skirt -->
+    <path d="M68 200 Q56 220 52 255 Q56 275 68 288 Q80 295 100 296 Q120 295 132 288 Q144 275 148 255 Q144 220 132 200 Z" class="sb-main"/>
+    <!-- Puff texture -->
+    <ellipse cx="72" cy="240" rx="12" ry="15" fill="#FF7FA0" stroke="none" opacity="0.4"/>
+    <ellipse cx="100" cy="250" rx="14" ry="16" fill="#FF7FA0" stroke="none" opacity="0.4"/>
+    <ellipse cx="128" cy="240" rx="12" ry="15" fill="#FF7FA0" stroke="none" opacity="0.4"/>
+    <!-- Rainbow sparkle accents -->
+    <circle cx="78" cy="220" r="2" class="sb-sparkle"/>
+    <circle cx="122" cy="225" r="1.8" class="sb-sparkle"/>
+    <circle cx="92" cy="270" r="1.5" class="sb-sparkle"/>
+    <circle cx="108" cy="265" r="2" class="sb-sparkle"/>
+    <circle cx="100" cy="210" r="1.5" class="sb-sparkle"/>
+  </g>
+</svg>

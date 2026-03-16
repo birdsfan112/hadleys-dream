@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
+  <style>
+    .pp-main{fill:#FF69B4;stroke:#DB3E8C;stroke-width:2;stroke-linejoin:round}
+    .pp-wing{fill:#FFD700;stroke:#DAA520;stroke-width:1.5;opacity:0.8}
+    .pp-shimmer{fill:#FFFFFF;stroke:none;opacity:0.6}
+    .pp-rainbow{stroke-width:2.5;fill:none;opacity:0.5}
+  </style>
+  <defs>
+    <linearGradient id="pp-grad" x1="0" y1="134" x2="0" y2="290">
+      <stop offset="0%" stop-color="#FF69B4"/>
+      <stop offset="100%" stop-color="#FFB6C1"/>
+    </linearGradient>
+  </defs>
+  <g id="clothing">
+    <!-- Bodice -->
+    <path d="M72 134 L128 134 L130 198 L70 198 Z" fill="url(#pp-grad)" stroke="#DB3E8C" stroke-width="2"/>
+    <!-- Wing panels on back -->
+    <path d="M70 140 Q50 130 40 145 Q48 155 56 160 Q60 150 70 148 Z" class="pp-wing"/>
+    <path d="M130 140 Q150 130 160 145 Q152 155 144 160 Q140 150 130 148 Z" class="pp-wing"/>
+    <!-- Second wing layer -->
+    <path d="M68 155 Q52 150 44 162 Q52 170 60 172 Q62 162 68 158 Z" class="pp-wing" opacity="0.5"/>
+    <path d="M132 155 Q148 150 156 162 Q148 170 140 172 Q138 162 132 158 Z" class="pp-wing" opacity="0.5"/>
+    <!-- Star on chest -->
+    <polygon points="100,142 103,152 114,152 105,158 108,168 100,162 92,168 95,158 86,152 97,152" fill="#FFD700" stroke="#DAA520" stroke-width="1"/>
+    <!-- Flowing skirt -->
+    <path d="M70 198 Q56 230 52 268 Q58 286 74 292 L100 290 L126 292 Q142 286 148 268 Q144 230 130 198 Z" class="pp-main"/>
+    <!-- Rainbow streaks on skirt -->
+    <path d="M72 210 Q86 240 80 275" stroke="#FF6B6B" class="pp-rainbow"/>
+    <path d="M85 205 Q92 240 88 280" stroke="#FFB347" class="pp-rainbow"/>
+    <path d="M100 200 Q100 240 100 285" stroke="#FFFF6B" class="pp-rainbow"/>
+    <path d="M115 205 Q108 240 112 280" stroke="#6BCB77" class="pp-rainbow"/>
+    <path d="M128 210 Q114 240 120 275" stroke="#6B9FFF" class="pp-rainbow"/>
+    <!-- Sparkles -->
+    <circle cx="82" cy="250" r="1.5" class="pp-shimmer"/>
+    <circle cx="118" cy="240" r="2" class="pp-shimmer"/>
+    <circle cx="100" cy="265" r="1.8" class="pp-shimmer"/>
+    <circle cx="90" cy="170" r="1.5" class="pp-shimmer"/>
+    <circle cx="110" cy="180" r="1.2" class="pp-shimmer"/>
+  </g>
+</svg>
