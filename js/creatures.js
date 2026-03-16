@@ -41,7 +41,8 @@ const CreatureWorld = (() => {
     'crystal-beach':  ['🐚', '🪨', '🌊', '🪸', '🏝️', '🐚', '🪨', '🌊'],
     'cloud-garden':   ['☁️', '💨', '🌸', '☁️', '🌿', '💨', '☁️', '🌸'],
     'moon-cave':      ['🪨', '💎', '🌑', '🪨', '🕳️', '💎', '🪨', '🌑'],
-    'rainbow-meadow': ['🌱', '🍀', '🌿', '🪨', '🌱', '🍀', '🌾', '🌿']
+    'rainbow-meadow': ['🌱', '🍀', '🌿', '🪨', '🌱', '🍀', '🌾', '🌿'],
+    'dream-nexus':    ['🌀', '✨', '💫', '🌀', '⭐', '✨', '💫', '⭐']
   };
 
   function init() {
@@ -50,7 +51,7 @@ const CreatureWorld = (() => {
 
   // Preload SVGs for a location's creatures
   function preloadSVGs(locationId) {
-    const locCreatures = CREATURES.filter(c => c.location === locationId && c.svg);
+    const locCreatures = CREATURES.filter(c => c.location === locationId && c.svg && c.svg.endsWith('.svg'));
     locCreatures.forEach(creature => {
       if (!svgCache.has(creature.id)) {
         fetch(creature.svg)
@@ -61,10 +62,23 @@ const CreatureWorld = (() => {
     });
   }
 
+  // Check whether the secret Dream Nexus is unlocked
+  // Requires catching all legendary creatures from the 5 main locations
+  function dreamNexusUnlocked() {
+    const caught = Game.state.creatures || [];
+    const mainLegendaries = CREATURES.filter(c =>
+      c.rarity === 'legendary' && c.location !== 'dream-nexus'
+    );
+    return mainLegendaries.every(c => caught.includes(c.id));
+  }
+
   function renderLocations() {
     const grid = document.getElementById('location-grid');
     grid.innerHTML = '';
     LOCATIONS.forEach(loc => {
+      // Hide secret locations until unlocked
+      if (loc.secret && !dreamNexusUnlocked()) return;
+
       const caught = Game.state.creatures.filter(id =>
         CREATURES.find(c => c.id === id && c.location === loc.id)
       ).length;
@@ -72,6 +86,7 @@ const CreatureWorld = (() => {
 
       const card = document.createElement('div');
       card.className = 'location-card';
+      if (loc.secret) card.classList.add('location-card-secret');
       card.dataset.loc = loc.id;
       card.style.background = loc.bg;
       const unlocked = legendariesUnlocked(loc.id);
@@ -79,7 +94,8 @@ const CreatureWorld = (() => {
         <div class="loc-icon">${loc.icon}</div>
         <div class="loc-name">${loc.name}</div>
         <div class="loc-count">${caught}/${total} caught</div>
-        ${unlocked ? '<div class="loc-legendary-badge">Legendary unlocked</div>' : ''}
+        ${loc.secret ? '<div class="loc-legendary-badge">Secret Area</div>' : ''}
+        ${!loc.secret && unlocked ? '<div class="loc-legendary-badge">Legendary unlocked</div>' : ''}
       `;
       card.onclick = () => enterLocation(loc);
       grid.appendChild(card);
@@ -131,6 +147,8 @@ const CreatureWorld = (() => {
   // Check whether legendary creatures are unlocked for a location
   // Requires all common creatures in that location to be caught first
   function legendariesUnlocked(locationId) {
+    // Dream Nexus legendaries are always available (the location itself is gated)
+    if (locationId === 'dream-nexus') return true;
     const caught = Game.state.creatures || [];
     const commons = CREATURES.filter(c => c.location === locationId && c.rarity === 'common');
     return commons.every(c => caught.includes(c.id));
@@ -872,6 +890,11 @@ const CreatureWorld = (() => {
     // Check if this catch just unlocked legendaries for this location
     if (isNew && creature.rarity === 'common' && legendariesUnlocked(currentLocation.id)) {
       setTimeout(() => Game.showToast('Legendary creature unlocked in ' + currentLocation.name + '!'), 1500);
+    }
+
+    // Check if this catch just unlocked the Dream Nexus
+    if (isNew && creature.rarity === 'legendary' && creature.location !== 'dream-nexus' && dreamNexusUnlocked()) {
+      setTimeout(() => Game.showToast('The Dream Nexus has been unlocked!'), 2000);
     }
 
     SaveManager.autoSave(Game.state);
