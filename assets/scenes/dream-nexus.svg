@@ -1,0 +1,199 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="dn-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0020"/>
+      <stop offset="30%" stop-color="#1a0540"/>
+      <stop offset="60%" stop-color="#3d1a70"/>
+      <stop offset="85%" stop-color="#6b2fa0"/>
+      <stop offset="100%" stop-color="#8040b0"/>
+    </linearGradient>
+    <radialGradient id="dn-nexus-glow" cx="0.5" cy="0.45" r="0.5">
+      <stop offset="0%" stop-color="#FFD700" stop-opacity="0.4"/>
+      <stop offset="40%" stop-color="#FF6EC7" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#6b2fa0" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="dn-portal" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#FFF" stop-opacity="0.9"/>
+      <stop offset="20%" stop-color="#FFD700" stop-opacity="0.7"/>
+      <stop offset="50%" stop-color="#FF6EC7" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#9C27B0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="dn-ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2d1060"/>
+      <stop offset="100%" stop-color="#1a0830"/>
+    </linearGradient>
+    <filter id="dn-glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="dn-soft">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      @keyframes dn-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      @keyframes dn-pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 0.9; } }
+      @keyframes dn-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    </style>
+  </defs>
+
+  <!-- Background Layer -->
+  <g id="bg-layer">
+    <!-- Deep cosmic sky -->
+    <rect width="800" height="600" fill="url(#dn-sky)"/>
+
+    <!-- Central nexus glow -->
+    <ellipse cx="400" cy="270" rx="350" ry="250" fill="url(#dn-nexus-glow)"/>
+
+    <!-- Stars scattered across sky -->
+    <g fill="#FFF" opacity="0.8">
+      <circle cx="50" cy="30" r="1.5"><animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/></circle>
+      <circle cx="150" cy="80" r="1"><animate attributeName="opacity" values="0.5;1;0.5" dur="1.7s" repeatCount="indefinite"/></circle>
+      <circle cx="250" cy="45" r="1.5"><animate attributeName="opacity" values="0.4;0.9;0.4" dur="2.3s" repeatCount="indefinite"/></circle>
+      <circle cx="350" cy="25" r="1"><animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite"/></circle>
+      <circle cx="500" cy="60" r="1.5"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2.8s" repeatCount="indefinite"/></circle>
+      <circle cx="600" cy="35" r="1"><animate attributeName="opacity" values="0.5;1;0.5" dur="1.9s" repeatCount="indefinite"/></circle>
+      <circle cx="700" cy="50" r="1.5"><animate attributeName="opacity" values="0.4;0.9;0.4" dur="2.1s" repeatCount="indefinite"/></circle>
+      <circle cx="750" cy="90" r="1"><animate attributeName="opacity" values="0.3;1;0.3" dur="2.5s" repeatCount="indefinite"/></circle>
+      <circle cx="100" cy="150" r="1"><animate attributeName="opacity" values="0.5;0.9;0.5" dur="1.8s" repeatCount="indefinite"/></circle>
+      <circle cx="680" cy="130" r="1.5"><animate attributeName="opacity" values="0.4;1;0.4" dur="2.2s" repeatCount="indefinite"/></circle>
+      <circle cx="450" cy="100" r="1"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2.6s" repeatCount="indefinite"/></circle>
+      <circle cx="300" cy="120" r="1"><animate attributeName="opacity" values="0.6;1;0.6" dur="1.6s" repeatCount="indefinite"/></circle>
+    </g>
+
+    <!-- Nebula wisps -->
+    <g opacity="0.25">
+      <ellipse cx="200" cy="200" rx="120" ry="40" fill="#FF6EC7" transform="rotate(-15 200 200)"/>
+      <ellipse cx="600" cy="180" rx="100" ry="35" fill="#6EC7FF" transform="rotate(10 600 180)"/>
+      <ellipse cx="400" cy="150" rx="80" ry="30" fill="#FFD700" transform="rotate(-5 400 150)"/>
+    </g>
+  </g>
+
+  <!-- Middle Layer -->
+  <g id="mid-layer">
+    <!-- Floating crystal platforms -->
+    <g opacity="0.6">
+      <!-- Left platform -->
+      <ellipse cx="180" cy="380" rx="60" ry="15" fill="#5020a0"/>
+      <ellipse cx="180" cy="378" rx="55" ry="12" fill="#7040c0" opacity="0.7"/>
+      <g filter="url(#dn-soft)">
+        <circle cx="165" cy="370" r="5" fill="#FFD700" opacity="0.4"/>
+        <circle cx="195" cy="372" r="4" fill="#FF6EC7" opacity="0.4"/>
+      </g>
+
+      <!-- Right platform -->
+      <ellipse cx="620" cy="360" rx="55" ry="14" fill="#5020a0"/>
+      <ellipse cx="620" cy="358" rx="50" ry="11" fill="#7040c0" opacity="0.7"/>
+      <g filter="url(#dn-soft)">
+        <circle cx="605" cy="350" r="4" fill="#87CEEB" opacity="0.4"/>
+        <circle cx="635" cy="352" r="5" fill="#FFD700" opacity="0.4"/>
+      </g>
+    </g>
+
+    <!-- Central portal/vortex -->
+    <g filter="url(#dn-glow)">
+      <ellipse cx="400" cy="280" rx="70" ry="70" fill="url(#dn-portal)" opacity="0.6">
+        <animate attributeName="rx" values="65;75;65" dur="4s" repeatCount="indefinite"/>
+        <animate attributeName="ry" values="65;75;65" dur="4s" repeatCount="indefinite"/>
+      </ellipse>
+    </g>
+
+    <!-- Swirling energy rings around portal -->
+    <g fill="none" stroke-width="2" opacity="0.4">
+      <ellipse cx="400" cy="280" rx="90" ry="35" stroke="#FFD700" transform="rotate(-20 400 280)">
+        <animate attributeName="rx" values="85;95;85" dur="3s" repeatCount="indefinite"/>
+      </ellipse>
+      <ellipse cx="400" cy="280" rx="100" ry="40" stroke="#FF6EC7" transform="rotate(15 400 280)">
+        <animate attributeName="rx" values="95;105;95" dur="3.5s" repeatCount="indefinite"/>
+      </ellipse>
+      <ellipse cx="400" cy="280" rx="110" ry="45" stroke="#87CEEB" transform="rotate(-10 400 280)">
+        <animate attributeName="rx" values="105;115;105" dur="4s" repeatCount="indefinite"/>
+      </ellipse>
+    </g>
+
+    <!-- Floating crystals -->
+    <g filter="url(#dn-soft)" opacity="0.7">
+      <!-- Crystal 1 -->
+      <polygon points="130,300 140,275 150,300 140,310" fill="#87CEEB" opacity="0.8">
+        <animate attributeName="opacity" values="0.5;0.9;0.5" dur="3s" repeatCount="indefinite"/>
+      </polygon>
+      <!-- Crystal 2 -->
+      <polygon points="660,310 670,288 680,310 670,320" fill="#FFD700" opacity="0.7">
+        <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2.5s" repeatCount="indefinite"/>
+      </polygon>
+      <!-- Crystal 3 -->
+      <polygon points="300,340 308,320 316,340 308,348" fill="#FF6EC7" opacity="0.7">
+        <animate attributeName="opacity" values="0.5;0.85;0.5" dur="2.8s" repeatCount="indefinite"/>
+      </polygon>
+      <!-- Crystal 4 -->
+      <polygon points="500,320 510,295 520,320 510,332" fill="#90EE90" opacity="0.7">
+        <animate attributeName="opacity" values="0.4;0.9;0.4" dur="3.2s" repeatCount="indefinite"/>
+      </polygon>
+    </g>
+
+    <!-- Rainbow energy streams flowing toward portal -->
+    <g fill="none" stroke-width="3" opacity="0.3" stroke-linecap="round">
+      <path d="M50 350 Q150 300 300 280 Q350 275 400 280" stroke="#FF6347"/>
+      <path d="M50 360 Q150 310 300 290 Q350 285 400 285" stroke="#FFD700"/>
+      <path d="M750 340 Q650 300 500 280 Q450 275 400 280" stroke="#87CEEB"/>
+      <path d="M750 350 Q650 310 500 290 Q450 285 400 285" stroke="#9370DB"/>
+    </g>
+  </g>
+
+  <!-- Foreground Layer -->
+  <g id="fg-layer">
+    <!-- Mystical ground -->
+    <ellipse cx="400" cy="580" rx="500" ry="120" fill="url(#dn-ground)"/>
+    <ellipse cx="400" cy="570" rx="480" ry="100" fill="#2d1060" opacity="0.8"/>
+
+    <!-- Glowing path stones -->
+    <g opacity="0.6">
+      <circle cx="350" cy="540" r="10" fill="#3d2070" stroke="#FFD700" stroke-width="1">
+        <animate attributeName="stroke-opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="400" cy="520" r="11" fill="#3d2070" stroke="#FF6EC7" stroke-width="1">
+        <animate attributeName="stroke-opacity" values="0.4;0.9;0.4" dur="2.3s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="450" cy="540" r="10" fill="#3d2070" stroke="#87CEEB" stroke-width="1">
+        <animate attributeName="stroke-opacity" values="0.3;0.7;0.3" dur="1.8s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="380" cy="560" r="9" fill="#3d2070" stroke="#FFD700" stroke-width="1">
+        <animate attributeName="stroke-opacity" values="0.5;0.9;0.5" dur="2.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="420" cy="560" r="9" fill="#3d2070" stroke="#90EE90" stroke-width="1">
+        <animate attributeName="stroke-opacity" values="0.3;0.8;0.3" dur="2.1s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+
+    <!-- Mystical flowers/plants -->
+    <g opacity="0.7">
+      <!-- Glowing mushrooms -->
+      <ellipse cx="120" cy="535" rx="12" ry="6" fill="#6040a0"/>
+      <ellipse cx="120" cy="530" rx="14" ry="8" fill="#9060d0" opacity="0.8"/>
+      <circle cx="120" cy="528" r="3" fill="#FFD700" opacity="0.5">
+        <animate attributeName="opacity" values="0.3;0.7;0.3" dur="2s" repeatCount="indefinite"/>
+      </circle>
+
+      <ellipse cx="680" cy="540" rx="10" ry="5" fill="#6040a0"/>
+      <ellipse cx="680" cy="536" rx="12" ry="7" fill="#9060d0" opacity="0.8"/>
+      <circle cx="680" cy="534" r="2.5" fill="#FF6EC7" opacity="0.5">
+        <animate attributeName="opacity" values="0.4;0.8;0.4" dur="1.8s" repeatCount="indefinite"/>
+      </circle>
+
+      <!-- Ethereal ferns -->
+      <path d="M60 560 Q70 540 80 530" fill="none" stroke="#40a060" stroke-width="2" opacity="0.5"/>
+      <path d="M720 555 Q730 535 740 528" fill="none" stroke="#40a060" stroke-width="2" opacity="0.5"/>
+    </g>
+
+    <!-- Floating sparkle particles -->
+    <g filter="url(#dn-glow)" opacity="0.9">
+      <circle cx="200" cy="460" r="2.5" fill="#FFD700"><animate attributeName="opacity" values="0.2;1;0.2" dur="2s" repeatCount="indefinite"/></circle>
+      <circle cx="350" cy="480" r="2" fill="#FF6EC7"><animate attributeName="opacity" values="0.4;0.9;0.4" dur="1.8s" repeatCount="indefinite"/></circle>
+      <circle cx="500" cy="470" r="2.5" fill="#87CEEB"><animate attributeName="opacity" values="0.3;1;0.3" dur="2.2s" repeatCount="indefinite"/></circle>
+      <circle cx="650" cy="490" r="2" fill="#90EE90"><animate attributeName="opacity" values="0.5;0.9;0.5" dur="1.6s" repeatCount="indefinite"/></circle>
+      <circle cx="150" cy="510" r="2" fill="#FF6EC7"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2.5s" repeatCount="indefinite"/></circle>
+      <circle cx="550" cy="500" r="2.5" fill="#FFD700"><animate attributeName="opacity" values="0.4;1;0.4" dur="1.9s" repeatCount="indefinite"/></circle>
+      <circle cx="300" cy="520" r="2" fill="#9370DB"><animate attributeName="opacity" values="0.3;0.9;0.3" dur="2.3s" repeatCount="indefinite"/></circle>
+    </g>
+  </g>
+</svg>

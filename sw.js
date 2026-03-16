@@ -1,5 +1,5 @@
 // Hadley's Dream — Service Worker
-const CACHE_NAME = 'dream-world-v15';
+const CACHE_NAME = 'dream-world-v16';
 const ASSETS = [
   '/',
   '/index.html',
@@ -77,6 +77,15 @@ const ASSETS = [
   '/assets/creatures/sunset-deer.svg',
   '/assets/creatures/dream-dragon.svg',
   '/assets/creatures/prism-pegasus.svg',
+  // Dream Nexus creatures (6 of 10)
+  '/assets/creatures/sparkle-bud.png',
+  '/assets/creatures/micro-pennx.png',
+  '/assets/creatures/giant-pennx.png',
+  '/assets/creatures/charlie-the-hug.png',
+  '/assets/creatures/charlie-the-great.png',
+  '/assets/creatures/happy-lolly.png',
+  // Dream Nexus scene
+  '/assets/scenes/dream-nexus.svg',
   // Fashion Studio SVGs (original)
   '/assets/fashion/avatar-base.svg',
   '/assets/fashion/hair-long-straight.svg',

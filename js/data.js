@@ -48,6 +48,16 @@ const LOCATIONS = [
     scene: 'assets/scenes/rainbow-meadow.svg',
     spots: 8,
     description: 'A meadow where flowers bloom in every color of the rainbow'
+  },
+  {
+    id: 'dream-nexus',
+    name: 'The Dream Nexus',
+    icon: '🌀',
+    bg: 'linear-gradient(180deg, #1a0533 0%, #2d1b69 25%, #6b2fa0 50%, #ff6ec7 75%, #ffd700 100%)',
+    scene: 'assets/scenes/dream-nexus.svg',
+    spots: 8,
+    secret: true,
+    description: 'A mystical convergence where all dream energy flows together — only true creature masters may enter'
   }
 ];
 
@@ -217,7 +227,33 @@ const CREATURES = [
   { id: 'prism-pegasus', name: 'Prism Pegasus', location: 'rainbow-meadow', rarity: 'legendary', coins: 100,
     colors: ['#FF69B4', '#FFD700'], shape: 'pegasus', eyes: 'radiant', accessory: 'rainbow-wings',
     svg: 'assets/creatures/prism-pegasus.svg',
-    escapePower: { name: 'Prism Dash', message: 'Prism Pegasus uses Prism Dash and streaks away in a blaze of rainbow fire!', color: '#FF69B4' } }
+    escapePower: { name: 'Prism Dash', message: 'Prism Pegasus uses Prism Dash and streaks away in a blaze of rainbow fire!', color: '#FF69B4' } },
+
+  // Dream Nexus (secret — 6 of 10, all legendary)
+  { id: 'sparkle-bud', name: 'Sparkle Bud', location: 'dream-nexus', rarity: 'legendary', coins: 100,
+    colors: ['#FF6B8A', '#FFD700'], shape: 'blob', eyes: 'big-round', accessory: 'color-horns',
+    svg: 'assets/creatures/sparkle-bud.png',
+    escapePower: { name: 'Prism Burst', message: 'Sparkle Bud uses Prism Burst and explodes into a shower of rainbow sparks!', color: '#FF6B8A' } },
+  { id: 'micro-pennx', name: 'Micro Pennx', location: 'dream-nexus', rarity: 'legendary', coins: 100,
+    colors: ['#87CEEB', '#4169E1'], shape: 'egg', eyes: 'sparkle', accessory: 'color-bumps',
+    svg: 'assets/creatures/micro-pennx.png',
+    escapePower: { name: 'Tiny Bounce', message: 'Micro Pennx uses Tiny Bounce and ricochets away in a blur of colors!', color: '#87CEEB' } },
+  { id: 'giant-pennx', name: 'Giant Pennx', location: 'dream-nexus', rarity: 'legendary', coins: 100,
+    colors: ['#9C27B0', '#FF0000'], shape: 'cylinder', eyes: 'happy', accessory: 'grad-cap',
+    svg: 'assets/creatures/giant-pennx.png',
+    escapePower: { name: 'Rainbow Slam', message: 'Giant Pennx uses Rainbow Slam and crashes through the ground in a rainbow shockwave!', color: '#9C27B0' } },
+  { id: 'charlie-the-hug', name: 'Charlie the Hug', location: 'dream-nexus', rarity: 'legendary', coins: 100,
+    colors: ['#90EE90', '#FFD700'], shape: 'blob', eyes: 'happy', accessory: 'hearts',
+    svg: 'assets/creatures/charlie-the-hug.png',
+    escapePower: { name: 'Love Shield', message: 'Charlie the Hug uses Love Shield and wraps itself in a warm glow of hearts!', color: '#FF69B4' } },
+  { id: 'charlie-the-great', name: 'Charlie the Great', location: 'dream-nexus', rarity: 'legendary', coins: 100,
+    colors: ['#FF6347', '#FFD700'], shape: 'cloud', eyes: 'gentle', accessory: 'rainbow-swirl',
+    svg: 'assets/creatures/charlie-the-great.png',
+    escapePower: { name: 'Cloud Drift', message: 'Charlie the Great uses Cloud Drift and floats away on a rainbow breeze!', color: '#FFD700' } },
+  { id: 'happy-lolly', name: 'Happy Lolly', location: 'dream-nexus', rarity: 'legendary', coins: 100,
+    colors: ['#8B4513', '#CD853F'], shape: 'hedgehog', eyes: 'cute', accessory: 'berries',
+    svg: 'assets/creatures/happy-lolly.png',
+    escapePower: { name: 'Berry Tumble', message: 'Happy Lolly uses Berry Tumble and rolls away into the bushes with a giggle!', color: '#CD853F' } }
 ];
 
 // Rarity config

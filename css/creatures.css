@@ -56,6 +56,18 @@
 /* Moon cave: light text */
 .location-card[data-loc="moon-cave"] { color: #E8E8FF; }
 
+/* Dream Nexus: secret location styling */
+.location-card[data-loc="dream-nexus"] { color: #FFF; }
+.location-card-secret {
+  border: 2px solid #FFD700;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3), 0 4px 16px var(--shadow);
+  animation: secretPulse 3s ease-in-out infinite;
+}
+@keyframes secretPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3), 0 4px 16px var(--shadow); }
+  50% { box-shadow: 0 0 35px rgba(255, 215, 0, 0.5), 0 4px 16px var(--shadow); }
+}
+
 /* --- Location Explore Container --- */
 #location-explore {
   flex: 1;
