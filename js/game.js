@@ -70,6 +70,9 @@ const Game = (() => {
       document.getElementById('btn-stats').onclick = () => openStats();
       document.getElementById('btn-save-menu').onclick = () => openSaveMenu();
 
+      // Set up hidden parent unlock trigger
+      setupUnlockTrigger();
+
       // Update displays
       updateCoinsDisplay();
       updateHubStats();
@@ -405,13 +408,206 @@ const Game = (() => {
     if (menu) menu.classList.add('hidden');
   }
 
+  // --- Parent Unlock Menu ---
+  const UNLOCK_PASSCODE = 'yeldah';
+  let titleTapCount = 0;
+  let titleTapTimer = null;
+
+  function setupUnlockTrigger() {
+    const title = document.querySelector('.hub-title');
+    if (!title) return;
+    title.addEventListener('click', () => {
+      titleTapCount++;
+      if (titleTapTimer) clearTimeout(titleTapTimer);
+      titleTapTimer = setTimeout(() => { titleTapCount = 0; }, 2000);
+      if (titleTapCount >= 5) {
+        titleTapCount = 0;
+        openUnlockMenu();
+      }
+    });
+  }
+
+  function openUnlockMenu() {
+    const overlay = document.getElementById('unlock-overlay');
+    const passcodeView = document.getElementById('unlock-passcode-view');
+    const menuView = document.getElementById('unlock-menu-view');
+    const input = document.getElementById('unlock-passcode-input');
+    const error = document.getElementById('unlock-passcode-error');
+    passcodeView.classList.remove('hidden');
+    menuView.classList.add('hidden');
+    overlay.classList.remove('hidden');
+    input.value = '';
+    error.textContent = '';
+    input.onkeydown = (e) => { if (e.key === 'Enter') submitPasscode(); };
+    setTimeout(() => input.focus(), 100);
+  }
+
+  function submitPasscode() {
+    const input = document.getElementById('unlock-passcode-input');
+    const error = document.getElementById('unlock-passcode-error');
+    if (input.value.trim().toLowerCase() === UNLOCK_PASSCODE) {
+      document.getElementById('unlock-passcode-view').classList.add('hidden');
+      document.getElementById('unlock-menu-view').classList.remove('hidden');
+      renderUnlockMenu();
+    } else {
+      error.textContent = 'Incorrect passcode';
+      input.value = '';
+      input.focus();
+    }
+  }
+
+  function closeUnlockMenu(e) {
+    if (e && e.target !== e.currentTarget) return;
+    document.getElementById('unlock-overlay').classList.add('hidden');
+  }
+
+  function renderUnlockMenu() {
+    const container = document.getElementById('unlock-options');
+    const allCreatureIds = CREATURES.map(c => c.id);
+    const mainLegendaryIds = CREATURES.filter(c => c.rarity === 'legendary' && c.location !== 'dream-nexus').map(c => c.id);
+    const allFashionIds = FASHION_ITEMS.map(i => i.id);
+    const allFurnitureIds = FURNITURE_ITEMS.map(i => i.id);
+    const allThemeIds = (typeof ROOM_THEMES !== 'undefined' ? ROOM_THEMES : []).map(t => 'theme-' + t.id);
+    const legendaryFashion = FASHION_ITEMS.filter(i => i.legendary).map(i => i.id);
+
+    const allCreaturesCaught = allCreatureIds.every(id => state.creatures.includes(id));
+    const nexusReady = mainLegendaryIds.every(id => state.creatures.includes(id));
+    const allFashionOwned = allFashionIds.every(id => state.wardrobe_unlocked.includes(id));
+    const allFurnitureOwned = allFurnitureIds.every(id => state.furniture_unlocked.includes(id)) &&
+                              allThemeIds.every(id => state.furniture_unlocked.includes(id));
+
+    const options = [
+      {
+        label: 'Unlock Dream Nexus',
+        desc: 'Catch the 5 main legendaries to open the secret area',
+        done: nexusReady,
+        action: () => {
+          mainLegendaryIds.forEach(id => { if (!state.creatures.includes(id)) state.creatures.push(id); });
+          // Also need all commons caught to unlock legendaries in those locations
+          CREATURES.filter(c => c.rarity === 'common').forEach(c => {
+            if (!state.creatures.includes(c.id)) state.creatures.push(c.id);
+          });
+          SaveManager.autoSave(state);
+          showToast('Dream Nexus unlocked!');
+          renderUnlockMenu();
+          updateHubStats();
+        }
+      },
+      {
+        label: 'Unlock All Creatures',
+        desc: 'Mark every creature as caught',
+        done: allCreaturesCaught,
+        action: () => {
+          allCreatureIds.forEach(id => { if (!state.creatures.includes(id)) state.creatures.push(id); });
+          SaveManager.autoSave(state);
+          showToast('All creatures unlocked!');
+          renderUnlockMenu();
+          updateHubStats();
+        }
+      },
+      {
+        label: 'Add 1000 Coins',
+        desc: 'Current balance: ' + state.coins,
+        done: false,
+        action: () => {
+          addCoins(1000);
+          SaveManager.autoSave(state);
+          showToast('+1000 coins!');
+          renderUnlockMenu();
+        }
+      },
+      {
+        label: 'Unlock All Outfits',
+        desc: 'Unlock every fashion item and legendary costume',
+        done: allFashionOwned,
+        action: () => {
+          allFashionIds.forEach(id => { if (!state.wardrobe_unlocked.includes(id)) state.wardrobe_unlocked.push(id); });
+          legendaryFashion.forEach(id => {
+            const item = FASHION_ITEMS.find(i => i.id === id);
+            if (item && item.legendary && !state.legendary_bought.includes(item.legendary)) {
+              state.legendary_bought.push(item.legendary);
+            }
+          });
+          SaveManager.autoSave(state);
+          showToast('All outfits unlocked!');
+          renderUnlockMenu();
+          updateHubStats();
+        }
+      },
+      {
+        label: 'Unlock All Furniture & Themes',
+        desc: 'Unlock every furniture item and room theme',
+        done: allFurnitureOwned,
+        action: () => {
+          allFurnitureIds.forEach(id => { if (!state.furniture_unlocked.includes(id)) state.furniture_unlocked.push(id); });
+          allThemeIds.forEach(id => { if (!state.furniture_unlocked.includes(id)) state.furniture_unlocked.push(id); });
+          SaveManager.autoSave(state);
+          showToast('All furniture & themes unlocked!');
+          renderUnlockMenu();
+        }
+      },
+      {
+        label: 'Unlock Everything',
+        desc: 'All creatures, outfits, furniture, themes + 1000 coins',
+        done: allCreaturesCaught && allFashionOwned && allFurnitureOwned,
+        action: () => {
+          allCreatureIds.forEach(id => { if (!state.creatures.includes(id)) state.creatures.push(id); });
+          allFashionIds.forEach(id => { if (!state.wardrobe_unlocked.includes(id)) state.wardrobe_unlocked.push(id); });
+          legendaryFashion.forEach(id => {
+            const item = FASHION_ITEMS.find(i => i.id === id);
+            if (item && item.legendary && !state.legendary_bought.includes(item.legendary)) {
+              state.legendary_bought.push(item.legendary);
+            }
+          });
+          allFurnitureIds.forEach(id => { if (!state.furniture_unlocked.includes(id)) state.furniture_unlocked.push(id); });
+          allThemeIds.forEach(id => { if (!state.furniture_unlocked.includes(id)) state.furniture_unlocked.push(id); });
+          addCoins(1000);
+          SaveManager.autoSave(state);
+          showToast('Everything unlocked!');
+          renderUnlockMenu();
+          updateHubStats();
+        }
+      },
+      {
+        label: 'Reset All Progress',
+        desc: 'Erase all progress and start fresh',
+        done: false,
+        danger: true,
+        action: () => {
+          if (!confirm('Are you sure? This will erase ALL progress and cannot be undone.')) return;
+          state = { ...DEFAULT_STATE };
+          SaveManager.save(state);
+          showToast('Progress reset!');
+          renderUnlockMenu();
+          updateCoinsDisplay();
+          updateHubStats();
+        }
+      }
+    ];
+
+    container.innerHTML = '';
+    options.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'unlock-option-btn' + (opt.done ? ' done' : '') + (opt.danger ? ' danger' : '');
+      btn.innerHTML = `
+        <span class="unlock-option-label">${opt.done ? '&#10003; ' : ''}${opt.label}</span>
+        <span class="unlock-option-desc">${opt.done ? 'Already unlocked' : opt.desc}</span>
+      `;
+      if (!opt.done) {
+        btn.onclick = opt.action;
+      }
+      container.appendChild(btn);
+    });
+  }
+
   // Make state accessible
   return {
     get state() { return state; },
     init, switchMode, addCoins, showToast, updateCoinsDisplay,
     openCollection, closeCollection, showCollectionTab, openStats, closeStats,
     openSaveMenu, closeSaveMenu,
-    getCurrentMode, openQuickMenu, closeQuickMenu
+    getCurrentMode, openQuickMenu, closeQuickMenu,
+    openUnlockMenu, submitPasscode, closeUnlockMenu
   };
 })();
 

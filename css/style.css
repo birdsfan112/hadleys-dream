@@ -667,3 +667,45 @@ html, body {
 .quick-menu-item:hover { border-color: var(--teal); }
 .quick-menu-item .qm-icon { font-size: 2em; }
 .quick-menu-item .qm-label { font-size: 0.8em; font-weight: 700; color: var(--dark); }
+
+/* --- Parent Unlock Menu --- */
+.unlock-input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: var(--radius);
+  font-size: 1em;
+  font-family: var(--font);
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.unlock-input:focus { border-color: var(--teal); }
+.unlock-options { display: flex; flex-direction: column; gap: 8px; }
+.unlock-option-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 12px 14px;
+  border: 2px solid #e0e0e0;
+  border-radius: var(--radius);
+  background: #FAFAFA;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font);
+  transition: border-color 0.15s, transform 0.1s;
+}
+.unlock-option-btn:active { transform: scale(0.97); }
+.unlock-option-btn:hover { border-color: var(--teal); }
+.unlock-option-btn.done {
+  opacity: 0.5;
+  cursor: default;
+  border-color: #ccc;
+}
+.unlock-option-btn.done:hover { border-color: #ccc; }
+.unlock-option-btn.danger { border-color: #E57373; }
+.unlock-option-btn.danger:hover { border-color: #C62828; background: #FFF5F5; }
+.unlock-option-label { font-weight: 700; font-size: 0.95em; color: var(--dark); }
+.unlock-option-btn.danger .unlock-option-label { color: #C62828; }
+.unlock-option-desc { font-size: 0.78em; color: #999; margin-top: 2px; }
