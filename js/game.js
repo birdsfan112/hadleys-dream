@@ -468,7 +468,6 @@ const Game = (() => {
     const allFashionIds = FASHION_ITEMS.map(i => i.id);
     const allFurnitureIds = FURNITURE_ITEMS.map(i => i.id);
     const allThemeIds = (typeof ROOM_THEMES !== 'undefined' ? ROOM_THEMES : []).map(t => 'theme-' + t.id);
-    const legendaryFashion = FASHION_ITEMS.filter(i => i.legendary).map(i => i.id);
 
     const allCreaturesCaught = allCreatureIds.every(id => state.creatures.includes(id));
     const nexusReady = mainLegendaryIds.every(id => state.creatures.includes(id));
@@ -476,96 +475,83 @@ const Game = (() => {
     const allFurnitureOwned = allFurnitureIds.every(id => state.furniture_unlocked.includes(id)) &&
                               allThemeIds.every(id => state.furniture_unlocked.includes(id));
 
+    // --- Unlock helper functions ---
+    function mergeIds(arr, ids) {
+      ids.forEach(id => { if (!arr.includes(id)) arr.push(id); });
+    }
+
+    function unlockCreatures() {
+      mergeIds(state.creatures, allCreatureIds);
+    }
+
+    function unlockNexus() {
+      mergeIds(state.creatures, mainLegendaryIds);
+      const commonIds = CREATURES.filter(c => c.rarity === 'common').map(c => c.id);
+      mergeIds(state.creatures, commonIds);
+    }
+
+    function unlockFashion() {
+      mergeIds(state.wardrobe_unlocked, allFashionIds);
+      FASHION_ITEMS.forEach(item => {
+        if (item.legendary && !state.legendary_bought.includes(item.legendary)) {
+          state.legendary_bought.push(item.legendary);
+        }
+      });
+    }
+
+    function unlockFurniture() {
+      mergeIds(state.furniture_unlocked, allFurnitureIds);
+      mergeIds(state.furniture_unlocked, allThemeIds);
+    }
+
+    function finishAction(msg) {
+      SaveManager.autoSave(state);
+      showToast(msg);
+      renderUnlockMenu();
+      updateHubStats();
+    }
+
     const options = [
       {
         label: 'Unlock Dream Nexus',
         desc: 'Catch the 5 main legendaries to open the secret area',
         done: nexusReady,
-        action: () => {
-          mainLegendaryIds.forEach(id => { if (!state.creatures.includes(id)) state.creatures.push(id); });
-          // Also need all commons caught to unlock legendaries in those locations
-          CREATURES.filter(c => c.rarity === 'common').forEach(c => {
-            if (!state.creatures.includes(c.id)) state.creatures.push(c.id);
-          });
-          SaveManager.autoSave(state);
-          showToast('Dream Nexus unlocked!');
-          renderUnlockMenu();
-          updateHubStats();
-        }
+        action: () => { unlockNexus(); finishAction('Dream Nexus unlocked!'); }
       },
       {
         label: 'Unlock All Creatures',
         desc: 'Mark every creature as caught',
         done: allCreaturesCaught,
-        action: () => {
-          allCreatureIds.forEach(id => { if (!state.creatures.includes(id)) state.creatures.push(id); });
-          SaveManager.autoSave(state);
-          showToast('All creatures unlocked!');
-          renderUnlockMenu();
-          updateHubStats();
-        }
+        action: () => { unlockCreatures(); finishAction('All creatures unlocked!'); }
       },
       {
         label: 'Add 1000 Coins',
         desc: 'Current balance: ' + state.coins,
         done: false,
-        action: () => {
-          addCoins(1000);
-          SaveManager.autoSave(state);
-          showToast('+1000 coins!');
-          renderUnlockMenu();
-        }
+        action: () => { addCoins(1000); finishAction('+1000 coins!'); }
       },
       {
         label: 'Unlock All Outfits',
         desc: 'Unlock every fashion item and legendary costume',
         done: allFashionOwned,
-        action: () => {
-          allFashionIds.forEach(id => { if (!state.wardrobe_unlocked.includes(id)) state.wardrobe_unlocked.push(id); });
-          legendaryFashion.forEach(id => {
-            const item = FASHION_ITEMS.find(i => i.id === id);
-            if (item && item.legendary && !state.legendary_bought.includes(item.legendary)) {
-              state.legendary_bought.push(item.legendary);
-            }
-          });
-          SaveManager.autoSave(state);
-          showToast('All outfits unlocked!');
-          renderUnlockMenu();
-          updateHubStats();
-        }
+        action: () => { unlockFashion(); finishAction('All outfits unlocked!'); }
       },
       {
         label: 'Unlock All Furniture & Themes',
         desc: 'Unlock every furniture item and room theme',
         done: allFurnitureOwned,
-        action: () => {
-          allFurnitureIds.forEach(id => { if (!state.furniture_unlocked.includes(id)) state.furniture_unlocked.push(id); });
-          allThemeIds.forEach(id => { if (!state.furniture_unlocked.includes(id)) state.furniture_unlocked.push(id); });
-          SaveManager.autoSave(state);
-          showToast('All furniture & themes unlocked!');
-          renderUnlockMenu();
-        }
+        action: () => { unlockFurniture(); finishAction('All furniture & themes unlocked!'); }
       },
       {
         label: 'Unlock Everything',
         desc: 'All creatures, outfits, furniture, themes + 1000 coins',
         done: allCreaturesCaught && allFashionOwned && allFurnitureOwned,
         action: () => {
-          allCreatureIds.forEach(id => { if (!state.creatures.includes(id)) state.creatures.push(id); });
-          allFashionIds.forEach(id => { if (!state.wardrobe_unlocked.includes(id)) state.wardrobe_unlocked.push(id); });
-          legendaryFashion.forEach(id => {
-            const item = FASHION_ITEMS.find(i => i.id === id);
-            if (item && item.legendary && !state.legendary_bought.includes(item.legendary)) {
-              state.legendary_bought.push(item.legendary);
-            }
-          });
-          allFurnitureIds.forEach(id => { if (!state.furniture_unlocked.includes(id)) state.furniture_unlocked.push(id); });
-          allThemeIds.forEach(id => { if (!state.furniture_unlocked.includes(id)) state.furniture_unlocked.push(id); });
+          unlockCreatures();
+          unlockFashion();
+          unlockFurniture();
           addCoins(1000);
-          SaveManager.autoSave(state);
-          showToast('Everything unlocked!');
-          renderUnlockMenu();
-          updateHubStats();
+          finishAction('Everything unlocked!');
         }
       },
       {
@@ -575,7 +561,7 @@ const Game = (() => {
         danger: true,
         action: () => {
           if (!confirm('Are you sure? This will erase ALL progress and cannot be undone.')) return;
-          state = { ...DEFAULT_STATE };
+          state = JSON.parse(JSON.stringify(DEFAULT_STATE));
           SaveManager.save(state);
           showToast('Progress reset!');
           renderUnlockMenu();
