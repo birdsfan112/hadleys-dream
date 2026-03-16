@@ -182,8 +182,11 @@ const CreatureWorld = (() => {
       pool = locCreatures.filter(c => c.rarity === selectedRarity);
     }
     if (pool.length === 0) {
-      // Fallback: any common creature
-      pool = locCreatures.filter(c => c.rarity === 'common');
+      // Fallback: any creature at this location (handles legendary-only locations like Dream Nexus)
+      pool = locCreatures.filter(c => !usedIds.has(c.id));
+    }
+    if (pool.length === 0) {
+      pool = locCreatures;
     }
 
     // Smart weighting: uncaught creatures get 4x the weight
@@ -307,7 +310,8 @@ const CreatureWorld = (() => {
 
     let pool = locCreatures.filter(c => c.rarity === selectedRarity);
     if (pool.length === 0) {
-      pool = locCreatures.filter(c => c.rarity === 'common');
+      // Fallback: any creature at this location (handles legendary-only locations like Dream Nexus)
+      pool = locCreatures;
     }
 
     const weighted = [];
