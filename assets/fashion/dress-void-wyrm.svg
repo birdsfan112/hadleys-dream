@@ -1,9 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 340">
   <style>
     .vw-main{fill:#4B0082;stroke:#2E0854;stroke-width:2;stroke-linejoin:round}
+    .vw-base{fill:#2A004A;stroke:none}
     .vw-glow{fill:#8A2BE2;stroke:none;opacity:0.5}
     .vw-star{fill:#E0E0FF;stroke:none}
-    .vw-void{fill:#1A0033;stroke:none;opacity:0.4}
+    .vw-tatter{fill:#4B0082;stroke:#2E0854;stroke-width:1.5;stroke-linejoin:round}
   </style>
   <defs>
     <radialGradient id="vw-eye" cx="50%" cy="50%" r="50%">
@@ -21,11 +22,16 @@
     <!-- Spiky shoulder pads -->
     <path d="M72 134 Q62 128 56 118 Q62 130 72 138 Z" class="vw-main"/>
     <path d="M128 134 Q138 128 144 118 Q138 130 128 138 Z" class="vw-main"/>
-    <!-- Tattered skirt -->
-    <path d="M70 198 Q58 230 54 265 L62 290 L74 310 L80 285 Z" class="vw-main"/>
-    <path d="M80 198 Q82 240 86 285 L94 308 L100 280 Z" class="vw-main"/>
-    <path d="M100 198 Q100 245 100 280 L106 308 L114 285 Q118 240 120 198 Z" class="vw-main"/>
-    <path d="M120 198 Q122 240 126 285 L138 310 L146 265 Q142 230 130 198 Z" class="vw-main"/>
+
+    <!-- Solid base skirt (full coverage underneath) -->
+    <path d="M70 198 Q56 230 52 270 Q56 288 72 295 L100 292 L128 295 Q144 288 148 270 Q144 230 130 198 Z" class="vw-base"/>
+
+    <!-- Tattered panels layered on top -->
+    <path d="M70 198 Q58 230 54 265 L62 290 L74 310 L80 285 Z" class="vw-tatter"/>
+    <path d="M80 198 Q82 240 86 285 L94 308 L100 280 Z" class="vw-tatter"/>
+    <path d="M100 198 Q100 245 100 280 L106 308 L114 285 Q118 240 120 198 Z" class="vw-tatter"/>
+    <path d="M120 198 Q122 240 126 285 L138 310 L146 265 Q142 230 130 198 Z" class="vw-tatter"/>
+
     <!-- Void glow effects -->
     <ellipse cx="76" cy="240" rx="6" ry="8" class="vw-glow"/>
     <ellipse cx="124" cy="250" rx="5" ry="7" class="vw-glow"/>
