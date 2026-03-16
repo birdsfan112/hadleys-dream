@@ -241,6 +241,27 @@
     </div>
   </div>
 
+  <!-- ========== Parent Unlock Modal ========== -->
+  <div id="unlock-overlay" class="hidden modal-overlay" onclick="Game.closeUnlockMenu(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div id="unlock-passcode-view">
+        <h2>Parent Access</h2>
+        <p style="text-align:center;font-size:0.85em;color:#999;margin-bottom:12px;">Enter the passcode to continue</p>
+        <input type="text" id="unlock-passcode-input" class="unlock-input" placeholder="Passcode" autocomplete="off" autocapitalize="off" spellcheck="false">
+        <div id="unlock-passcode-error" style="color:#E57373;text-align:center;font-size:0.8em;min-height:1.2em;margin:6px 0;"></div>
+        <div style="display:flex;gap:8px;">
+          <button class="btn small" style="flex:1" onclick="Game.closeUnlockMenu()">Cancel</button>
+          <button class="btn small" style="flex:1" onclick="Game.submitPasscode()">Enter</button>
+        </div>
+      </div>
+      <div id="unlock-menu-view" class="hidden">
+        <h2>Unlock Menu</h2>
+        <div class="unlock-options" id="unlock-options"></div>
+        <button class="btn small" style="margin-top:16px;width:100%;" onclick="Game.closeUnlockMenu()">Close</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ========== Stats Screen (Modal) ========== -->
   <div id="stats-overlay" class="hidden modal-overlay" onclick="Game.closeStats(event)">
     <div class="modal" onclick="event.stopPropagation()">
