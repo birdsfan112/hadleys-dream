@@ -266,7 +266,15 @@ const Game = (() => {
     if (entries.length > 0) {
       lb.innerHTML = '<h3 style="text-align:center;">Family Leaderboard</h3>';
       entries.sort((a, b) => b[1] - a[1]).forEach(([name, score]) => {
-        lb.innerHTML += `<div class="score-row"><span>${name}</span><span>🪙 ${score}</span></div>`;
+        const row = document.createElement('div');
+        row.className = 'score-row';
+        const nameSpan = document.createElement('span');
+        nameSpan.textContent = name;
+        const scoreSpan = document.createElement('span');
+        scoreSpan.textContent = `🪙 ${score}`;
+        row.appendChild(nameSpan);
+        row.appendChild(scoreSpan);
+        lb.appendChild(row);
       });
     } else {
       lb.innerHTML = '<p style="text-align:center;color:#888;font-size:0.85em;">No leaderboard entries yet</p>';
