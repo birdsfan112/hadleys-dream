@@ -14,7 +14,6 @@ const CreatureWorld = (() => {
   let spotCreatures = []; // pre-assigned creature per spot index
   let spotCooldownTimeouts = []; // timeout IDs for cooldown-expiry re-rolls
   let parallaxMoveHandler = null;
-  let parallaxTouchHandler = null;
   try {
     const savedCD = sessionStorage.getItem('creature-cooldowns');
     if (savedCD) {
