@@ -327,14 +327,13 @@ document.addEventListener('visibilitychange', () => {
   if (document.hidden) {
     // Pause music and particles when app is backgrounded
     try { Audio.stopMusic(); } catch (e) {}
-    try { Particles.stop(); } catch (e) {}
+    try { Particles.pause(); } catch (e) {}
   } else {
-    // Resume music for current mode
+    // Resume music and particles for current mode
     const mode = Game.getCurrentMode();
     if (mode) {
       try { Audio.startMusic(mode); } catch (e) {}
     }
-    // Particles will resume on next location enter — no need to restart here
-    // since the user may have left the explore screen
+    try { Particles.resume(); } catch (e) {}
   }
 });
