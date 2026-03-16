@@ -2192,5 +2192,243 @@ class TestStateMigrationTutorialCompleted(unittest.TestCase):
                        "init must spread-merge DEFAULT_STATE with saved state")
 
 
+# ===========================================================================
+# Test Suite 26: Delayed spot reveal (creatures.js + creatures.css)
+# ===========================================================================
+class TestDelayedSpotReveal(unittest.TestCase):
+    """Validates that delayed spots disable pointer-events until revealed."""
+
+    def setUp(self):
+        self.css_src = read_css('creatures.css')
+        self.js_src = read_js('creatures.js')
+
+    def test_delayed_spots_disable_pointer_events(self):
+        """creatures.css: .explore-spot.delayed must have pointer-events: none"""
+        match = re.search(r'\.explore-spot\.delayed\s*\{([^}]+)\}', self.css_src)
+        self.assertIsNotNone(match, "Must have .explore-spot.delayed rule")
+        self.assertIn('pointer-events: none', match.group(1))
+
+    def test_revealed_class_enables_pointer_events(self):
+        """creatures.css: .explore-spot.delayed.revealed must re-enable pointer-events"""
+        match = re.search(r'\.explore-spot\.delayed\.revealed\s*\{([^}]+)\}', self.css_src)
+        self.assertIsNotNone(match, "Must have .explore-spot.delayed.revealed rule")
+        self.assertIn('pointer-events: auto', match.group(1))
+
+    def test_js_adds_revealed_class_after_delay(self):
+        """creatures.js: renderSpots must add 'revealed' class via setTimeout"""
+        match = re.search(r'function renderSpots\(\)\s*\{(.*?)\n  \}', self.js_src, re.DOTALL)
+        self.assertIsNotNone(match)
+        body = match.group(1)
+        self.assertIn("classList.add('revealed')", body,
+                       "renderSpots must add 'revealed' class after animation delay")
+
+    def test_delayed_reveal_timeout_is_tracked(self):
+        """creatures.js: delayed reveal timeout must be pushed to spotCooldownTimeouts"""
+        match = re.search(r'function renderSpots\(\)\s*\{(.*?)\n  \}', self.js_src, re.DOTALL)
+        self.assertIsNotNone(match)
+        body = match.group(1)
+        # The timeout for revealed class should be cleaned up with other spot timeouts
+        self.assertIn('spotCooldownTimeouts.push', body)
+
+
+# ===========================================================================
+# Test Suite 27: Explore avatar positioning (creatures.css)
+# ===========================================================================
+class TestExploreAvatarPosition(unittest.TestCase):
+    """Validates that the explore avatar doesn't overlap with the hamburger menu."""
+
+    def setUp(self):
+        self.css_src = read_css('creatures.css')
+
+    def test_avatar_not_positioned_right(self):
+        """creatures.css: .explore-avatar must not use right positioning (conflicts with hamburger)"""
+        match = re.search(r'\.explore-avatar\s*\{([^}]+)\}', self.css_src)
+        self.assertIsNotNone(match, "Must have .explore-avatar rule")
+        body = match.group(1)
+        # Should use left positioning, not right, to avoid hamburger overlap
+        self.assertNotRegex(body, r'\bright\s*:', "explore-avatar should not use right positioning")
+        self.assertRegex(body, r'\bleft\s*:', "explore-avatar should use left positioning")
+
+
+# ===========================================================================
+# Test Suite 28: Legendary Shop (data.js + game.js + index.html)
+# ===========================================================================
+class TestLegendaryShop(unittest.TestCase):
+    """Validates legendary_bought state field, shop rendering, and purchase logic."""
+
+    def setUp(self):
+        self.data_src = read_js('data.js')
+        self.game_src = read_js('game.js')
+        self.html_src = read_asset('index.html')
+        self.css_src = read_css('style.css')
+
+    # DEFAULT_STATE has legendary_bought
+    def test_default_state_has_legendary_bought(self):
+        """data.js: DEFAULT_STATE must include legendary_bought: []"""
+        match = re.search(r'const DEFAULT_STATE\s*=\s*\{(.*?)\};', self.data_src, re.DOTALL)
+        self.assertIsNotNone(match)
+        self.assertIn('legendary_bought: []', match.group(1))
+
+    # Game.js migration ensures legendary_bought exists
+    def test_migration_ensures_legendary_bought(self):
+        """game.js: init must migrate old saves missing legendary_bought"""
+        match = re.search(r'function init\(\)\s*\{(.*?)\n  \}', self.game_src, re.DOTALL)
+        self.assertIsNotNone(match)
+        body = match.group(1)
+        self.assertIn('legendary_bought', body,
+                       "init must handle legendary_bought migration")
+
+    # Game module exports showCollectionTab
+    def test_game_exports_show_collection_tab(self):
+        """game.js: module must export showCollectionTab"""
+        # The return block has nested braces (get state() {...}), so match multi-line
+        match = re.search(r'return\s*\{(.+?)\};\s*\}\)\(\)', self.game_src, re.DOTALL)
+        self.assertIsNotNone(match)
+        self.assertIn('showCollectionTab', match.group(1))
+
+    # buyLegendary checks coin balance
+    def test_buy_legendary_checks_coins(self):
+        """game.js: buyLegendary must check coin balance before purchase"""
+        match = re.search(r'function buyLegendary\(creature\)\s*\{(.*?)\n  \}', self.game_src, re.DOTALL)
+        self.assertIsNotNone(match)
+        body = match.group(1)
+        self.assertIn('coins < creature.coins', body,
+                       "buyLegendary must check if player has enough coins")
+
+    # buyLegendary prevents double-buy
+    def test_buy_legendary_prevents_double_buy(self):
+        """game.js: buyLegendary must check if already bought"""
+        match = re.search(r'function buyLegendary\(creature\)\s*\{(.*?)\n  \}', self.game_src, re.DOTALL)
+        self.assertIsNotNone(match)
+        body = match.group(1)
+        self.assertIn('legendary_bought.includes(creature.id)', body,
+                       "buyLegendary must guard against double purchase")
+
+    # buyLegendary uses addCoins for proper coin flow
+    def test_buy_legendary_uses_add_coins(self):
+        """game.js: buyLegendary must use addCoins(-cost) for proper coin flow"""
+        match = re.search(r'function buyLegendary\(creature\)\s*\{(.*?)\n  \}', self.game_src, re.DOTALL)
+        self.assertIsNotNone(match)
+        body = match.group(1)
+        self.assertIn('addCoins(-creature.coins)', body,
+                       "buyLegendary must use addCoins for coin deduction")
+
+    # buyLegendary saves state
+    def test_buy_legendary_saves_state(self):
+        """game.js: buyLegendary must call SaveManager.autoSave"""
+        match = re.search(r'function buyLegendary\(creature\)\s*\{(.*?)\n  \}', self.game_src, re.DOTALL)
+        self.assertIsNotNone(match)
+        body = match.group(1)
+        self.assertIn('SaveManager.autoSave', body,
+                       "buyLegendary must persist state after purchase")
+
+    # renderLegendaryShop shows locked message for uncaught creatures
+    def test_render_shows_catch_to_unlock(self):
+        """game.js: renderLegendaryShop must show 'Catch ... to unlock' for uncaught legendaries"""
+        match = re.search(r'function renderLegendaryShop\(\)\s*\{(.*?)\n  \}', self.game_src, re.DOTALL)
+        self.assertIsNotNone(match)
+        body = match.group(1)
+        self.assertIn('to unlock', body,
+                       "Locked legendaries must show 'Catch [name] to unlock' message")
+
+    # HTML has collection tabs
+    def test_html_has_collection_tabs(self):
+        """index.html: collection overlay must have tab buttons"""
+        self.assertIn('tab-collection', self.html_src)
+        self.assertIn('tab-legendary-shop', self.html_src)
+        self.assertIn('legendary-shop-grid', self.html_src)
+
+    # CSS has legendary shop styles
+    def test_css_has_legendary_shop_styles(self):
+        """style.css: must have .legendary-shop-card styles"""
+        self.assertIn('.legendary-shop-card', self.css_src)
+        self.assertIn('.legendary-shop-card.locked', self.css_src)
+        self.assertIn('.legendary-shop-card.owned', self.css_src)
+
+    # Reimplementation: buyLegendary logic
+    def test_buy_legendary_logic_sufficient_coins(self):
+        """Logic test: buying a legendary with enough coins succeeds"""
+        coins = 200
+        cost = 100
+        legendary_bought = []
+        creature_id = 'elder-owl'
+        caught = ['elder-owl']
+
+        # Simulate buyLegendary
+        if coins < cost:
+            success = False
+        elif creature_id in legendary_bought:
+            success = False
+        else:
+            coins -= cost
+            legendary_bought.append(creature_id)
+            success = True
+
+        self.assertTrue(success)
+        self.assertEqual(coins, 100)
+        self.assertIn('elder-owl', legendary_bought)
+
+    def test_buy_legendary_logic_insufficient_coins(self):
+        """Logic test: buying a legendary without enough coins fails"""
+        coins = 50
+        cost = 100
+        legendary_bought = []
+
+        if coins < cost:
+            success = False
+        else:
+            success = True
+
+        self.assertFalse(success)
+        self.assertEqual(coins, 50)
+
+    def test_buy_legendary_logic_already_bought(self):
+        """Logic test: buying a legendary twice is prevented"""
+        coins = 200
+        cost = 100
+        legendary_bought = ['elder-owl']
+        creature_id = 'elder-owl'
+
+        if coins < cost:
+            success = False
+        elif creature_id in legendary_bought:
+            success = False
+        else:
+            coins -= cost
+            success = True
+
+        self.assertFalse(success)
+        self.assertEqual(coins, 200)  # No deduction
+
+
+# ===========================================================================
+# Test Suite 29: Service Worker cache version (sw.js)
+# ===========================================================================
+class TestServiceWorkerCache(unittest.TestCase):
+    """Validates SW cache name and asset list."""
+
+    def setUp(self):
+        self.sw_src = read_asset('sw.js')
+
+    def test_cache_uses_relative_paths(self):
+        """sw.js: ASSETS must use relative paths (no leading /)"""
+        match = re.search(r'const ASSETS\s*=\s*\[(.*?)\];', self.sw_src, re.DOTALL)
+        self.assertIsNotNone(match)
+        assets_block = match.group(1)
+        # Extract all quoted strings
+        paths = re.findall(r"'([^']+)'", assets_block)
+        for path in paths:
+            if path == './':
+                continue  # root relative is ok
+            self.assertFalse(path.startswith('/'),
+                             f"Asset path '{path}' should be relative, not absolute")
+
+    def test_manifest_icon_is_cached(self):
+        """sw.js: ASSETS must include the manifest icon for offline support"""
+        match = re.search(r'const ASSETS\s*=\s*\[(.*?)\];', self.sw_src, re.DOTALL)
+        self.assertIsNotNone(match)
+        self.assertIn('assets/img/icon-192.svg', match.group(1))
+
+
 if __name__ == '__main__':
     unittest.main(verbosity=2)
