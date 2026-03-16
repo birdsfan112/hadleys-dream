@@ -50,15 +50,15 @@ const Game = (() => {
 
       // Set up hub buttons
       document.getElementById('btn-mute').onclick = () => {
-        try { Audio.toggleMute(); } catch (e) {}
+        try { GameAudio.toggleMute(); } catch (e) {}
       };
       const muteBtn = document.getElementById('btn-mute');
-      if (muteBtn && Audio.isMuted()) muteBtn.textContent = '🔇';
+      if (muteBtn && GameAudio.isMuted()) muteBtn.textContent = '🔇';
       const musicBtn = document.getElementById('btn-music-style');
       if (musicBtn) {
         musicBtn.onclick = () => {
           try {
-            const style = Audio.cycleStyle();
+            const style = GameAudio.cycleStyle();
             const labels = { pads: 'Pads 🎹', musicbox: 'Music Box 🎶', chiptune: 'Chiptune 🕹️' };
             showToast(labels[style] || style);
           } catch (e) {}
@@ -83,7 +83,7 @@ const Game = (() => {
     // Boot into the hub (title screen)
     setTimeout(() => {
       switchMode('hub');
-      try { Audio.sfx.ready(); } catch (e) {}
+      try { GameAudio.sfx.ready(); } catch (e) {}
     }, 500);
   }
 
@@ -101,7 +101,7 @@ const Game = (() => {
   }
 
   function switchMode(mode) {
-    try { Audio.sfx.click(); } catch (e) {}
+    try { GameAudio.sfx.click(); } catch (e) {}
     currentMode = mode;
 
     // Clean up previous mode
@@ -111,23 +111,23 @@ const Game = (() => {
     switch (mode) {
       case 'hub':
         showScreen('hub-screen');
-        try { Audio.startMusic('hub'); } catch (e) {}
+        try { GameAudio.startMusic('hub'); } catch (e) {}
         break;
       case 'creatures':
         showScreen('creatures-screen');
         try { CreatureWorld.onEnter(); } catch (e) { console.error('Creatures onEnter error:', e); }
-        try { Audio.startMusic('creatures'); } catch (e) {}
+        try { GameAudio.startMusic('creatures'); } catch (e) {}
         break;
       case 'fashion':
         showScreen('fashion-screen');
         try { Fashion.onEnter(); } catch (e) { console.error('Fashion onEnter error:', e); }
-        try { Audio.startMusic('fashion'); } catch (e) {}
+        try { GameAudio.startMusic('fashion'); } catch (e) {}
         break;
       // Room mode hidden temporarily
       // case 'room':
       //   showScreen('room-screen');
       //   try { Room.onEnter(); } catch (e) { console.error('Room onEnter error:', e); }
-      //   try { Audio.startMusic('room'); } catch (e) {}
+      //   try { GameAudio.startMusic('room'); } catch (e) {}
       //   break;
     }
 
@@ -141,7 +141,7 @@ const Game = (() => {
     if (state.coins < 0) state.coins = 0;
     if (amount > 0) {
       state.stats.total_coins_earned += amount;
-      try { Audio.sfx.coin(); } catch (e) {}
+      try { GameAudio.sfx.coin(); } catch (e) {}
     }
     updateCoinsDisplay();
     updateHubStats();
@@ -178,7 +178,7 @@ const Game = (() => {
 
   // --- Collection ---
   function openCollection() {
-    try { Audio.sfx.click(); } catch (e) {}
+    try { GameAudio.sfx.click(); } catch (e) {}
     const overlay = document.getElementById('collection-overlay');
     overlay.classList.remove('hidden');
     const grid = document.getElementById('collection-grid');
@@ -229,7 +229,7 @@ const Game = (() => {
 
   // --- Stats ---
   function openStats() {
-    try { Audio.sfx.click(); } catch (e) {}
+    try { GameAudio.sfx.click(); } catch (e) {}
     document.getElementById('stats-overlay').classList.remove('hidden');
     const content = document.getElementById('stats-content');
 
@@ -266,7 +266,15 @@ const Game = (() => {
     if (entries.length > 0) {
       lb.innerHTML = '<h3 style="text-align:center;">Family Leaderboard</h3>';
       entries.sort((a, b) => b[1] - a[1]).forEach(([name, score]) => {
-        lb.innerHTML += `<div class="score-row"><span>${name}</span><span>🪙 ${score}</span></div>`;
+        const row = document.createElement('div');
+        row.className = 'score-row';
+        const nameSpan = document.createElement('span');
+        nameSpan.textContent = name;
+        const scoreSpan = document.createElement('span');
+        scoreSpan.textContent = `🪙 ${score}`;
+        row.appendChild(nameSpan);
+        row.appendChild(scoreSpan);
+        lb.appendChild(row);
       });
     } else {
       lb.innerHTML = '<p style="text-align:center;color:#888;font-size:0.85em;">No leaderboard entries yet</p>';
@@ -280,7 +288,7 @@ const Game = (() => {
 
   // --- Save Menu ---
   function openSaveMenu() {
-    try { Audio.sfx.click(); } catch (e) {}
+    try { GameAudio.sfx.click(); } catch (e) {}
     document.getElementById('save-menu-overlay').classList.remove('hidden');
   }
 
@@ -296,7 +304,7 @@ const Game = (() => {
 
   // --- Quick Menu ---
   function openQuickMenu() {
-    try { Audio.sfx.click(); } catch (e) {}
+    try { GameAudio.sfx.click(); } catch (e) {}
     const menu = document.getElementById('quick-menu');
     if (menu) menu.classList.remove('hidden');
   }
@@ -326,13 +334,13 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) {
     // Pause music and particles when app is backgrounded
-    try { Audio.stopMusic(); } catch (e) {}
+    try { GameAudio.stopMusic(); } catch (e) {}
     try { Particles.pause(); } catch (e) {}
   } else {
     // Resume music and particles for current mode
     const mode = Game.getCurrentMode();
     if (mode) {
-      try { Audio.startMusic(mode); } catch (e) {}
+      try { GameAudio.startMusic(mode); } catch (e) {}
     }
     try { Particles.resume(); } catch (e) {}
   }

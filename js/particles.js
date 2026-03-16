@@ -132,6 +132,31 @@ const Particles = (() => {
           wobbleSpeed: 1.2
         }
       ]
+    },
+    'dream-nexus': {
+      count: 36,
+      particles: [
+        {
+          type: 'dream-mote',
+          colors: ['#E0B0FF', '#C8A2C8', '#DDA0DD', '#DA70D6'],
+          sizeRange: [3, 9],
+          speedRange: [10, 22],
+          glow: true,
+          glowColor: 'rgba(218, 112, 214, 0.5)',
+          wobbleAmplitude: 10,
+          wobbleSpeed: 1.0
+        },
+        {
+          type: 'star-flicker',
+          colors: ['#FFFACD', '#FAFAD2', '#FFE4B5', '#FFFFFF'],
+          sizeRange: [1, 4],
+          speedRange: [18, 38],
+          glow: true,
+          glowColor: 'rgba(255, 250, 205, 0.4)',
+          wobbleAmplitude: 6,
+          wobbleSpeed: 2.2
+        }
+      ]
     }
   };
 

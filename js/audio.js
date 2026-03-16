@@ -2,7 +2,7 @@
 // Hadley's Dream — Audio Manager
 // ============================================================
 
-const Audio = (() => {
+const GameAudio = (() => {
   let muted = localStorage.getItem('hadley-muted') === 'true';
   let ctx = null;
 

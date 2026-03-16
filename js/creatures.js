@@ -5,6 +5,7 @@
 const CreatureWorld = (() => {
   let currentLocation = null;
   let catchAnimFrame = null;
+  let effectAnimFrames = [];
   let catchState = null;
   let catchActive = false;
   let legendaryEscapeUsed = false; // tracks whether the legendary has already used its escape power this encounter
@@ -103,7 +104,7 @@ const CreatureWorld = (() => {
   }
 
   function enterLocation(loc) {
-    Audio.sfx.click();
+    GameAudio.sfx.click();
     currentLocation = loc;
     // Save last location
     Game.state.last_location = loc.id;
@@ -167,6 +168,7 @@ const CreatureWorld = (() => {
       cumulative += cfg.chance;
       if (roll <= cumulative) { selectedRarity = r; break; }
     }
+    if (!selectedRarity) selectedRarity = 'common';
 
     // Legendaries only appear once all commons in this area are caught
     if (selectedRarity === 'legendary' && !legendariesUnlocked(currentLocation.id)) {
@@ -281,12 +283,11 @@ const CreatureWorld = (() => {
     }
   }
 
+  // Fallback creature picker (delegates to pickCreatureForSpot)
   function pickCreature() {
-    // Get creatures for current location
     const locCreatures = CREATURES.filter(c => c.location === currentLocation.id);
     const caught = Game.state.creatures || [];
 
-    // Weighted random by rarity
     const roll = Math.random();
     let cumulative = 0;
     let selectedRarity;
@@ -294,19 +295,17 @@ const CreatureWorld = (() => {
       cumulative += cfg.chance;
       if (roll <= cumulative) { selectedRarity = r; break; }
     }
+    if (!selectedRarity) selectedRarity = 'common';
 
-    // Legendaries only appear once all commons in this area are caught
     if (selectedRarity === 'legendary' && !legendariesUnlocked(currentLocation.id)) {
       selectedRarity = 'common';
     }
 
-    // Filter by rarity
     let pool = locCreatures.filter(c => c.rarity === selectedRarity);
     if (pool.length === 0) {
       pool = locCreatures.filter(c => c.rarity === 'common');
     }
 
-    // Smart weighting: uncaught creatures get 4x the weight
     const weighted = [];
     pool.forEach(c => {
       const weight = caught.includes(c.id) ? 1 : 4;
@@ -318,7 +317,7 @@ const CreatureWorld = (() => {
 
   function discoverCreature(spotIndex, spotEl) {
     if (spotEl.classList.contains('on-cooldown')) return;
-    Audio.sfx.discover();
+    GameAudio.sfx.discover();
 
     const creature = spotCreatures[spotIndex] || pickCreature();
     if (!creature) return;
@@ -392,7 +391,7 @@ const CreatureWorld = (() => {
 
       // Draw radial gradient background
       const gradient = ctxC.createRadialGradient(cx, cy, 0, cx, cy, 130);
-      const baseColor = rarityColor.replace(')', ', 0.15)').replace('rgb', 'rgba');
+      const baseColor = rarityColor + '26'; // hex with ~15% alpha
       gradient.addColorStop(0, baseColor);
       gradient.addColorStop(1, 'rgba(0, 0, 0, 0.4)');
       ctxC.fillStyle = gradient;
@@ -692,7 +691,7 @@ const CreatureWorld = (() => {
 
       // Draw radial gradient background
       const gradient = ctxC.createRadialGradient(cx, cy, 0, cx, cy, 130);
-      const baseColor = rarityColor.replace(')', ', 0.15)').replace('rgb', 'rgba');
+      const baseColor = rarityColor + '26'; // hex with ~15% alpha
       gradient.addColorStop(0, baseColor);
       gradient.addColorStop(1, 'rgba(0, 0, 0, 0.4)');
       ctxC.fillStyle = gradient;
@@ -815,7 +814,7 @@ const CreatureWorld = (() => {
     document.getElementById('catch-instruction').textContent = '';
 
     if (result === 'miss') {
-      Audio.sfx.catchMiss();
+      GameAudio.sfx.catchMiss();
       playMissEffect(creature, document.getElementById('catch-creature-svg'), canvas, ctxC);
       resultText.innerHTML = `${creature.name} escaped! 💨<br><span style="font-size:0.6em">Try again!</span>`;
       resultEl.classList.remove('hidden');
@@ -830,7 +829,7 @@ const CreatureWorld = (() => {
     // Legendary escape: if creature has an escapePower and hasn't used it yet, escape and restart
     if (creature.escapePower && !legendaryEscapeUsed) {
       legendaryEscapeUsed = true;
-      Audio.sfx.catchMiss();
+      GameAudio.sfx.catchMiss();
       playLegendaryEscapeEffect(creature, document.getElementById('catch-creature-svg'), canvas, ctxC);
       resultText.innerHTML = `
         <span style="font-size:0.7em;color:${creature.escapePower.color}">${creature.escapePower.name}!</span><br>
@@ -859,7 +858,7 @@ const CreatureWorld = (() => {
     let coins = creature.coins;
     if (result === 'perfect') coins = Math.floor(coins * 1.5);
 
-    Audio.sfx.catchSuccess();
+    GameAudio.sfx.catchSuccess();
 
     // Play celebration effects
     playCatchSuccess(creature, document.getElementById('catch-creature-svg'), canvas, ctxC, result === 'perfect');
@@ -907,7 +906,7 @@ const CreatureWorld = (() => {
     legendaryEscapeUsed = false;
     if (legendaryEscapeTimeout) { clearTimeout(legendaryEscapeTimeout); legendaryEscapeTimeout = null; }
     if (practiceTimeout) { clearTimeout(practiceTimeout); practiceTimeout = null; }
-    Audio.sfx.click();
+    GameAudio.sfx.click();
     const overlayEl = document.getElementById('catch-overlay');
     overlayEl.classList.add('hidden');
     overlayEl.classList.remove('practice-mode');
@@ -922,13 +921,15 @@ const CreatureWorld = (() => {
       svgContainer.style.transform = '';
     }
     cancelAnimationFrame(catchAnimFrame);
+    effectAnimFrames.forEach(id => cancelAnimationFrame(id));
+    effectAnimFrames = [];
     // Resume particles now that the catch overlay is closed
     try { if (currentLocation) Particles.resume(); } catch (e) {}
     renderSpots(); // Refresh cooldown states
   }
 
   function backToLocations() {
-    Audio.sfx.click();
+    GameAudio.sfx.click();
     // Clear pending cooldown timeouts before leaving (prevents TypeError on null currentLocation)
     spotCooldownTimeouts.forEach(id => clearTimeout(id));
     spotCooldownTimeouts = [];
@@ -1084,9 +1085,9 @@ const CreatureWorld = (() => {
         ctxC.restore();
       }
 
-      requestAnimationFrame(animateEscape);
+      effectAnimFrames.push(requestAnimationFrame(animateEscape));
     }
-    requestAnimationFrame(animateEscape);
+    effectAnimFrames.push(requestAnimationFrame(animateEscape));
   }
 
   function drawConfettiBurst(canvas, ctxC) {
@@ -1143,9 +1144,9 @@ const CreatureWorld = (() => {
         ctxC.restore();
       });
 
-      requestAnimationFrame(animateConfetti);
+      effectAnimFrames.push(requestAnimationFrame(animateConfetti));
     }
-    requestAnimationFrame(animateConfetti);
+    effectAnimFrames.push(requestAnimationFrame(animateConfetti));
   }
 
   function drawGoldenStarburst(canvas, ctxC) {
@@ -1180,9 +1181,9 @@ const CreatureWorld = (() => {
       }
 
       ctxC.restore();
-      requestAnimationFrame(animate);
+      effectAnimFrames.push(requestAnimationFrame(animate));
     }
-    requestAnimationFrame(animate);
+    effectAnimFrames.push(requestAnimationFrame(animate));
   }
 
   function drawWhoosh(canvas, ctxC) {
@@ -1211,9 +1212,9 @@ const CreatureWorld = (() => {
       }
 
       ctxC.restore();
-      requestAnimationFrame(animate);
+      effectAnimFrames.push(requestAnimationFrame(animate));
     }
-    requestAnimationFrame(animate);
+    effectAnimFrames.push(requestAnimationFrame(animate));
   }
 
   function drawRingShatter(canvas, ctxC) {
@@ -1251,9 +1252,9 @@ const CreatureWorld = (() => {
         ctxC.fill();
       });
       ctxC.restore();
-      requestAnimationFrame(animate);
+      effectAnimFrames.push(requestAnimationFrame(animate));
     }
-    requestAnimationFrame(animate);
+    effectAnimFrames.push(requestAnimationFrame(animate));
   }
 
   // --- Parallax Touch Interaction (throttled for performance) ---

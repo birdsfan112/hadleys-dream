@@ -130,7 +130,7 @@ const Fashion = (() => {
 
   // --- Free Dress Mode ---
   function startFreeMode() {
-    Audio.sfx.click();
+    GameAudio.sfx.click();
     isChallenge = false;
     challengeTheme = null;
     resetOutfit();
@@ -144,7 +144,7 @@ const Fashion = (() => {
 
   // --- Challenge Mode ---
   function startChallenge() {
-    Audio.sfx.click();
+    GameAudio.sfx.click();
     isChallenge = true;
     challengeTheme = CHALLENGE_THEMES[Math.floor(Math.random() * CHALLENGE_THEMES.length)];
     resetOutfit();
@@ -194,7 +194,7 @@ const Fashion = (() => {
     if (isChallenge) {
       if (!confirm('Leave without submitting? Your outfit won\'t be scored.')) return;
     }
-    Audio.sfx.click();
+    GameAudio.sfx.click();
     if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
     document.querySelector('.dressup-actions').classList.remove('challenge-mode');
     document.getElementById('fashion-dressup').classList.add('hidden');
@@ -246,7 +246,7 @@ const Fashion = (() => {
       const btn = document.createElement('button');
       btn.className = `wardrobe-tab${cat === activeTab ? ' active' : ''}`;
       btn.textContent = catLabels[cat] || cat;
-      btn.onclick = () => { activeTab = cat; renderWardrobeTabs(); renderWardrobeItems(); Audio.sfx.click(); };
+      btn.onclick = () => { activeTab = cat; renderWardrobeTabs(); renderWardrobeItems(); GameAudio.sfx.click(); };
       tabs.appendChild(btn);
     });
   }
@@ -281,7 +281,7 @@ const Fashion = (() => {
             currentOutfit.dress = null;
           }
         }
-        Audio.sfx.equip();
+        GameAudio.sfx.equip();
         renderAvatar();
         renderWardrobeItems();
       };
@@ -305,7 +305,7 @@ const Fashion = (() => {
   }
 
   function clearOutfit() {
-    Audio.sfx.click();
+    GameAudio.sfx.click();
     resetOutfit();
     renderAvatar();
     renderWardrobeItems();
@@ -368,7 +368,7 @@ const Fashion = (() => {
   }
 
   function showResult(stars, score, maxScore, coins) {
-    Audio.sfx.fanfare();
+    GameAudio.sfx.fanfare();
     document.getElementById('challenge-result').classList.remove('hidden');
     document.getElementById('challenge-result-title').textContent = `${challengeTheme.icon} ${challengeTheme.name}`;
     document.getElementById('challenge-score-text').textContent = `Score: ${score}/${maxScore}`;
@@ -389,7 +389,7 @@ const Fashion = (() => {
   }
 
   function closeResult() {
-    Audio.sfx.click();
+    GameAudio.sfx.click();
     document.getElementById('challenge-result').classList.add('hidden');
     isChallenge = false;
     exitDressup();
@@ -399,7 +399,7 @@ const Fashion = (() => {
   let shopTab = 'hair';
 
   function openShop() {
-    Audio.sfx.click();
+    GameAudio.sfx.click();
     document.getElementById('fashion-main').classList.add('hidden');
     document.getElementById('fashion-shop').classList.remove('hidden');
     shopTab = 'hair';
@@ -408,7 +408,7 @@ const Fashion = (() => {
   }
 
   function closeShop() {
-    Audio.sfx.click();
+    GameAudio.sfx.click();
     document.getElementById('fashion-shop').classList.add('hidden');
     document.getElementById('fashion-main').classList.remove('hidden');
   }
@@ -421,7 +421,7 @@ const Fashion = (() => {
       const btn = document.createElement('button');
       btn.className = `shop-tab${cat === shopTab ? ' active' : ''}`;
       btn.textContent = catLabels[cat] || cat;
-      btn.onclick = () => { shopTab = cat; renderShopTabs(); renderShopItems(); Audio.sfx.click(); };
+      btn.onclick = () => { shopTab = cat; renderShopTabs(); renderShopItems(); GameAudio.sfx.click(); };
       tabs.appendChild(btn);
     });
   }
@@ -454,7 +454,7 @@ const Fashion = (() => {
       Game.showToast('Not enough coins!');
       return;
     }
-    Audio.sfx.buy();
+    GameAudio.sfx.buy();
     Game.addCoins(-item.cost);
     Game.state.wardrobe_unlocked.push(item.id);
     SaveManager.autoSave(Game.state);
@@ -471,7 +471,7 @@ const Fashion = (() => {
   }
 
   function saveOutfit() {
-    Audio.sfx.click();
+    GameAudio.sfx.click();
     const outfits = Game.state.saved_outfits;
     if (outfits.length >= MAX_OUTFITS) {
       Game.showToast('Album is full! Delete an outfit first.');
@@ -486,18 +486,18 @@ const Fashion = (() => {
     outfits.push({ items: { ...currentOutfit }, timestamp: Date.now() });
     SaveManager.autoSave(Game.state);
     Game.showToast('Outfit saved!');
-    try { Audio.sfx.fanfare(); } catch (e) {}
+    try { GameAudio.sfx.fanfare(); } catch (e) {}
   }
 
   function openAlbum() {
-    Audio.sfx.click();
+    GameAudio.sfx.click();
     document.getElementById('fashion-main').classList.add('hidden');
     document.getElementById('fashion-album').classList.remove('hidden');
     renderAlbum();
   }
 
   function closeAlbum() {
-    Audio.sfx.click();
+    GameAudio.sfx.click();
     document.getElementById('fashion-album').classList.add('hidden');
     document.getElementById('fashion-main').classList.remove('hidden');
   }
@@ -527,7 +527,7 @@ const Fashion = (() => {
   }
 
   function loadOutfit(index) {
-    Audio.sfx.click();
+    GameAudio.sfx.click();
     const outfits = Game.state.saved_outfits;
     if (index < 0 || index >= outfits.length) return;
     const saved = outfits[index];
@@ -550,7 +550,7 @@ const Fashion = (() => {
 
   function deleteOutfit(index) {
     if (!confirm('Delete this outfit?')) return;
-    Audio.sfx.click();
+    GameAudio.sfx.click();
     const outfits = Game.state.saved_outfits;
     if (index < 0 || index >= outfits.length) return;
     outfits.splice(index, 1);
