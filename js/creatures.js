@@ -216,10 +216,11 @@ const CreatureWorld = (() => {
     spot.style.setProperty('--rarity-color', rarityColor);
 
     let silhouetteHTML = '';
+    const idleAttr = creature.escapePower ? ` data-idle="${creature.id}"` : '';
     if (svgCache.has(creature.id)) {
-      silhouetteHTML = `<div class="spot-silhouette">${sanitizeSVG(svgCache.get(creature.id))}</div>`;
+      silhouetteHTML = `<div class="spot-silhouette"${idleAttr}>${sanitizeSVG(svgCache.get(creature.id))}</div>`;
     } else if (creature.svg) {
-      silhouetteHTML = `<div class="spot-silhouette"><img src="${creature.svg}" alt="" style="width:100%;height:100%;" onerror="this.parentElement.innerHTML='?'"></div>`;
+      silhouetteHTML = `<div class="spot-silhouette"${idleAttr}><img src="${creature.svg}" alt="" style="width:100%;height:100%;" onerror="this.parentElement.innerHTML='?'"></div>`;
     } else {
       // Fallback: use the location emoji icon
       const icons = SPOT_ICONS[currentLocation.id] || ['✨'];
@@ -369,6 +370,11 @@ const CreatureWorld = (() => {
     if (svgContainer) {
       // Reset all animation classes before adding new content
       svgContainer.classList.remove('catch-creature-entrance', 'catch-celebrate', 'catch-dodge');
+      if (creature.escapePower) {
+        svgContainer.dataset.idle = creature.id;
+      } else {
+        delete svgContainer.dataset.idle;
+      }
       if (svgCache.has(creature.id)) {
         svgContainer.innerHTML = sanitizeSVG(svgCache.get(creature.id));
         svgContainer.classList.remove('hidden');
@@ -628,6 +634,12 @@ const CreatureWorld = (() => {
       svgContainer.style.transition = '';
       svgContainer.style.opacity = '';
       svgContainer.style.transform = '';
+      // Set idle animation for Dream Nexus creatures (driven by CSS data-idle selectors)
+      if (creature.escapePower) {
+        svgContainer.dataset.idle = creature.id;
+      } else {
+        delete svgContainer.dataset.idle;
+      }
       if (svgCache.has(creature.id)) {
         svgContainer.innerHTML = sanitizeSVG(svgCache.get(creature.id));
         svgContainer.classList.remove('hidden');
@@ -939,6 +951,7 @@ const CreatureWorld = (() => {
       svgContainer.innerHTML = '';
       svgContainer.classList.add('hidden');
       svgContainer.classList.remove('catch-creature-entrance', 'catch-celebrate', 'catch-dodge');
+      delete svgContainer.dataset.idle;
       svgContainer.style.transition = '';
       svgContainer.style.opacity = '';
       svgContainer.style.transform = '';
@@ -998,6 +1011,7 @@ const CreatureWorld = (() => {
 
   function playCatchSuccess(creature, svgContainer, canvas, ctxC, isPerfect = false) {
     if (svgContainer && !svgContainer.classList.contains('hidden')) {
+      delete svgContainer.dataset.idle;
       svgContainer.classList.add('catch-celebrate');
       setTimeout(() => {
         svgContainer.classList.remove('catch-celebrate');
@@ -1022,6 +1036,7 @@ const CreatureWorld = (() => {
 
   function playMissEffect(creature, svgContainer, canvas, ctxC) {
     if (svgContainer && !svgContainer.classList.contains('hidden')) {
+      delete svgContainer.dataset.idle;
       svgContainer.classList.add('catch-dodge');
     }
 
