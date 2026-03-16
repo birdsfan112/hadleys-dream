@@ -160,33 +160,43 @@ const CreatureWorld = (() => {
     const locCreatures = CREATURES.filter(c => c.location === currentLocation.id);
     const caught = Game.state.creatures || [];
 
-    // Weighted random by rarity
-    const roll = Math.random();
-    let cumulative = 0;
-    let selectedRarity;
-    for (const [r, cfg] of Object.entries(RARITY)) {
-      cumulative += cfg.chance;
-      if (roll <= cumulative) { selectedRarity = r; break; }
-    }
-    if (!selectedRarity) selectedRarity = 'common';
+    // Check if this is a legendary-only location (e.g. Dream Nexus)
+    const allLegendary = locCreatures.length > 0 && locCreatures.every(c => c.rarity === 'legendary');
 
-    // Legendaries only appear once all commons in this area are caught
-    if (selectedRarity === 'legendary' && !legendariesUnlocked(currentLocation.id)) {
-      selectedRarity = 'common';
-    }
-
-    // Filter by rarity, then remove already-used creatures
-    let pool = locCreatures.filter(c => c.rarity === selectedRarity && !usedIds.has(c.id));
-    if (pool.length === 0) {
-      // Fallback: try same rarity but allow duplicates
-      pool = locCreatures.filter(c => c.rarity === selectedRarity);
-    }
-    if (pool.length === 0) {
-      // Fallback: any creature at this location (handles legendary-only locations like Dream Nexus)
+    let pool;
+    if (allLegendary) {
+      // Skip rarity roll entirely — all creatures here are always available
       pool = locCreatures.filter(c => !usedIds.has(c.id));
-    }
-    if (pool.length === 0) {
-      pool = locCreatures;
+      if (pool.length === 0) pool = locCreatures;
+    } else {
+      // Weighted random by rarity
+      const roll = Math.random();
+      let cumulative = 0;
+      let selectedRarity;
+      for (const [r, cfg] of Object.entries(RARITY)) {
+        cumulative += cfg.chance;
+        if (roll <= cumulative) { selectedRarity = r; break; }
+      }
+      if (!selectedRarity) selectedRarity = 'common';
+
+      // Legendaries only appear once all commons in this area are caught
+      if (selectedRarity === 'legendary' && !legendariesUnlocked(currentLocation.id)) {
+        selectedRarity = 'common';
+      }
+
+      // Filter by rarity, then remove already-used creatures
+      pool = locCreatures.filter(c => c.rarity === selectedRarity && !usedIds.has(c.id));
+      if (pool.length === 0) {
+        // Fallback: try same rarity but allow duplicates
+        pool = locCreatures.filter(c => c.rarity === selectedRarity);
+      }
+      if (pool.length === 0) {
+        // Fallback: any creature at this location
+        pool = locCreatures.filter(c => !usedIds.has(c.id));
+      }
+      if (pool.length === 0) {
+        pool = locCreatures;
+      }
     }
 
     // Smart weighting: uncaught creatures get 4x the weight
@@ -888,9 +898,12 @@ const CreatureWorld = (() => {
     `;
     resultEl.classList.remove('hidden');
 
-    // Set cooldown
+    // Set cooldown — shorter for legendary-only locations (Dream Nexus) so spots stay active
     const key = `${currentLocation.id}-${spotIndex}`;
-    cooldowns[key] = Date.now() + RARITY[creature.rarity].cooldown;
+    const locCreatures = CREATURES.filter(c => c.location === currentLocation.id);
+    const allLegendary = locCreatures.length > 0 && locCreatures.every(c => c.rarity === 'legendary');
+    const cooldownMs = allLegendary ? 60000 : RARITY[creature.rarity].cooldown;
+    cooldowns[key] = Date.now() + cooldownMs;
     saveCooldowns();
 
     // Reset legendary escape state
