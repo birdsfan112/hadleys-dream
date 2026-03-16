@@ -95,7 +95,7 @@ const CREATURES = [
   { id: 'elder-owl', name: 'Elder Owl', location: 'sparkle-forest', rarity: 'legendary', coins: 100,
     colors: ['#8B6914', '#FFD700'], shape: 'owl', eyes: 'wise', accessory: 'golden-crown',
     svg: 'assets/creatures/elder-owl.svg',
-    escapePower: { name: 'Ancient Wisdom', message: 'Elder Owl uses Ancient Wisdom to vanish in a flash of golden light!', color: '#FFD700' } },
+    escapePower: { name: 'Ancient Wisdom', message: 'Elder Owl uses Ancient Wisdom to vanish in a flash of golden light!', color: '#FFD700', animation: 'flash' } },
 
   // Crystal Beach (10)
   { id: 'bubble-seal', name: 'Bubble Seal', location: 'crystal-beach', rarity: 'common', coins: 10,
@@ -128,7 +128,7 @@ const CREATURES = [
   { id: 'tide-dragon', name: 'Tide Dragon', location: 'crystal-beach', rarity: 'legendary', coins: 100,
     colors: ['#00CED1', '#20B2AA'], shape: 'dragon', eyes: 'fierce', accessory: 'wave-wings',
     svg: 'assets/creatures/tide-dragon.svg',
-    escapePower: { name: 'Tidal Surge', message: 'Tide Dragon summons a Tidal Surge and rides the waves to freedom!', color: '#00CED1' } },
+    escapePower: { name: 'Tidal Surge', message: 'Tide Dragon summons a Tidal Surge and rides the waves to freedom!', color: '#00CED1', animation: 'wave' } },
 
   // Cloud Garden (10)
   { id: 'cloud-kitten', name: 'Cloud Kitten', location: 'cloud-garden', rarity: 'common', coins: 10,
@@ -161,7 +161,7 @@ const CREATURES = [
   { id: 'aurora-unicorn', name: 'Aurora Unicorn', location: 'cloud-garden', rarity: 'legendary', coins: 100,
     colors: ['#FFD1DC', '#C8A2C8'], shape: 'unicorn', eyes: 'magical', accessory: 'aurora-mane',
     svg: 'assets/creatures/aurora-unicorn.svg',
-    escapePower: { name: 'Aurora Veil', message: 'Aurora Unicorn casts Aurora Veil and disappears in a shimmer of rainbow light!', color: '#C8A2C8' } },
+    escapePower: { name: 'Aurora Veil', message: 'Aurora Unicorn casts Aurora Veil and disappears in a shimmer of rainbow light!', color: '#C8A2C8', animation: 'rainbow' } },
 
   // Moon Cave (10)
   { id: 'glow-bat', name: 'Glow Bat', location: 'moon-cave', rarity: 'common', coins: 10,
@@ -194,7 +194,7 @@ const CREATURES = [
   { id: 'void-wyrm', name: 'Void Wyrm', location: 'moon-cave', rarity: 'legendary', coins: 100,
     colors: ['#191970', '#000080'], shape: 'wyrm', eyes: 'cosmic', accessory: 'star-dust',
     svg: 'assets/creatures/void-wyrm.svg',
-    escapePower: { name: 'Void Shift', message: 'Void Wyrm uses Void Shift and phases through the fabric of space!', color: '#9370DB' } },
+    escapePower: { name: 'Void Shift', message: 'Void Wyrm uses Void Shift and phases through the fabric of space!', color: '#9370DB', animation: 'vortex' } },
 
   // Rainbow Meadow (10)
   { id: 'flower-hamster', name: 'Flower Hamster', location: 'rainbow-meadow', rarity: 'common', coins: 10,
@@ -227,33 +227,33 @@ const CREATURES = [
   { id: 'prism-pegasus', name: 'Prism Pegasus', location: 'rainbow-meadow', rarity: 'legendary', coins: 100,
     colors: ['#FF69B4', '#FFD700'], shape: 'pegasus', eyes: 'radiant', accessory: 'rainbow-wings',
     svg: 'assets/creatures/prism-pegasus.svg',
-    escapePower: { name: 'Prism Dash', message: 'Prism Pegasus uses Prism Dash and streaks away in a blaze of rainbow fire!', color: '#FF69B4' } },
+    escapePower: { name: 'Prism Dash', message: 'Prism Pegasus uses Prism Dash and streaks away in a blaze of rainbow fire!', color: '#FF69B4', animation: 'dash' } },
 
   // Dream Nexus (secret — 6 of 10, all legendary)
   { id: 'sparkle-bud', name: 'Sparkle Bud', location: 'dream-nexus', rarity: 'legendary', coins: 100,
     colors: ['#FF6B8A', '#FFD700'], shape: 'blob', eyes: 'big-round', accessory: 'color-horns',
     svg: 'assets/creatures/292B2E44-E8C7-4D85-AC85-D490B9733D38.png',
-    escapePower: { name: 'Prism Burst', message: 'Sparkle Bud uses Prism Burst and explodes into a shower of rainbow sparks!', color: '#FF6B8A' } },
+    escapePower: { name: 'Prism Burst', message: 'Sparkle Bud uses Prism Burst and explodes into a shower of rainbow sparks!', color: '#FF6B8A', animation: 'burst' } },
   { id: 'micro-pennx', name: 'Micro Pennx', location: 'dream-nexus', rarity: 'legendary', coins: 100,
     colors: ['#87CEEB', '#4169E1'], shape: 'egg', eyes: 'sparkle', accessory: 'color-bumps',
     svg: 'assets/creatures/390F02B2-AEDF-4513-ADDC-F15AE3D5386A.png',
-    escapePower: { name: 'Tiny Bounce', message: 'Micro Pennx uses Tiny Bounce and ricochets away in a blur of colors!', color: '#87CEEB' } },
+    escapePower: { name: 'Tiny Bounce', message: 'Micro Pennx uses Tiny Bounce and ricochets away in a blur of colors!', color: '#87CEEB', animation: 'bounce' } },
   { id: 'giant-pennx', name: 'Giant Pennx', location: 'dream-nexus', rarity: 'legendary', coins: 100,
     colors: ['#9C27B0', '#FF0000'], shape: 'cylinder', eyes: 'happy', accessory: 'grad-cap',
     svg: 'assets/creatures/165C9F33-D8F5-4A63-8987-BB9B2E35B404.png',
-    escapePower: { name: 'Rainbow Slam', message: 'Giant Pennx uses Rainbow Slam and crashes through the ground in a rainbow shockwave!', color: '#9C27B0' } },
+    escapePower: { name: 'Rainbow Slam', message: 'Giant Pennx uses Rainbow Slam and crashes through the ground in a rainbow shockwave!', color: '#9C27B0', animation: 'slam' } },
   { id: 'charlie-the-hug', name: 'Charlie the Hug', location: 'dream-nexus', rarity: 'legendary', coins: 100,
     colors: ['#90EE90', '#FFD700'], shape: 'blob', eyes: 'happy', accessory: 'hearts',
     svg: 'assets/creatures/388189EF-BAA1-4FEA-85DA-CF5B9779E181.png',
-    escapePower: { name: 'Love Shield', message: 'Charlie the Hug uses Love Shield and wraps itself in a warm glow of hearts!', color: '#FF69B4' } },
+    escapePower: { name: 'Love Shield', message: 'Charlie the Hug uses Love Shield and wraps itself in a warm glow of hearts!', color: '#FF69B4', animation: 'hearts' } },
   { id: 'charlie-the-great', name: 'Charlie the Great', location: 'dream-nexus', rarity: 'legendary', coins: 100,
     colors: ['#FF6347', '#FFD700'], shape: 'cloud', eyes: 'gentle', accessory: 'rainbow-swirl',
     svg: 'assets/creatures/IMG_8342.png',
-    escapePower: { name: 'Cloud Drift', message: 'Charlie the Great uses Cloud Drift and floats away on a rainbow breeze!', color: '#FFD700' } },
+    escapePower: { name: 'Cloud Drift', message: 'Charlie the Great uses Cloud Drift and floats away on a rainbow breeze!', color: '#FFD700', animation: 'drift' } },
   { id: 'happy-lolly', name: 'Happy Lolly', location: 'dream-nexus', rarity: 'legendary', coins: 100,
     colors: ['#8B4513', '#CD853F'], shape: 'hedgehog', eyes: 'cute', accessory: 'berries',
     svg: 'assets/creatures/IMG_8343.png',
-    escapePower: { name: 'Berry Tumble', message: 'Happy Lolly uses Berry Tumble and rolls away into the bushes with a giggle!', color: '#CD853F' } }
+    escapePower: { name: 'Berry Tumble', message: 'Happy Lolly uses Berry Tumble and rolls away into the bushes with a giggle!', color: '#CD853F', animation: 'tumble' } }
 ];
 
 // Rarity config

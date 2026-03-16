@@ -2071,6 +2071,74 @@ class TestCreatureCatchRobustness(unittest.TestCase):
 
 
 # ===========================================================================
+# Test Suite 30: Legendary escape animations (data.js + creatures.js)
+# ===========================================================================
+class TestLegendaryEscapeAnimations(unittest.TestCase):
+    """Validates unique escape animations per legendary creature."""
+
+    def setUp(self):
+        self.data_src = read_js('data.js')
+        self.creatures_src = read_js('creatures.js')
+
+    def test_all_escape_powers_have_animation_field(self):
+        """data.js: every escapePower must have an animation field"""
+        powers = re.findall(r"escapePower:\s*\{([^}]+)\}", self.data_src)
+        self.assertGreater(len(powers), 0, "Must find escapePower definitions")
+        for power_block in powers:
+            self.assertIn('animation:', power_block,
+                          f"escapePower missing animation field: {power_block[:50]}")
+
+    def test_all_animations_are_unique_per_type(self):
+        """data.js: each creature type has a distinct animation"""
+        anims = re.findall(r"animation:\s*'([^']+)'", self.data_src)
+        valid_types = {'flash', 'wave', 'rainbow', 'vortex', 'dash',
+                       'burst', 'bounce', 'slam', 'hearts', 'drift', 'tumble'}
+        for a in anims:
+            self.assertIn(a, valid_types, f"Unknown animation type: {a}")
+
+    def test_effect_function_branches_by_animation(self):
+        """creatures.js: playLegendaryEscapeEffect must branch on power.animation"""
+        # Get everything from the function declaration onward
+        idx = self.creatures_src.find('function playLegendaryEscapeEffect')
+        self.assertGreater(idx, 0)
+        body = self.creatures_src[idx:idx+17000]
+        self.assertIn("power.animation", body,
+                       "playLegendaryEscapeEffect must read power.animation")
+        # Should have branches for different animation types
+        for anim_type in ['flash', 'wave', 'vortex', 'hearts', 'tumble']:
+            self.assertIn(f"anim === '{anim_type}'", body,
+                          f"Missing animation branch for '{anim_type}'")
+
+    def test_escape_effect_has_completion_callback(self):
+        """creatures.js: playLegendaryEscapeEffect must accept an onComplete callback"""
+        match = re.search(r'function playLegendaryEscapeEffect\(([^)]+)\)', self.creatures_src)
+        self.assertIsNotNone(match)
+        params = match.group(1)
+        self.assertIn('onComplete', params,
+                       "playLegendaryEscapeEffect must accept onComplete callback")
+
+    def test_escape_handler_shows_retry_button(self):
+        """creatures.js: legendary escape must show 'Try Again!' button, not auto-restart"""
+        match = re.search(r"if \(creature\.escapePower && !legendaryEscapeUsed\)\s*\{(.*?)\n    \}",
+                          self.creatures_src, re.DOTALL)
+        self.assertIsNotNone(match)
+        body = match.group(1)
+        self.assertIn("'Try Again!'", body,
+                       "Escape handler must show a Try Again button")
+        self.assertNotIn('setTimeout', body,
+                         "Escape handler should NOT auto-restart via setTimeout")
+
+    def test_retry_button_restarts_catch_game(self):
+        """creatures.js: retry button onclick must call startCatchGame"""
+        match = re.search(r"if \(creature\.escapePower && !legendaryEscapeUsed\)\s*\{(.*?)\n    \}",
+                          self.creatures_src, re.DOTALL)
+        self.assertIsNotNone(match)
+        body = match.group(1)
+        self.assertIn('startCatchGame(creature, spotIndex)', body,
+                       "Retry button must restart the catch game")
+
+
+# ===========================================================================
 # Test Suite 24: Render avatar retry cap (fashion.js)
 # ===========================================================================
 class TestRenderAvatarRetryCap(unittest.TestCase):
