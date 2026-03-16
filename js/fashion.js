@@ -434,14 +434,16 @@ const Fashion = (() => {
     items.forEach(item => {
       const owned = Game.state.wardrobe_unlocked.includes(item.id);
       const canAfford = Game.state.coins >= item.cost;
+      const locked = item.legendary && !Game.state.creatures.includes(item.legendary);
+      const creature = item.legendary ? CREATURES.find(c => c.id === item.legendary) : null;
       const div = document.createElement('div');
-      div.className = `shop-item${owned ? ' owned' : ''}`;
+      div.className = `shop-item${owned ? ' owned' : ''}${locked ? ' locked' : ''}`;
       div.innerHTML = `
         <div class="item-preview">${buildThumbnail(item)}</div>
         <div class="item-name">${item.name}</div>
-        <div class="item-cost">${owned ? 'Owned' : '\uD83E\uDE99 ' + item.cost}</div>
+        <div class="item-cost">${owned ? 'Owned' : locked ? 'Catch ' + (creature ? creature.name : '?') + ' first' : '\uD83E\uDE99 ' + item.cost}</div>
       `;
-      if (!owned) {
+      if (!owned && !locked) {
         div.onclick = () => buyItem(item);
         if (!canAfford) div.style.opacity = '0.5';
       }
@@ -450,6 +452,10 @@ const Fashion = (() => {
   }
 
   function buyItem(item) {
+    if (item.legendary && !Game.state.creatures.includes(item.legendary)) {
+      Game.showToast('Catch the creature first!');
+      return;
+    }
     if (Game.state.coins < item.cost) {
       Game.showToast('Not enough coins!');
       return;

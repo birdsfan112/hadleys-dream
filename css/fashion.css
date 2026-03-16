@@ -261,6 +261,8 @@
 .shop-item .item-cost { font-size: 0.8em; color: #888; margin-top: 4px; }
 .shop-item.owned { opacity: 0.5; pointer-events: none; }
 .shop-item.owned::after { content: '\2713 Owned'; display: block; font-size: 0.7em; color: var(--teal); margin-top: 4px; }
+.shop-item.locked { opacity: 0.45; pointer-events: none; filter: grayscale(0.6); }
+.shop-item.locked .item-cost { color: #c47; font-size: 0.7em; font-style: italic; }
 
 /* --- Challenge Result Stars --- */
 #challenge-result .stars { margin: 16px 0; }

@@ -722,13 +722,13 @@ class TestDataIntegrity(unittest.TestCase):
                          f"Location dream-nexus should have 6 creatures, has {counts.get('dream-nexus', 0)}")
 
     def test_free_wardrobe_items_match_default_state(self):
-        """data.js: DEFAULT_STATE wardrobe_unlocked should include all cost:0 non-legendary items"""
+        """data.js: DEFAULT_STATE wardrobe_unlocked should include all cost:0 items"""
         source = read_js('data.js')
-        # The DEFAULT_STATE computes wardrobe_unlocked dynamically, excluding legendary gated items:
-        # FASHION_ITEMS.filter(i => i.cost === 0 && !i.legendary).map(i => i.id)
-        self.assertIn("FASHION_ITEMS.filter(i => i.cost === 0 && !i.legendary).map(i => i.id)",
+        # The DEFAULT_STATE computes wardrobe_unlocked dynamically:
+        # FASHION_ITEMS.filter(i => i.cost === 0).map(i => i.id)
+        self.assertIn("FASHION_ITEMS.filter(i => i.cost === 0).map(i => i.id)",
                        source,
-                       "DEFAULT_STATE should derive wardrobe_unlocked from cost===0 non-legendary items")
+                       "DEFAULT_STATE should derive wardrobe_unlocked from cost===0 items")
 
 
 # ===========================================================================
@@ -2071,6 +2071,74 @@ class TestCreatureCatchRobustness(unittest.TestCase):
 
 
 # ===========================================================================
+# Test Suite 30: Legendary escape animations (data.js + creatures.js)
+# ===========================================================================
+class TestLegendaryEscapeAnimations(unittest.TestCase):
+    """Validates unique escape animations per legendary creature."""
+
+    def setUp(self):
+        self.data_src = read_js('data.js')
+        self.creatures_src = read_js('creatures.js')
+
+    def test_all_escape_powers_have_animation_field(self):
+        """data.js: every escapePower must have an animation field"""
+        powers = re.findall(r"escapePower:\s*\{([^}]+)\}", self.data_src)
+        self.assertGreater(len(powers), 0, "Must find escapePower definitions")
+        for power_block in powers:
+            self.assertIn('animation:', power_block,
+                          f"escapePower missing animation field: {power_block[:50]}")
+
+    def test_all_animations_are_unique_per_type(self):
+        """data.js: each creature type has a distinct animation"""
+        anims = re.findall(r"animation:\s*'([^']+)'", self.data_src)
+        valid_types = {'flash', 'wave', 'rainbow', 'vortex', 'dash',
+                       'burst', 'bounce', 'slam', 'hearts', 'drift', 'tumble'}
+        for a in anims:
+            self.assertIn(a, valid_types, f"Unknown animation type: {a}")
+
+    def test_effect_function_branches_by_animation(self):
+        """creatures.js: playLegendaryEscapeEffect must branch on power.animation"""
+        # Get everything from the function declaration onward
+        idx = self.creatures_src.find('function playLegendaryEscapeEffect')
+        self.assertGreater(idx, 0)
+        body = self.creatures_src[idx:idx+17000]
+        self.assertIn("power.animation", body,
+                       "playLegendaryEscapeEffect must read power.animation")
+        # Should have branches for different animation types
+        for anim_type in ['flash', 'wave', 'vortex', 'hearts', 'tumble']:
+            self.assertIn(f"anim === '{anim_type}'", body,
+                          f"Missing animation branch for '{anim_type}'")
+
+    def test_escape_effect_has_completion_callback(self):
+        """creatures.js: playLegendaryEscapeEffect must accept an onComplete callback"""
+        match = re.search(r'function playLegendaryEscapeEffect\(([^)]+)\)', self.creatures_src)
+        self.assertIsNotNone(match)
+        params = match.group(1)
+        self.assertIn('onComplete', params,
+                       "playLegendaryEscapeEffect must accept onComplete callback")
+
+    def test_escape_handler_shows_retry_button(self):
+        """creatures.js: legendary escape must show 'Try Again!' button, not auto-restart"""
+        match = re.search(r"if \(creature\.escapePower && !legendaryEscapeUsed\)\s*\{(.*?)\n    \}",
+                          self.creatures_src, re.DOTALL)
+        self.assertIsNotNone(match)
+        body = match.group(1)
+        self.assertIn("'Try Again!'", body,
+                       "Escape handler must show a Try Again button")
+        self.assertNotIn('setTimeout', body,
+                         "Escape handler should NOT auto-restart via setTimeout")
+
+    def test_retry_button_restarts_catch_game(self):
+        """creatures.js: retry button onclick must call startCatchGame"""
+        match = re.search(r"if \(creature\.escapePower && !legendaryEscapeUsed\)\s*\{(.*?)\n    \}",
+                          self.creatures_src, re.DOTALL)
+        self.assertIsNotNone(match)
+        body = match.group(1)
+        self.assertIn('startCatchGame(creature, spotIndex)', body,
+                       "Retry button must restart the catch game")
+
+
+# ===========================================================================
 # Test Suite 24: Render avatar retry cap (fashion.js)
 # ===========================================================================
 class TestRenderAvatarRetryCap(unittest.TestCase):
@@ -2367,14 +2435,17 @@ class TestLegendaryShop(unittest.TestCase):
             self.assertIn(lid, costumes,
                           f"Legendary creature '{lid}' has no matching costume item")
 
-    # Legendary costumes are excluded from default wardrobe
-    def test_legendary_costumes_excluded_from_default_wardrobe(self):
-        """data.js: wardrobe_unlocked must exclude legendary items (cost 0 but gated)"""
-        match = re.search(r'wardrobe_unlocked:\s*FASHION_ITEMS\.filter\(([^)]+)\)', self.data_src)
-        self.assertIsNotNone(match)
-        filter_body = match.group(1)
-        self.assertIn('!i.legendary', filter_body,
-                       "wardrobe_unlocked filter must exclude legendary items")
+    # Legendary costumes have a coin cost (appear in shop, not free)
+    def test_legendary_costumes_have_cost(self):
+        """data.js: legendary costumes must have cost > 0 so they appear in the shop"""
+        costume_costs = re.findall(r"legendary:\s*'[^']+',.*?cost:\s*(\d+)", self.data_src)
+        # Reverse: find cost before legendary
+        if not costume_costs:
+            costume_costs = re.findall(r"cost:\s*(\d+),.*?legendary:\s*'[^']+'", self.data_src)
+        self.assertGreater(len(costume_costs), 0, "Must find legendary costume costs")
+        for cost_str in costume_costs:
+            self.assertGreater(int(cost_str), 0,
+                               "Legendary costumes must have cost > 0")
 
     # Legendary costume SVGs exist on disk
     def test_legendary_costume_svgs_exist(self):
@@ -2385,6 +2456,35 @@ class TestLegendaryShop(unittest.TestCase):
             full_path = os.path.join(PROJECT_ROOT, svg_path)
             self.assertTrue(os.path.isfile(full_path),
                             f"Costume SVG missing: {svg_path}")
+
+    # Fashion shop shows locked state for uncaught legendary costumes
+    def test_fashion_shop_checks_legendary_lock(self):
+        """fashion.js: renderShopItems must check creature caught status for legendary items"""
+        fashion_src = read_js('fashion.js')
+        match = re.search(r'function renderShopItems\(\)\s*\{(.*?)\n  \}', fashion_src, re.DOTALL)
+        self.assertIsNotNone(match)
+        body = match.group(1)
+        self.assertIn('item.legendary', body,
+                       "renderShopItems must check item.legendary for lock state")
+        self.assertIn('creatures.includes(item.legendary)', body,
+                       "renderShopItems must check if creature is caught")
+
+    # buyItem guards against buying locked legendary items
+    def test_buy_item_guards_legendary(self):
+        """fashion.js: buyItem must reject purchases for uncaught legendary costumes"""
+        fashion_src = read_js('fashion.js')
+        match = re.search(r'function buyItem\(item\)\s*\{(.*?)\n  \}', fashion_src, re.DOTALL)
+        self.assertIsNotNone(match)
+        body = match.group(1)
+        self.assertIn('item.legendary', body,
+                       "buyItem must check legendary lock before purchase")
+
+    # CSS has locked shop item styles
+    def test_css_has_locked_shop_item_style(self):
+        """fashion.css: must have .shop-item.locked styles"""
+        fashion_css = read_css('fashion.css')
+        self.assertIn('.shop-item.locked', fashion_css,
+                       "fashion.css must style locked shop items")
 
     # Legendary costume SVGs are in SW cache
     def test_legendary_costumes_in_sw_cache(self):

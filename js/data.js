@@ -95,7 +95,7 @@ const CREATURES = [
   { id: 'elder-owl', name: 'Elder Owl', location: 'sparkle-forest', rarity: 'legendary', coins: 100,
     colors: ['#8B6914', '#FFD700'], shape: 'owl', eyes: 'wise', accessory: 'golden-crown',
     svg: 'assets/creatures/elder-owl.svg',
-    escapePower: { name: 'Ancient Wisdom', message: 'Elder Owl uses Ancient Wisdom to vanish in a flash of golden light!', color: '#FFD700' } },
+    escapePower: { name: 'Ancient Wisdom', message: 'Elder Owl uses Ancient Wisdom to vanish in a flash of golden light!', color: '#FFD700', animation: 'flash' } },
 
   // Crystal Beach (10)
   { id: 'bubble-seal', name: 'Bubble Seal', location: 'crystal-beach', rarity: 'common', coins: 10,
@@ -128,7 +128,7 @@ const CREATURES = [
   { id: 'tide-dragon', name: 'Tide Dragon', location: 'crystal-beach', rarity: 'legendary', coins: 100,
     colors: ['#00CED1', '#20B2AA'], shape: 'dragon', eyes: 'fierce', accessory: 'wave-wings',
     svg: 'assets/creatures/tide-dragon.svg',
-    escapePower: { name: 'Tidal Surge', message: 'Tide Dragon summons a Tidal Surge and rides the waves to freedom!', color: '#00CED1' } },
+    escapePower: { name: 'Tidal Surge', message: 'Tide Dragon summons a Tidal Surge and rides the waves to freedom!', color: '#00CED1', animation: 'wave' } },
 
   // Cloud Garden (10)
   { id: 'cloud-kitten', name: 'Cloud Kitten', location: 'cloud-garden', rarity: 'common', coins: 10,
@@ -161,7 +161,7 @@ const CREATURES = [
   { id: 'aurora-unicorn', name: 'Aurora Unicorn', location: 'cloud-garden', rarity: 'legendary', coins: 100,
     colors: ['#FFD1DC', '#C8A2C8'], shape: 'unicorn', eyes: 'magical', accessory: 'aurora-mane',
     svg: 'assets/creatures/aurora-unicorn.svg',
-    escapePower: { name: 'Aurora Veil', message: 'Aurora Unicorn casts Aurora Veil and disappears in a shimmer of rainbow light!', color: '#C8A2C8' } },
+    escapePower: { name: 'Aurora Veil', message: 'Aurora Unicorn casts Aurora Veil and disappears in a shimmer of rainbow light!', color: '#C8A2C8', animation: 'rainbow' } },
 
   // Moon Cave (10)
   { id: 'glow-bat', name: 'Glow Bat', location: 'moon-cave', rarity: 'common', coins: 10,
@@ -194,7 +194,7 @@ const CREATURES = [
   { id: 'void-wyrm', name: 'Void Wyrm', location: 'moon-cave', rarity: 'legendary', coins: 100,
     colors: ['#191970', '#000080'], shape: 'wyrm', eyes: 'cosmic', accessory: 'star-dust',
     svg: 'assets/creatures/void-wyrm.svg',
-    escapePower: { name: 'Void Shift', message: 'Void Wyrm uses Void Shift and phases through the fabric of space!', color: '#9370DB' } },
+    escapePower: { name: 'Void Shift', message: 'Void Wyrm uses Void Shift and phases through the fabric of space!', color: '#9370DB', animation: 'vortex' } },
 
   // Rainbow Meadow (10)
   { id: 'flower-hamster', name: 'Flower Hamster', location: 'rainbow-meadow', rarity: 'common', coins: 10,
@@ -227,33 +227,33 @@ const CREATURES = [
   { id: 'prism-pegasus', name: 'Prism Pegasus', location: 'rainbow-meadow', rarity: 'legendary', coins: 100,
     colors: ['#FF69B4', '#FFD700'], shape: 'pegasus', eyes: 'radiant', accessory: 'rainbow-wings',
     svg: 'assets/creatures/prism-pegasus.svg',
-    escapePower: { name: 'Prism Dash', message: 'Prism Pegasus uses Prism Dash and streaks away in a blaze of rainbow fire!', color: '#FF69B4' } },
+    escapePower: { name: 'Prism Dash', message: 'Prism Pegasus uses Prism Dash and streaks away in a blaze of rainbow fire!', color: '#FF69B4', animation: 'dash' } },
 
   // Dream Nexus (secret — 6 of 10, all legendary)
   { id: 'sparkle-bud', name: 'Sparkle Bud', location: 'dream-nexus', rarity: 'legendary', coins: 100,
     colors: ['#FF6B8A', '#FFD700'], shape: 'blob', eyes: 'big-round', accessory: 'color-horns',
     svg: 'assets/creatures/292B2E44-E8C7-4D85-AC85-D490B9733D38.png',
-    escapePower: { name: 'Prism Burst', message: 'Sparkle Bud uses Prism Burst and explodes into a shower of rainbow sparks!', color: '#FF6B8A' } },
+    escapePower: { name: 'Prism Burst', message: 'Sparkle Bud uses Prism Burst and explodes into a shower of rainbow sparks!', color: '#FF6B8A', animation: 'burst' } },
   { id: 'micro-pennx', name: 'Micro Pennx', location: 'dream-nexus', rarity: 'legendary', coins: 100,
     colors: ['#87CEEB', '#4169E1'], shape: 'egg', eyes: 'sparkle', accessory: 'color-bumps',
     svg: 'assets/creatures/390F02B2-AEDF-4513-ADDC-F15AE3D5386A.png',
-    escapePower: { name: 'Tiny Bounce', message: 'Micro Pennx uses Tiny Bounce and ricochets away in a blur of colors!', color: '#87CEEB' } },
+    escapePower: { name: 'Tiny Bounce', message: 'Micro Pennx uses Tiny Bounce and ricochets away in a blur of colors!', color: '#87CEEB', animation: 'bounce' } },
   { id: 'giant-pennx', name: 'Giant Pennx', location: 'dream-nexus', rarity: 'legendary', coins: 100,
     colors: ['#9C27B0', '#FF0000'], shape: 'cylinder', eyes: 'happy', accessory: 'grad-cap',
     svg: 'assets/creatures/165C9F33-D8F5-4A63-8987-BB9B2E35B404.png',
-    escapePower: { name: 'Rainbow Slam', message: 'Giant Pennx uses Rainbow Slam and crashes through the ground in a rainbow shockwave!', color: '#9C27B0' } },
+    escapePower: { name: 'Rainbow Slam', message: 'Giant Pennx uses Rainbow Slam and crashes through the ground in a rainbow shockwave!', color: '#9C27B0', animation: 'slam' } },
   { id: 'charlie-the-hug', name: 'Charlie the Hug', location: 'dream-nexus', rarity: 'legendary', coins: 100,
     colors: ['#90EE90', '#FFD700'], shape: 'blob', eyes: 'happy', accessory: 'hearts',
     svg: 'assets/creatures/388189EF-BAA1-4FEA-85DA-CF5B9779E181.png',
-    escapePower: { name: 'Love Shield', message: 'Charlie the Hug uses Love Shield and wraps itself in a warm glow of hearts!', color: '#FF69B4' } },
+    escapePower: { name: 'Love Shield', message: 'Charlie the Hug uses Love Shield and wraps itself in a warm glow of hearts!', color: '#FF69B4', animation: 'hearts' } },
   { id: 'charlie-the-great', name: 'Charlie the Great', location: 'dream-nexus', rarity: 'legendary', coins: 100,
     colors: ['#FF6347', '#FFD700'], shape: 'cloud', eyes: 'gentle', accessory: 'rainbow-swirl',
     svg: 'assets/creatures/IMG_8342.png',
-    escapePower: { name: 'Cloud Drift', message: 'Charlie the Great uses Cloud Drift and floats away on a rainbow breeze!', color: '#FFD700' } },
+    escapePower: { name: 'Cloud Drift', message: 'Charlie the Great uses Cloud Drift and floats away on a rainbow breeze!', color: '#FFD700', animation: 'drift' } },
   { id: 'happy-lolly', name: 'Happy Lolly', location: 'dream-nexus', rarity: 'legendary', coins: 100,
     colors: ['#8B4513', '#CD853F'], shape: 'hedgehog', eyes: 'cute', accessory: 'berries',
     svg: 'assets/creatures/IMG_8343.png',
-    escapePower: { name: 'Berry Tumble', message: 'Happy Lolly uses Berry Tumble and rolls away into the bushes with a giggle!', color: '#CD853F' } }
+    escapePower: { name: 'Berry Tumble', message: 'Happy Lolly uses Berry Tumble and rolls away into the bushes with a giggle!', color: '#CD853F', animation: 'tumble' } }
 ];
 
 // Rarity config
@@ -340,18 +340,18 @@ const FASHION_ITEMS = [
   { id: 'hat-7', cat: 'hat', name: 'Space Helmet', cost: 65, tags: ['space','adventure'], color: '#E0E0E0', svg: 'assets/fashion/hat-space-helmet.svg' },
   { id: 'hat-8', cat: 'hat', name: 'Cat Ears', cost: 35, tags: ['cute','pop','party'], color: '#FFB6C1', svg: 'assets/fashion/hat-cat-ears.svg' },
 
-  // --- Legendary Creature Costumes (unlocked via Legendary Shop) ---
-  { id: 'dress-owl', cat: 'dress', name: 'Elder Owl Costume', cost: 0, tags: ['fantasy','elegant'], color: '#8B6914', legendary: 'elder-owl', svg: 'assets/fashion/dress-elder-owl.svg' },
-  { id: 'dress-dragon', cat: 'dress', name: 'Tide Dragon Costume', cost: 0, tags: ['fantasy','adventure','beach'], color: '#00CED1', legendary: 'tide-dragon', svg: 'assets/fashion/dress-tide-dragon.svg' },
-  { id: 'dress-unicorn', cat: 'dress', name: 'Aurora Unicorn Costume', cost: 0, tags: ['fantasy','princess','elegant'], color: '#E6E6FA', legendary: 'aurora-unicorn', svg: 'assets/fashion/dress-aurora-unicorn.svg' },
-  { id: 'dress-wyrm', cat: 'dress', name: 'Void Wyrm Costume', cost: 0, tags: ['fantasy','edgy','space'], color: '#4B0082', legendary: 'void-wyrm', svg: 'assets/fashion/dress-void-wyrm.svg' },
-  { id: 'dress-pegasus', cat: 'dress', name: 'Prism Pegasus Costume', cost: 0, tags: ['fantasy','party','pop'], color: '#FF69B4', legendary: 'prism-pegasus', svg: 'assets/fashion/dress-prism-pegasus.svg' },
-  { id: 'dress-sparkle-bud', cat: 'dress', name: 'Sparkle Bud Costume', cost: 0, tags: ['cute','party','pop'], color: '#FF6B8A', legendary: 'sparkle-bud', svg: 'assets/fashion/dress-sparkle-bud.svg' },
-  { id: 'dress-micro-pennx', cat: 'dress', name: 'Micro Pennx Costume', cost: 0, tags: ['cute','space'], color: '#87CEEB', legendary: 'micro-pennx', svg: 'assets/fashion/dress-micro-pennx.svg' },
-  { id: 'dress-giant-pennx', cat: 'dress', name: 'Giant Pennx Costume', cost: 0, tags: ['rock','edgy'], color: '#9C27B0', legendary: 'giant-pennx', svg: 'assets/fashion/dress-giant-pennx.svg' },
-  { id: 'dress-charlie-hug', cat: 'dress', name: 'Charlie the Hug Costume', cost: 0, tags: ['cute','cozy'], color: '#90EE90', legendary: 'charlie-the-hug', svg: 'assets/fashion/dress-charlie-hug.svg' },
-  { id: 'dress-charlie-great', cat: 'dress', name: 'Charlie the Great Costume', cost: 0, tags: ['elegant','fantasy'], color: '#FF6347', legendary: 'charlie-the-great', svg: 'assets/fashion/dress-charlie-great.svg' },
-  { id: 'dress-happy-lolly', cat: 'dress', name: 'Happy Lolly Costume', cost: 0, tags: ['cute','adventure'], color: '#8B4513', legendary: 'happy-lolly', svg: 'assets/fashion/dress-happy-lolly.svg' }
+  // --- Legendary Creature Costumes (catch the creature first, then buy) ---
+  { id: 'dress-owl', cat: 'dress', name: 'Elder Owl Costume', cost: 100, tags: ['fantasy','elegant'], color: '#8B6914', legendary: 'elder-owl', svg: 'assets/fashion/dress-elder-owl.svg' },
+  { id: 'dress-dragon', cat: 'dress', name: 'Tide Dragon Costume', cost: 100, tags: ['fantasy','adventure','beach'], color: '#00CED1', legendary: 'tide-dragon', svg: 'assets/fashion/dress-tide-dragon.svg' },
+  { id: 'dress-unicorn', cat: 'dress', name: 'Aurora Unicorn Costume', cost: 100, tags: ['fantasy','princess','elegant'], color: '#E6E6FA', legendary: 'aurora-unicorn', svg: 'assets/fashion/dress-aurora-unicorn.svg' },
+  { id: 'dress-wyrm', cat: 'dress', name: 'Void Wyrm Costume', cost: 100, tags: ['fantasy','edgy','space'], color: '#4B0082', legendary: 'void-wyrm', svg: 'assets/fashion/dress-void-wyrm.svg' },
+  { id: 'dress-pegasus', cat: 'dress', name: 'Prism Pegasus Costume', cost: 100, tags: ['fantasy','party','pop'], color: '#FF69B4', legendary: 'prism-pegasus', svg: 'assets/fashion/dress-prism-pegasus.svg' },
+  { id: 'dress-sparkle-bud', cat: 'dress', name: 'Sparkle Bud Costume', cost: 100, tags: ['cute','party','pop'], color: '#FF6B8A', legendary: 'sparkle-bud', svg: 'assets/fashion/dress-sparkle-bud.svg' },
+  { id: 'dress-micro-pennx', cat: 'dress', name: 'Micro Pennx Costume', cost: 100, tags: ['cute','space'], color: '#87CEEB', legendary: 'micro-pennx', svg: 'assets/fashion/dress-micro-pennx.svg' },
+  { id: 'dress-giant-pennx', cat: 'dress', name: 'Giant Pennx Costume', cost: 100, tags: ['rock','edgy'], color: '#9C27B0', legendary: 'giant-pennx', svg: 'assets/fashion/dress-giant-pennx.svg' },
+  { id: 'dress-charlie-hug', cat: 'dress', name: 'Charlie the Hug Costume', cost: 100, tags: ['cute','cozy'], color: '#90EE90', legendary: 'charlie-the-hug', svg: 'assets/fashion/dress-charlie-hug.svg' },
+  { id: 'dress-charlie-great', cat: 'dress', name: 'Charlie the Great Costume', cost: 100, tags: ['elegant','fantasy'], color: '#FF6347', legendary: 'charlie-the-great', svg: 'assets/fashion/dress-charlie-great.svg' },
+  { id: 'dress-happy-lolly', cat: 'dress', name: 'Happy Lolly Costume', cost: 100, tags: ['cute','adventure'], color: '#8B4513', legendary: 'happy-lolly', svg: 'assets/fashion/dress-happy-lolly.svg' }
 ];
 
 // --- Fashion Challenges ---
@@ -445,7 +445,7 @@ const DAILY_BONUS = 25;
 const DEFAULT_STATE = {
   coins: 100,
   creatures: [],
-  wardrobe_unlocked: FASHION_ITEMS.filter(i => i.cost === 0 && !i.legendary).map(i => i.id),
+  wardrobe_unlocked: FASHION_ITEMS.filter(i => i.cost === 0).map(i => i.id),
   furniture_unlocked: FURNITURE_ITEMS.filter(i => i.cost === 0).map(i => i.id),
   fashion_scores: {},
   saved_outfits: [],
