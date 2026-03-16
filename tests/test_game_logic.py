@@ -700,24 +700,26 @@ class TestDataIntegrity(unittest.TestCase):
             self.assertIn(cat, categories,
                           f"Category '{cat}' used in FASHION_ITEMS but not in FASHION_CATEGORIES")
 
-    def test_each_location_has_six_spots(self):
-        """data.js: every LOCATION should have spots: 6"""
+    def test_each_location_has_eight_spots(self):
+        """data.js: every LOCATION should have spots: 8"""
         source = read_js('data.js')
         spots = re.findall(r'spots:\s*(\d+)', source)
         for i, s in enumerate(spots):
-            self.assertEqual(s, '6', f"Location {i} has spots:{s}, expected 6")
+            self.assertEqual(s, '8', f"Location {i} has spots:{s}, expected 8")
 
     def test_creature_count_matches_locations(self):
-        """data.js: should have exactly 6 creatures per location (30 total)"""
+        """data.js: should have 10 creatures per original location, 6 for dream-nexus"""
         source = read_js('data.js')
-        locations = re.findall(r"id:\s*'([^']+)'.*?spots", source)
-        # Count creatures per location
-        creature_locations = re.findall(r"location:\s*'([^']+)'", source)
+        # Only count creature entries (before FASHION section) to avoid DEFAULT_STATE matches
+        creatures_section = source[:source.index('FASHION_CATEGORIES')]
+        creature_locations = re.findall(r"location:\s*'([^']+)'", creatures_section)
         from collections import Counter
         counts = Counter(creature_locations)
         for loc_id in ['sparkle-forest', 'crystal-beach', 'cloud-garden', 'moon-cave', 'rainbow-meadow']:
-            self.assertEqual(counts.get(loc_id, 0), 6,
-                             f"Location {loc_id} should have 6 creatures, has {counts.get(loc_id, 0)}")
+            self.assertEqual(counts.get(loc_id, 0), 10,
+                             f"Location {loc_id} should have 10 creatures, has {counts.get(loc_id, 0)}")
+        self.assertEqual(counts.get('dream-nexus', 0), 6,
+                         f"Location dream-nexus should have 6 creatures, has {counts.get('dream-nexus', 0)}")
 
     def test_free_wardrobe_items_match_default_state(self):
         """data.js: DEFAULT_STATE wardrobe_unlocked should include all cost:0 items"""
@@ -930,14 +932,14 @@ class TestCreatureCatchMiniGame(unittest.TestCase):
         self.assertIn('if (catchActive) return', body)
 
     def test_catch_resets_active_on_miss(self):
-        """creatures.js handleCatchResult: catchActive set false on miss"""
+        """creatures.js handleCatchResult: catchActive set false on miss, legendary escape, and success"""
         source = read_js('creatures.js')
         match = re.search(r'function handleCatchResult\(.*?\)\s*\{(.*?)\n  \}', source, re.DOTALL)
         self.assertIsNotNone(match)
         body = match.group(1)
-        # catchActive = false should appear in the miss branch AND after success
-        self.assertEqual(body.count('catchActive = false'), 2,
-                         "catchActive should be reset in both miss and success paths")
+        # catchActive = false should appear in: miss branch, legendary escape branch, and success path
+        self.assertEqual(body.count('catchActive = false'), 3,
+                         "catchActive should be reset in miss, legendary escape, and success paths")
 
     def test_new_creature_added_to_state(self):
         """creatures.js handleCatchResult: new creature gets pushed to state.creatures"""
