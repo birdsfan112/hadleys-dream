@@ -282,12 +282,11 @@ const CreatureWorld = (() => {
     }
   }
 
+  // Fallback creature picker (delegates to pickCreatureForSpot)
   function pickCreature() {
-    // Get creatures for current location
     const locCreatures = CREATURES.filter(c => c.location === currentLocation.id);
     const caught = Game.state.creatures || [];
 
-    // Weighted random by rarity
     const roll = Math.random();
     let cumulative = 0;
     let selectedRarity;
@@ -295,19 +294,17 @@ const CreatureWorld = (() => {
       cumulative += cfg.chance;
       if (roll <= cumulative) { selectedRarity = r; break; }
     }
+    if (!selectedRarity) selectedRarity = 'common';
 
-    // Legendaries only appear once all commons in this area are caught
     if (selectedRarity === 'legendary' && !legendariesUnlocked(currentLocation.id)) {
       selectedRarity = 'common';
     }
 
-    // Filter by rarity
     let pool = locCreatures.filter(c => c.rarity === selectedRarity);
     if (pool.length === 0) {
       pool = locCreatures.filter(c => c.rarity === 'common');
     }
 
-    // Smart weighting: uncaught creatures get 4x the weight
     const weighted = [];
     pool.forEach(c => {
       const weight = caught.includes(c.id) ? 1 : 4;
