@@ -133,7 +133,7 @@ const Room = (() => {
         document.removeEventListener('mouseup', onEnd);
         document.removeEventListener('touchmove', onMove);
         document.removeEventListener('touchend', onEnd);
-        Audio.sfx.place();
+        GameAudio.sfx.place();
         SaveManager.autoSave(Game.state);
       }
 
@@ -158,7 +158,7 @@ const Room = (() => {
       return;
     }
 
-    Audio.sfx.place();
+    GameAudio.sfx.place();
     Game.state.room.furniture.push({ id: item.id, x: col, y: row, rotation: 0 });
     selectedFurniture = null;
     SaveManager.autoSave(Game.state);
@@ -167,7 +167,7 @@ const Room = (() => {
   }
 
   function removeFurniture(idx) {
-    Audio.sfx.click();
+    GameAudio.sfx.click();
     Game.state.room.furniture.splice(idx, 1);
     SaveManager.autoSave(Game.state);
     renderRoom();
@@ -205,7 +205,7 @@ const Room = (() => {
 
   // --- Panel rendering ---
   function switchTab(tab) {
-    Audio.sfx.click();
+    GameAudio.sfx.click();
     activeTab = tab;
     document.querySelectorAll('.toolbar-btn').forEach(b => {
       b.classList.toggle('active', b.dataset.tab === tab);
@@ -237,7 +237,7 @@ const Room = (() => {
       `;
       div.onclick = () => {
         selectedFurniture = selectedFurniture === item.id ? null : item.id;
-        Audio.sfx.click();
+        GameAudio.sfx.click();
         renderPanel();
       };
       container.appendChild(div);
@@ -290,11 +290,11 @@ const Room = (() => {
             Game.showToast('Not enough coins!');
             return;
           }
-          Audio.sfx.buy();
+          GameAudio.sfx.buy();
           Game.addCoins(-theme.cost);
           Game.state.furniture_unlocked.push('theme-' + theme.id);
         }
-        Audio.sfx.click();
+        GameAudio.sfx.click();
         Game.state.room.theme = theme.id;
         applyTheme();
         SaveManager.autoSave(Game.state);
@@ -327,7 +327,7 @@ const Room = (() => {
       `;
       div.onclick = () => {
         if (!canAfford) { Game.showToast('Not enough coins!'); return; }
-        Audio.sfx.buy();
+        GameAudio.sfx.buy();
         Game.addCoins(-item.cost);
         Game.state.furniture_unlocked.push(item.id);
         SaveManager.autoSave(Game.state);
