@@ -168,6 +168,7 @@ const CreatureWorld = (() => {
       cumulative += cfg.chance;
       if (roll <= cumulative) { selectedRarity = r; break; }
     }
+    if (!selectedRarity) selectedRarity = 'common';
 
     // Legendaries only appear once all commons in this area are caught
     if (selectedRarity === 'legendary' && !legendariesUnlocked(currentLocation.id)) {
