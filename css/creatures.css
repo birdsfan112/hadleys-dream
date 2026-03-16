@@ -44,6 +44,15 @@
   text-shadow: 0 1px 2px rgba(0,0,0,0.4);
 }
 
+/* Legendary unlocked badge on location cards */
+.loc-legendary-badge {
+  font-size: 0.65em;
+  font-weight: 700;
+  color: #FFD700;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  margin-top: 2px;
+}
+
 /* Moon cave: light text */
 .location-card[data-loc="moon-cave"] { color: #E8E8FF; }
 
@@ -96,6 +105,21 @@
   text-shadow: 0 1px 3px rgba(0,0,0,0.5);
   white-space: nowrap;
 }
+/* Fashion avatar standing in the explore scene */
+.explore-avatar {
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
+  width: 64px;
+  height: 108px;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0.9;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+}
+.explore-avatar:empty { display: none; }
+.explore-avatar svg { width: 100%; height: 100%; }
+
 .back-location-btn {
   position: absolute;
   bottom: 16px;

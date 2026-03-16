@@ -106,6 +106,7 @@ const Game = (() => {
 
     // Clean up previous mode
     try { Fashion.onExit(); } catch (e) {}
+    try { Particles.stop(); } catch (e) {}
 
     switch (mode) {
       case 'hub':
@@ -319,4 +320,20 @@ const Game = (() => {
 // --- Boot ---
 document.addEventListener('DOMContentLoaded', () => {
   Game.init();
+});
+
+// --- Pause/resume on visibility change to save battery ---
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    // Pause music and particles when app is backgrounded
+    try { Audio.stopMusic(); } catch (e) {}
+    try { Particles.pause(); } catch (e) {}
+  } else {
+    // Resume music and particles for current mode
+    const mode = Game.getCurrentMode();
+    if (mode) {
+      try { Audio.startMusic(mode); } catch (e) {}
+    }
+    try { Particles.resume(); } catch (e) {}
+  }
 });

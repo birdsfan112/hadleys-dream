@@ -563,5 +563,11 @@ const Fashion = (() => {
     if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
   }
 
-  return { init, onEnter, onExit, startFreeMode, startChallenge, openShop, closeShop, clearOutfit, submitChallenge, exitDressup, closeResult, openAlbum, closeAlbum, saveOutfit, loadOutfit, deleteOutfit };
+  // Build avatar SVG from a given outfit (for use by other modules)
+  function getAvatarSVG(outfit) {
+    if (!svgCache['avatar-base']) return '';
+    return buildAvatarSVG(outfit || {});
+  }
+
+  return { init, onEnter, onExit, startFreeMode, startChallenge, openShop, closeShop, clearOutfit, submitChallenge, exitDressup, closeResult, openAlbum, closeAlbum, saveOutfit, loadOutfit, deleteOutfit, getAvatarSVG };
 })();

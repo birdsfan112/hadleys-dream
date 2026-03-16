@@ -484,6 +484,22 @@ html, body {
   .mode-btn { padding: 24px 28px; font-size: 1.25em; }
 }
 
+/* --- Mobile performance: reduce expensive backdrop-filter blurs --- */
+@media (max-width: 768px) {
+  .stat-badge,
+  .icon-btn,
+  .top-bar .back-btn,
+  .top-bar .coins-display,
+  .floating-menu-btn {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .stat-badge { background: rgba(255,255,255,0.15); }
+  .icon-btn { background: rgba(255,255,255,0.15); }
+  .mode-btn { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(255,255,255,0.12); }
+  .quick-menu-panel { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+}
+
 /* --- Loading screen --- */
 #loading-screen {
   background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
