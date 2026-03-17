@@ -709,3 +709,121 @@ html, body {
 .unlock-option-label { font-weight: 700; font-size: 0.95em; color: var(--dark); }
 .unlock-option-btn.danger .unlock-option-label { color: #C62828; }
 .unlock-option-desc { font-size: 0.78em; color: #999; margin-top: 2px; }
+
+/* Override stat-badge colors inside white-background modals */
+.modal .stat-badge {
+  background: rgba(0,0,0,0.06);
+  color: #444;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* ========== Collection Completion Badge ========== */
+.collection-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto 12px;
+  padding: 6px 14px;
+  max-width: 260px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.collection-badge.hidden { display: none; }
+.collection-progress-bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.collection-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal), var(--gold, #FFD700));
+  border-radius: 3px;
+  transition: width 0.6s ease-out;
+  width: 0%;
+}
+.collection-stars {
+  font-size: 0.85em;
+  letter-spacing: 1px;
+}
+.collection-pct {
+  font-size: 0.7em;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font);
+}
+
+/* ========== Floating Coins Animation ========== */
+.floating-coins {
+  position: fixed;
+  z-index: 300;
+  pointer-events: none;
+  font-family: var(--heading);
+  font-size: 1.3em;
+  font-weight: 700;
+  color: var(--gold, #FFD700);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  animation: floatUp 1.2s ease-out forwards;
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-40px) scale(1.15);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-70px) scale(0.9);
+  }
+}
+
+/* ========== Onboarding Walkthrough ========== */
+.onboarding-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s;
+  padding: 20px;
+}
+.onboarding-overlay.hidden { display: none; }
+.onboarding-box {
+  background: #FFF;
+  border-radius: 20px;
+  padding: 32px 28px 24px;
+  max-width: 320px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.4s ease-out;
+}
+.onboarding-icon { font-size: 2.8em; margin-bottom: 8px; animation: onboardingBounce 0.6s ease-out; }
+.onboarding-title { font-family: var(--heading); font-size: 1.25em; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+.onboarding-text { font-size: 0.9em; color: #666; line-height: 1.5; margin-bottom: 16px; }
+.onboarding-dots { display: flex; gap: 6px; justify-content: center; margin-bottom: 16px; }
+.onboarding-dot { width: 8px; height: 8px; border-radius: 50%; background: #DDD; transition: background 0.2s, transform 0.2s; }
+.onboarding-dot.active { background: var(--teal); transform: scale(1.3); }
+.onboarding-next { width: 100%; margin-bottom: 8px; }
+.onboarding-skip { background: none; border: none; color: #999; font-size: 0.8em; cursor: pointer; padding: 4px 12px; font-family: var(--font); }
+.onboarding-highlight { position: relative; z-index: 201; box-shadow: 0 0 0 4px var(--teal), 0 0 20px rgba(45, 212, 191, 0.4); border-radius: 16px; animation: highlightPulse 1.5s ease-in-out infinite; }
+
+@keyframes onboardingBounce {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes highlightPulse {
+  0%, 100% { box-shadow: 0 0 0 4px var(--teal), 0 0 20px rgba(45, 212, 191, 0.4); }
+  50% { box-shadow: 0 0 0 6px var(--teal), 0 0 30px rgba(45, 212, 191, 0.6); }
+}

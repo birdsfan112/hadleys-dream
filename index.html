@@ -27,7 +27,7 @@
   <div id="loading-screen" class="screen active">
     <div class="loader"></div>
     <p>Loading Hadley's Dream...</p>
-    <p style="font-size:0.7em;color:rgba(255,255,255,0.4);margin-top:10px;">v18</p>
+    <p style="font-size:0.7em;color:rgba(255,255,255,0.4);margin-top:10px;">v23</p>
   </div>
 
   <!-- ========== Hub Screen ========== -->
@@ -47,6 +47,14 @@
       <div class="stat-badge"><span class="stat-icon">🪙</span> <span id="hub-coins">100</span></div>
       <div class="stat-badge"><span class="stat-icon">🐾</span> <span id="hub-creatures">0</span>/<span id="hub-creatures-total">30</span></div>
       <div class="stat-badge"><span class="stat-icon">👗</span> <span id="hub-outfits">14</span></div>
+    </div>
+
+    <div id="collection-badge" class="collection-badge hidden">
+      <div class="collection-progress-bar">
+        <div id="collection-progress-fill" class="collection-progress-fill"></div>
+      </div>
+      <span id="collection-stars" class="collection-stars"></span>
+      <span id="collection-pct" class="collection-pct"></span>
     </div>
 
     <div class="hub-modes">
@@ -118,6 +126,7 @@
         <div id="catch-result-text"></div>
         <button class="btn" onclick="CreatureWorld.closeCatch()">OK!</button>
       </div>
+      <button id="catch-run-away" class="btn catch-run-btn" onclick="CreatureWorld.closeCatch()">Run Away</button>
     </div>
   </div>
 
@@ -314,6 +323,24 @@
         </button>
       </div>
       <button class="btn small" style="width:100%;margin-top:12px;" onclick="Game.closeQuickMenu()">Close</button>
+    </div>
+  </div>
+
+  <!-- Onboarding Walkthrough -->
+  <div id="onboarding-overlay" class="hidden onboarding-overlay">
+    <div id="onboarding-box" class="onboarding-box"></div>
+  </div>
+
+  <!-- ========== Import Confirmation Dialog ========== -->
+  <div id="import-confirm-overlay" class="hidden modal-overlay" onclick="SaveManager.cancelImport()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <h2>Load This Save?</h2>
+      <p style="text-align:center;font-size:0.85em;color:#666;margin-bottom:12px;">This will replace your current progress!</p>
+      <div id="import-confirm-details"></div>
+      <div style="display:flex;gap:12px;margin-top:16px;">
+        <button class="btn small" style="flex:1;" onclick="SaveManager.cancelImport()">Cancel</button>
+        <button class="btn pink" style="flex:1;" onclick="SaveManager.confirmImport()">Load Save</button>
+      </div>
     </div>
   </div>
 

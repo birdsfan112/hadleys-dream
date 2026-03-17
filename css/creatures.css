@@ -609,3 +609,39 @@
   60% { transform: rotate(4deg) translateX(1px); }
   80% { transform: rotate(-2deg) translateX(-1px); }
 }
+
+.catch-run-btn {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 35;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.85);
+  font-size: 0.85em;
+  padding: 8px 24px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.location-card-locked {
+  border: 2px dashed rgba(255, 215, 0, 0.3);
+  opacity: 0.75;
+  cursor: default;
+  position: relative;
+  animation: lockedPulse 4s ease-in-out infinite;
+}
+.location-card-locked .loc-locked-hint {
+  font-size: 0.7em;
+  color: rgba(255, 215, 0, 0.6);
+  margin-top: 4px;
+  font-style: italic;
+}
+@keyframes lockedPulse {
+  0%, 100% { opacity: 0.75; border-color: rgba(255, 215, 0, 0.3); }
+  50% { opacity: 0.85; border-color: rgba(255, 215, 0, 0.5); }
+}

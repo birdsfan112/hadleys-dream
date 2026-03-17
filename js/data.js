@@ -456,5 +456,6 @@ const DEFAULT_STATE = {
   last_save: null,
   tutorial_completed: false,
   last_location: 'sparkle-forest',
-  legendary_bought: []
+  legendary_bought: [],
+  onboarding_seen: false
 };

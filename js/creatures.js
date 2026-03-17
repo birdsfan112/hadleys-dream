@@ -77,8 +77,25 @@ const CreatureWorld = (() => {
     const grid = document.getElementById('location-grid');
     grid.innerHTML = '';
     LOCATIONS.forEach(loc => {
-      // Hide secret locations until unlocked
-      if (loc.secret && !dreamNexusUnlocked()) return;
+      // Handle secret locations — show unlock hint if not unlocked
+      if (loc.secret && !dreamNexusUnlocked()) {
+        const mainLegendaries = CREATURES.filter(c => c.rarity === 'legendary' && c.location !== 'dream-nexus');
+        const caughtLegendaries = mainLegendaries.filter(c => (Game.state.creatures || []).includes(c.id)).length;
+        const totalLegendaries = mainLegendaries.length;
+        if ((Game.state.creatures || []).length > 0) {
+          const card = document.createElement('div');
+          card.className = 'location-card location-card-locked';
+          card.style.background = 'linear-gradient(180deg, #2a1545 0%, #1a0533 100%)';
+          card.innerHTML = `
+            <div class="loc-icon" style="filter:grayscale(0.5);opacity:0.7;">🔮</div>
+            <div class="loc-name" style="color:rgba(255,255,255,0.6);">???</div>
+            <div class="loc-count" style="color:rgba(255,255,255,0.4);">${caughtLegendaries}/${totalLegendaries} legendaries caught</div>
+            <div class="loc-locked-hint">Catch all legendaries to unlock!</div>
+          `;
+          grid.appendChild(card);
+        }
+        return;
+      }
 
       const caught = Game.state.creatures.filter(id =>
         CREATURES.find(c => c.id === id && c.location === loc.id)
@@ -104,7 +121,7 @@ const CreatureWorld = (() => {
   }
 
   function enterLocation(loc) {
-    GameAudio.sfx.click();
+    GameAudio.sfx.locationEnter();
     currentLocation = loc;
     // Save last location
     Game.state.last_location = loc.id;
@@ -354,6 +371,9 @@ const CreatureWorld = (() => {
     overlay.classList.remove('hidden');
     overlay.classList.add('practice-mode');
     document.getElementById('catch-result').classList.add('hidden');
+
+    const runBtn = document.getElementById('catch-run-away');
+    if (runBtn) runBtn.style.display = '';
 
     // Set rarity-based overlay tint
     setRarityOverlayTheme(overlay, creature.rarity);
@@ -616,6 +636,9 @@ const CreatureWorld = (() => {
     overlay.classList.remove('practice-mode');
     document.getElementById('catch-result').classList.add('hidden');
 
+    const runBtn = document.getElementById('catch-run-away');
+    if (runBtn) runBtn.style.display = '';
+
     // Set rarity-based overlay tint
     setRarityOverlayTheme(overlay, creature.rarity);
 
@@ -843,6 +866,9 @@ const CreatureWorld = (() => {
     const resultText = document.getElementById('catch-result-text');
     document.getElementById('catch-instruction').textContent = '';
 
+    const runBtn = document.getElementById('catch-run-away');
+    if (runBtn) runBtn.style.display = 'none';
+
     if (result === 'miss') {
       GameAudio.sfx.catchMiss();
       playMissEffect(creature, document.getElementById('catch-creature-svg'), canvas, ctxC);
@@ -890,7 +916,12 @@ const CreatureWorld = (() => {
     let coins = creature.coins;
     if (result === 'perfect') coins = Math.floor(coins * 1.5);
 
-    GameAudio.sfx.catchSuccess();
+    // Play extra-celebratory jingle for new creatures, normal for repeats
+    if (isNew) {
+      GameAudio.sfx.catchNewCreature();
+    } else {
+      GameAudio.sfx.catchSuccess();
+    }
 
     // Play celebration effects
     playCatchSuccess(creature, document.getElementById('catch-creature-svg'), canvas, ctxC, result === 'perfect');
@@ -928,7 +959,10 @@ const CreatureWorld = (() => {
 
     // Check if this catch just unlocked the Dream Nexus
     if (isNew && creature.rarity === 'legendary' && creature.location !== 'dream-nexus' && dreamNexusUnlocked()) {
-      setTimeout(() => Game.showToast('The Dream Nexus has been unlocked!'), 2000);
+      setTimeout(() => {
+        GameAudio.sfx.locationUnlock();
+        Game.showToast('The Dream Nexus has been unlocked!');
+      }, 2000);
     }
 
     SaveManager.autoSave(Game.state);

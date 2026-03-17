@@ -28,6 +28,8 @@ const Game = (() => {
         if (!state.last_location) state.last_location = 'sparkle-forest';
         // Migration: ensure legendary_bought array exists
         if (!Array.isArray(state.legendary_bought)) state.legendary_bought = [];
+        // Migration: onboarding_seen
+        if (state.onboarding_seen === undefined) state.onboarding_seen = false;
         // Migration: ensure all free fashion items are in wardrobe_unlocked
         const freeItems = FASHION_ITEMS.filter(i => i.cost === 0).map(i => i.id);
         if (!Array.isArray(state.wardrobe_unlocked)) state.wardrobe_unlocked = [];
@@ -89,6 +91,10 @@ const Game = (() => {
     setTimeout(() => {
       switchMode('hub');
       try { GameAudio.sfx.ready(); } catch (e) {}
+      // Trigger onboarding for first-time players
+      if (!state.onboarding_seen) {
+        setTimeout(() => startOnboarding(), 1000);
+      }
     }, 500);
   }
 
@@ -147,9 +153,28 @@ const Game = (() => {
     if (amount > 0) {
       state.stats.total_coins_earned += amount;
       try { GameAudio.sfx.coin(); } catch (e) {}
+      showFloatingCoins(amount);
     }
     updateCoinsDisplay();
     updateHubStats();
+  }
+
+  function showFloatingCoins(amount) {
+    const coinEls = document.querySelectorAll('.coins-val, #hub-coins');
+    let anchor = null;
+    coinEls.forEach(el => {
+      if (!anchor && el.offsetParent !== null) anchor = el;
+    });
+    if (!anchor) return;
+    const floater = document.createElement('div');
+    floater.className = 'floating-coins';
+    floater.textContent = `+${amount}`;
+    const rect = anchor.getBoundingClientRect();
+    floater.style.left = rect.left + 'px';
+    floater.style.top = rect.top + 'px';
+    document.body.appendChild(floater);
+    floater.addEventListener('animationend', () => floater.remove());
+    setTimeout(() => { if (floater.parentNode) floater.remove(); }, 1500);
   }
 
   function updateCoinsDisplay() {
@@ -169,6 +194,24 @@ const Game = (() => {
     if (hubCoins) hubCoins.textContent = state.coins;
     if (hubCreatures) hubCreatures.textContent = (state.creatures || []).length;
     if (hubOutfits) hubOutfits.textContent = (state.wardrobe_unlocked || []).length;
+    updateCollectionBadge();
+  }
+
+  function updateCollectionBadge() {
+    const badge = document.getElementById('collection-badge');
+    if (!badge || !state) return;
+    const caught = (state.creatures || []).length;
+    const total = typeof CREATURES !== 'undefined' ? CREATURES.length : 30;
+    if (caught === 0) { badge.classList.add('hidden'); return; }
+    badge.classList.remove('hidden');
+    const pct = Math.round((caught / total) * 100);
+    const fill = document.getElementById('collection-progress-fill');
+    if (fill) fill.style.width = pct + '%';
+    const starCount = Math.min(4, Math.floor(pct / 25));
+    const starsEl = document.getElementById('collection-stars');
+    if (starsEl) starsEl.textContent = '⭐'.repeat(starCount) + '☆'.repeat(4 - starCount);
+    const pctEl = document.getElementById('collection-pct');
+    if (pctEl) pctEl.textContent = pct + '%';
   }
 
   function showToast(msg) {
@@ -586,6 +629,88 @@ const Game = (() => {
     });
   }
 
+  // --- Onboarding System ---
+  const ONBOARDING_STEPS = [
+    { title: "Welcome to Hadley's Dream!", text: "This is your dream world! Let's take a quick tour.", target: null, icon: '🌟' },
+    { title: 'Your Coins', text: 'You earn coins by catching creatures. Use them to buy outfits and furniture!', target: '.hub-stats', icon: '🪙' },
+    { title: 'Creature World', text: 'Explore magical places and catch cute creatures! Tap a creature and time the ring to catch it.', target: '.hub-modes .mode-card:first-child, .hub-modes > :first-child', icon: '🌿' },
+    { title: 'Fashion Studio', text: 'Dress up your avatar with cool outfits! Complete challenges to earn extra coins.', target: '.hub-modes .mode-card:last-child, .hub-modes > :last-child', icon: '👗' }
+  ];
+
+  let currentOnboardingStep = 0;
+
+  function startOnboarding() {
+    currentOnboardingStep = 0;
+    showOnboardingStep();
+  }
+
+  function showOnboardingStep() {
+    const step = ONBOARDING_STEPS[currentOnboardingStep];
+    if (!step) {
+      finishOnboarding();
+      return;
+    }
+
+    const overlay = document.getElementById('onboarding-overlay');
+    if (!overlay) return;
+
+    const box = document.getElementById('onboarding-box');
+    const dotsContainer = document.querySelector('.onboarding-dots') || (() => {
+      const div = document.createElement('div');
+      div.className = 'onboarding-dots';
+      return div;
+    })();
+
+    box.innerHTML = `
+      <div class="onboarding-icon">${step.icon}</div>
+      <div class="onboarding-title">${step.title}</div>
+      <div class="onboarding-text">${step.text}</div>
+      <div class="onboarding-dots"></div>
+      <button class="btn onboarding-next" onclick="Game.nextOnboardingStep()">Next →</button>
+      <button class="onboarding-skip" onclick="Game.skipOnboarding()">Skip</button>
+    `;
+
+    // Update dots
+    const dotsEl = box.querySelector('.onboarding-dots');
+    for (let i = 0; i < ONBOARDING_STEPS.length; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'onboarding-dot' + (i === currentOnboardingStep ? ' active' : '');
+      dotsEl.appendChild(dot);
+    }
+
+    // Highlight target element if specified
+    if (step.target) {
+      const targets = document.querySelectorAll(step.target);
+      if (targets.length > 0) {
+        const target = targets[0];
+        target.classList.add('onboarding-highlight');
+        setTimeout(() => target.classList.remove('onboarding-highlight'), 500);
+      }
+    }
+
+    overlay.classList.remove('hidden');
+  }
+
+  function nextOnboardingStep() {
+    currentOnboardingStep++;
+    if (currentOnboardingStep < ONBOARDING_STEPS.length) {
+      showOnboardingStep();
+    } else {
+      finishOnboarding();
+    }
+  }
+
+  function skipOnboarding() {
+    finishOnboarding();
+  }
+
+  function finishOnboarding() {
+    const overlay = document.getElementById('onboarding-overlay');
+    if (overlay) overlay.classList.add('hidden');
+    state.onboarding_seen = true;
+    SaveManager.autoSave(state);
+  }
+
   // Make state accessible
   return {
     get state() { return state; },
@@ -593,7 +718,8 @@ const Game = (() => {
     openCollection, closeCollection, showCollectionTab, openStats, closeStats,
     openSaveMenu, closeSaveMenu,
     getCurrentMode, openQuickMenu, closeQuickMenu,
-    openUnlockMenu, submitPasscode, closeUnlockMenu
+    openUnlockMenu, submitPasscode, closeUnlockMenu,
+    nextOnboardingStep, skipOnboarding
   };
 })();
 

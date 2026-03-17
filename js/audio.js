@@ -73,7 +73,30 @@ const GameAudio = (() => {
         [659, 0.15, 450], [784, 0.2, 600], [1047, 0.4, 800]
       ]);
     },
-    ready() { playMelody([[660, 0.1, 0], [880, 0.15, 100]]); }
+    ready() { playMelody([[660, 0.1, 0], [880, 0.15, 100]]); },
+    catchNewCreature() {
+      // Extra-celebratory ascending fanfare for first-time catches
+      playMelody([
+        [523, 0.12, 0], [587, 0.12, 100], [659, 0.12, 200],
+        [784, 0.15, 300], [880, 0.12, 420], [1047, 0.25, 520],
+        [1175, 0.35, 660]
+      ]);
+    },
+    locationEnter() {
+      // Soft magical whoosh — ascending shimmer when entering a location
+      playMelody([
+        [392, 0.15, 0], [523, 0.12, 80], [659, 0.1, 160],
+        [784, 0.2, 240]
+      ]);
+    },
+    locationUnlock() {
+      // Grand reveal sound for unlocking a secret area
+      playMelody([
+        [392, 0.15, 0], [440, 0.15, 120], [523, 0.15, 240],
+        [659, 0.15, 360], [784, 0.2, 480], [1047, 0.15, 620],
+        [1319, 0.4, 760]
+      ]);
+    }
   };
 
   // ==========================================================

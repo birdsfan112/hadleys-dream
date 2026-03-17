@@ -2905,5 +2905,652 @@ class TestEscapeSVGContainerCleanup(unittest.TestCase):
                         f"Hide timeout ({hide_delay}ms) must fire before animation ends ({duration_ms}ms)")
 
 
+
+# ===========================================================================
+# Test Suite: Stat Badge Visibility in Modals
+# ===========================================================================
+class TestStatBadgeModalVisibility(unittest.TestCase):
+    """Validates that .stat-badge text is readable inside white-background modals.
+
+    style.css: .stat-badge has color:#FFFFFF for the dark hub background.
+    .modal has background: var(--card) which is #FFFFFF.  Without an override,
+    stat-badge text inside a modal is white-on-white (invisible).
+    """
+
+    def setUp(self):
+        css_path = os.path.join(PROJECT_ROOT, 'css', 'style.css')
+        with open(css_path, 'r', encoding='utf-8') as f:
+            self.css = f.read()
+
+    def test_modal_stat_badge_override_exists(self):
+        """style.css: must have a .modal .stat-badge rule to override white text"""
+        self.assertIn('.modal .stat-badge', self.css,
+                      "Need a .modal .stat-badge CSS rule so stat text is readable on white modal background")
+
+    def test_modal_stat_badge_has_dark_color(self):
+        """style.css: .modal .stat-badge must set a non-white text color"""
+        # Extract the .modal .stat-badge rule block
+        idx = self.css.find('.modal .stat-badge')
+        self.assertGreater(idx, 0)
+        block_start = self.css.find('{', idx)
+        block_end = self.css.find('}', block_start)
+        block = self.css[block_start:block_end]
+        # Must set a color property
+        self.assertIn('color:', block,
+                      ".modal .stat-badge must set an explicit text color")
+        # The color must NOT be #FFFFFF or #FFF (white)
+        color_match = re.search(r'color:\s*(#[0-9a-fA-F]+|rgba?\([^)]+\))', block)
+        self.assertIsNotNone(color_match, "Could not parse color value")
+        color_val = color_match.group(1).lower().strip()
+        self.assertNotIn('#ffffff', color_val, "Modal stat-badge color must not be white")
+        self.assertNotIn('#fff', color_val, "Modal stat-badge color must not be white")
+
+    def test_modal_stat_badge_has_visible_background(self):
+        """style.css: .modal .stat-badge must override the semi-transparent background"""
+        idx = self.css.find('.modal .stat-badge')
+        block_start = self.css.find('{', idx)
+        block_end = self.css.find('}', block_start)
+        block = self.css[block_start:block_end]
+        self.assertIn('background:', block,
+                      ".modal .stat-badge must override background for contrast on white modal")
+
+    def test_base_stat_badge_is_white_text(self):
+        """style.css: base .stat-badge should use white text (for dark hub background)"""
+        # Find the base .stat-badge rule (not .modal .stat-badge)
+        # Look for the rule that starts with just .stat-badge {
+        match = re.search(r'\.stat-badge\s*\{([^}]+)\}', self.css)
+        self.assertIsNotNone(match, "Could not find base .stat-badge rule")
+        block = match.group(1)
+        self.assertIn('color:', block, "Base .stat-badge should set text color")
+        color_match = re.search(r'color:\s*(#[0-9a-fA-F]+)', block)
+        self.assertIsNotNone(color_match)
+        self.assertIn(color_match.group(1).upper(), ['#FFFFFF', '#FFF'],
+                      "Base .stat-badge should use white text for hub's dark background")
+
+
+
+# ===========================================================================
+# Test Suite: Catch Overlay "Run Away" Button
+# ===========================================================================
+class TestCatchRunAwayButton(unittest.TestCase):
+    """Validates that the catch overlay has a dismissal button so players can
+    back out without being forced to attempt a catch.
+
+    index.html: must have a #catch-run-away element inside #catch-overlay.
+    creatures.js: startCatchGame must show the button, handleCatchResult must hide it.
+    creatures.css: must have .catch-run-btn styling.
+    """
+
+    def setUp(self):
+        html_path = os.path.join(PROJECT_ROOT, 'index.html')
+        with open(html_path, 'r', encoding='utf-8') as f:
+            self.html = f.read()
+        self.js = read_js('creatures.js')
+        css_path = os.path.join(PROJECT_ROOT, 'css', 'creatures.css')
+        with open(css_path, 'r', encoding='utf-8') as f:
+            self.css = f.read()
+
+    def test_run_away_button_exists_in_html(self):
+        """index.html: #catch-overlay must contain a #catch-run-away button"""
+        self.assertIn('id="catch-run-away"', self.html,
+                      "catch overlay must have a Run Away button (id=catch-run-away)")
+
+    def test_run_away_inside_catch_overlay(self):
+        """index.html: #catch-run-away must be inside #catch-overlay, not outside"""
+        overlay_start = self.html.find('id="catch-overlay"')
+        run_btn = self.html.find('id="catch-run-away"')
+        self.assertGreater(overlay_start, 0)
+        self.assertGreater(run_btn, overlay_start,
+                           "Run Away button must appear after catch-overlay opens")
+
+    def test_run_away_calls_close_catch(self):
+        """index.html: Run Away button must call CreatureWorld.closeCatch()"""
+        # Find the button tag
+        idx = self.html.find('id="catch-run-away"')
+        # Get the surrounding tag (within 300 chars before and after)
+        context = self.html[max(0, idx - 200):idx + 200]
+        self.assertIn('closeCatch()', context,
+                      "Run Away button must call closeCatch() to properly clean up")
+
+    def test_start_catch_shows_run_away(self):
+        """creatures.js: startCatchGame must make Run Away button visible"""
+        # Find startCatchGame function body
+        idx = self.js.find('function startCatchGame(')
+        self.assertGreater(idx, 0)
+        fn_body = self.js[idx:idx + 1500]
+        self.assertIn('catch-run-away', fn_body,
+                      "startCatchGame must reference the run-away button to show it")
+
+    def test_handle_catch_result_hides_run_away(self):
+        """creatures.js: handleCatchResult must hide Run Away when showing result"""
+        idx = self.js.find('function handleCatchResult(')
+        self.assertGreater(idx, 0)
+        fn_body = self.js[idx:idx + 500]
+        self.assertIn('catch-run-away', fn_body,
+                      "handleCatchResult must reference run-away button to hide it")
+        self.assertIn("display = 'none'", fn_body,
+                      "handleCatchResult must set run-away display to none")
+
+    def test_run_away_css_exists(self):
+        """creatures.css: must have .catch-run-btn styling"""
+        self.assertIn('.catch-run-btn', self.css,
+                      "creatures.css must style the .catch-run-btn class")
+
+    def test_run_away_css_has_position(self):
+        """creatures.css: .catch-run-btn must be positioned (not in normal flow)"""
+        idx = self.css.find('.catch-run-btn')
+        block_start = self.css.find('{', idx)
+        block_end = self.css.find('}', block_start)
+        block = self.css[block_start:block_end]
+        self.assertIn('position:', block,
+                      ".catch-run-btn must have explicit positioning")
+
+
+
+# ===========================================================================
+# Test Suite: Dream Nexus Progress Hint
+# ===========================================================================
+class TestDreamNexusHint(unittest.TestCase):
+    """Validates that the locked Dream Nexus shows a progress hint instead of
+    being completely invisible, so players know there's a secret to work toward.
+
+    creatures.js: renderLocations should show a locked hint card when
+    Dream Nexus is not yet unlocked but the player has caught at least 1 creature.
+    creatures.css: must have .location-card-locked styling.
+    """
+
+    def setUp(self):
+        self.js = read_js('creatures.js')
+        css_path = os.path.join(PROJECT_ROOT, 'css', 'creatures.css')
+        with open(css_path, 'r', encoding='utf-8') as f:
+            self.css = f.read()
+
+    def test_render_locations_has_locked_hint(self):
+        """creatures.js: renderLocations must create a location-card-locked element"""
+        idx = self.js.find('function renderLocations(')
+        self.assertGreater(idx, 0)
+        fn_body = self.js[idx:idx + 2000]
+        self.assertIn('location-card-locked', fn_body,
+                      "renderLocations must create a locked hint card for secret locations")
+
+    def test_locked_hint_shows_legendary_progress(self):
+        """creatures.js: locked hint must show legendary catch progress (X/Y)"""
+        idx = self.js.find('function renderLocations(')
+        fn_body = self.js[idx:idx + 2000]
+        # Should reference caughtLegendaries and totalLegendaries (or similar)
+        self.assertIn('legendaries', fn_body.lower(),
+                      "Locked hint must mention legendaries in the progress count")
+
+    def test_locked_hint_only_shows_after_first_catch(self):
+        """creatures.js: locked hint should only appear after player catches first creature"""
+        idx = self.js.find('function renderLocations(')
+        fn_body = self.js[idx:idx + 2000]
+        # Should check creatures length > 0
+        self.assertIn('.length > 0', fn_body,
+                      "Locked hint should only show after player has caught at least 1 creature")
+
+    def test_locked_hint_not_clickable(self):
+        """creatures.js: locked card must not have an onclick to prevent entering"""
+        idx = self.js.find('location-card-locked')
+        # Get context around it — the locked card should NOT have enterLocation
+        context = self.js[idx:idx + 500]
+        self.assertNotIn('enterLocation', context,
+                         "Locked card must not call enterLocation (it's not accessible yet)")
+
+    def test_css_has_locked_card_style(self):
+        """creatures.css: must have .location-card-locked styling"""
+        self.assertIn('.location-card-locked', self.css,
+                      "creatures.css must style locked location cards")
+
+    def test_css_locked_card_has_dashed_border(self):
+        """creatures.css: locked card should use dashed border to indicate locked state"""
+        idx = self.css.find('.location-card-locked')
+        block_start = self.css.find('{', idx)
+        block_end = self.css.find('}', block_start)
+        block = self.css[block_start:block_end]
+        self.assertIn('dashed', block,
+                      "Locked card should have a dashed border to visually indicate locked state")
+
+    def test_css_has_locked_hint_text_style(self):
+        """creatures.css: must style the .loc-locked-hint text"""
+        self.assertIn('.loc-locked-hint', self.css,
+                      "creatures.css must style the locked hint text element")
+
+
+if __name__ == '__main__':
+    unittest.main(verbosity=2)
+
+
+# ===========================================================================
+# Test Suite: Onboarding Walkthrough
+# ===========================================================================
+class TestOnboardingWalkthrough(unittest.TestCase):
+    """Validates that first-time players see an onboarding walkthrough on the hub.
+
+    data.js: DEFAULT_STATE must include onboarding_seen: false.
+    game.js: must have onboarding steps, startOnboarding, and finishOnboarding.
+    index.html: must have #onboarding-overlay element.
+    style.css: must have .onboarding-overlay styling.
+    """
+
+    def setUp(self):
+        self.data_js = read_js('data.js')
+        self.game_js = read_js('game.js')
+        html_path = os.path.join(PROJECT_ROOT, 'index.html')
+        with open(html_path, 'r', encoding='utf-8') as f:
+            self.html = f.read()
+        css_path = os.path.join(PROJECT_ROOT, 'css', 'style.css')
+        with open(css_path, 'r', encoding='utf-8') as f:
+            self.css = f.read()
+
+    def test_default_state_has_onboarding_seen(self):
+        """data.js: DEFAULT_STATE must include onboarding_seen: false"""
+        match = re.search(r'const DEFAULT_STATE\s*=\s*\{(.*?)\};', self.data_js, re.DOTALL)
+        self.assertIsNotNone(match)
+        self.assertIn('onboarding_seen', match.group(1))
+
+    def test_migration_handles_missing_onboarding(self):
+        """game.js: init must migrate old saves missing onboarding_seen"""
+        self.assertIn('onboarding_seen', self.game_js,
+                      "game.js must reference onboarding_seen for migration")
+
+    def test_onboarding_steps_defined(self):
+        """game.js: must define ONBOARDING_STEPS array"""
+        self.assertIn('ONBOARDING_STEPS', self.game_js,
+                      "game.js must define onboarding steps")
+
+    def test_onboarding_has_multiple_steps(self):
+        """game.js: ONBOARDING_STEPS must have at least 3 steps"""
+        idx = self.game_js.find('ONBOARDING_STEPS')
+        self.assertGreater(idx, 0)
+        steps_block = self.game_js[idx:idx + 2000]
+        title_count = steps_block.count("title:")
+        self.assertGreaterEqual(title_count, 3,
+                                f"Need at least 3 onboarding steps, found {title_count}")
+
+    def test_onboarding_triggered_for_new_players(self):
+        """game.js: onboarding must trigger when onboarding_seen is false"""
+        self.assertIn('startOnboarding', self.game_js)
+
+    def test_finish_onboarding_saves_state(self):
+        """game.js: finishOnboarding must set onboarding_seen=true and save"""
+        idx = self.game_js.find('function finishOnboarding')
+        self.assertGreater(idx, 0)
+        fn_body = self.game_js[idx:idx + 300]
+        self.assertIn('onboarding_seen = true', fn_body,
+                      "finishOnboarding must set onboarding_seen to true")
+        self.assertIn('autoSave', fn_body,
+                      "finishOnboarding must save state")
+
+    def test_skip_onboarding_exposed(self):
+        """game.js: must expose skipOnboarding in the return object"""
+        self.assertIn('skipOnboarding', self.game_js)
+
+    def test_onboarding_overlay_in_html(self):
+        """index.html: must have #onboarding-overlay element"""
+        self.assertIn('id="onboarding-overlay"', self.html)
+
+    def test_onboarding_css_exists(self):
+        """style.css: must have .onboarding-overlay styling"""
+        self.assertIn('.onboarding-overlay', self.css)
+
+    def test_onboarding_css_has_high_z_index(self):
+        """style.css: onboarding overlay must be above other overlays (z-index >= 200)"""
+        idx = self.css.find('.onboarding-overlay')
+        block_start = self.css.find('{', idx)
+        block_end = self.css.find('}', block_start)
+        block = self.css[block_start:block_end]
+        z_match = re.search(r'z-index:\s*(\d+)', block)
+        self.assertIsNotNone(z_match, "Onboarding overlay must have z-index")
+        self.assertGreaterEqual(int(z_match.group(1)), 200,
+                                "Onboarding z-index must be >= 200 to appear above modals")
+
+    def test_onboarding_highlight_css_exists(self):
+        """style.css: must have .onboarding-highlight class for spotlight effect"""
+        self.assertIn('.onboarding-highlight', self.css)
+
+
+# ===========================================================================
+class TestSoundFeedback(unittest.TestCase):
+    """Validates new SFX: catchNewCreature, locationEnter, locationUnlock.
+
+    audio.js: must define all three new SFX in the sfx object.
+    creatures.js: must call the appropriate SFX at the right moments.
+    """
+
+    def setUp(self):
+        self.audio_js = read_js('audio.js')
+        self.creatures_js = read_js('creatures.js')
+
+    # --- audio.js: new SFX definitions ---
+
+    def test_catch_new_creature_sfx_defined(self):
+        """audio.js: sfx must include catchNewCreature method"""
+        self.assertIn('catchNewCreature', self.audio_js,
+                      "audio.js must define catchNewCreature SFX")
+
+    def test_location_enter_sfx_defined(self):
+        """audio.js: sfx must include locationEnter method"""
+        self.assertIn('locationEnter', self.audio_js,
+                      "audio.js must define locationEnter SFX")
+
+    def test_location_unlock_sfx_defined(self):
+        """audio.js: sfx must include locationUnlock method"""
+        self.assertIn('locationUnlock', self.audio_js,
+                      "audio.js must define locationUnlock SFX")
+
+    def test_catch_new_creature_uses_play_melody(self):
+        """audio.js: catchNewCreature must use playMelody for multi-note jingle"""
+        idx = self.audio_js.find('catchNewCreature')
+        self.assertGreater(idx, 0)
+        block = self.audio_js[idx:idx + 300]
+        self.assertIn('playMelody', block,
+                      "catchNewCreature should use playMelody for a multi-note jingle")
+
+    def test_location_unlock_has_more_notes_than_enter(self):
+        """audio.js: locationUnlock should be grander than locationEnter"""
+        enter_idx = self.audio_js.find('locationEnter()')
+        self.assertGreater(enter_idx, 0)
+        enter_block = self.audio_js[enter_idx:enter_idx + 300]
+        enter_notes = enter_block.count('[')
+
+        unlock_idx = self.audio_js.find('locationUnlock()')
+        self.assertGreater(unlock_idx, 0)
+        unlock_block = self.audio_js[unlock_idx:unlock_idx + 400]
+        unlock_notes = unlock_block.count('[')
+
+        self.assertGreater(unlock_notes, enter_notes,
+                           "locationUnlock should have more notes than locationEnter")
+
+    # --- creatures.js: wiring ---
+
+    def test_new_creature_catch_plays_new_jingle(self):
+        """creatures.js: catching a new creature should call catchNewCreature SFX"""
+        self.assertIn('catchNewCreature', self.creatures_js,
+                      "creatures.js must call catchNewCreature for first-time catches")
+
+    def test_repeat_catch_still_plays_catch_success(self):
+        """creatures.js: repeat catches should still use catchSuccess SFX"""
+        self.assertIn('catchSuccess', self.creatures_js,
+                      "creatures.js must still call catchSuccess for repeat catches")
+
+    def test_enter_location_plays_location_sound(self):
+        """creatures.js: enterLocation must call locationEnter SFX"""
+        idx = self.creatures_js.find('function enterLocation')
+        self.assertGreater(idx, 0)
+        fn_block = self.creatures_js[idx:idx + 200]
+        self.assertIn('locationEnter', fn_block,
+                      "enterLocation should play locationEnter SFX")
+
+    def test_enter_location_no_longer_click_sfx(self):
+        """creatures.js: enterLocation should use locationEnter instead of click"""
+        idx = self.creatures_js.find('function enterLocation')
+        self.assertGreater(idx, 0)
+        fn_block = self.creatures_js[idx:idx + 200]
+        self.assertNotIn('sfx.click()', fn_block,
+                         "enterLocation should use locationEnter, not click SFX")
+
+    def test_dream_nexus_unlock_plays_unlock_sound(self):
+        """creatures.js: Dream Nexus unlock must trigger locationUnlock SFX"""
+        self.assertIn('locationUnlock', self.creatures_js,
+                      "creatures.js must call locationUnlock when Dream Nexus unlocks")
+
+    def test_new_creature_branching_logic(self):
+        """creatures.js: must branch on isNew to pick the right SFX"""
+        idx = self.creatures_js.find('catchNewCreature')
+        self.assertGreater(idx, 0)
+        context = self.creatures_js[max(0, idx - 200):idx + 50]
+        self.assertIn('isNew', context,
+                      "catchNewCreature should be gated by an isNew check")
+
+
+# ===========================================================================
+class TestFloatingCoinsAnimation(unittest.TestCase):
+    """Validates the floating '+X coins' animation on coin gain.
+
+    game.js: addCoins must call showFloatingCoins for positive amounts.
+    style.css: must have .floating-coins class and floatUp keyframes.
+    """
+
+    def setUp(self):
+        self.game_js = read_js('game.js')
+        css_path = os.path.join(PROJECT_ROOT, 'css', 'style.css')
+        with open(css_path, 'r', encoding='utf-8') as f:
+            self.css = f.read()
+
+    def test_show_floating_coins_function_exists(self):
+        """game.js: must define showFloatingCoins function"""
+        self.assertIn('function showFloatingCoins', self.game_js)
+
+    def test_add_coins_calls_floating_animation(self):
+        """game.js: addCoins must call showFloatingCoins for positive amounts"""
+        idx = self.game_js.find('function addCoins')
+        self.assertGreater(idx, 0)
+        fn_block = self.game_js[idx:idx + 400]
+        self.assertIn('showFloatingCoins', fn_block,
+                      "addCoins must trigger floating coin animation")
+
+    def test_floating_only_on_positive_amounts(self):
+        """game.js: showFloatingCoins should only be called when amount > 0"""
+        idx = self.game_js.find('function addCoins')
+        self.assertGreater(idx, 0)
+        fn_block = self.game_js[idx:idx + 400]
+        # showFloatingCoins should appear after the 'amount > 0' check
+        float_idx = fn_block.find('showFloatingCoins')
+        positive_check = fn_block.find('amount > 0')
+        self.assertGreater(float_idx, positive_check,
+                           "showFloatingCoins should be inside the positive amount check")
+
+    def test_floating_coins_css_class_exists(self):
+        """style.css: must define .floating-coins class"""
+        self.assertIn('.floating-coins', self.css)
+
+    def test_floating_coins_is_fixed_position(self):
+        """style.css: .floating-coins must be position:fixed to overlay the screen"""
+        idx = self.css.find('.floating-coins')
+        block_end = self.css.find('}', idx)
+        block = self.css[idx:block_end]
+        self.assertIn('position: fixed', block)
+
+    def test_float_up_keyframes_defined(self):
+        """style.css: must define @keyframes floatUp animation"""
+        self.assertIn('@keyframes floatUp', self.css)
+
+    def test_floating_coins_uses_float_up(self):
+        """style.css: .floating-coins must reference floatUp animation"""
+        idx = self.css.find('.floating-coins')
+        block_end = self.css.find('}', idx)
+        block = self.css[idx:block_end]
+        self.assertIn('floatUp', block)
+
+    def test_floater_has_cleanup(self):
+        """game.js: showFloatingCoins must remove the element after animation"""
+        idx = self.game_js.find('function showFloatingCoins')
+        self.assertGreater(idx, 0)
+        fn_block = self.game_js[idx:idx + 900]
+        self.assertIn('remove()', fn_block,
+                      "Floating coin element must be cleaned up after animation")
+
+    def test_floater_has_high_z_index(self):
+        """style.css: floating coins must have high z-index to appear on top"""
+        idx = self.css.find('.floating-coins')
+        block_end = self.css.find('}', idx)
+        block = self.css[idx:block_end]
+        z_match = re.search(r'z-index:\s*(\d+)', block)
+        self.assertIsNotNone(z_match)
+        self.assertGreaterEqual(int(z_match.group(1)), 200)
+
+
+# ===========================================================================
+class TestCollectionBadge(unittest.TestCase):
+    """Validates collection completion badge on the hub screen.
+
+    index.html: must have #collection-badge element.
+    game.js: updateHubStats must call updateCollectionBadge.
+    style.css: must have .collection-badge and .collection-progress-fill styles.
+    """
+
+    def setUp(self):
+        self.game_js = read_js('game.js')
+        html_path = os.path.join(PROJECT_ROOT, 'index.html')
+        with open(html_path, 'r', encoding='utf-8') as f:
+            self.html = f.read()
+        css_path = os.path.join(PROJECT_ROOT, 'css', 'style.css')
+        with open(css_path, 'r', encoding='utf-8') as f:
+            self.css = f.read()
+
+    def test_collection_badge_element_exists(self):
+        """index.html: must have #collection-badge element"""
+        self.assertIn('id="collection-badge"', self.html)
+
+    def test_collection_progress_fill_element(self):
+        """index.html: must have #collection-progress-fill for the bar"""
+        self.assertIn('id="collection-progress-fill"', self.html)
+
+    def test_collection_stars_element(self):
+        """index.html: must have #collection-stars for star display"""
+        self.assertIn('id="collection-stars"', self.html)
+
+    def test_collection_pct_element(self):
+        """index.html: must have #collection-pct for percentage display"""
+        self.assertIn('id="collection-pct"', self.html)
+
+    def test_update_collection_badge_function(self):
+        """game.js: must define updateCollectionBadge function"""
+        self.assertIn('function updateCollectionBadge', self.game_js)
+
+    def test_hub_stats_calls_collection_badge(self):
+        """game.js: updateHubStats must call updateCollectionBadge"""
+        idx = self.game_js.find('function updateHubStats')
+        self.assertGreater(idx, 0)
+        fn_block = self.game_js[idx:idx + 500]
+        self.assertIn('updateCollectionBadge', fn_block)
+
+    def test_badge_hidden_when_no_creatures(self):
+        """game.js: badge should be hidden when caught count is 0"""
+        idx = self.game_js.find('function updateCollectionBadge')
+        self.assertGreater(idx, 0)
+        fn_block = self.game_js[idx:idx + 800]
+        self.assertIn('hidden', fn_block,
+                      "Badge should be hidden when no creatures caught")
+
+    def test_badge_calculates_percentage(self):
+        """game.js: updateCollectionBadge must calculate a percentage"""
+        idx = self.game_js.find('function updateCollectionBadge')
+        self.assertGreater(idx, 0)
+        fn_block = self.game_js[idx:idx + 800]
+        self.assertIn('pct', fn_block)
+
+    def test_collection_badge_css_exists(self):
+        """style.css: must have .collection-badge class"""
+        self.assertIn('.collection-badge', self.css)
+
+    def test_collection_progress_fill_css(self):
+        """style.css: must have .collection-progress-fill with gradient"""
+        self.assertIn('.collection-progress-fill', self.css)
+
+    def test_collection_progress_has_transition(self):
+        """style.css: progress fill should have smooth transition"""
+        idx = self.css.find('.collection-progress-fill')
+        block_end = self.css.find('}', idx)
+        block = self.css[idx:block_end]
+        self.assertIn('transition', block)
+
+
+# ===========================================================================
+class TestImportConfirmDialog(unittest.TestCase):
+    """Validates the 'are you sure?' confirmation dialog for importing saves.
+
+    save.js: importSave must show confirmation instead of immediately loading.
+    save.js: must define confirmImport and cancelImport functions.
+    index.html: must have #import-confirm-overlay element.
+    """
+
+    def setUp(self):
+        self.save_js = read_js('save.js')
+        html_path = os.path.join(PROJECT_ROOT, 'index.html')
+        with open(html_path, 'r', encoding='utf-8') as f:
+            self.html = f.read()
+
+    def test_import_confirm_overlay_exists(self):
+        """index.html: must have #import-confirm-overlay element"""
+        self.assertIn('id="import-confirm-overlay"', self.html)
+
+    def test_import_confirm_details_element(self):
+        """index.html: must have #import-confirm-details for save info"""
+        self.assertIn('id="import-confirm-details"', self.html)
+
+    def test_confirm_import_function_exists(self):
+        """save.js: must define confirmImport function"""
+        self.assertIn('function confirmImport', self.save_js)
+
+    def test_cancel_import_function_exists(self):
+        """save.js: must define cancelImport function"""
+        self.assertIn('function cancelImport', self.save_js)
+
+    def test_import_save_shows_confirmation(self):
+        """save.js: importSave must call showImportConfirm instead of immediately loading"""
+        idx = self.save_js.find('function importSave')
+        self.assertGreater(idx, 0)
+        fn_block = self.save_js[idx:idx + 800]
+        self.assertIn('showImportConfirm', fn_block,
+                      "importSave must show confirmation dialog")
+
+    def test_import_save_does_not_immediately_reload(self):
+        """save.js: importSave must NOT immediately call location.reload"""
+        idx = self.save_js.find('function importSave')
+        self.assertGreater(idx, 0)
+        # Find the end of importSave (next top-level function)
+        next_fn = self.save_js.find('\n  let pending', idx + 10)
+        if next_fn == -1:
+            next_fn = idx + 800
+        fn_block = self.save_js[idx:next_fn]
+        self.assertNotIn('location.reload', fn_block,
+                         "importSave should NOT reload directly — confirmation first")
+
+    def test_confirm_import_does_reload(self):
+        """save.js: confirmImport must eventually reload the page"""
+        idx = self.save_js.find('function confirmImport')
+        self.assertGreater(idx, 0)
+        fn_block = self.save_js[idx:idx + 400]
+        self.assertIn('reload', fn_block,
+                      "confirmImport should reload after applying the save")
+
+    def test_cancel_import_hides_overlay(self):
+        """save.js: cancelImport must hide the confirmation overlay"""
+        idx = self.save_js.find('function cancelImport')
+        self.assertGreater(idx, 0)
+        fn_block = self.save_js[idx:idx + 300]
+        self.assertIn('hidden', fn_block,
+                      "cancelImport should hide the overlay")
+
+    def test_return_object_exposes_confirm_cancel(self):
+        """save.js: return object must expose confirmImport and cancelImport"""
+        self.assertIn('confirmImport', self.save_js)
+        self.assertIn('cancelImport', self.save_js)
+        # Check they're in the return statement
+        ret_idx = self.save_js.rfind('return {')
+        self.assertGreater(ret_idx, 0)
+        ret_block = self.save_js[ret_idx:ret_idx + 200]
+        self.assertIn('confirmImport', ret_block)
+        self.assertIn('cancelImport', ret_block)
+
+    def test_confirm_buttons_in_html(self):
+        """index.html: confirmation dialog must have cancel and load buttons"""
+        idx = self.html.find('import-confirm-overlay')
+        self.assertGreater(idx, 0)
+        block = self.html[idx:idx + 600]
+        self.assertIn('cancelImport', block)
+        self.assertIn('confirmImport', block)
+
+    def test_dialog_warns_about_overwrite(self):
+        """index.html: confirmation dialog must warn about overwriting progress"""
+        idx = self.html.find('import-confirm-overlay')
+        self.assertGreater(idx, 0)
+        block = self.html[idx:idx + 600]
+        self.assertIn('replace', block.lower(),
+                      "Dialog should warn that current progress will be replaced")
+
+
 if __name__ == '__main__':
     unittest.main(verbosity=2)
