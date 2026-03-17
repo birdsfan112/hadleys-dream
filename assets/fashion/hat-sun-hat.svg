@@ -27,6 +27,9 @@
     .sh-highlight { fill:none; stroke:#FFFACD; stroke-width:1.5; opacity:0.5; stroke-linecap:round }
   </style>
   <g id="clothing">
+    <!-- Opaque fill under hat to cover hair -->
+    <ellipse cx="100" cy="40" rx="55" ry="18" fill="#DEB887" stroke="none"/>
+
     <!-- Wide brim (very wide for sun hat) -->
     <ellipse cx="100" cy="42" rx="65" ry="12" fill="url(#sh-straw)"/>
 

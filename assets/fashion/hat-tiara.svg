@@ -25,18 +25,21 @@
     .ht-sparkle{fill:#FFF;stroke:none}
   </style>
   <g id="clothing">
-    <!-- Tiara base band curving across head -->
-    <path d="M58 40 Q60 36 68 34 Q80 31 100 30
-             Q120 31 132 34 Q140 36 142 40
-             L144 44 Q140 42 132 40 Q120 37 100 36
-             Q80 37 68 40 Q60 42 56 44 Z"
+    <!-- Opaque fill behind tiara to block hair (golden) -->
+    <ellipse cx="100" cy="40" rx="50" ry="14" fill="#E8A200" stroke="none"/>
+
+    <!-- Tiara base band curving across head (thicker) -->
+    <path d="M58 35 Q60 31 68 29 Q80 26 100 25
+             Q120 26 132 29 Q140 31 142 35
+             L146 52 Q140 50 132 49 Q120 51 100 52
+             Q80 51 68 49 Q60 50 54 52 Z"
           class="ht-gold"/>
 
     <!-- Lower decorative rim -->
-    <path d="M56 44 Q58 46 68 48 Q80 50 100 50
-             Q120 50 132 48 Q142 46 144 44
-             L142 40 Q140 43 132 45 Q120 47 100 47
-             Q80 47 68 45 Q60 43 58 40 Z"
+    <path d="M54 52 Q56 54 68 56 Q80 58 100 58
+             Q120 58 132 56 Q144 54 146 52
+             L142 35 Q140 48 132 49 Q120 51 100 52
+             Q80 51 68 49 Q60 50 58 35 Z"
           class="ht-gold"/>
 
     <!-- Scallop details along band -->

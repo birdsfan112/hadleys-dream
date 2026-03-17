@@ -33,6 +33,9 @@
     <!-- Waistline accent -->
     <line x1="74" y1="198" x2="126" y2="198" stroke="#3CB371" stroke-width="2.5"/>
 
+    <!-- Solid base skirt (full coverage underneath) -->
+    <path d="M72 198 Q68 230 65 260 Q68 285 80 295 L100 302 L120 295 Q132 285 135 260 Q132 230 128 198 Z" fill="#3CB371" stroke="none"/>
+
     <!-- Pearl decorations on bodice -->
     <circle cx="100" cy="155" r="2" class="dm-pearl"/>
     <circle cx="88" cy="170" r="1.8" class="dm-pearl"/>

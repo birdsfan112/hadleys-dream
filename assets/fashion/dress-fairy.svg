@@ -33,6 +33,9 @@
     <!-- Waistline accent -->
     <line x1="70" y1="198" x2="130" y2="198" stroke="#BA55D3" stroke-width="2.5"/>
 
+    <!-- Solid base skirt (full coverage underneath) -->
+    <path d="M70 198 Q60 230 56 260 Q60 280 76 290 L100 292 L124 290 Q140 280 144 260 Q140 230 130 198 Z" fill="#C9A0C9" stroke="none"/>
+
     <!-- Petal-shaped scalloped skirt hem -->
     <path d="M70 198 Q64 208 56 250 Q60 268 70 285 Q76 290 82 291 Q88 264 92 220 Z" class="df-main"/>
     <path d="M92 220 Q94 260 95 285 Q100 292 100 292 Q100 292 105 285 Q106 260 108 220 Z" class="df-main"/>

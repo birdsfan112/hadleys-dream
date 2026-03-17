@@ -28,38 +28,42 @@
     .agt-peg{fill:#704214;stroke:#5C2410;stroke-width:1}
   </style>
   <g id="clothing">
-    <!-- Guitar neck extending up -->
-    <path d="M145 160 L142 130" class="agt-neck"/>
-    <!-- Guitar body (hourglass shape) -->
+    <!-- Guitar neck extending up from body -->
+    <path d="M110 160 L80 130" class="agt-neck"/>
+    <!-- Guitar body (larger hourglass shape with pronounced waist) -->
     <path d="
-      M130 160
-      Q120 150 118 168
-      Q115 190 130 220
-      Q145 190 142 168
-      Q140 150 130 160
+      M105 155
+      Q85 145 82 165
+      Q78 200 105 235
+      Q132 200 130 165
+      Q127 145 105 155
       Z
     " class="agt-body"/>
     <!-- Body highlight/shading -->
-    <ellipse cx="128" cy="180" rx="8" ry="15" class="agt-body-shine"/>
+    <ellipse cx="103" cy="190" rx="12" ry="22" class="agt-body-shine"/>
     <!-- Sound hole -->
-    <circle cx="130" cy="180" r="5" class="agt-hole"/>
+    <circle cx="105" cy="190" r="7.5" class="agt-hole"/>
     <!-- Sound hole highlight -->
-    <circle cx="130" cy="179" r="2" fill="#FFE4B5" opacity="0.5" stroke="none"/>
+    <circle cx="105" cy="188" r="3" fill="#FFE4B5" opacity="0.5" stroke="none"/>
     <!-- Guitar strings (6 strings) -->
-    <line x1="135" y1="165" x2="135" y2="220" class="agt-strings"/>
-    <line x1="137" y1="162" x2="137" y2="220" class="agt-strings"/>
-    <line x1="129" y1="162" x2="129" y2="220" class="agt-strings"/>
-    <line x1="131" y1="165" x2="131" y2="220" class="agt-strings"/>
-    <line x1="139" y1="168" x2="139" y2="215" class="agt-strings"/>
-    <line x1="127" y1="168" x2="127" y2="215" class="agt-strings"/>
+    <line x1="98" y1="165" x2="98" y2="235" class="agt-strings"/>
+    <line x1="102" y1="160" x2="102" y2="235" class="agt-strings"/>
+    <line x1="106" y1="160" x2="106" y2="235" class="agt-strings"/>
+    <line x1="110" y1="160" x2="110" y2="235" class="agt-strings"/>
+    <line x1="114" y1="165" x2="114" y2="230" class="agt-strings"/>
+    <line x1="94" y1="170" x2="94" y2="228" class="agt-strings"/>
     <!-- Neck wood grain detail -->
-    <line x1="142" y1="135" x2="140" y2="145" stroke="#704214" stroke-width="0.5" opacity="0.5" stroke-linecap="round"/>
-    <line x1="144" y1="140" x2="142" y2="150" stroke="#704214" stroke-width="0.5" opacity="0.5" stroke-linecap="round"/>
+    <line x1="82" y1="145" x2="78" y2="155" stroke="#704214" stroke-width="0.8" opacity="0.5" stroke-linecap="round"/>
+    <line x1="86" y1="138" x2="82" y2="150" stroke="#704214" stroke-width="0.8" opacity="0.5" stroke-linecap="round"/>
+    <line x1="90" y1="132" x2="86" y2="145" stroke="#704214" stroke-width="0.8" opacity="0.5" stroke-linecap="round"/>
     <!-- Tuning pegs at headstock -->
-    <circle cx="138" cy="118" r="2.5" class="agt-peg"/>
-    <circle cx="144" cy="115" r="2.5" class="agt-peg"/>
-    <circle cx="145" cy="125" r="2.5" class="agt-peg"/>
+    <circle cx="75" cy="115" r="3.5" class="agt-peg"/>
+    <circle cx="82" cy="110" r="3.5" class="agt-peg"/>
+    <circle cx="87" cy="120" r="3.5" class="agt-peg"/>
+    <circle cx="80" cy="105" r="3.5" class="agt-peg"/>
+    <circle cx="88" cy="110" r="3.5" class="agt-peg"/>
+    <circle cx="85" cy="125" r="3.5" class="agt-peg"/>
     <!-- Bridge area shading -->
-    <rect x="128" y="208" width="4" height="8" fill="#704214" opacity="0.6" rx="1"/>
+    <rect x="102" y="218" width="6" height="12" fill="#704214" opacity="0.6" rx="1"/>
   </g>
 </svg>

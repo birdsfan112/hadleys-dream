@@ -28,6 +28,9 @@
     <!-- Waistline accent -->
     <line x1="70" y1="198" x2="130" y2="198" stroke="#1A1A1A" stroke-width="2.5"/>
 
+    <!-- Solid base skirt (full coverage underneath) -->
+    <path d="M70 198 Q68 220 66 250 Q70 278 80 288 L100 290 L120 288 Q130 278 134 250 Q132 220 130 198 Z" fill="#262626" stroke="none"/>
+
     <!-- Studded belt at waist -->
     <circle cx="78" cy="198" r="1.8" class="rs-stud"/>
     <circle cx="88" cy="198" r="1.8" class="rs-stud"/>

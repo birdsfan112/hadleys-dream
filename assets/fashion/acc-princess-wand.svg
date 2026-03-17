@@ -28,39 +28,39 @@
     .apw-ribbon{fill:url(#apw-ribbon);stroke:#C71585;stroke-width:0.5}
   </style>
   <g id="clothing">
-    <!-- Handle/stick -->
-    <path d="M156 240 L153 170" class="apw-handle"/>
-    <!-- Star on top of wand (5-pointed) -->
-    <polygon points="153,155 158,142 165,145 157,152 160,165 153,160 146,165 149,152 141,145 148,142" class="apw-star"/>
+    <!-- Handle/stick - angled outward from body -->
+    <path d="M158 250 L142 155" class="apw-handle"/>
+    <!-- Star on top of wand (5-pointed) - repositioned -->
+    <polygon points="140,140 145,127 152,130 144,137 147,150 140,145 133,150 136,137 128,130 135,127" class="apw-star"/>
     <!-- Inner star highlight -->
-    <polygon points="153,153 157,144 162,146 156,151 158,162 153,158 148,162 150,151 144,146 149,144" class="apw-inner-star"/>
+    <polygon points="140,138 144,129 150,132 144,137 146,148 140,143 134,148 136,137 130,132 136,129" class="apw-inner-star"/>
     <!-- Gem in star center -->
-    <circle cx="153" cy="152" r="3.5" class="apw-gem" filter="url(#apw-glow)"/>
-    <circle cx="154" cy="151" r="1.5" fill="#FFFF99" opacity="0.7"/>
+    <circle cx="140" cy="137" r="3.5" class="apw-gem" filter="url(#apw-glow)"/>
+    <circle cx="141" cy="136" r="1.5" fill="#FFFF99" opacity="0.7"/>
     <!-- Ribbon streaming from below star -->
     <path d="
-      M150 165
-      Q145 175 148 190
-      Q152 205 147 220
+      M137 150
+      Q130 160 133 175
+      Q138 190 133 205
     " class="apw-ribbon"/>
     <!-- Second ribbon strand -->
     <path d="
-      M156 165
-      Q161 175 158 190
-      Q154 205 159 220
+      M143 150
+      Q150 160 147 175
+      Q142 190 147 205
     " class="apw-ribbon" opacity="0.8"/>
     <!-- Sparkle trail radiating from star tip -->
-    <circle cx="153" cy="135" r="1.5" class="apw-sparkle" filter="url(#apw-glow)"/>
-    <circle cx="140" cy="138" r="1.2" class="apw-sparkle" filter="url(#apw-glow)"/>
-    <circle cx="166" cy="140" r="1.2" class="apw-sparkle" filter="url(#apw-glow)"/>
-    <circle cx="135" cy="155" r="1" class="apw-sparkle" filter="url(#apw-glow)"/>
-    <circle cx="171" cy="157" r="1" class="apw-sparkle" filter="url(#apw-glow)"/>
-    <circle cx="142" cy="165" r="1.3" class="apw-sparkle" filter="url(#apw-glow)"/>
-    <circle cx="164" cy="166" r="1.3" class="apw-sparkle" filter="url(#apw-glow)"/>
+    <circle cx="140" cy="120" r="1.5" class="apw-sparkle" filter="url(#apw-glow)"/>
+    <circle cx="125" cy="123" r="1.2" class="apw-sparkle" filter="url(#apw-glow)"/>
+    <circle cx="155" cy="125" r="1.2" class="apw-sparkle" filter="url(#apw-glow)"/>
+    <circle cx="120" cy="140" r="1" class="apw-sparkle" filter="url(#apw-glow)"/>
+    <circle cx="160" cy="142" r="1" class="apw-sparkle" filter="url(#apw-glow)"/>
+    <circle cx="127" cy="150" r="1.3" class="apw-sparkle" filter="url(#apw-glow)"/>
+    <circle cx="153" cy="151" r="1.3" class="apw-sparkle" filter="url(#apw-glow)"/>
     <!-- Additional floating sparkles -->
-    <circle cx="148" cy="145" r="0.9" class="apw-sparkle" opacity="0.6"/>
-    <circle cx="158" cy="143" r="0.9" class="apw-sparkle" opacity="0.6"/>
+    <circle cx="135" cy="130" r="0.9" class="apw-sparkle" opacity="0.6"/>
+    <circle cx="145" cy="128" r="0.9" class="apw-sparkle" opacity="0.6"/>
     <!-- Star twinkle effect (smaller overlays) -->
-    <polygon points="153,155 155,148 158,150 154,154 155,161 153,157 151,161 152,154 148,150 151,148" fill="#FFFF99" opacity="0.4" stroke="none"/>
+    <polygon points="140,140 142,133 145,135 141,139 142,146 140,142 138,146 139,139 135,135 138,133" fill="#FFFF99" opacity="0.4" stroke="none"/>
   </g>
 </svg>

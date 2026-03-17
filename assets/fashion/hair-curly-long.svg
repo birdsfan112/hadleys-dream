@@ -52,6 +52,9 @@
 
   <!-- Front layer: crown, bangs, side curls, highlights -->
   <g id="clothing">
+    <!-- SOLID SCALP FILL — covers entire top of head -->
+    <path d="M56 75 Q54 38 68 24 Q82 12 100 10 Q118 12 132 24 Q146 38 144 75 Q130 60 100 55 Q70 60 56 75 Z" fill="#B22222" stroke="none"/>
+
     <!-- Crown/top volume - voluminous -->
     <path d="M56 75 Q54 38 68 24 Q82 12 100 10 Q118 12 132 24
              Q146 38 144 75 Q142 50 128 35 Q115 22 100 19

@@ -22,8 +22,8 @@
     <!-- Right spaghetti strap -->
     <path d="M128 130 Q132 125 134 140 Q135 160 132 175" fill="none" stroke="#FF1493" stroke-width="2.5" stroke-linecap="round"/>
     <path d="M126 130 Q130 125 132 140 Q133 160 130 175" fill="none" stroke="url(#sc-shadow)" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
-    <!-- Crop top body - shorter -->
-    <path d="M68 135 Q65 138 65 148 Q63 162 68 185 Q72 195 80 198 Q88 200 100 200 Q112 200 120 198 Q128 195 132 185 Q137 162 135 148 Q135 138 132 135 Q125 132 100 130 Q75 132 68 135 Z" class="sc-main"/>
+    <!-- Crop top body - extended -->
+    <path d="M68 135 Q65 138 65 148 Q63 162 68 195 Q72 210 80 218 Q88 222 100 222 Q112 222 120 218 Q128 210 132 195 Q137 162 135 148 Q135 138 132 135 Q125 132 100 130 Q75 132 68 135 Z" class="sc-main"/>
     <!-- Sweetheart neckline -->
     <path d="M82 137 Q88 128 100 128 Q112 128 118 137" fill="url(#sc-body)" stroke="#C71585" stroke-width="1.8" stroke-linecap="round"/>
     <path d="M80 138 Q90 130 100 129 Q110 130 120 138" fill="none" stroke="#C71585" stroke-width="2" stroke-linecap="round"/>
@@ -31,10 +31,10 @@
     <path d="M94 137 Q92 132 88 132 Q84 132 84 135 Q84 138 90 142 Q88 138 90 135" fill="#FFB6C1" opacity="0.7"/>
     <path d="M106 137 Q108 132 112 132 Q116 132 116 135 Q116 138 110 142 Q112 138 110 135" fill="#FFB6C1" opacity="0.7"/>
     <!-- Fabric fold details -->
-    <path d="M88 160 Q92 170 90 185" class="sc-fold"/>
-    <path d="M112 162 Q110 172 112 188" class="sc-fold"/>
+    <path d="M88 160 Q92 180 90 210" class="sc-fold"/>
+    <path d="M112 162 Q110 180 112 210" class="sc-fold"/>
     <!-- Side shading -->
-    <path d="M68 145 Q65 165 68 185 Q72 193 80 197 L74 190 Q70 180 68 165 Q66 150 68 145 Z" class="sc-shade" opacity="0.25"/>
+    <path d="M68 145 Q65 165 68 195 Q72 210 80 218 L74 210 Q70 190 68 165 Q66 150 68 145 Z" class="sc-shade" opacity="0.25"/>
     <!-- Sparkle dots scattered across surface -->
     <circle cx="85" cy="148" r="2" class="sc-sparkle" opacity="0.9"/>
     <circle cx="92" cy="155" r="1.5" class="sc-sparkle" opacity="0.8"/>
@@ -49,7 +49,11 @@
     <circle cx="75" cy="152" r="1.2" class="sc-sparkle" opacity="0.6"/>
     <circle cx="125" cy="155" r="1.2" class="sc-sparkle" opacity="0.6"/>
     <circle cx="100" cy="145" r="1.5" class="sc-sparkle" opacity="0.7"/>
+    <!-- Sparkles in extended area -->
+    <circle cx="82" cy="200" r="1.5" class="sc-sparkle" opacity="0.8"/>
+    <circle cx="100" cy="205" r="1.8" class="sc-sparkle" opacity="0.85"/>
+    <circle cx="118" cy="202" r="1.5" class="sc-sparkle" opacity="0.8"/>
     <!-- Hem line -->
-    <path d="M80 198 Q88 202 100 202 Q112 202 120 198" fill="none" stroke="#C71585" stroke-width="2" stroke-linecap="round"/>
+    <path d="M80 218 Q88 222 100 224 Q112 222 120 218" fill="none" stroke="#C71585" stroke-width="2" stroke-linecap="round"/>
   </g>
 </svg>

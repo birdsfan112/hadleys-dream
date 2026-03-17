@@ -18,23 +18,23 @@
   </style>
   <g id="clothing">
     <!-- Neck wrap -->
-    <path d="M75 115 Q85 108 100 107 Q115 108 125 115 Q120 125 100 128 Q80 125 75 115 Z" class="asf-scarf"/>
+    <path d="M75 127 Q85 120 100 119 Q115 120 125 127 Q120 137 100 140 Q80 137 75 127 Z" class="asf-scarf"/>
     <!-- Neck shading -->
-    <path d="M80 112 Q90 109 100 110 Q110 109 120 112 Q115 118 100 120 Q85 118 80 112 Z" class="asf-shade"/>
+    <path d="M80 124 Q90 121 100 122 Q110 121 120 124 Q115 130 100 132 Q85 130 80 124 Z" class="asf-shade"/>
     <!-- Left end -->
-    <path d="M75 122 L65 155 Q62 175 65 200 L78 198 Q75 175 78 155 Z" class="asf-scarf"/>
+    <path d="M75 135 L62 172 Q58 195 60 225 L75 222 Q72 195 78 168 Z" class="asf-scarf"/>
     <!-- Left fold lines -->
-    <path d="M72 160 Q68 170 68 185" stroke="#8B0000" stroke-width="0.8" fill="none" opacity="0.4"/>
+    <path d="M72 175 Q67 188 66 205" stroke="#8B0000" stroke-width="0.8" fill="none" opacity="0.4"/>
     <!-- Right end -->
-    <path d="M122 125 L130 155 Q132 168 130 180 L118 182 Q120 170 118 155 Z" class="asf-scarf"/>
+    <path d="M125 137 L138 172 Q142 195 140 225 L125 222 Q128 195 122 168 Z" class="asf-scarf"/>
     <!-- Knot -->
-    <ellipse cx="100" cy="122" rx="8" ry="5" class="asf-knot"/>
+    <ellipse cx="100" cy="133" rx="9" ry="6" class="asf-knot"/>
     <!-- Left fringe -->
-    <line x1="65" y1="202" x2="64" y2="210" class="asf-fringe"/>
-    <line x1="70" y1="205" x2="70" y2="212" class="asf-fringe"/>
-    <line x1="75" y1="204" x2="76" y2="211" class="asf-fringe"/>
+    <line x1="60" y1="227" x2="58" y2="238" class="asf-fringe"/>
+    <line x1="67" y1="230" x2="66" y2="242" class="asf-fringe"/>
+    <line x1="74" y1="230" x2="75" y2="241" class="asf-fringe"/>
     <!-- Right fringe -->
-    <line x1="118" y1="182" x2="116" y2="188" class="asf-fringe"/>
-    <line x1="123" y1="183" x2="124" y2="189" class="asf-fringe"/>
+    <line x1="126" y1="222" x2="124" y2="232" class="asf-fringe"/>
+    <line x1="133" y1="225" x2="134" y2="237" class="asf-fringe"/>
   </g>
 </svg>

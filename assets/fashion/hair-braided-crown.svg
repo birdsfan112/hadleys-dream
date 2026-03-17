@@ -42,6 +42,9 @@
 
   <!-- Front layer: crown, braids, bangs, wisps -->
   <g id="clothing">
+    <!-- SOLID SCALP FILL — covers entire top of head -->
+    <path d="M58 75 Q58 40 72 28 Q85 18 100 16 Q115 18 128 28 Q142 40 142 75 Q130 65 100 60 Q70 65 58 75 Z" fill="#B8860B" stroke="none"/>
+
     <!-- Hair crown/top volume -->
     <path d="M56 80 Q54 45 68 30 Q82 18 100 15 Q118 18 132 30
              Q146 45 144 80 Q142 55 130 40 Q115 28 100 25

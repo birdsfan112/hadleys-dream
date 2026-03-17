@@ -53,6 +53,9 @@
 
   <!-- Front layer: crown, flowing waves, sparkles -->
   <g id="clothing">
+    <!-- SOLID SCALP FILL — covers entire top of head -->
+    <path d="M56 78 Q54 42 68 26 Q82 14 100 12 Q118 14 132 26 Q146 42 144 78 Q130 62 100 56 Q70 62 56 78 Z" fill="#008B8B" stroke="none"/>
+
     <!-- Crown/top volume -->
     <path d="M56 78 Q54 42 68 26 Q82 14 100 12 Q118 14 132 26
              Q146 42 144 78 Q142 52 130 37 Q115 24 100 21

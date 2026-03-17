@@ -26,47 +26,47 @@
   <!-- No back-layer needed - short punk hair doesn't go behind body -->
   <g id="back-layer">
     <!-- Minimal base underneath -->
-    <path d="M65 70 Q100 55 135 70 Q138 80 135 95 Q100 85 65 95 Q62 80 65 70 Z" class="hps-base"/>
+    <path d="M65 50 Q100 35 135 50 Q138 60 135 75 Q100 65 65 75 Q62 60 65 50 Z" class="hps-base"/>
   </g>
 
   <!-- Front layer: spikes radiating from crown -->
   <g id="clothing">
-    <!-- Base/undercut shading on sides -->
-    <path d="M56 90 Q60 75 70 65 Q75 78 74 100 Q70 110 60 115 Z" class="hps-shade"/>
-    <path d="M144 90 Q140 75 130 65 Q125 78 126 100 Q130 110 140 115 Z" class="hps-shade"/>
+    <!-- Base/undercut shading on sides (raised, stops above eyes) -->
+    <path d="M56 70 Q60 58 70 50 Q75 58 74 70 Z" class="hps-shade"/>
+    <path d="M144 70 Q140 58 130 50 Q125 58 126 70 Z" class="hps-shade"/>
 
     <!-- Center crown base volume -->
-    <circle cx="100" cy="65" r="28" class="hps-base"/>
+    <circle cx="100" cy="45" r="24" class="hps-base"/>
 
     <!-- Left-side spikes radiating outward/upward -->
     <!-- Spike 1 (far left, pointing down-left) -->
-    <path d="M68 75 Q58 70 52 58 Q60 65 68 75 Z" class="hps-spike"/>
+    <path d="M68 55 Q58 50 52 38 Q60 45 68 55 Z" class="hps-spike"/>
     <!-- Spike 2 (left, pointing up-left) -->
-    <path d="M72 58 Q62 45 58 25 Q68 42 76 60 Z" class="hps-spike"/>
+    <path d="M72 38 Q62 25 58 5 Q68 22 76 40 Z" class="hps-spike"/>
     <!-- Spike 3 (left-center, pointing up) -->
-    <path d="M82 48 Q80 28 78 8 Q85 28 88 50 Z" class="hps-spike"/>
+    <path d="M82 28 Q80 8 78 -12 Q85 8 88 30 Z" class="hps-spike"/>
 
     <!-- Center crown spikes pointing straight up -->
     <!-- Spike 4 (center-left) -->
-    <path d="M92 45 Q90 20 88 0 Q96 20 100 48 Z" class="hps-spike"/>
+    <path d="M92 25 Q90 0 88 -20 Q96 0 100 28 Z" class="hps-spike"/>
     <!-- Spike 5 (center) -->
-    <path d="M100 42 Q100 15 98 2 Q102 15 102 44 Z" class="hps-spike"/>
+    <path d="M100 22 Q100 -5 98 -18 Q102 -5 102 24 Z" class="hps-spike"/>
     <!-- Spike 6 (center-right) -->
-    <path d="M108 45 Q110 20 112 0 Q104 20 100 48 Z" class="hps-spike"/>
+    <path d="M108 25 Q110 0 112 -20 Q104 0 100 28 Z" class="hps-spike"/>
 
     <!-- Right-side spikes pointing up-right -->
     <!-- Spike 7 (right-center) -->
-    <path d="M118 48 Q120 28 122 8 Q115 28 112 50 Z" class="hps-spike"/>
+    <path d="M118 28 Q120 8 122 -12 Q115 8 112 30 Z" class="hps-spike"/>
     <!-- Spike 8 (right, pointing up) -->
-    <path d="M128 58 Q138 45 142 25 Q132 42 124 60 Z" class="hps-spike"/>
+    <path d="M128 38 Q138 25 142 5 Q132 22 124 40 Z" class="hps-spike"/>
     <!-- Spike 9 (far right, pointing down-right) -->
-    <path d="M132 75 Q142 70 148 58 Q140 65 132 75 Z" class="hps-spike"/>
+    <path d="M132 55 Q142 50 148 38 Q140 45 132 55 Z" class="hps-spike"/>
 
     <!-- Additional smaller accent spikes -->
     <!-- Mini spike front-left -->
-    <path d="M75 62 Q72 50 70 40 Q76 50 78 64 Z" class="hps-spike" opacity="0.8"/>
+    <path d="M75 42 Q72 30 70 20 Q76 30 78 44 Z" class="hps-spike" opacity="0.8"/>
     <!-- Mini spike front-right -->
-    <path d="M125 62 Q128 50 130 40 Q124 50 122 64 Z" class="hps-spike" opacity="0.8"/>
+    <path d="M125 42 Q128 30 130 20 Q124 30 122 44 Z" class="hps-spike" opacity="0.8"/>
 
     <!-- Highlight shine on spike tips -->
     <ellipse cx="88" cy="5" rx="3" ry="2" class="hps-hi"/>
@@ -75,11 +75,7 @@
     <ellipse cx="78" cy="12" rx="2" ry="2" class="hps-hi"/>
     <ellipse cx="122" cy="12" rx="2" ry="2" class="hps-hi"/>
 
-    <!-- Side/face undercut shading (short on sides) -->
-    <path d="M56 95 Q65 105 75 115" stroke="#5A0080" stroke-width="3" fill="none" opacity="0.3" stroke-linecap="round"/>
-    <path d="M144 95 Q135 105 125 115" stroke="#5A0080" stroke-width="3" fill="none" opacity="0.3" stroke-linecap="round"/>
-
     <!-- Metallic-ish glow on crown -->
-    <circle cx="100" cy="65" r="28" fill="none" stroke="#A855F7" stroke-width="1" opacity="0.4"/>
+    <circle cx="100" cy="45" r="24" fill="none" stroke="#A855F7" stroke-width="1" opacity="0.4"/>
   </g>
 </svg>
