@@ -3037,13 +3037,13 @@ class TestCatchRunAwayButton(unittest.TestCase):
                       "creatures.css must style the .catch-run-btn class")
 
     def test_run_away_css_has_position(self):
-        """creatures.css: .catch-run-btn must be positioned (not in normal flow)"""
+        """creatures.css: .catch-run-btn must have margin-top for spacing in flex layout"""
         idx = self.css.find('.catch-run-btn')
         block_start = self.css.find('{', idx)
         block_end = self.css.find('}', block_start)
         block = self.css[block_start:block_end]
-        self.assertIn('position:', block,
-                      ".catch-run-btn must have explicit positioning")
+        self.assertIn('margin-top', block,
+                      ".catch-run-btn must have margin-top for spacing")
 
 
 

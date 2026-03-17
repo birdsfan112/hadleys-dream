@@ -10,6 +10,11 @@ const Particles = (() => {
   let currentLocationId = null;
   let resizeObserver = null;
   let isRunning = false;
+  let lastFrameTime = 0;
+  const TARGET_FPS = 24; // Throttle to 24fps — plenty smooth for ambient particles
+  const FRAME_INTERVAL = 1000 / TARGET_FPS;
+  // Disable expensive shadowBlur on mobile to save GPU/battery
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   // Particle configuration per location
   const PARTICLE_CONFIGS = {
@@ -222,7 +227,9 @@ const Particles = (() => {
     const containerWidth = canvas.parentElement.clientWidth;
     const containerHeight = canvas.parentElement.clientHeight;
 
-    for (let i = 0; i < config.count; i++) {
+    // Reduce particle count on mobile to save battery
+    const count = isMobile ? Math.floor(config.count * 0.5) : config.count;
+    for (let i = 0; i < count; i++) {
       // Randomly select particle type based on distribution
       const particleTypeDef = config.particles[Math.floor(Math.random() * config.particles.length)];
 
@@ -251,22 +258,29 @@ const Particles = (() => {
     }
   }
 
-  function animate() {
+  function animate(timestamp) {
     if (!isRunning || !ctx || !canvas) return;
+
+    // Throttle frame rate to save battery
+    if (timestamp - lastFrameTime < FRAME_INTERVAL) {
+      animationFrameId = requestAnimationFrame(animate);
+      return;
+    }
+    const dt = Math.min((timestamp - lastFrameTime) / 1000, 0.1); // delta in seconds, capped
+    lastFrameTime = timestamp;
 
     const containerWidth = canvas.parentElement.clientWidth;
     const containerHeight = canvas.parentElement.clientHeight;
-    const dpr = window.devicePixelRatio || 1;
 
     // Clear canvas
     ctx.clearRect(0, 0, containerWidth, containerHeight);
 
     // Update and draw particles
     particles.forEach((p) => {
-      // Update position with wind drift
-      p.x += p.vx * 0.016; // ~60fps
-      p.y += p.vy * 0.016;
-      p.time += 0.016;
+      // Update position with wind drift (use actual delta time)
+      p.x += p.vx * dt;
+      p.y += p.vy * dt;
+      p.time += dt;
 
       // Sine wave wobble for horizontal drift
       const wobble = Math.sin(p.time * p.wobbleSpeed + p.wobbleOffset) * p.wobbleAmplitude;
@@ -279,12 +293,10 @@ const Particles = (() => {
       // Size variation based on opacity for depth effect
       const sizeVariation = p.baseSize * (opacityWave * 0.3 + 0.7);
 
-      // Draw glow if enabled (reduced intensity for mobile performance)
-      if (p.glow && alpha > 0.2) {
+      // Draw glow only on desktop (shadowBlur is very expensive on mobile GPUs)
+      if (!isMobile && p.glow && alpha > 0.2) {
         ctx.shadowBlur = sizeVariation * 1.5;
         ctx.shadowColor = p.glowColor;
-      } else {
-        ctx.shadowBlur = 0;
       }
 
       // Draw particle
@@ -294,8 +306,10 @@ const Particles = (() => {
       ctx.arc(wobbleX, p.y, sizeVariation, 0, Math.PI * 2);
       ctx.fill();
 
-      // Reset shadow
-      ctx.shadowBlur = 0;
+      // Reset shadow (only needed if we set it)
+      if (!isMobile && p.glow) {
+        ctx.shadowBlur = 0;
+      }
       ctx.globalAlpha = 1;
 
       // Respawn if particle goes off screen
