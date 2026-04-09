@@ -1,10 +1,14 @@
 ## Status
-- **Phase:** Phases 1–3 complete, Phase 4 deferred — effectively in maintenance
-- **Updated:** 2026-04-04
-- **Summary:** All planned fixes done. 146 tests passing. Full SVG artwork for 5 locations, 3 music styles, fashion studio overhaul complete. No active development — focus has shifted to the 3D version.
-- **Autonomous:** Fix open bugs (avatar transparency, iPhone Safari hair loading) if reproducible, activate Room mode
-- **Needs Scott:** Decide whether to invest further in 2D version or focus entirely on 3D, provide screenshot/reproduction steps for transparency bug
-- **Blockers:** Avatar transparency bug and iPhone Safari loading issue both need live debugging with a device
+
+| Field | Value |
+|-------|-------|
+| **Phase** | Phases 1–3 complete, Phase 4 deferred — effectively in maintenance |
+| **Updated** | 2026-04-08 |
+| **Summary** | All planned fixes done. 146 tests passing. Full SVG artwork for 5 locations, 3 music styles, fashion studio overhaul complete. No active development — focus has shifted to the 3D version. |
+| **Next Session** | TBD |
+| **Needs Scott** | Decide whether to invest further in 2D version or focus entirely on 3D; provide screenshot/reproduction steps for transparency bug |
+| **Autonomous** | Fix open bugs (avatar transparency, iPhone Safari hair loading) if reproducible; activate Room mode |
+| **External Blockers** | Avatar transparency bug and iPhone Safari loading issue both need live debugging with a device |
 
 # Hadley's Dream — Roadmap
 
