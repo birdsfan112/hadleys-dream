@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Hadley's Dream — a PWA game for a child named Hadley with three game modes: Creature World (explore locations, catch creatures via timing mini-game), Fashion Studio (dress-up with challenge scoring), and Dream Room (grid-based furniture placement).
 
+**Status:** See `roadmap.md` for current project status and session log.
+
 ## Development
 
 This is a static PWA with no build step, no bundler, no framework. To run it, serve the root directory with any static HTTP server:
@@ -51,3 +53,11 @@ When updating cached assets, bump `CACHE_NAME` in `sw.js` (currently `'dream-wor
 - Deep-merge saved state on load to handle old saves missing new keys (see `Game.init()`)
 - Fashion challenge scoring uses tag-matching between equipped items and the challenge theme
 - Creature rarity affects catch difficulty (ring speed/size) and coin reward
+
+## End-of-Session Protocol
+
+See end-of-session protocol: `C:\Users\scott\Documents\ChiefOfStaff\templates\end-of-session-protocol.md`
+
+## Approval Gate Posture
+
+**Default: proceed and narrate.** For simple reversible changes — new code, file creation, asset additions — describe what you're doing and keep moving. Scott can redirect at any point. **Hard stops (present plan, wait for approval):** changing core game mechanics or architecture, modifying save/load data structures in ways that break existing saves, or any action that deletes or overwrites game assets.

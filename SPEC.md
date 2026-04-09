@@ -551,13 +551,13 @@ If the issue persists after a clean cache:
 
 ### Files Involved (for reference)
 
-- `C:\Users\Scott\Documents\HAD Game\js\fashion.js` -- SVG loading/parsing/rendering logic
-- `C:\Users\Scott\Documents\HAD Game\js\data.js` -- FASHION_ITEMS definitions (lines 169-203)
-- `C:\Users\Scott\Documents\HAD Game\sw.js` -- service worker cache (ASSETS list, CACHE_NAME)
-- `C:\Users\Scott\Documents\HAD Game\assets\fashion\avatar-base.svg` -- new F4 avatar
-- `C:\Users\Scott\Documents\HAD Game\assets\fashion\hair-long-straight.svg` -- verified intact
-- `C:\Users\Scott\Documents\HAD Game\assets\fashion\hair-pigtails.svg` -- verified intact
-- `C:\Users\Scott\Documents\HAD Game\assets\fashion\hair-space-buns.svg` -- verified intact
-- `C:\Users\Scott\Documents\HAD Game\assets\fashion\acc-heart-necklace.svg` -- verified intact
-- `C:\Users\Scott\Documents\HAD Game\assets\fashion\acc-sunglasses.svg` -- verified intact
-- `C:\Users\Scott\Documents\HAD Game\assets\fashion\acc-fairy-wings.svg` -- verified intact
+- `C:\Users\scott\Documents\HAD Game\js\fashion.js` -- SVG loading/parsing/rendering logic
+- `C:\Users\scott\Documents\HAD Game\js\data.js` -- FASHION_ITEMS definitions (lines 169-203)
+- `C:\Users\scott\Documents\HAD Game\sw.js` -- service worker cache (ASSETS list, CACHE_NAME)
+- `C:\Users\scott\Documents\HAD Game\assets\fashion\avatar-base.svg` -- new F4 avatar
+- `C:\Users\scott\Documents\HAD Game\assets\fashion\hair-long-straight.svg` -- verified intact
+- `C:\Users\scott\Documents\HAD Game\assets\fashion\hair-pigtails.svg` -- verified intact
+- `C:\Users\scott\Documents\HAD Game\assets\fashion\hair-space-buns.svg` -- verified intact
+- `C:\Users\scott\Documents\HAD Game\assets\fashion\acc-heart-necklace.svg` -- verified intact
+- `C:\Users\scott\Documents\HAD Game\assets\fashion\acc-sunglasses.svg` -- verified intact
+- `C:\Users\scott\Documents\HAD Game\assets\fashion\acc-fairy-wings.svg` -- verified intact
