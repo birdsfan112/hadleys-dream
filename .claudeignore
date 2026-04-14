@@ -1,0 +1,12 @@
+# Python compiled files
+tests/__pycache__/
+*.pyc
+
+# Test runner cache
+.pytest_cache/
+
+# Claude session data
+.claude/
+
+# PNG images — Claude doesn't need to scan these for code work
+assets/creatures/*.png
