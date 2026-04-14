@@ -56,7 +56,7 @@ When updating cached assets, bump `CACHE_NAME` in `sw.js` (currently `'dream-wor
 
 ## End-of-Session Protocol
 
-See end-of-session protocol: `C:\Users\scott\Documents\ChiefOfStaff\templates\end-of-session-protocol.md`
+Follow the `session-closure` skill.
 
 ## Approval Gate Posture
 
