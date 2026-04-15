@@ -2,8 +2,8 @@
 
 | Field | Value |
 |-------|-------|
-| **Priority** | maintenance |
-| **Phase** | Iterate |
+| **Priority** | parked |
+| **Phase** |  |
 | **Updated** | 2026-04-08 |
 | **Summary** | All planned fixes done. 146 tests passing. Full SVG artwork for 5 locations, 3 music styles, fashion studio overhaul complete. No active development — focus has shifted to the 3D version. |
 | **Needs Scott** | Decide whether to invest further in 2D version or focus entirely on 3D; provide screenshot/reproduction steps for transparency bug |
@@ -117,6 +117,10 @@ After all phases are complete, test in browser:
 ## Session Log
 
 > March 5–6 sessions archived to `archive/roadmap-archive.md` on 2026-04-06.
+
+### 2026-04-15 — Parked
+
+- Priority flipped maintenance → parked. Phase cleared. Focus remains on 3D version (which was also parked today). Open bugs and feature ideas retained in existing sections.
 
 ### 2026-03-23 — CLAUDE.md audit and roadmap creation
 
