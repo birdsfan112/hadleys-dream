@@ -54,10 +54,12 @@ When updating cached assets, bump `CACHE_NAME` in `sw.js` (currently `'dream-wor
 - Fashion challenge scoring uses tag-matching between equipped items and the challenge theme
 - Creature rarity affects catch difficulty (ring speed/size) and coin reward
 
-## End-of-Session Protocol
+## Relevant Skills
+- `dev-philosophy` — when planning or implementing game-logic changes
+- `session-closure` — at the end of every session
 
-Follow the `session-closure` skill.
+Full skill catalog: see `Available Skills` in `C:\Hub\CLAUDE.md`.
 
-## Approval Gate Posture
+## Hard Stops (per Hub `Tiered posture` rule)
 
-**Default: proceed and narrate.** For simple reversible changes — new code, file creation, asset additions — describe what you're doing and keep moving. Scott can redirect at any point. **Hard stops (present plan, wait for approval):** changing core game mechanics or architecture, modifying save/load data structures in ways that break existing saves, or any action that deletes or overwrites game assets.
+Stop and present a plan before: changing core game mechanics or architecture, modifying save/load data structures in ways that break existing saves, or any action that deletes or overwrites game assets.
